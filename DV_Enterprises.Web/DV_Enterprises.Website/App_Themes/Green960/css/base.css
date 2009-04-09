@@ -1,0 +1,26 @@
+﻿html { background: #333333 url('../images/html-bg.png') repeat-y center top; }
+body { background: url('../images/body-bg.png') repeat-x center top; }
+#body2 { background: url('../images/body2-bg.png') no-repeat center top; }
+
+h2.title { font-size: 3.69em; letter-spacing: -0.03em; margin-top: 0.3333em; }
+.title {color:#666; line-height: 1.25em; margin-bottom: 0;}
+
+/** Header **/
+#header { padding-top: 20px; }
+#header h1 { height: 55px; }
+#header h1 a {
+    background: url('../images/logo.png') no-repeat left top;
+    display: block;
+    height: 65px;
+    width: 440px;
+    text-decoration: none;
+    text-indent: -9999em;
+}
+
+#header #slogan { display: none; }
+#header #navigation { height: 50px; font-size: 18px; color: #000; }
+#header #navigation ul { text-align: center; }
+#header #navigation li { margin: 0; display:inline; float:none !important; }
+#header #navigation a { display: block; padding: 10px; height: 30px !important; color: #000; }
+#header #navigation a:hover { background-color: #c7e3a4; }
+#header #subhead { height: 40px; }
