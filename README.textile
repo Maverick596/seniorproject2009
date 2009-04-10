@@ -1,6 +1,6 @@
 h1. Senior Project 2003
 
-h1 Description:
+h1. Description:
 
 h1. Authors:
 
