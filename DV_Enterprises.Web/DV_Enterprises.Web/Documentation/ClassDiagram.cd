@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
+  <Class Name="DV_Enterprises.Web.BLL.BaseEntity">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAIAAAAIAAAAgEAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DV_Enterprises.Web.BLL.BaseGreenhouseEntity">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAgCAAAAAAAAA=</HashCode>
+      <FileName>BLL\BaseGreenhouseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DV_Enterprises.Web.BLL.Greenhouse">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAqiAQxBAASAAAgQCMAIEBBiKAAAAQAIPAAAIAAAJM=</HashCode>
+      <FileName>BLL\Greenhouse.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.1" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.BLL.Greenhouse_NoBody">
+    <Position X="0.5" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\Greenhouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DV_Enterprises.Web.DAL.DataContext" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QgAAgDICAgEAAiAAAAKCIJAAImAggAADwNhAIAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DV_Enterprises.Web.BLL.Crop" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAiAAQzDAADQAIBQiEAKMRJiCCGQAACIBQFEoAAErA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.BLL.SectionLog" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAIggAgFAAKAABQEQBECIAABiCBAAAQcAAAAAqAWAQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.BLL.Environment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAoDAAhDCgBAAYoQgEAEIABjGCCgiQCAEAGEgAIEyA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.BLL.Schedule" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIgAAADDAIRAABCQAEgQASBiCLAgAgCAxAEEiIABQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.BLL.ScheduleType" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiIAABAAAAAAAAQAEAQAABjGAEQAAAAgACEAAABAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.BLL.Section" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>LkAigCQLBAICCABCQiMAIMRBiaAAQAwAIBAAAIMQEJA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.BLL.Location" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAoCAABPABQAgAIQAEACAABiCIAAAgRwEAIBCERQAM=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="DV_Enterprises.Web.BLL.ICrudDataEntity" Collapsed="true">
+    <Position X="3" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BLL\ICrudDataEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
