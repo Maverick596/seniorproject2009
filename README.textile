@@ -1,9 +1,11 @@
-h1. Senior Project 2003
+h1. Senior Project 2009
 
 h1. Description:
 
 h1. Authors:
+
 Matt Cordero
+"Louis Taylor":http://www.twitter.com/negonicrac
 
 h1. Requirements:
 
