@@ -50,11 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BaseCropEntity.cs" />
     <Compile Include="BLL\BaseEntity.cs" />
     <Compile Include="BLL\BaseGreenhouseEntity.cs" />
+    <Compile Include="BLL\Crop.cs" />
     <Compile Include="BLL\Greenhouse.cs" />
     <Compile Include="BLL\ICrudDataEntity.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="CropElement.cs" />
     <Compile Include="DataContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

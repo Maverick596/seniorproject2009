@@ -10,14 +10,15 @@ namespace DV_Enterprises.Web.BLL
     {
         // Public propertities
 
-        // Public Methods
-        private static DataContext sharedContext;
+        //Private propertities
+        private static DataContext _sharedContext;
 
+        // Public Methods
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static IEnumerable<Greenhouse_NoBody> GetGreenhouses()
         {
             List<Greenhouse_NoBody> greenhouses = GetGreenhousesQuery().ToList();
-            sharedContext.Dispose();
+            _sharedContext.Dispose();
             return greenhouses;
         }
 
@@ -28,7 +29,7 @@ namespace DV_Enterprises.Web.BLL
 
             // TODO: Add other conditions before executing query
             greenhouses = GetGreenhousesQuery().Skip(startRowIndex).Take(MaximumRows).ToList();
-            sharedContext.Dispose();
+            _sharedContext.Dispose();
 
             return greenhouses;
         }
@@ -37,7 +38,7 @@ namespace DV_Enterprises.Web.BLL
         {
             // TODO: Add other conditions before executing query
             int greenhouseCount = GetGreenhousesQuery().Count();
-            sharedContext.Dispose();
+            _sharedContext.Dispose();
 
             return greenhouseCount;
         }
@@ -116,11 +117,11 @@ namespace DV_Enterprises.Web.BLL
 
         private static IOrderedQueryable<Greenhouse_NoBody> GetGreenhousesQuery()
         {
-            sharedContext = GetContext();
+            _sharedContext = GetContext();
 
-            sharedContext.DeferredLoadingEnabled = false;
+            _sharedContext.DeferredLoadingEnabled = false;
 
-            return sharedContext.Greenhouses.Select(g => new Greenhouse_NoBody
+            return _sharedContext.Greenhouses.Select(g => new Greenhouse_NoBody
             {
                 GreenhouseId = g.GreenhouseId,
                 Width = g.Width,
