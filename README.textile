@@ -11,8 +11,6 @@ h2. Authors:
 
 h2. Requirements:
 
-Stephon Burrows
-
 h1. Requirements:
 
 h1. License:
