@@ -5,7 +5,10 @@ h1. Description:
 h1. Authors:
 
 Matt Cordero
+
 "Louis Taylor":http://www.twitter.com/negonicrac
+
+Kinberly C.
 
 h1. Requirements:
 
