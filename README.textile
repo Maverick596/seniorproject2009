@@ -7,7 +7,12 @@ h2. Authors:
 * Matt Cordero
 * "Louis Taylor":http://www.twitter.com/negonicrac
 * Kinberly C.
+* Stephon Burrows
 
 h2. Requirements:
 
-h2. License:
+Stephon Burrows
+
+h1. Requirements:
+
+h1. License:
