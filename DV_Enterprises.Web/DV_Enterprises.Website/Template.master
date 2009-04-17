@@ -15,27 +15,30 @@
     <form runat="server">
         <div id="body2">
             <div id="header" class="container_16">
-                <a class="logo" href="Default.aspx"><asp:Image runat="server" SkinID="Logo" /></a>
-                <h1><a href="Default.aspx">Smart Greenhouse Solutions</a></h1>
+                <asp:HyperLink ID="lnkLogo" runat="server" NavigateUrl="~/Default.aspx" ToolTip="Home" CssClass="logo"><asp:Image runat="server" SkinID="Logo" /></asp:HyperLink>
+                <h1>
+                    <asp:HyperLink ID="lnkSiteName" runat="server" NavigateUrl="~/Default.aspx" Text="Smart Greenhouse Solutions" ToolTip="Home" /></h1>
                 <div id="slogan">a better slogan here</div>
-                <div id="navigation">
-                    <asp:Menu ID="Menu" runat="server" DataSourceID="SiteMapDataSource1" 
-                        Orientation="Horizontal" CssClass="grid_16" StaticSubMenuIndent="">
-                    </asp:Menu>
+                                <div id="userbox">
                     <asp:LoginView ID="LoginView1" runat="server">
                         <LoggedInTemplate>
-                            <asp:LoginName ID="LoginName1" runat="server" />
+                            <strong><asp:LoginName ID="LoginName" runat="server" /></strong>
+                            <asp:HyperLink ID="lnk" runat="server">Account</asp:HyperLink>
+                            <asp:LoginStatus ID="LoginStatus" runat="server" />
                         </LoggedInTemplate>
                         <AnonymousTemplate>
                             <asp:HyperLink ID="Login" runat="server" NavigateUrl="~/LoginPage.aspx">Login</asp:HyperLink>
                         </AnonymousTemplate>
                     </asp:LoginView>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:LoginStatus ID="LoginStatus1" runat="server" 
-                        LogoutPageUrl="~/Default.aspx" />
+                </div>
+                <div id="navigation">
+                    <asp:Menu ID="Menu" runat="server" DataSourceID="SiteMapDataSource1" 
+                        Orientation="Horizontal" CssClass="grid_16" StaticSubMenuIndent="">
+                    </asp:Menu>
                 </div>
                 <div id="subhead">
-                    This bar will have the breadcrumb and search&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                 </div>
+                    This bar will have the breadcrumb and search
+                </div>
             </div>
             <!-- END #header -->
             
@@ -117,6 +120,15 @@
             </div>
         </div>
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        <div id="footer">
+            <ul class="links">
+                <li><asp:HyperLink ID="lnkTerms" runat="server" Text="Terms of use" NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
+                <li><asp:HyperLink ID="HyperLink1" runat="server" Text="Terms of use" NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
+                <li><asp:HyperLink ID="HyperLink2" runat="server" Text="Terms of use" NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
+                <li><asp:HyperLink ID="HyperLink3" runat="server" Text="Terms of use" NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
+                <li class="last"><asp:HyperLink ID="HyperLink4" runat="server" Text="Terms of use" NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
+            </ul>
+        </div>
     </form>
 </body>
 </html>
