@@ -25,7 +25,8 @@
             DeleteMethod="DeleteGreenhouse" InsertMethod="InsertGreenhouse" 
             OldValuesParameterFormatString="original_{0}" SelectMethod="GetGreenhouses" 
             TypeName="DV_Enterprises.Web.BLL.Greenhouse" UpdateMethod="UpdateGreenhouse"></asp:ObjectDataSource>
-        <asp:Button ID="btnPurchase" runat="server" Text="New Purchase" />
+        <asp:Button ID="btnPurchase" runat="server" Text="New Purchase" 
+            PostBackUrl="~/Admin/PurchaseForm.aspx" />
     </div>
     <div class="crops">   
         <h3>Crops</h3>
