@@ -8,6 +8,15 @@ h2.title { font-size: 3.69em; letter-spacing: -0.03em; margin-top: 0.3333em; }
 /** Header **/
 #header { padding-top: 20px; }
 #header h1 { height: 55px; }
+#header a.logo {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    display: block;
+    height: 115px;
+    width: 51px;
+}
+
 #header h1 a {
     background: url('../images/site-name.png') no-repeat left top;
     display: block;
@@ -15,6 +24,7 @@ h2.title { font-size: 3.69em; letter-spacing: -0.03em; margin-top: 0.3333em; }
     width: 536px;
     text-decoration: none;
     text-indent: -9999em;
+    margin: 10px 0 0 51px;
 }
 
 #header #slogan { display: none; }
