@@ -9,10 +9,10 @@ h2.title { font-size: 3.69em; letter-spacing: -0.03em; margin-top: 0.3333em; }
 #header { padding-top: 20px; }
 #header h1 { height: 55px; }
 #header h1 a {
-    background: url('../images/logo.png') no-repeat left top;
+    background: url('../images/site-name.png') no-repeat left top;
     display: block;
-    height: 65px;
-    width: 440px;
+    height: 45px;
+    width: 536px;
     text-decoration: none;
     text-indent: -9999em;
 }

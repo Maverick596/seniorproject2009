@@ -15,6 +15,7 @@
     <form runat="server">
         <div id="body2">
             <div id="header" class="container_16">
+                <asp:Image runat="server" SkinID="Logo" />
                 <h1><a href="Default.aspx">Smart Greenhouse Solutions</a></h1>
                 <div id="slogan">a better slogan here</div>
                 <div id="navigation">
