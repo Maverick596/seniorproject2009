@@ -6,21 +6,28 @@ h2.title { font-size: 3.69em; letter-spacing: -0.03em; margin-top: 0.3333em; }
 .title {color:#666; line-height: 1.25em; margin-bottom: 0;}
 
 /** Header **/
-#header { padding-top: 20px; }
-#header h1 { height: 55px; }
+#header { /** padding-top: 20px; **/ }
+#header h1 { height: 55px; float: left; margin-top: 20px; }
+#header a.logo { z-index: 100; display: block; height: 115px; width: 51px; float:left; }
 #header h1 a {
-    background: url('../images/logo.png') no-repeat left top;
+    background: url('../images/site-name.png') no-repeat left top;
     display: block;
-    height: 65px;
-    width: 440px;
+    height: 45px;
+    width: 536px;
     text-decoration: none;
     text-indent: -9999em;
+    margin: 16px 0 0 0;
+    z-index: 99;
 }
-
 #header #slogan { display: none; }
-#header #navigation { height: 50px; font-size: 18px; color: #000; }
+#header #userbox {float: right; height: 30px; margin: 25px 0 40px 0; text-align: center; width: 172px;}
+#header #navigation { height: 50px; font-size: 18px; color: #000; clear: right;}
 #header #navigation ul { text-align: center; }
 #header #navigation li { margin: 0; display:inline; float:none !important; }
 #header #navigation a { display: block; padding: 10px; height: 30px !important; color: #000; }
 #header #navigation a:hover { background-color: #c7e3a4; }
 #header #subhead { height: 40px; }
+#footer { text-align: center; }
+#footer ul.links { text-align: center; }
+#footer ul.links li { margin: 0; margin-left: 0 !important;display: inline; border-right:1px solid #333333; padding: 0 5px}
+#footer ul.links li.last { border: none }
