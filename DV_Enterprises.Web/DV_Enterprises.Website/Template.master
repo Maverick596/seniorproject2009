@@ -24,8 +24,7 @@
                         <LoggedInTemplate>
                             <strong><asp:LoginName ID="LoginName" runat="server" /></strong>
                             <asp:HyperLink ID="lnk" runat="server">Account</asp:HyperLink>
-                            <asp:LoginStatus ID="LoginStatus" runat="server"  LogoutPageUrl="~/Default.aspx"/>
-                                LogoutPageUrl="~/Default.aspx" />
+                            <asp:LoginStatus ID="LoginStatus" runat="server" LogoutPageUrl="~/Default.aspx"/>
                         </LoggedInTemplate>
                         <AnonymousTemplate>
                             <asp:HyperLink ID="Login" runat="server" NavigateUrl="~/LoginPage.aspx">Login</asp:HyperLink>
@@ -120,7 +119,6 @@
                 </asp:ContentPlaceHolder>
             </div>
         </div>
-        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
         <div id="footer">
             <ul class="links">
                 <li><asp:HyperLink ID="lnkHome" runat="server" Text="Home" 
@@ -135,8 +133,8 @@
                         NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
             </ul>
             <div class="copy">&copy; DVEnterprise 2009</div>
-
         </div>
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
     </form>
 </body>
 </html>
