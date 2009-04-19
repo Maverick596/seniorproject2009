@@ -19,12 +19,13 @@
                 <h1>
                     <asp:HyperLink ID="lnkSiteName" runat="server" NavigateUrl="~/Default.aspx" Text="Smart Greenhouse Solutions" ToolTip="Home" /></h1>
                 <div id="slogan">a better slogan here</div>
-                                <div id="userbox">
+                <div id="userbox">
                     <asp:LoginView ID="LoginView1" runat="server">
                         <LoggedInTemplate>
                             <strong><asp:LoginName ID="LoginName" runat="server" /></strong>
                             <asp:HyperLink ID="lnk" runat="server">Account</asp:HyperLink>
-                            <asp:LoginStatus ID="LoginStatus" runat="server" />
+                            <asp:LoginStatus ID="LoginStatus" runat="server"  LogoutPageUrl="~/Default.aspx"/>
+                                LogoutPageUrl="~/Default.aspx" />
                         </LoggedInTemplate>
                         <AnonymousTemplate>
                             <asp:HyperLink ID="Login" runat="server" NavigateUrl="~/LoginPage.aspx">Login</asp:HyperLink>
@@ -122,12 +123,19 @@
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
         <div id="footer">
             <ul class="links">
-                <li><asp:HyperLink ID="lnkTerms" runat="server" Text="Terms of use" NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
-                <li><asp:HyperLink ID="HyperLink1" runat="server" Text="Terms of use" NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
-                <li><asp:HyperLink ID="HyperLink2" runat="server" Text="Terms of use" NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
-                <li><asp:HyperLink ID="HyperLink3" runat="server" Text="Terms of use" NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
-                <li class="last"><asp:HyperLink ID="HyperLink4" runat="server" Text="Terms of use" NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
+                <li><asp:HyperLink ID="lnkHome" runat="server" Text="Home" 
+                        NavigateUrl="~/Default.aspx"></asp:HyperLink></li>
+                <li><asp:HyperLink ID="lnkTermsOfUse" runat="server" Text="Terms Of Use" 
+                        NavigateUrl="~/Legal/TermsOfUse.aspx" BorderStyle="None"></asp:HyperLink></li>
+                <li><asp:HyperLink ID="lnkContactUs" runat="server" Text="Contact Us" 
+                        NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
+                <li><asp:HyperLink ID="lnkPrivacyPolicy" runat="server" Text="Privacy Policy" 
+                        NavigateUrl="~/Legal/PrivacyPolicy.aspx"></asp:HyperLink></li>
+                <li class="last"><asp:HyperLink ID="lnkFAQ" runat="server" Text="FAQ's" 
+                        NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
             </ul>
+            <div class="copy">&copy; DVEnterprise 2009</div>
+
         </div>
     </form>
 </body>

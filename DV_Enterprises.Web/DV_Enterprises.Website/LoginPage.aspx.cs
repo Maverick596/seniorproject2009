@@ -17,8 +17,18 @@ public partial class LoginPage : System.Web.UI.Page
     {
 
     }
-    protected void LoginButton_Click(object sender, EventArgs e)
+
+    protected void login_LoggedIn(object sender, EventArgs e)
     {
-        
+        if (Roles.IsUserInRole(login.UserName, "Administrator"))
+        {
+            login.DestinationPageUrl = "~/Admin/Default.aspx";
+        }
+        else
+        {
+            login.DestinationPageUrl = "~/Customer/Default.aspx";
+        }
+
+
     }
 }
