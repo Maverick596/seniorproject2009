@@ -23,7 +23,7 @@ h2.title { font-size: 3.69em; letter-spacing: -0.03em; margin-top: 0.3333em; }
 #header #userbox {float: right; height: 30px; margin: 25px 0 40px 0; text-align: center; width: 172px;}
 #header #navigation { height: 50px; font-size: 18px; color: #000; clear: right;}
 #header #navigation ul { text-align: center; }
-#header #navigation li { margin: 0; display:inline; float:none !important; }
+#header #navigation li { margin: 0; display:inline; }
 #header #navigation a { display: block; padding: 10px; height: 30px !important; color: #000; }
 #header #navigation a:hover { background-color: #c7e3a4; }
 #header #subhead { height: 40px; }

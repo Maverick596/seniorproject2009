@@ -126,15 +126,16 @@
                 <li><asp:HyperLink ID="lnkTermsOfUse" runat="server" Text="Terms Of Use" 
                         NavigateUrl="~/Legal/TermsOfUse.aspx" BorderStyle="None"></asp:HyperLink></li>
                 <li><asp:HyperLink ID="lnkContactUs" runat="server" Text="Contact Us" 
-                        NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
+                        NavigateUrl="~/ContactUs.aspx"></asp:HyperLink></li>
                 <li><asp:HyperLink ID="lnkPrivacyPolicy" runat="server" Text="Privacy Policy" 
                         NavigateUrl="~/Legal/PrivacyPolicy.aspx"></asp:HyperLink></li>
                 <li class="last"><asp:HyperLink ID="lnkFAQ" runat="server" Text="FAQ's" 
-                        NavigateUrl="~/Legal/TermsOfUse.aspx"></asp:HyperLink></li>
+                        NavigateUrl="~/FAQ.aspx"></asp:HyperLink></li>
             </ul>
             <div class="copy">&copy; DVEnterprise 2009</div>
         </div>
-        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" 
+            ShowStartingNode="False" />
     </form>
 </body>
 </html>

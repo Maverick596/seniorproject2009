@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="PassRecoveryPage.aspx.cs" Inherits="PassRecoveryPage" Title="Recover Password &mdash; Smart GreenHouse Solutions" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="PassRecoveryPage.aspx.cs" Inherits="PassRecoveryPage" Title="Recover Password &mdash; Smart Greenhouse Solutions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
