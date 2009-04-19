@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="Greenhouses.aspx.cs" Inherits="Admin_Greenhouses" Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="Greenhouses.aspx.cs" Inherits="Admin_Greenhouses" Title="Greenhouses &mdash; Smart GreenHouse Solutions Administration" %>
 <%@ Register src="../Controls/GreenhouseListing.ascx" TagName="GreenhouseListing" TagPrefix="dvent" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">

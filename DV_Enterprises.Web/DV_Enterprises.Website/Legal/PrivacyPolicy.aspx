@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="PrivacyPolicy.aspx.cs" Inherits="Content_PrivacyPolicy" Title="Privacy Policy" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="PrivacyPolicy.aspx.cs" Inherits="Content_PrivacyPolicy" Title="Privacy Policy &mdash; Smart GreenHouse Solutions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

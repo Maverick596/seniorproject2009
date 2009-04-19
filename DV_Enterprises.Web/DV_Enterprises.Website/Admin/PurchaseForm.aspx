@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true"
-    CodeFile="PurchaseForm.aspx.cs" Inherits="Admin_PurchaseForm" Title="Untitled Page" %>
+    CodeFile="PurchaseForm.aspx.cs" Inherits="Admin_PurchaseForm" Title="Purchase &mdash; Smart GreenHouse Solutions Administration" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server" >
 </asp:Content>
