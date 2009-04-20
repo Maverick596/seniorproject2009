@@ -20,7 +20,9 @@
                     <asp:HyperLink ID="lnkSiteName" runat="server" NavigateUrl="~/Default.aspx" Text="Smart Greenhouse Solutions" ToolTip="Home" /></h1>
                 <div id="slogan">a better slogan here</div>
                 <div id="userbox">
-                    <asp:LoginView ID="LoginView1" runat="server">
+                
+                
+<%--                    <asp:LoginView ID="LoginView1" runat="server">
                         <LoggedInTemplate>
                             <strong><asp:LoginName ID="LoginName" runat="server" /></strong>
                             <asp:HyperLink ID="lnk" runat="server">Account</asp:HyperLink>
@@ -29,9 +31,17 @@
                         <AnonymousTemplate>
                             <asp:HyperLink ID="Login" runat="server" NavigateUrl="~/LoginPage.aspx">Login</asp:HyperLink>
                         </AnonymousTemplate>
-                    </asp:LoginView>
+                    </asp:LoginView>--%>
+                    
+                    
+                    <asp:HyperLink ID="LoginHyperLink" runat="server" NavigateUrl="~/LoginPage.aspx" Text="Login" />
+                    <asp:Label ID="LoggedInUser" runat="server" Visible="false" Text="" />
+                    <br />
+                    <asp:LinkButton ID="LogOutHyperLinkButton" runat="server" Text="Log Out" NavigateUrl="~/Default.aspx" Visible="false" 
+                        onclick="LogOutHyperLinkButton_Click" />
                 </div>
                 <div id="navigation">
+                    
                     <asp:Menu ID="Menu" runat="server" DataSourceID="SiteMapDataSource1" 
                         Orientation="Horizontal" CssClass="grid_16" StaticSubMenuIndent="">
                     </asp:Menu>
