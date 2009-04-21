@@ -2,7 +2,7 @@
 body { background: url('../images/body-bg.png') repeat-x center top; }
 #body2 { background: url('../images/body2-bg.png') no-repeat center top; }
 
-h2.title { font-size: 3.69em; letter-spacing: -0.03em; margin-top: 0.3333em; }
+h2.title { font-size: 2.5em; letter-spacing: -0.03em; margin-top: 0.3333em; }
 .title {color:#666; line-height: 1.25em; margin-bottom: 0;}
 
 /** Header **/

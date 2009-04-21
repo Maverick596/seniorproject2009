@@ -6,6 +6,7 @@
         <siteMapNode url="Products/Default.aspx" title="Products"  description="Learn more about our crrent products"></siteMapNode>
         <siteMapNode url="MeanGreens.aspx" title="Mean Greens" description="Get our  new exciting game"></siteMapNode>
 		<siteMapNode url="FAQ.aspx" title="FAQ" description="Frequently Asked Questions"></siteMapNode>
-		<siteMapNode url="ContactUs.aspx" title="Contact Us" description="if you have any quest please contact us"></siteMapNode>		
+		<siteMapNode url="ContactUs.aspx" title="Contact Us" description="if you have any quest please contact us"></siteMapNode>
+		<siteMapNode url="Account/Greenhouses.aspx" title="Greenhouses" roles="customer" description="Administer your greenhouses"></siteMapNode>
     </siteMapNode>
 </siteMap>

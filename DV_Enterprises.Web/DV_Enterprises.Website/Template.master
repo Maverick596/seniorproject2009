@@ -34,12 +34,14 @@
                     </asp:LoginView>--%>
                     
                     
-                    <asp:HyperLink ID="LoginHyperLink" runat="server" NavigateUrl="~/LoginPage.aspx" Text="Login" />
+                    <asp:HyperLink ID="LoginHyperLink" runat="server" NavigateUrl="~/Login.aspx" Text="Login" />
                     <asp:Label ID="LoggedInUser" runat="server" Visible="false" Text="" />
                     <br />
                     <asp:LinkButton ID="LogOutHyperLinkButton" runat="server" Text="Log Out" NavigateUrl="~/Default.aspx" Visible="false" 
                         onclick="LogOutHyperLinkButton_Click" />
                 </div>
+                <!-- END userbox -->
+                
                 <div id="navigation">
                     
                     <asp:Menu ID="Menu" runat="server" DataSourceID="SiteMapDataSource1" 
