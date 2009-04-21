@@ -14,7 +14,7 @@
       <Column Name="MaxHumidity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Crop_Environment" Member="Environments" OtherKey="CropId" Type="Environment" />
+      <Association Name="Crop_Environment" Member="Environments" ThisKey="CropId" OtherKey="CropId" Type="Environment" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_SectionLog" Member="SectionLogs">
@@ -25,7 +25,7 @@
       <Column Name="Humidity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="isLightOn" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="SectionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Section_SectionLog" Member="Section" ThisKey="SectionId" Type="Section" IsForeignKey="true" />
+      <Association Name="Section_SectionLog" Member="Section" ThisKey="SectionId" OtherKey="SectionId" Type="Section" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Environment" Member="Environments">
@@ -38,9 +38,9 @@
       <Column Name="MinHumidity" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Environment_Schedule" Member="Schedules" OtherKey="EnviromentId" Type="Schedule" />
-      <Association Name="Environment_Section" Member="Sections" OtherKey="EnviromentId" Type="Section" />
-      <Association Name="Crop_Environment" Member="Crop" ThisKey="CropId" Type="Crop" IsForeignKey="true" />
+      <Association Name="Environment_Schedule" Member="Schedules" ThisKey="EnvironmentId" OtherKey="EnviromentId" Type="Schedule" />
+      <Association Name="Environment_Section" Member="Sections" ThisKey="EnvironmentId" OtherKey="EnviromentId" Type="Section" />
+      <Association Name="Crop_Environment" Member="Crop" ThisKey="CropId" OtherKey="CropId" Type="Crop" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Greenhouse" Member="Greenhouses">
@@ -50,8 +50,8 @@
       <Column Name="Height" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="LocationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Greenhouse_Section" Member="Sections" OtherKey="GreenhouseId" Type="Section" />
-      <Association Name="Location_Greenhouse" Member="Location" ThisKey="LocationId" Type="Location" IsForeignKey="true" />
+      <Association Name="Greenhouse_Section" Member="Sections" ThisKey="GreenhouseId" OtherKey="GreenhouseId" Type="Section" />
+      <Association Name="Location_Greenhouse" Member="Location" ThisKey="LocationId" OtherKey="LocationId" Type="Location" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Schedule" Member="Schedules">
@@ -63,15 +63,15 @@
       <Column Name="ScheduleTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Environment_Schedule" Member="Environment" ThisKey="EnviromentId" Type="Environment" IsForeignKey="true" />
-      <Association Name="ScheduleType_Schedule" Member="ScheduleType" ThisKey="ScheduleTypeId" Type="ScheduleType" IsForeignKey="true" />
+      <Association Name="Environment_Schedule" Member="Environment" ThisKey="EnviromentId" OtherKey="EnvironmentId" Type="Environment" IsForeignKey="true" />
+      <Association Name="ScheduleType_Schedule" Member="ScheduleType" ThisKey="ScheduleTypeId" OtherKey="ScheduleTypeId" Type="ScheduleType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_ScheduleType" Member="ScheduleTypes">
     <Type Name="ScheduleType">
       <Column Name="ScheduleTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="NVarChar(253) NOT NULL" CanBeNull="false" />
-      <Association Name="ScheduleType_Schedule" Member="Schedules" OtherKey="ScheduleTypeId" Type="Schedule" />
+      <Association Name="ScheduleType_Schedule" Member="Schedules" ThisKey="ScheduleTypeId" OtherKey="ScheduleTypeId" Type="Schedule" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Section" Member="Sections">
@@ -85,10 +85,9 @@
       <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Width" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Height" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Section_SectionLog" Member="SectionLogs" OtherKey="SectionId" Type="SectionLog" />
-      <Association Name="Environment_Section" Member="Environment" ThisKey="EnviromentId" Type="Environment" IsForeignKey="true" />
-      <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseId" Type="Greenhouse" IsForeignKey="true" />
-      <Association Name="Customer_Section" Member="Customer" ThisKey="CustomerId" OtherKey="CustomerId" Type="Customer" IsForeignKey="true" />
+      <Association Name="Section_SectionLog" Member="SectionLogs" ThisKey="SectionId" OtherKey="SectionId" Type="SectionLog" />
+      <Association Name="Environment_Section" Member="Environment" ThisKey="EnviromentId" OtherKey="EnvironmentId" Type="Environment" IsForeignKey="true" />
+      <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseId" OtherKey="GreenhouseId" Type="Greenhouse" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Location" Member="Locations">
@@ -100,25 +99,65 @@
       <Column Name="AddressLine2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Zip" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Country" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="Location_Greenhouse" Member="Greenhouses" OtherKey="LocationId" Type="Greenhouse" />
+      <Association Name="Location_Greenhouse" Member="Greenhouses" ThisKey="LocationId" OtherKey="LocationId" Type="Greenhouse" />
     </Type>
   </Table>
-  <Table Name="" Member="Customers">
+  <Table Name="dbo.aspnet_Membership" Member="Memberships">
+    <Type Name="Membership">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordFormat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordSalt" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="MobilePIN" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="LoweredEmail" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PasswordQuestion" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="PasswordAnswer" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="IsApproved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsLockedOut" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastLoginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastPasswordChangedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LastLockoutDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FailedPasswordAttemptCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FailedPasswordAttemptWindowStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FailedPasswordAnswerAttemptCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FailedPasswordAnswerAttemptWindowStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="aspnet_User_aspnet_Membership" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_User_aspnet_Membership" Member="Membership" ThisKey="UserId" OtherKey="UserId" Type="Membership" Cardinality="One" />
+      <Association Name="aspnet_User_dvent_Customer" Member="Customers" ThisKey="UserId" OtherKey="UserId" Type="Customer" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_Customer" Member="Customers">
     <Type Name="Customer">
-      <Column Member="CustomerId" Type="System.Int32" CanBeNull="false" />
-      <Column Member="FirstName" Type="System.String" CanBeNull="false" />
-      <Column Member="LastName" Type="System.String" CanBeNull="false" />
-      <Column Member="Address1" Type="System.String" CanBeNull="false" />
-      <Column Member="Address2" Type="System.String" CanBeNull="false" />
-      <Column Member="Phone" Type="System.String" CanBeNull="false" />
-      <Column Member="Email" Type="System.String" CanBeNull="false" />
-      <Column Member="UserName" Type="System.String" CanBeNull="false" />
-      <Column Member="Password" Type="System.String" CanBeNull="false" />
-      <Column Member="AddedBy" Type="System.String" CanBeNull="false" />
-      <Column Member="ModifiedBy" Type="System.String" CanBeNull="false" />
-      <Column Member="DateAdded" Type="System.DateTime" CanBeNull="false" />
-      <Column Member="DateModified" Type="System.DateTime" CanBeNull="false" />
-      <Association Name="Customer_Section" Member="Sections" ThisKey="CustomerId" OtherKey="CustomerId" Type="Section" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address1" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Address2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AddedBy" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedBy" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DateAdded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateModified" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="aspnet_User_dvent_Customer" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -29,5 +29,11 @@ namespace DV_Enterprises.Web
         {
             get { return (CropElement)base["crops"]; }
         }
+
+        [ConfigurationProperty("crops", IsRequired = true)]
+        public CustomerElement Customers
+        {
+            get { return (CustomerElement)base["customers"]; }
+        }
     }
 }
