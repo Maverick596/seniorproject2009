@@ -8,9 +8,8 @@ h2. Authors:
 * "Louis Taylor":http://www.twitter.com/negonicrac
 * Kinberly C.
 * Stephon Burrows
+* Allen Gatlin
 
 h2. Requirements:
 
-h1. Requirements:
-
-h1. License:
+h2. License:
