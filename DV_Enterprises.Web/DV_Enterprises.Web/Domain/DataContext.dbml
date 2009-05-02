@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="ASPNETDB" Class="DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=C:\Users\negonicrac\Development\seniorproject2009\DV_Enterprises.Web\DV_Enterprises.Website\App_Data\ASPNETDB.MDF;Integrated Security=True;User Instance=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="ASPNETDBConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=&quot;C:\Users\Yung Bahama\Documents\Sen Project\SmartGreenhouseWebsite\seniorproject2009\DV_Enterprises.Web\DV_Enterprises.Website\App_Data\ASPNETDB.MDF&quot;;Integrated Security=True;User Instance=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="ASPNETDBConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.aspnet_Users" Member="Users">
     <Type Name="User">
       <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -10,7 +10,7 @@
       <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
       <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="User_dvent_Section" Member="Sections" ThisKey="UserId" OtherKey="UserId" Type="Section" />
+      <Association Name="User_Section" Member="Sections" OtherKey="UserId" Type="Section" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Section" Member="Sections">
@@ -21,15 +21,34 @@
       <Column Name="CropId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Association Name="User_dvent_Section" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
-      <Association Name="dvent_Greenhouse_dvent_Section" Member="Greenhouse" ThisKey="GreenhouseId" OtherKey="GreenhouseId" Type="Greenhouse" IsForeignKey="true" />
+      <Association Name="User_Section" Member="User" ThisKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseId" Type="Greenhouse" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Greenhouse" Member="Greenhouses">
     <Type Name="Greenhouse">
       <Column Name="GreenhouseId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="LocationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="dvent_Greenhouse_dvent_Section" Member="Sections" ThisKey="GreenhouseId" OtherKey="GreenhouseId" Type="Section" />
+      <Association Name="Greenhouse_Section" Member="Sections" OtherKey="GreenhouseId" Type="Section" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Product_ProductImage" Member="Images" Storage="_ProductImages" OtherKey="ProductId" Type="Image" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_ProductImage" Member="Images">
+    <Type Name="Image">
+      <Column Name="ProductImageId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Caption" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Product_ProductImage" Member="Product" ThisKey="ProductId" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

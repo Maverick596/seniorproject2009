@@ -4,6 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <h2 class="title">Products</h2>
-<p>A list of the current products</p>
+<p>A list of the current products 
+    <asp:GridView ID="GridView1" runat="server" DataSourceID="ObjectDataSource1">
+    </asp:GridView>
+</p>
 </asp:Content>
 

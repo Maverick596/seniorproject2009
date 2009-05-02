@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{38AC8DA0-C557-42F4-B859-70A8A7FF12F7}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -67,6 +67,8 @@
       <DependentUpon>DataContext.dbml</DependentUpon>
     </Compile>
     <Compile Include="Domain\Greenhouse.cs" />
+    <Compile Include="Domain\Image.cs" />
+    <Compile Include="Domain\Product.cs" />
     <Compile Include="Domain\Section.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Globals.cs" />
