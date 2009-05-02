@@ -91,9 +91,9 @@
             </Columns>
         </asp:GridView>
         <asp:ObjectDataSource ID="objCrops" runat="server" 
-            DataObjectTypeName="DV_Enterprises.Web.BLL.Crop" DeleteMethod="DeleteCrop" 
+            DataObjectTypeName="DV_Enterprises.Web.Service.Crop" DeleteMethod="DeleteCrop" 
             InsertMethod="InsertCrop" OldValuesParameterFormatString="original_{0}" 
-            SelectMethod="GetCrops" TypeName="DV_Enterprises.Web.BLL.Crop" 
+            SelectMethod="GetCrops" TypeName="DV_Enterprises.Web.Service.Crop" 
             UpdateMethod="UpdateCrop"></asp:ObjectDataSource>
     </div>
 </asp:Content>

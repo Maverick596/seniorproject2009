@@ -10,7 +10,6 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using DV_Enterprises.Web.DAL;
 
 public partial class Admin_PurchaseForm : System.Web.UI.Page
 {
@@ -21,6 +20,5 @@ public partial class Admin_PurchaseForm : System.Web.UI.Page
 
     protected void SubmitButton_Click(object sender, EventArgs e)
     {
-        //DataContext DC = new DataContext();  
     }
 }

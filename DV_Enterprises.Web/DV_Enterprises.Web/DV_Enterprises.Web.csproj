@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StructureMap, Version=2.5.3.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\references\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
@@ -50,28 +54,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLL\BaseCropEntity.cs" />
-    <Compile Include="BLL\BaseCustomerEntity.cs" />
-    <Compile Include="BLL\BaseEntity.cs" />
-    <Compile Include="BLL\BaseGreenhouseEntity.cs" />
-    <Compile Include="BLL\Crop.cs" />
-    <Compile Include="BLL\Customer.cs" />
-    <Compile Include="BLL\Greenhouse.cs" />
-    <Compile Include="BLL\ICrudDataEntity.cs" />
-    <Compile Include="BLL\Details.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Config\CropElement.cs" />
     <Compile Include="Config\CustomerElement.cs" />
-    <Compile Include="DataContext.designer.cs">
+    <Compile Include="DataAccess\Impl\Connection.cs" />
+    <Compile Include="DataAccess\Impl\GreenhouseRepository.cs" />
+    <Compile Include="DataAccess\Impl\SectionRepository.cs" />
+    <Compile Include="DataAccess\Interface\IGreenhouseRepository.cs" />
+    <Compile Include="DataAccess\Interface\ISectionRepository.cs" />
+    <Compile Include="Domain\DataContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataContext.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DB.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DB.dbml</DependentUpon>
-    </Compile>
+    <Compile Include="Domain\Greenhouse.cs" />
+    <Compile Include="Domain\Section.cs" />
+    <Compile Include="Domain\User.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Config\GreenhouseElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +77,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Domain\Details.cs" />
+    <Compile Include="Service\Impl\SectionService.cs" />
+    <Compile Include="Service\Interface\ISectionService.cs" />
     <Compile Include="UI\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -90,7 +90,7 @@
     <Compile Include="Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataContext.dbml">
+    <None Include="Domain\DataContext.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -101,27 +101,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="DataContext.dbml.layout">
+    <None Include="Domain\DataContext.dbml.layout">
       <DependentUpon>DataContext.dbml</DependentUpon>
-    </None>
-    <None Include="DB.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DB.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
     <None Include="Documentation\ClassDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DB.dbml.layout">
-      <DependentUpon>DB.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,8 +21,8 @@
     </Columns>
 </asp:GridView>
 <asp:ObjectDataSource ID="objGreenhouses" runat="server" OldValuesParameterFormatString="original_{0}" 
-    SelectMethod="GetGreenhouseByID" TypeName="DV_Enterprises.Web.BLL.Greenhouse" 
-    DataObjectTypeName="DV_Enterprises.Web.BLL.Greenhouse" DeleteMethod="DeleteGreenhouse" 
+    SelectMethod="GetGreenhouseByID" TypeName="DV_Enterprises.Web.Service.Greenhouse" 
+    DataObjectTypeName="DV_Enterprises.Web.Service.Greenhouse" DeleteMethod="DeleteGreenhouse" 
     InsertMethod="InsertGreenhouse" UpdateMethod="UpdateGreenhouse">
     <SelectParameters>
         <asp:QueryStringParameter Name="greenhouseID" QueryStringField="ID" Type="Int32" />
