@@ -1,7 +1,7 @@
 ﻿using System;
-using DV_Enterprises.Web.UI;
+using System.Web.UI;
 
-public partial class Admin_Greenhouses : BasePage
+public partial class Admin_Greenhouses : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {

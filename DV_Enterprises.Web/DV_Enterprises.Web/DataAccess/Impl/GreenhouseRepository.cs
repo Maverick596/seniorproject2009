@@ -10,6 +10,7 @@ namespace DV_Enterprises.Web.DataAccess.Impl
     public class GreenhouseRepository : IGreenhouseRepository
     {
         private Connection conn;
+
         public GreenhouseRepository()
         {
             conn = new Connection();

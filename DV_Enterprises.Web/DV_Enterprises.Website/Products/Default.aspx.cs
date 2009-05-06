@@ -1,21 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using DV_Enterprises.Web.Domain;
+using DV_Enterprises.Web.Presenter.Products;
+using DV_Enterprises.Web.Presenter.Products.Interface;
 
-public partial class Products_Default : System.Web.UI.Page
+namespace Products
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class Default : Page, IDefault
     {
+        private DefaultPresenter _presenter;
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            _presenter = new DefaultPresenter();
+            _presenter.Init(this);
+        }
+
+        public void LoadData(List<Product> products)
+        {
+            lvProducts.DataSource = products;
+            lvProducts.DataBind();
+        }
     }
-    
-    protected void lnqProducts_Selecting(object sender, LinqDataSourceSelectEventArgs e)
-    {
-
-    }
-
 }

@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using DV_Enterprises.Web.Domain;
+using StructureMap;
 
 namespace DV_Enterprises.Web.DataAccess.Interface
 {
+    [PluginFamily("Default")]
     public interface ISectionRepository
     {
         List<Section> GetSections(Guid userId);
