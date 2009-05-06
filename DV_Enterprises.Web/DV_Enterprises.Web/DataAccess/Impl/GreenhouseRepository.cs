@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using DV_Enterprises.Web.DataAccess.Interface;
 using DV_Enterprises.Web.Domain;
@@ -9,11 +11,11 @@ namespace DV_Enterprises.Web.DataAccess.Impl
     [Pluggable("Default")]
     public class GreenhouseRepository : IGreenhouseRepository
     {
-        private Connection conn;
+        private Connection _conn;
 
         public GreenhouseRepository()
         {
-            conn = new Connection();
+            _conn = new Connection();
         }
 
         public List<Greenhouse> GetGreenhouses(Guid userId)
@@ -28,12 +30,23 @@ namespace DV_Enterprises.Web.DataAccess.Impl
 
         public List<Greenhouse> GetLatestGreenhouses()
         {
-            throw new NotImplementedException();
+            var result = new List<Greenhouse>();
+            using (var dc = _conn.GetContext())
+            {
+                IEnumerable<Greenhouse> greenhouses = dc.Greenhouses.OrderBy(g => g.GreenhouseId);
+                result = greenhouses.ToList();
+            }
+            return result;
         }
 
         public Greenhouse GetGreenhouse(int greenhouseId)
         {
-            throw new NotImplementedException();
+            var result = new Greenhouse();
+            using (var dc = _conn.GetContext())
+            {
+                result = dc.Greenhouses.Where(g => g.GreenhouseId == greenhouseId).SingleOrDefault();
+            }
+            return result;
         }
 
         public int Save(Greenhouse greenhouse)

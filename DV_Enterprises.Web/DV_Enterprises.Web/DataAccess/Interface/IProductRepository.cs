@@ -11,7 +11,7 @@ namespace DV_Enterprises.Web.DataAccess.Interface
         List<Product> GetProducts();
         Product GetProduct(int productId);
         Int32 SaveProduct(Product product);
-        void DelestProduct(Product product);
-        void DelestProduct(int productId);
+        void DeleteProduct(Product product);
+        void DeleteProduct(int productId);
     }
 }

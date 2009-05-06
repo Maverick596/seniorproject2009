@@ -61,9 +61,11 @@
     <Compile Include="Config\CustomerElement.cs" />
     <Compile Include="DataAccess\Impl\Connection.cs" />
     <Compile Include="DataAccess\Impl\GreenhouseRepository.cs" />
+    <Compile Include="DataAccess\Impl\LocationRepository.cs" />
     <Compile Include="DataAccess\Impl\ProductRepository.cs" />
     <Compile Include="DataAccess\Impl\SectionRepository.cs" />
     <Compile Include="DataAccess\Interface\IGreenhouseRepository.cs" />
+    <Compile Include="DataAccess\Interface\ILocationRepository.cs" />
     <Compile Include="DataAccess\Interface\IProductRepository.cs" />
     <Compile Include="DataAccess\Interface\ISectionRepository.cs" />
     <Compile Include="Domain\DataContext.designer.cs">
@@ -73,11 +75,17 @@
     </Compile>
     <Compile Include="Domain\Greenhouse.cs" />
     <Compile Include="Domain\Image.cs" />
+    <Compile Include="Domain\Location.cs" />
     <Compile Include="Domain\Product.cs" />
     <Compile Include="Domain\Section.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Config\GreenhouseElement.cs" />
+    <Compile Include="Presenter\Greenhouses\DefaultPresenter.cs" />
+    <Compile Include="Presenter\Greenhouses\Interface\IDefault.cs" />
+    <Compile Include="Presenter\Greenhouses\Interface\IManageGreenhouse.cs" />
+    <Compile Include="Presenter\Greenhouses\Interface\IViewGreenhouse.cs" />
+    <Compile Include="Presenter\Greenhouses\ViewGreenhousePresenter.cs" />
     <Compile Include="Presenter\Products\DefaultPresenter.cs" />
     <Compile Include="Presenter\Products\Interface\IDefault.cs" />
     <Compile Include="Presenter\Products\Interface\IManageProduct.cs" />
@@ -92,6 +100,8 @@
     </Compile>
     <Compile Include="Domain\Details.cs" />
     <Compile Include="Service\Extenstions.cs" />
+    <Compile Include="Service\Impl\ILocationService.cs" />
+    <Compile Include="Service\Interface\IGreenhouseService.cs" />
     <Compile Include="Service\Interface\IWebContext.cs" />
     <Compile Include="Service\Impl\ProductService.cs" />
     <Compile Include="Service\Impl\SectionService.cs" />

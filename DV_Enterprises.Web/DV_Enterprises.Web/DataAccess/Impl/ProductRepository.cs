@@ -63,7 +63,7 @@ namespace DV_Enterprises.Web.DataAccess.Impl
 
         }
 
-        public void DelestProduct(Product product)
+        public void DeleteProduct(Product product)
         {
             using (var dc = _conn.GetContext())
             {
@@ -73,7 +73,7 @@ namespace DV_Enterprises.Web.DataAccess.Impl
             }
         }
 
-        public void DelestProduct(int productId)
+        public void DeleteProduct(int productId)
         {
             using (var dc = _conn.GetContext())
             {

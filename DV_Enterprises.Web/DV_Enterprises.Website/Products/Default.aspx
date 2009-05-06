@@ -6,7 +6,7 @@
     <h2 class="title">Products</h2>
     <asp:ListView ID="lvProducts" runat="server">
         <LayoutTemplate>
-            <ul class="product">
+            <ul class="productes">
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
             </ul>
         </LayoutTemplate>

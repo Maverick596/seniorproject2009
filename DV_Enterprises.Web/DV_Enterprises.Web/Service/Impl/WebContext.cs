@@ -21,6 +21,19 @@ namespace DV_Enterprises.Web.Service.Impl
             }
         }
 
+        public int GreenhouseId
+        {
+            get
+            {
+                var result = 0;
+                if (GetQueryStringValue("GreenhouseId") != null)
+                {
+                    result = Convert.ToInt32(GetQueryStringValue("GreenhouseId"));
+                }
+                return result;
+            }
+        }
+
         public void ClearSession()
         {
             HttpContext.Current.Session.Clear();

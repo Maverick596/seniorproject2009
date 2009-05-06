@@ -9,6 +9,8 @@ namespace DV_Enterprises.Web.DataAccess.Interface
     public interface ISectionRepository
     {
         List<Section> GetSections(Guid userId);
+        List<Section> GetSections();
+        List<Section> GetSections(Greenhouse greenhouse);
         List<Section> GetSectionsOwned(Guid userId);
         List<Section> GetLatestSections();
         Section GetSection(int sectionId);

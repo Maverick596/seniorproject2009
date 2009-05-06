@@ -17,9 +17,32 @@ namespace DV_Enterprises.Web.DataAccess.Impl
             conn = new Connection();
         }
 
+        public List<Section> GetSections()
+        {
+            List<Section> restult;
+            using (var dc = conn.GetContext())
+            {
+                IEnumerable<Section> sections = dc.Sections;
+                restult = sections.ToList();
+            }
+            return restult;
+        }
+
         public List<Section> GetSections(Guid userId)
         {
             throw new NotImplementedException();
+        }
+
+
+        public List<Section> GetSections(Greenhouse greenhouse)
+        {
+            List<Section> restult;
+            using (var dc = conn.GetContext())
+            {
+                IEnumerable<Section> sections = dc.Sections.Where(s => s.Greenhouse == greenhouse);
+                restult = sections.ToList();
+            }
+            return restult;
         }
 
         public List<Section> GetSectionsOwned(Guid userId)
