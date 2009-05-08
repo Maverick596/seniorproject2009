@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI;
-using DV_Enterprises.Web.Domain;
+using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Greenhouses;
 using DV_Enterprises.Web.Presenter.Greenhouses.Interface;
 
@@ -22,9 +22,9 @@ namespace Greenhouses
             return; //Doee nothing now ???
         }
 
-        public void LoadLocation(Location location)
+        public void LoadLocation(Address address)
         {
-            lblAddress.Text = location.AddressLine1;
+            lblAddress.Text = address.StreetLine1;
         }
 
         public void LoadSection(List<Section> sections)

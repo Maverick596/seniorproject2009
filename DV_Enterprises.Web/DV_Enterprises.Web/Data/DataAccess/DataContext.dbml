@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="ASPNETDB" EntityNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" ContextNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" Class="DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=C:\Users\negonicrac\Development\seniorproject2009\DV_Enterprises.Web\DV_Enterprises.Website\App_Data\ASPNETDB.MDF;Integrated Security=True;User Instance=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="ASPNETDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.dvent_Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_Address" Member="Addresses">
+    <Type Name="Address">
+      <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="StateOrProvince" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StreetLine1" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="StreetLine2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="IsDefault" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="dvent_Address_dvent_Greenhouse" Member="Greenhouses" ThisKey="AddressID" OtherKey="AddressID" Type="Greenhouse" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_Greenhouse" Member="Greenhouses">
+    <Type Name="Greenhouse">
+      <Column Name="GreenhouseID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="dvent_Greenhouse_dvent_Section" Member="Sections" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Section" />
+      <Association Name="dvent_Address_dvent_Greenhouse" Member="Address" ThisKey="AddressID" OtherKey="AddressID" Type="Address" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_Section" Member="Sections">
+    <Type Name="Section">
+      <Column Name="SectionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GreenhouseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="IsTemeratureActivited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IdealTemperature" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TemperatureThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsLightActivited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IdealLightIntensity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LightIntensityThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsHumidityActivited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IdealHumidity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HumidityThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CropID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="dvent_Section_dvent_Task" Member="Tasks" ThisKey="SectionID" OtherKey="SectionID" Type="Task" />
+      <Association Name="dvent_Greenhouse_dvent_Section" Member="Greenhouse" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
+      <Association Name="dvent_Crop_dvent_Section" Member="Crop" ThisKey="CropID" OtherKey="CropID" Type="Crop" IsForeignKey="true" />
+      <Association Name="aspnet_User_Section" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_Crop" Member="Crops">
+    <Type Name="Crop">
+      <Column Name="CropID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="IdealTemperature" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TemperatureThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdealLightIntensity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdealHumidity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HumidityThreshold" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Global" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="dvent_Crop_dvent_Section" Member="Sections" ThisKey="CropID" OtherKey="CropID" Type="Section" />
+      <Association Name="aspnet_User_Crop" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_Task" Member="Tasks">
+    <Type Name="Task">
+      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TaskTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="dvent_Section_dvent_Task" Member="Section" ThisKey="SectionID" OtherKey="SectionID" Type="Section" IsForeignKey="true" />
+      <Association Name="dvent_TaskType_dvent_Task" Member="TaskType" ThisKey="TaskTypeID" OtherKey="TaskTypeId" Type="TaskType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_TaskType" Member="TaskTypes">
+    <Type Name="TaskType">
+      <Column Name="TaskTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(253) NOT NULL" CanBeNull="false" />
+      <Association Name="dvent_TaskType_dvent_Task" Member="Tasks" ThisKey="TaskTypeId" OtherKey="TaskTypeID" Type="Task" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_User_Section" Member="Sections" ThisKey="UserId" OtherKey="UserID" Type="Section" />
+      <Association Name="aspnet_User_Crop" Member="Crops" ThisKey="UserId" OtherKey="UserID" Type="Crop" />
+    </Type>
+  </Table>
+</Database>

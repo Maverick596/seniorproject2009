@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI;
-using DV_Enterprises.Web.Domain;
+using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Greenhouses;
 using DV_Enterprises.Web.Presenter.Greenhouses.Interface;
 
@@ -17,7 +17,7 @@ namespace Greenhouses
             _presenter.Init(this);
         }
 
-        public void LoadData(List<Greenhouse> greenhouses)
+        public void LoadData(IList<Greenhouse> greenhouses)
         {
             lvGreenhouses.DataSource = greenhouses;
             lvGreenhouses.DataBind();

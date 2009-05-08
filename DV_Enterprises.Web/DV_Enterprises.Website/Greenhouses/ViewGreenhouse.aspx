@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="ViewGreenhouse.aspx.cs" Inherits="Greenhouses.ViewGreenhouse" %>
+<%@ Import Namespace="DV_Enterprises.Web.Data.Domain"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -17,7 +18,7 @@
         
         <ItemTemplate>
             <li>
-                <asp:Label ID="lblName" runat="server" Text='<%# ((DV_Enterprises.Web.Domain.Section)Container.DataItem).Name %>' ></asp:Label>
+                <asp:Label ID="lblName" runat="server" Text='<%# ((Section)Container.DataItem).Name %>' ></asp:Label>
             </li>
         </ItemTemplate>
         

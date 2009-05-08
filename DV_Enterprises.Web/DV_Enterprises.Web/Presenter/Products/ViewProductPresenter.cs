@@ -1,5 +1,4 @@
-using System;
-using DV_Enterprises.Web.DataAccess.Interface;
+using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Products.Interface;
 using DV_Enterprises.Web.Service.Interface;
 using StructureMap;
@@ -9,14 +8,10 @@ namespace DV_Enterprises.Web.Presenter.Products
     public class ViewProductPresenter
     {
         private IViewProduct _view;
-        private IProductRepository _productRepository;
-        private IProductService _productService;
-        private IWebContext _webContext;
+        private readonly IWebContext _webContext;
 
         public ViewProductPresenter()
         {
-            _productRepository = ObjectFactory.GetInstance<IProductRepository>();
-            _productService = ObjectFactory.GetInstance<IProductService>();
             _webContext = ObjectFactory.GetInstance<IWebContext>();
         }
 
@@ -29,8 +24,7 @@ namespace DV_Enterprises.Web.Presenter.Products
 
         public void LoadData()
         {
-            var product = _productRepository.GetProduct(_webContext.ProductId);
-            _view.LoadData(product);
+            _view.LoadData(Product.Find(_webContext.ProductId));
 
             // TODO: Add auth and extra atuss
         }

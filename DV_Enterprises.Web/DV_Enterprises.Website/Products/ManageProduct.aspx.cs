@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Web.UI;
-using DV_Enterprises.Web.Domain;
+using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Products;
 using DV_Enterprises.Web.Presenter.Products.Interface;
-using DV_Enterprises.Web.Service;
 
 namespace Products
 {
@@ -20,7 +18,7 @@ namespace Products
 
         public void LoadData(Product product)
         {
-            litProductId.Text = product.ProductID.ToString();
+            litProductId.Text = product.ID.ToString();
             txtName.Text = product.Name;
             txtDescription.Text = product.Description;
             txtPrice.Text = product.Price.ToString();
@@ -31,7 +29,7 @@ namespace Products
         {
             var product = new Product
                               {
-                                  ProductID = litProductId.Text.Length != 0 ? Convert.ToInt32(litProductId.Text) : 0,
+                                  ID = litProductId.Text.Length != 0 ? Convert.ToInt32(litProductId.Text) : 0,
                                   Name = txtName.Text,
                                   Description = txtDescription.Text,
                                   Price = Convert.ToDecimal(txtPrice.Text),

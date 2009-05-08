@@ -57,30 +57,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\CropElement.cs" />
-    <Compile Include="Config\CustomerElement.cs" />
-    <Compile Include="DataAccess\Impl\Connection.cs" />
-    <Compile Include="DataAccess\Impl\GreenhouseRepository.cs" />
-    <Compile Include="DataAccess\Impl\LocationRepository.cs" />
-    <Compile Include="DataAccess\Impl\ProductRepository.cs" />
-    <Compile Include="DataAccess\Impl\SectionRepository.cs" />
-    <Compile Include="DataAccess\Interface\IGreenhouseRepository.cs" />
-    <Compile Include="DataAccess\Interface\ILocationRepository.cs" />
-    <Compile Include="DataAccess\Interface\IProductRepository.cs" />
-    <Compile Include="DataAccess\Interface\ISectionRepository.cs" />
-    <Compile Include="Domain\DataContext.designer.cs">
+    <Compile Include="Data\DataAccess\Connection.cs" />
+    <Compile Include="Data\DataAccess\GreenhouseRepository.cs" />
+    <Compile Include="Data\DataAccess\LocationRepository.cs" />
+    <Compile Include="Data\DataAccess\ProductRepository.cs" />
+    <Compile Include="Data\DataAccess\SectionRepository.cs" />
+    <Compile Include="Data\DataAccess\Interface\IGreenhouseRepository.cs" />
+    <Compile Include="Data\DataAccess\Interface\ILocationRepository.cs" />
+    <Compile Include="Data\DataAccess\Interface\IProductRepository.cs" />
+    <Compile Include="Data\DataAccess\Interface\ISectionRepository.cs" />
+    <Compile Include="Data\DataAccess\DataContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataContext.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Domain\Greenhouse.cs" />
-    <Compile Include="Domain\Image.cs" />
-    <Compile Include="Domain\Location.cs" />
-    <Compile Include="Domain\Product.cs" />
-    <Compile Include="Domain\Section.cs" />
-    <Compile Include="Domain\User.cs" />
-    <Compile Include="Globals.cs" />
-    <Compile Include="Config\GreenhouseElement.cs" />
+    <Compile Include="Data\Domain\Abstract\DomainModel.cs" />
+    <Compile Include="Data\Domain\Greenhouse.cs" />
+    <Compile Include="Data\Domain\Image.cs" />
+    <Compile Include="Data\Domain\Interface\IDomainModel.cs" />
+    <Compile Include="Data\Domain\Interface\IGreenhouse.cs" />
+    <Compile Include="Data\Domain\Interface\IAddress.cs" />
+    <Compile Include="Data\Domain\Interface\IProduct.cs" />
+    <Compile Include="Data\Domain\Interface\ISection.cs" />
+    <Compile Include="Data\Domain\Address.cs" />
+    <Compile Include="Data\Domain\Product.cs" />
+    <Compile Include="Data\Domain\Section.cs" />
+    <Compile Include="Data\Domain\User.cs" />
+    <Compile Include="Data\Utility\LazyList.cs" />
     <Compile Include="Presenter\Greenhouses\DefaultPresenter.cs" />
     <Compile Include="Presenter\Greenhouses\Interface\IDefault.cs" />
     <Compile Include="Presenter\Greenhouses\Interface\IManageGreenhouse.cs" />
@@ -98,21 +101,20 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Domain\Details.cs" />
+    <Compile Include="Data\Domain\Details.cs" />
     <Compile Include="Service\Extenstions.cs" />
-    <Compile Include="Service\Impl\ILocationService.cs" />
+    <Compile Include="Service\GreenhouseService.cs" />
+    <Compile Include="Service\Interface\ILocationService.cs" />
     <Compile Include="Service\Interface\IGreenhouseService.cs" />
     <Compile Include="Service\Interface\IWebContext.cs" />
-    <Compile Include="Service\Impl\ProductService.cs" />
-    <Compile Include="Service\Impl\SectionService.cs" />
+    <Compile Include="Service\ProductService.cs" />
+    <Compile Include="Service\SectionService.cs" />
     <Compile Include="Service\Interface\IProductService.cs" />
     <Compile Include="Service\Interface\ISectionService.cs" />
-    <Compile Include="Config\WebSection.cs" />
-    <Compile Include="Helpers.cs" />
-    <Compile Include="Service\Impl\WebContext.cs" />
+    <Compile Include="Service\WebContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Domain\DataContext.dbml">
+    <None Include="Data\DataAccess\DataContext.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DataContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -123,7 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Domain\DataContext.dbml.layout">
+    <None Include="Data\DataAccess\DataContext.dbml.layout">
       <DependentUpon>DataContext.dbml</DependentUpon>
     </None>
     <None Include="Documentation\ClassDiagram.cd" />

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.UI;
-using DV_Enterprises.Web.Domain;
+using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Products;
 using DV_Enterprises.Web.Presenter.Products.Interface;
 

@@ -12,7 +12,7 @@
         
         <ItemTemplate>
             <li>
-                <asp:Label ID="lblName" runat="server" Text='<%# ((DV_Enterprises.Web.Domain.Greenhouse)Container.DataItem).Sections %>' ></asp:Label>
+                <asp:Label ID="lblName" runat="server" Text='<%# ((DV_Enterprises.Web.Data.Domain.Greenhouse)Container.DataItem).Sections %>' ></asp:Label>
             </li>
         </ItemTemplate>
         
