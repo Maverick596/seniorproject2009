@@ -58,14 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataAccess\Connection.cs" />
-    <Compile Include="Data\DataAccess\GreenhouseRepository.cs" />
-    <Compile Include="Data\DataAccess\LocationRepository.cs" />
-    <Compile Include="Data\DataAccess\ProductRepository.cs" />
-    <Compile Include="Data\DataAccess\SectionRepository.cs" />
-    <Compile Include="Data\DataAccess\Interface\IGreenhouseRepository.cs" />
-    <Compile Include="Data\DataAccess\Interface\ILocationRepository.cs" />
-    <Compile Include="Data\DataAccess\Interface\IProductRepository.cs" />
-    <Compile Include="Data\DataAccess\Interface\ISectionRepository.cs" />
     <Compile Include="Data\DataAccess\DataContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -74,7 +66,6 @@
     <Compile Include="Data\Domain\Abstract\DomainModel.cs" />
     <Compile Include="Data\Domain\Crop.cs" />
     <Compile Include="Data\Domain\Greenhouse.cs" />
-    <Compile Include="Data\Domain\Image.cs" />
     <Compile Include="Data\Domain\Interface\ICrop.cs" />
     <Compile Include="Data\Domain\Interface\IDomainModel.cs" />
     <Compile Include="Data\Domain\Interface\IGreenhouse.cs" />
@@ -88,7 +79,6 @@
     <Compile Include="Data\Domain\Product.cs" />
     <Compile Include="Data\Domain\Section.cs" />
     <Compile Include="Data\Domain\TaskType.cs" />
-    <Compile Include="Data\Domain\User.cs" />
     <Compile Include="Data\Utility\LazyList.cs" />
     <Compile Include="Presenter\Greenhouses\DefaultPresenter.cs" />
     <Compile Include="Presenter\Greenhouses\Interface\IDefault.cs" />
@@ -109,14 +99,7 @@
     </Compile>
     <Compile Include="Data\Domain\Details.cs" />
     <Compile Include="Service\Extenstions.cs" />
-    <Compile Include="Service\GreenhouseService.cs" />
-    <Compile Include="Service\Interface\ILocationService.cs" />
-    <Compile Include="Service\Interface\IGreenhouseService.cs" />
     <Compile Include="Service\Interface\IWebContext.cs" />
-    <Compile Include="Service\ProductService.cs" />
-    <Compile Include="Service\SectionService.cs" />
-    <Compile Include="Service\Interface\IProductService.cs" />
-    <Compile Include="Service\Interface\ISectionService.cs" />
     <Compile Include="Service\WebContext.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +118,8 @@
       <DependentUpon>DataContext.dbml</DependentUpon>
     </None>
     <None Include="Documentation\ClassDiagram.cd" />
+    <None Include="Documentation\Data\DomainModels.cd" />
+    <None Include="Documentation\Data\SqlRepository.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

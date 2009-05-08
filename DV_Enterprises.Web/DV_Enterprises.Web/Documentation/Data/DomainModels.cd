@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="DV_Enterprises.Web.Data.Domain.Address" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="2" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAYAAAAwAgAAIAAQACAAAAAMIAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Data\Domain\Address.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.213" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.Data.Domain.TaskType" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="2.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAgAAAAAAAAAQAAAEIAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Data\Domain\TaskType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.Data.Domain.Crop" BaseTypeListCollapsed="true">
+    <Position X="25.5" Y="2.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAABAGAgAAAAAAAAAxEggEIAAAAAIAEAAAAEIA=</HashCode>
+      <FileName>Data\Domain\Crop.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.Data.Domain.Greenhouse" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="2.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAQAAgAAAAAAAAAAAAAEIAAACAMAAAAAAAAA=</HashCode>
+      <FileName>Data\Domain\Greenhouse.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.Data.Domain.Product" BaseTypeListCollapsed="true">
+    <Position X="21.5" Y="2.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAQAggAAAAAAAAAQAAAEIAAAgAIAAAAAAAAA=</HashCode>
+      <FileName>Data\Domain\Product.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.Data.Domain.Section" BaseTypeListCollapsed="true">
+    <Position X="17.5" Y="2.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAACIAABAGAgAAAQgAAAAxAggEYAAAAAIAEAAAAEIA=</HashCode>
+      <FileName>Data\Domain\Section.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.Data.Domain.Task" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="2.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAABAAAgAAAAIIAAAAAIAEoAAAAAIAEAAAQAAA=</HashCode>
+      <FileName>Data\Domain\Task.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DV_Enterprises.Web.Data.Domain.Abstract.DomainModel">
+    <Position X="13.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Domain\Abstract\DomainModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="DV_Enterprises.Web.Data.Domain.Interface.IAddress">
+    <Position X="0.5" Y="13.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAwAgAAIAAQACAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Domain\Interface\IAddress.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DV_Enterprises.Web.Data.Domain.Interface.ITaskType">
+    <Position X="7.5" Y="13.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Domain\Interface\ITaskType.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DV_Enterprises.Web.Data.Domain.Interface.ICrop">
+    <Position X="17" Y="13.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAABAGAgAAAAAAAAAxEggAAAAAAAAAEAAAAEIA=</HashCode>
+      <FileName>Data\Domain\Interface\ICrop.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DV_Enterprises.Web.Data.Domain.Interface.IDomainModel">
+    <Position X="10.5" Y="10.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Domain\Interface\IDomainModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DV_Enterprises.Web.Data.Domain.Interface.IGreenhouse">
+    <Position X="10.25" Y="13" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAACAEAAAAAAAAA=</HashCode>
+      <FileName>Data\Domain\Interface\IGreenhouse.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DV_Enterprises.Web.Data.Domain.Interface.IProduct">
+    <Position X="20.5" Y="13.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAggAAAAAAAAAQAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Domain\Interface\IProduct.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DV_Enterprises.Web.Data.Domain.Interface.ISection">
+    <Position X="3.75" Y="13.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAACIAABAGAgAAAQgAAAAxAggAQAAAAAAAEAAAAEIA=</HashCode>
+      <FileName>Data\Domain\Interface\ISection.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="DV_Enterprises.Web.Data.Domain.Interface.ITask">
+    <Position X="13.75" Y="13.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAgAAAAIIAAAAAIAAgAAAAAAAEAAAQAAA=</HashCode>
+      <FileName>Data\Domain\Interface\ITask.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
