@@ -157,11 +157,28 @@ namespace DV_Enterprises.Web.Data.Domain
         }
 
         /// <summary>
+        /// Save Product
+        /// </summary>
+        /// <returns>returns the id of the saved product</returns>
+        public int Save(DataContext dc)
+        {
+            return Save(dc, this);
+        }
+
+        /// <summary>
         /// Delete Product
         /// </summary>
         public void Delete()
         {
             Delete(this);
+        }
+
+        /// <summary>
+        /// Delete Product
+        /// </summary>
+        public void Delete(DataContext dc)
+        {
+            Delete(dc, this);
         }
 
         #endregion

@@ -90,29 +90,38 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved model</returns>
         public static int Save(Address address)
         {
-            using (var dc  = Conn.GetContext())
+            return Save(null, address);
+        }
+
+        /// <summary>
+        /// Save a Address
+        /// </summary>
+        /// <param name="dc"></param>
+        /// <param name="address"></param>
+        /// <returns>returns the id of the saved model</returns>
+        public static int Save(DataContext dc, Address address)
+        {
+            dc = dc ?? Conn.GetContext();
+            var dbAddress = dc.Addresses.Where(a => a.AddressID == address.ID).SingleOrDefault();
+            var isNew = false;
+            if (dbAddress == null)
             {
-                var dbAddress = dc.Addresses.Where(a => a.AddressID == address.ID).SingleOrDefault();
-                var isNew = false;
-                if (dbAddress == null)
-                {
-                    dbAddress = new DataAccess.SqlRepository.Address();
-                    isNew = true;
-                }
-
-                dbAddress.City = address.City;
-                dbAddress.Country = address.Country;
-                dbAddress.StateOrProvince = address.StateOrProvince;
-                dbAddress.Zip = address.Zip;
-                dbAddress.StreetLine1 = address.StreetLine1;
-                dbAddress.StreetLine2 = address.StreetLine2;
-                dbAddress.IsDefault = address.IsDefault;
-
-                if(isNew)
-                    dc.Addresses.InsertOnSubmit(dbAddress);
-                dc.SubmitChanges();
-                return dbAddress.AddressID;
+                dbAddress = new DataAccess.SqlRepository.Address();
+                isNew = true;
             }
+
+            dbAddress.City = address.City;
+            dbAddress.Country = address.Country;
+            dbAddress.StateOrProvince = address.StateOrProvince;
+            dbAddress.Zip = address.Zip;
+            dbAddress.StreetLine1 = address.StreetLine1;
+            dbAddress.StreetLine2 = address.StreetLine2;
+            dbAddress.IsDefault = address.IsDefault;
+
+            if (isNew)
+                dc.Addresses.InsertOnSubmit(dbAddress);
+            dc.SubmitChanges();
+            return dbAddress.AddressID;
         }
 
         /// <summary>
@@ -121,14 +130,22 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <param name="address"></param>
         public static void Delete(Address address)
         {
-            using (var dc = Conn.GetContext())
-            {
-                var dbAddress = dc.Addresses.Where(a => a.AddressID == address.ID).SingleOrDefault();
-                if (dbAddress == null) return;
-                dc.Addresses.Attach(dbAddress, true);
-                dc.Addresses.DeleteOnSubmit(dbAddress);
-                dc.SubmitChanges();
-            }
+            Delete(null, address);
+        }
+
+        /// <summary>
+        /// Delete a single 
+        /// </summary>
+        /// <param name="dc"></param>
+        /// <param name="address"></param>
+        public static void Delete(DataContext dc, Address address)
+        {
+            dc = dc ?? Conn.GetContext();
+            var dbAddress = dc.Addresses.Where(a => a.AddressID == address.ID).SingleOrDefault();
+            if (dbAddress == null) return;
+            dc.Addresses.Attach(dbAddress, true);
+            dc.Addresses.DeleteOnSubmit(dbAddress);
+            dc.SubmitChanges();
         }
 
         #endregion
@@ -145,11 +162,28 @@ namespace DV_Enterprises.Web.Data.Domain
         }
 
         /// <summary>
+        /// Save Address
+        /// </summary>
+        /// <returns>returns the id of the saved model</returns>
+        public int Save(DataContext dc)
+        {
+            return Save(dc, this);
+        }
+
+        /// <summary>
         /// Delete Address
         /// </summary>
         public void Delete()
         {
             Delete(this);
+        }
+
+        /// <summary>
+        /// Delete Address
+        /// </summary>
+        public void Delete(DataContext dc)
+        {
+            Delete(dc, this);
         }
 
         #endregion

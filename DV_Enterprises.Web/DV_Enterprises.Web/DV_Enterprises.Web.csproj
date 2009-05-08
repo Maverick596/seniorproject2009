@@ -72,16 +72,22 @@
       <DependentUpon>DataContext.dbml</DependentUpon>
     </Compile>
     <Compile Include="Data\Domain\Abstract\DomainModel.cs" />
+    <Compile Include="Data\Domain\Crop.cs" />
     <Compile Include="Data\Domain\Greenhouse.cs" />
     <Compile Include="Data\Domain\Image.cs" />
+    <Compile Include="Data\Domain\Interface\ICrop.cs" />
     <Compile Include="Data\Domain\Interface\IDomainModel.cs" />
     <Compile Include="Data\Domain\Interface\IGreenhouse.cs" />
     <Compile Include="Data\Domain\Interface\IAddress.cs" />
     <Compile Include="Data\Domain\Interface\IProduct.cs" />
     <Compile Include="Data\Domain\Interface\ISection.cs" />
     <Compile Include="Data\Domain\Address.cs" />
+    <Compile Include="Data\Domain\Interface\ITask.cs" />
+    <Compile Include="Data\Domain\Interface\ITaskType.cs" />
+    <Compile Include="Data\Domain\Task.cs" />
     <Compile Include="Data\Domain\Product.cs" />
     <Compile Include="Data\Domain\Section.cs" />
+    <Compile Include="Data\Domain\TaskType.cs" />
     <Compile Include="Data\Domain\User.cs" />
     <Compile Include="Data\Utility\LazyList.cs" />
     <Compile Include="Presenter\Greenhouses\DefaultPresenter.cs" />

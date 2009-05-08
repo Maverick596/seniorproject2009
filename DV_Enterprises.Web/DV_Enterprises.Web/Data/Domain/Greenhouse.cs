@@ -166,6 +166,15 @@ namespace DV_Enterprises.Web.Data.Domain
             return Save(this);
         }
 
+        /// <summary>
+        /// Save Greenhouse
+        /// </summary>
+        /// <returns>ID</returns>
+        public int Save(DataContext dc)
+        {
+            return Save(dc, this);
+        }
+
 
         /// <summary>
         /// Delete Greenhouse
@@ -173,6 +182,14 @@ namespace DV_Enterprises.Web.Data.Domain
         public void Delete()
         {
             Delete(this);
+        }
+
+        /// <summary>
+        /// Delete Greenhouse
+        /// </summary>
+        public void Delete(DataContext dc)
+        {
+            Delete(dc, this);
         }
 
         #endregion

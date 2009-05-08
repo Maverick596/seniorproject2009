@@ -42,18 +42,18 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
     partial void InsertSection(Section instance);
     partial void UpdateSection(Section instance);
     partial void DeleteSection(Section instance);
-    partial void InsertCrop(Crop instance);
-    partial void UpdateCrop(Crop instance);
-    partial void DeleteCrop(Crop instance);
     partial void InsertTask(Task instance);
     partial void UpdateTask(Task instance);
     partial void DeleteTask(Task instance);
-    partial void InsertTaskType(TaskType instance);
-    partial void UpdateTaskType(TaskType instance);
-    partial void DeleteTaskType(TaskType instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertCrop(Crop instance);
+    partial void UpdateCrop(Crop instance);
+    partial void DeleteCrop(Crop instance);
+    partial void InsertTaskType(TaskType instance);
+    partial void UpdateTaskType(TaskType instance);
+    partial void DeleteTaskType(TaskType instance);
     #endregion
 		
 		public DataContext() : 
@@ -118,14 +118,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		public System.Data.Linq.Table<Crop> Crops
-		{
-			get
-			{
-				return this.GetTable<Crop>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Task> Tasks
 		{
 			get
@@ -134,19 +126,27 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		public System.Data.Linq.Table<TaskType> TaskTypes
-		{
-			get
-			{
-				return this.GetTable<TaskType>();
-			}
-		}
-		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Crop> Crops
+		{
+			get
+			{
+				return this.GetTable<Crop>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TaskType> TaskTypes
+		{
+			get
+			{
+				return this.GetTable<TaskType>();
 			}
 		}
 	}
@@ -545,7 +545,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Address_dvent_Greenhouse", Storage="_Greenhouses", ThisKey="AddressID", OtherKey="AddressID")]
+		[Association(Name="Address_Greenhouse", Storage="_Greenhouses", ThisKey="AddressID", OtherKey="AddressID")]
 		public EntitySet<Greenhouse> Greenhouses
 		{
 			get
@@ -666,7 +666,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Greenhouse_dvent_Section", Storage="_Sections", ThisKey="GreenhouseID", OtherKey="GreenhouseID")]
+		[Association(Name="Greenhouse_Section", Storage="_Sections", ThisKey="GreenhouseID", OtherKey="GreenhouseID")]
 		public EntitySet<Section> Sections
 		{
 			get
@@ -679,7 +679,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Address_dvent_Greenhouse", Storage="_Address", ThisKey="AddressID", OtherKey="AddressID", IsForeignKey=true)]
+		[Association(Name="Address_Greenhouse", Storage="_Address", ThisKey="AddressID", OtherKey="AddressID", IsForeignKey=true)]
 		public Address Address
 		{
 			get
@@ -790,9 +790,9 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		private EntityRef<Greenhouse> _Greenhouse;
 		
-		private EntityRef<Crop> _Crop;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<Crop> _Crop;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -838,8 +838,8 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		{
 			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
 			this._Greenhouse = default(EntityRef<Greenhouse>);
-			this._Crop = default(EntityRef<Crop>);
 			this._User = default(EntityRef<User>);
+			this._Crop = default(EntityRef<Crop>);
 			OnCreated();
 		}
 		
@@ -1195,7 +1195,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Section_dvent_Task", Storage="_Tasks", ThisKey="SectionID", OtherKey="SectionID")]
+		[Association(Name="Section_Task", Storage="_Tasks", ThisKey="SectionID", OtherKey="SectionID")]
 		public EntitySet<Task> Tasks
 		{
 			get
@@ -1208,7 +1208,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Greenhouse_dvent_Section", Storage="_Greenhouse", ThisKey="GreenhouseID", OtherKey="GreenhouseID", IsForeignKey=true)]
+		[Association(Name="Greenhouse_Section", Storage="_Greenhouse", ThisKey="GreenhouseID", OtherKey="GreenhouseID", IsForeignKey=true)]
 		public Greenhouse Greenhouse
 		{
 			get
@@ -1242,41 +1242,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Crop_dvent_Section", Storage="_Crop", ThisKey="CropID", OtherKey="CropID", IsForeignKey=true)]
-		public Crop Crop
-		{
-			get
-			{
-				return this._Crop.Entity;
-			}
-			set
-			{
-				Crop previousValue = this._Crop.Entity;
-				if (((previousValue != value) 
-							|| (this._Crop.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Crop.Entity = null;
-						previousValue.Sections.Remove(this);
-					}
-					this._Crop.Entity = value;
-					if ((value != null))
-					{
-						value.Sections.Add(this);
-						this._CropID = value.CropID;
-					}
-					else
-					{
-						this._CropID = default(int);
-					}
-					this.SendPropertyChanged("Crop");
-				}
-			}
-		}
-		
-		[Association(Name="aspnet_User_Section", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
+		[Association(Name="User_Section", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -1306,6 +1272,40 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 						this._UserID = default(System.Guid);
 					}
 					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[Association(Name="Crop_Section", Storage="_Crop", ThisKey="CropID", OtherKey="CropID", IsForeignKey=true)]
+		public Crop Crop
+		{
+			get
+			{
+				return this._Crop.Entity;
+			}
+			set
+			{
+				Crop previousValue = this._Crop.Entity;
+				if (((previousValue != value) 
+							|| (this._Crop.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Crop.Entity = null;
+						previousValue.Sections.Remove(this);
+					}
+					this._Crop.Entity = value;
+					if ((value != null))
+					{
+						value.Sections.Add(this);
+						this._CropID = value.CropID;
+					}
+					else
+					{
+						this._CropID = default(int);
+					}
+					this.SendPropertyChanged("Crop");
 				}
 			}
 		}
@@ -1340,401 +1340,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		{
 			this.SendPropertyChanging();
 			entity.Section = null;
-		}
-	}
-	
-	[Table(Name="dbo.dvent_Crop")]
-	public partial class Crop : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _CropID;
-		
-		private string _Name;
-		
-		private System.Nullable<int> _IdealTemperature;
-		
-		private System.Nullable<int> _TemperatureThreshold;
-		
-		private System.Nullable<int> _IdealLightIntensity;
-		
-		private System.Nullable<int> _IdealHumidity;
-		
-		private string _HumidityThreshold;
-		
-		private System.DateTime _DateCreated;
-		
-		private System.Nullable<System.DateTime> _DateDeleted;
-		
-		private System.DateTime _DateUpdated;
-		
-		private System.Nullable<System.Guid> _UserID;
-		
-		private bool _Global;
-		
-		private EntitySet<Section> _Sections;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCropIDChanging(int value);
-    partial void OnCropIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnIdealTemperatureChanging(System.Nullable<int> value);
-    partial void OnIdealTemperatureChanged();
-    partial void OnTemperatureThresholdChanging(System.Nullable<int> value);
-    partial void OnTemperatureThresholdChanged();
-    partial void OnIdealLightIntensityChanging(System.Nullable<int> value);
-    partial void OnIdealLightIntensityChanged();
-    partial void OnIdealHumidityChanging(System.Nullable<int> value);
-    partial void OnIdealHumidityChanged();
-    partial void OnHumidityThresholdChanging(string value);
-    partial void OnHumidityThresholdChanged();
-    partial void OnDateCreatedChanging(System.DateTime value);
-    partial void OnDateCreatedChanged();
-    partial void OnDateDeletedChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateDeletedChanged();
-    partial void OnDateUpdatedChanging(System.DateTime value);
-    partial void OnDateUpdatedChanged();
-    partial void OnUserIDChanging(System.Nullable<System.Guid> value);
-    partial void OnUserIDChanged();
-    partial void OnGlobalChanging(bool value);
-    partial void OnGlobalChanged();
-    #endregion
-		
-		public Crop()
-		{
-			this._Sections = new EntitySet<Section>(new Action<Section>(this.attach_Sections), new Action<Section>(this.detach_Sections));
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_CropID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int CropID
-		{
-			get
-			{
-				return this._CropID;
-			}
-			set
-			{
-				if ((this._CropID != value))
-				{
-					this.OnCropIDChanging(value);
-					this.SendPropertyChanging();
-					this._CropID = value;
-					this.SendPropertyChanged("CropID");
-					this.OnCropIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdealTemperature", DbType="Int")]
-		public System.Nullable<int> IdealTemperature
-		{
-			get
-			{
-				return this._IdealTemperature;
-			}
-			set
-			{
-				if ((this._IdealTemperature != value))
-				{
-					this.OnIdealTemperatureChanging(value);
-					this.SendPropertyChanging();
-					this._IdealTemperature = value;
-					this.SendPropertyChanged("IdealTemperature");
-					this.OnIdealTemperatureChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_TemperatureThreshold", DbType="Int")]
-		public System.Nullable<int> TemperatureThreshold
-		{
-			get
-			{
-				return this._TemperatureThreshold;
-			}
-			set
-			{
-				if ((this._TemperatureThreshold != value))
-				{
-					this.OnTemperatureThresholdChanging(value);
-					this.SendPropertyChanging();
-					this._TemperatureThreshold = value;
-					this.SendPropertyChanged("TemperatureThreshold");
-					this.OnTemperatureThresholdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdealLightIntensity", DbType="Int")]
-		public System.Nullable<int> IdealLightIntensity
-		{
-			get
-			{
-				return this._IdealLightIntensity;
-			}
-			set
-			{
-				if ((this._IdealLightIntensity != value))
-				{
-					this.OnIdealLightIntensityChanging(value);
-					this.SendPropertyChanging();
-					this._IdealLightIntensity = value;
-					this.SendPropertyChanged("IdealLightIntensity");
-					this.OnIdealLightIntensityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdealHumidity", DbType="Int")]
-		public System.Nullable<int> IdealHumidity
-		{
-			get
-			{
-				return this._IdealHumidity;
-			}
-			set
-			{
-				if ((this._IdealHumidity != value))
-				{
-					this.OnIdealHumidityChanging(value);
-					this.SendPropertyChanging();
-					this._IdealHumidity = value;
-					this.SendPropertyChanged("IdealHumidity");
-					this.OnIdealHumidityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_HumidityThreshold", DbType="NChar(10)")]
-		public string HumidityThreshold
-		{
-			get
-			{
-				return this._HumidityThreshold;
-			}
-			set
-			{
-				if ((this._HumidityThreshold != value))
-				{
-					this.OnHumidityThresholdChanging(value);
-					this.SendPropertyChanging();
-					this._HumidityThreshold = value;
-					this.SendPropertyChanged("HumidityThreshold");
-					this.OnHumidityThresholdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
-		public System.DateTime DateCreated
-		{
-			get
-			{
-				return this._DateCreated;
-			}
-			set
-			{
-				if ((this._DateCreated != value))
-				{
-					this.OnDateCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateCreated = value;
-					this.SendPropertyChanged("DateCreated");
-					this.OnDateCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateDeleted", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateDeleted
-		{
-			get
-			{
-				return this._DateDeleted;
-			}
-			set
-			{
-				if ((this._DateDeleted != value))
-				{
-					this.OnDateDeletedChanging(value);
-					this.SendPropertyChanging();
-					this._DateDeleted = value;
-					this.SendPropertyChanged("DateDeleted");
-					this.OnDateDeletedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
-		public System.DateTime DateUpdated
-		{
-			get
-			{
-				return this._DateUpdated;
-			}
-			set
-			{
-				if ((this._DateUpdated != value))
-				{
-					this.OnDateUpdatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateUpdated = value;
-					this.SendPropertyChanged("DateUpdated");
-					this.OnDateUpdatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserID = value;
-					this.SendPropertyChanged("UserID");
-					this.OnUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Global", DbType="Bit NOT NULL")]
-		public bool Global
-		{
-			get
-			{
-				return this._Global;
-			}
-			set
-			{
-				if ((this._Global != value))
-				{
-					this.OnGlobalChanging(value);
-					this.SendPropertyChanging();
-					this._Global = value;
-					this.SendPropertyChanged("Global");
-					this.OnGlobalChanged();
-				}
-			}
-		}
-		
-		[Association(Name="dvent_Crop_dvent_Section", Storage="_Sections", ThisKey="CropID", OtherKey="CropID")]
-		public EntitySet<Section> Sections
-		{
-			get
-			{
-				return this._Sections;
-			}
-			set
-			{
-				this._Sections.Assign(value);
-			}
-		}
-		
-		[Association(Name="aspnet_User_Crop", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Crops.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Crops.Add(this);
-						this._UserID = value.UserId;
-					}
-					else
-					{
-						this._UserID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Sections(Section entity)
-		{
-			this.SendPropertyChanging();
-			entity.Crop = this;
-		}
-		
-		private void detach_Sections(Section entity)
-		{
-			this.SendPropertyChanging();
-			entity.Crop = null;
 		}
 	}
 	
@@ -1937,7 +1542,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Section_dvent_Task", Storage="_Section", ThisKey="SectionID", OtherKey="SectionID", IsForeignKey=true)]
+		[Association(Name="Section_Task", Storage="_Section", ThisKey="SectionID", OtherKey="SectionID", IsForeignKey=true)]
 		public Section Section
 		{
 			get
@@ -1971,7 +1576,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_TaskType_dvent_Task", Storage="_TaskType", ThisKey="TaskTypeID", OtherKey="TaskTypeId", IsForeignKey=true)]
+		[Association(Name="dvent_TaskType_Task", Storage="_TaskType", ThisKey="TaskTypeID", OtherKey="TaskTypeId", IsForeignKey=true)]
 		public TaskType TaskType
 		{
 			get
@@ -2023,120 +1628,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[Table(Name="dbo.dvent_TaskType")]
-	public partial class TaskType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TaskTypeId;
-		
-		private string _name;
-		
-		private EntitySet<Task> _Tasks;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTaskTypeIdChanging(int value);
-    partial void OnTaskTypeIdChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    #endregion
-		
-		public TaskType()
-		{
-			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
-			OnCreated();
-		}
-		
-		[Column(Storage="_TaskTypeId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TaskTypeId
-		{
-			get
-			{
-				return this._TaskTypeId;
-			}
-			set
-			{
-				if ((this._TaskTypeId != value))
-				{
-					this.OnTaskTypeIdChanging(value);
-					this.SendPropertyChanging();
-					this._TaskTypeId = value;
-					this.SendPropertyChanged("TaskTypeId");
-					this.OnTaskTypeIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_name", DbType="NVarChar(253) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[Association(Name="dvent_TaskType_dvent_Task", Storage="_Tasks", ThisKey="TaskTypeId", OtherKey="TaskTypeID")]
-		public EntitySet<Task> Tasks
-		{
-			get
-			{
-				return this._Tasks;
-			}
-			set
-			{
-				this._Tasks.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Tasks(Task entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaskType = this;
-		}
-		
-		private void detach_Tasks(Task entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaskType = null;
 		}
 	}
 	
@@ -2331,7 +1822,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="aspnet_User_Section", Storage="_Sections", ThisKey="UserId", OtherKey="UserID")]
+		[Association(Name="User_Section", Storage="_Sections", ThisKey="UserId", OtherKey="UserID")]
 		public EntitySet<Section> Sections
 		{
 			get
@@ -2344,7 +1835,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="aspnet_User_Crop", Storage="_Crops", ThisKey="UserId", OtherKey="UserID")]
+		[Association(Name="User_Crop", Storage="_Crops", ThisKey="UserId", OtherKey="UserID")]
 		public EntitySet<Crop> Crops
 		{
 			get
@@ -2399,6 +1890,539 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
+		}
+	}
+	
+	[Table(Name="dbo.dvent_Crop")]
+	public partial class Crop : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _CropID;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _IdealTemperature;
+		
+		private System.Nullable<int> _TemperatureThreshold;
+		
+		private System.Nullable<int> _IdealLightIntensity;
+		
+		private System.Nullable<int> _LightIntensityTreshold;
+		
+		private System.Nullable<int> _IdealHumidity;
+		
+		private System.Nullable<int> _HumidityThreshold;
+		
+		private System.DateTime _DateCreated;
+		
+		private System.Nullable<System.DateTime> _DateDeleted;
+		
+		private System.DateTime _DateUpdated;
+		
+		private System.Nullable<System.Guid> _UserID;
+		
+		private bool _IsGlobal;
+		
+		private EntitySet<Section> _Sections;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCropIDChanging(int value);
+    partial void OnCropIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnIdealTemperatureChanging(System.Nullable<int> value);
+    partial void OnIdealTemperatureChanged();
+    partial void OnTemperatureThresholdChanging(System.Nullable<int> value);
+    partial void OnTemperatureThresholdChanged();
+    partial void OnIdealLightIntensityChanging(System.Nullable<int> value);
+    partial void OnIdealLightIntensityChanged();
+    partial void OnLightIntensityTresholdChanging(System.Nullable<int> value);
+    partial void OnLightIntensityTresholdChanged();
+    partial void OnIdealHumidityChanging(System.Nullable<int> value);
+    partial void OnIdealHumidityChanged();
+    partial void OnHumidityThresholdChanging(System.Nullable<int> value);
+    partial void OnHumidityThresholdChanged();
+    partial void OnDateCreatedChanging(System.DateTime value);
+    partial void OnDateCreatedChanged();
+    partial void OnDateDeletedChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateDeletedChanged();
+    partial void OnDateUpdatedChanging(System.DateTime value);
+    partial void OnDateUpdatedChanged();
+    partial void OnUserIDChanging(System.Nullable<System.Guid> value);
+    partial void OnUserIDChanged();
+    partial void OnIsGlobalChanging(bool value);
+    partial void OnIsGlobalChanged();
+    #endregion
+		
+		public Crop()
+		{
+			this._Sections = new EntitySet<Section>(new Action<Section>(this.attach_Sections), new Action<Section>(this.detach_Sections));
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_CropID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int CropID
+		{
+			get
+			{
+				return this._CropID;
+			}
+			set
+			{
+				if ((this._CropID != value))
+				{
+					this.OnCropIDChanging(value);
+					this.SendPropertyChanging();
+					this._CropID = value;
+					this.SendPropertyChanged("CropID");
+					this.OnCropIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdealTemperature", DbType="Int")]
+		public System.Nullable<int> IdealTemperature
+		{
+			get
+			{
+				return this._IdealTemperature;
+			}
+			set
+			{
+				if ((this._IdealTemperature != value))
+				{
+					this.OnIdealTemperatureChanging(value);
+					this.SendPropertyChanging();
+					this._IdealTemperature = value;
+					this.SendPropertyChanged("IdealTemperature");
+					this.OnIdealTemperatureChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TemperatureThreshold", DbType="Int")]
+		public System.Nullable<int> TemperatureThreshold
+		{
+			get
+			{
+				return this._TemperatureThreshold;
+			}
+			set
+			{
+				if ((this._TemperatureThreshold != value))
+				{
+					this.OnTemperatureThresholdChanging(value);
+					this.SendPropertyChanging();
+					this._TemperatureThreshold = value;
+					this.SendPropertyChanged("TemperatureThreshold");
+					this.OnTemperatureThresholdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdealLightIntensity", DbType="Int")]
+		public System.Nullable<int> IdealLightIntensity
+		{
+			get
+			{
+				return this._IdealLightIntensity;
+			}
+			set
+			{
+				if ((this._IdealLightIntensity != value))
+				{
+					this.OnIdealLightIntensityChanging(value);
+					this.SendPropertyChanging();
+					this._IdealLightIntensity = value;
+					this.SendPropertyChanged("IdealLightIntensity");
+					this.OnIdealLightIntensityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LightIntensityTreshold", DbType="Int")]
+		public System.Nullable<int> LightIntensityTreshold
+		{
+			get
+			{
+				return this._LightIntensityTreshold;
+			}
+			set
+			{
+				if ((this._LightIntensityTreshold != value))
+				{
+					this.OnLightIntensityTresholdChanging(value);
+					this.SendPropertyChanging();
+					this._LightIntensityTreshold = value;
+					this.SendPropertyChanged("LightIntensityTreshold");
+					this.OnLightIntensityTresholdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdealHumidity", DbType="Int")]
+		public System.Nullable<int> IdealHumidity
+		{
+			get
+			{
+				return this._IdealHumidity;
+			}
+			set
+			{
+				if ((this._IdealHumidity != value))
+				{
+					this.OnIdealHumidityChanging(value);
+					this.SendPropertyChanging();
+					this._IdealHumidity = value;
+					this.SendPropertyChanged("IdealHumidity");
+					this.OnIdealHumidityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HumidityThreshold", DbType="Int")]
+		public System.Nullable<int> HumidityThreshold
+		{
+			get
+			{
+				return this._HumidityThreshold;
+			}
+			set
+			{
+				if ((this._HumidityThreshold != value))
+				{
+					this.OnHumidityThresholdChanging(value);
+					this.SendPropertyChanging();
+					this._HumidityThreshold = value;
+					this.SendPropertyChanged("HumidityThreshold");
+					this.OnHumidityThresholdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCreated
+		{
+			get
+			{
+				return this._DateCreated;
+			}
+			set
+			{
+				if ((this._DateCreated != value))
+				{
+					this.OnDateCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCreated = value;
+					this.SendPropertyChanged("DateCreated");
+					this.OnDateCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateDeleted", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateDeleted
+		{
+			get
+			{
+				return this._DateDeleted;
+			}
+			set
+			{
+				if ((this._DateDeleted != value))
+				{
+					this.OnDateDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._DateDeleted = value;
+					this.SendPropertyChanged("DateDeleted");
+					this.OnDateDeletedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateUpdated
+		{
+			get
+			{
+				return this._DateUpdated;
+			}
+			set
+			{
+				if ((this._DateUpdated != value))
+				{
+					this.OnDateUpdatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateUpdated = value;
+					this.SendPropertyChanged("DateUpdated");
+					this.OnDateUpdatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsGlobal", DbType="Bit NOT NULL")]
+		public bool IsGlobal
+		{
+			get
+			{
+				return this._IsGlobal;
+			}
+			set
+			{
+				if ((this._IsGlobal != value))
+				{
+					this.OnIsGlobalChanging(value);
+					this.SendPropertyChanging();
+					this._IsGlobal = value;
+					this.SendPropertyChanged("IsGlobal");
+					this.OnIsGlobalChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Crop_Section", Storage="_Sections", ThisKey="CropID", OtherKey="CropID")]
+		public EntitySet<Section> Sections
+		{
+			get
+			{
+				return this._Sections;
+			}
+			set
+			{
+				this._Sections.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Crop", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Crops.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Crops.Add(this);
+						this._UserID = value.UserId;
+					}
+					else
+					{
+						this._UserID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Sections(Section entity)
+		{
+			this.SendPropertyChanging();
+			entity.Crop = this;
+		}
+		
+		private void detach_Sections(Section entity)
+		{
+			this.SendPropertyChanging();
+			entity.Crop = null;
+		}
+	}
+	
+	[Table(Name="dbo.dvent_TaskType")]
+	public partial class TaskType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TaskTypeId;
+		
+		private string _Name;
+		
+		private EntitySet<Task> _Tasks;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTaskTypeIdChanging(int value);
+    partial void OnTaskTypeIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public TaskType()
+		{
+			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
+			OnCreated();
+		}
+		
+		[Column(Storage="_TaskTypeId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TaskTypeId
+		{
+			get
+			{
+				return this._TaskTypeId;
+			}
+			set
+			{
+				if ((this._TaskTypeId != value))
+				{
+					this.OnTaskTypeIdChanging(value);
+					this.SendPropertyChanging();
+					this._TaskTypeId = value;
+					this.SendPropertyChanged("TaskTypeId");
+					this.OnTaskTypeIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="NVarChar(253) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="dvent_TaskType_Task", Storage="_Tasks", ThisKey="TaskTypeId", OtherKey="TaskTypeID")]
+		public EntitySet<Task> Tasks
+		{
+			get
+			{
+				return this._Tasks;
+			}
+			set
+			{
+				this._Tasks.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Tasks(Task entity)
+		{
+			this.SendPropertyChanging();
+			entity.TaskType = this;
+		}
+		
+		private void detach_Tasks(Task entity)
+		{
+			this.SendPropertyChanging();
+			entity.TaskType = null;
 		}
 	}
 }
