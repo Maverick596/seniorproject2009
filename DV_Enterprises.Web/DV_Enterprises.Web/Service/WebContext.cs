@@ -1,5 +1,6 @@
 using System;
 using System.Web;
+using System.Web.Security;
 using DV_Enterprises.Web.Service.Interface;
 using StructureMap;
 
@@ -32,6 +33,12 @@ namespace DV_Enterprises.Web.Service
                 }
                 return result;
             }
+        }
+
+        public bool IsAdmin(System.Web.Security.MembershipUser user)
+        {
+            return true;
+            //retrun Roles.IsUserInRole(user.UserName, "Administrator");
         }
 
         public void ClearSession()

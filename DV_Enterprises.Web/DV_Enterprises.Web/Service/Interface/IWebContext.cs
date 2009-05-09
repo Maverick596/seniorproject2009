@@ -6,6 +6,7 @@ namespace DV_Enterprises.Web.Service.Interface
     [PluginFamily("Default")]
     public interface IWebContext
     {
+        bool IsAdmin(System.Web.Security.MembershipUser user);
         Int32 ProductId { get; }
         Int32 GreenhouseId { get; }
     }
