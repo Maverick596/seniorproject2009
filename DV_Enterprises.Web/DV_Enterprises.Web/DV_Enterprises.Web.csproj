@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{38AC8DA0-C557-42F4-B859-70A8A7FF12F7}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -91,7 +91,6 @@
     <Compile Include="Presenter\Products\Interface\IViewProduct.cs" />
     <Compile Include="Presenter\Products\ManageProductPresenter.cs" />
     <Compile Include="Presenter\Products\ViewProductPresenter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

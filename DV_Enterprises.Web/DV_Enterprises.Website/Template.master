@@ -41,7 +41,7 @@
                     </asp:Menu>
                 </div>
                 <div id="subhead">
-                    This bar will have the breadcrumb and search earch
+                    This bar will have the breadcrumb and search
                 </div>
             </div>
             <!-- END #header -->

@@ -29,6 +29,7 @@ h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
 #header #navigation a { display: block; padding: 10px; height: 30px !important; color: #000; }
 #header #navigation a:hover { background-color: #c7e3a4; }
 #header #subhead { height: 40px; }
+
 #footer { text-align: center; }
 #footer ul.links { text-align: center; }
 #footer ul.links li { margin: 0; margin-left: 0 !important;display: inline; border-right:1px solid #333333; padding: 0 5px}
