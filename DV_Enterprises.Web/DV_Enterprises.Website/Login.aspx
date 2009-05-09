@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h2 class="title">Login</h2>
+    <h2 class="title">&nbsp;</h2>
     <asp:Login ID="Login" runat="server" onloggedin="Login_LoggedIn">
     </asp:Login>
 </asp:Content>
