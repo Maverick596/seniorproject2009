@@ -2,7 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     
-    <style type="text/css">
+    <!-- DONT EVER DO THIS !!!!!!!!!!! USE THE STYLESHEETS - LRT
+        <style type="text/css">
         .style7
         {
             font-family: Calibri;
@@ -27,7 +28,9 @@
             font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
         }
-    </style>
+    </style> 
+    
+    -->
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -41,10 +44,7 @@
         Smart Greehouse Solutions</br>
        4000 Millenia Blvd, Orlando, Florida 32839</span></span></p>
     <p class="style8">
-        <img alt="" src="App_Themes/Green960/images/Leaf.png" 
-            style="width: 65px; height: 111px" /><span class="style10"></br></span></br>
-      
-    
+        <img alt="" src="App_Themes/Green960/images/Leaf.png" style="width: 65px; height: 111px" /><span class="style10"></br></span></br>
     </p>
 
       

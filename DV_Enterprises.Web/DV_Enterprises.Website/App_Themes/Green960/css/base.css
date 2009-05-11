@@ -34,3 +34,5 @@ h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
 #footer ul.links { text-align: center; }
 #footer ul.links li { margin: 0; margin-left: 0 !important;display: inline; border-right:1px solid #333333; padding: 0 5px}
 #footer ul.links li.last { border: none }
+
+.faq span.question { font-weight: bold; }
