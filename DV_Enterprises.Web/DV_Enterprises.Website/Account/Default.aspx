@@ -7,5 +7,9 @@
     
     <asp:HyperLink ID="lnkEditAccount" runat="server" Text="Edit Account" NavigateUrl="~/Account/Edit.aspx"></asp:HyperLink>
     
+<br />
+<br />
+<br />
+    
 </asp:Content>
 

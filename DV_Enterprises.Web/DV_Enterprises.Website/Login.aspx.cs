@@ -8,20 +8,8 @@ public partial class LoginPage : Page
 
     protected void Login_LoggedIn(object sender, EventArgs e)
     {
-        var userIsUserInAdminRole = Roles.IsUserInRole(Login.UserName, "administrator");
-        var userIsUserInCustomerRole = Roles.IsUserInRole(Login.UserName, "customer");
+        var userIsUserInAdminRole = Roles.IsUserInRole(Login.UserName, "Administrator");
 
-        if (userIsUserInAdminRole)
-        {
-            Login.DestinationPageUrl = "~/Admin/Default.aspx";
-        }
-        else if (userIsUserInCustomerRole)
-        {
-            Login.DestinationPageUrl = "~/Account/Default.aspx";
-        }
-        else
-        {
-            Login.DestinationPageUrl = "~/Default.aspx";
-        }
+        Login.DestinationPageUrl = userIsUserInAdminRole ? "~/Admin/Default.aspx" : "~/Account/Default.aspx";
     }
 }
