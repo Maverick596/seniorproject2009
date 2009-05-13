@@ -67,8 +67,7 @@ namespace DV_Enterprises.Web.Data.Domain
                         HumidityTreshold = c.HumidityThreshold,
                         IsGlobal = c.IsGlobal,
                         DateCreated = c.DateCreated,
-                        DateUpdated = c.DateUpdated,
-                        DateDeleted = c.DateDeleted
+                        DateUpdated = c.DateUpdated
                     };
             return r;
         }

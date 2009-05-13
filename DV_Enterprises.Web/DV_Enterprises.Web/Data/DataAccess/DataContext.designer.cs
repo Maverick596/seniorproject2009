@@ -33,27 +33,27 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
-    partial void InsertAddress(Address instance);
-    partial void UpdateAddress(Address instance);
-    partial void DeleteAddress(Address instance);
     partial void InsertGreenhouse(Greenhouse instance);
     partial void UpdateGreenhouse(Greenhouse instance);
     partial void DeleteGreenhouse(Greenhouse instance);
-    partial void InsertSection(Section instance);
-    partial void UpdateSection(Section instance);
-    partial void DeleteSection(Section instance);
     partial void InsertTask(Task instance);
     partial void UpdateTask(Task instance);
     partial void DeleteTask(Task instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertCrop(Crop instance);
-    partial void UpdateCrop(Crop instance);
-    partial void DeleteCrop(Crop instance);
     partial void InsertTaskType(TaskType instance);
     partial void UpdateTaskType(TaskType instance);
     partial void DeleteTaskType(TaskType instance);
+    partial void InsertSection(Section instance);
+    partial void UpdateSection(Section instance);
+    partial void DeleteSection(Section instance);
+    partial void InsertCrop(Crop instance);
+    partial void UpdateCrop(Crop instance);
+    partial void DeleteCrop(Crop instance);
+    partial void InsertAddress(Address instance);
+    partial void UpdateAddress(Address instance);
+    partial void DeleteAddress(Address instance);
     #endregion
 		
 		public DataContext() : 
@@ -94,27 +94,11 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		public System.Data.Linq.Table<Address> Addresses
-		{
-			get
-			{
-				return this.GetTable<Address>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Greenhouse> Greenhouses
 		{
 			get
 			{
 				return this.GetTable<Greenhouse>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Section> Sections
-		{
-			get
-			{
-				return this.GetTable<Section>();
 			}
 		}
 		
@@ -134,6 +118,22 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
+		public System.Data.Linq.Table<TaskType> TaskTypes
+		{
+			get
+			{
+				return this.GetTable<TaskType>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Section> Sections
+		{
+			get
+			{
+				return this.GetTable<Section>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Crop> Crops
 		{
 			get
@@ -142,11 +142,11 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		public System.Data.Linq.Table<TaskType> TaskTypes
+		public System.Data.Linq.Table<Address> Addresses
 		{
 			get
 			{
-				return this.GetTable<TaskType>();
+				return this.GetTable<Address>();
 			}
 		}
 	}
@@ -333,264 +333,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		}
 	}
 	
-	[Table(Name="dbo.dvent_Address")]
-	public partial class Address : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _AddressID;
-		
-		private string _City;
-		
-		private string _StateOrProvince;
-		
-		private string _StreetLine1;
-		
-		private string _StreetLine2;
-		
-		private int _Zip;
-		
-		private string _Country;
-		
-		private bool _IsDefault;
-		
-		private EntitySet<Greenhouse> _Greenhouses;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAddressIDChanging(int value);
-    partial void OnAddressIDChanged();
-    partial void OnCityChanging(string value);
-    partial void OnCityChanged();
-    partial void OnStateOrProvinceChanging(string value);
-    partial void OnStateOrProvinceChanged();
-    partial void OnStreetLine1Changing(string value);
-    partial void OnStreetLine1Changed();
-    partial void OnStreetLine2Changing(string value);
-    partial void OnStreetLine2Changed();
-    partial void OnZipChanging(int value);
-    partial void OnZipChanged();
-    partial void OnCountryChanging(string value);
-    partial void OnCountryChanged();
-    partial void OnIsDefaultChanging(bool value);
-    partial void OnIsDefaultChanged();
-    #endregion
-		
-		public Address()
-		{
-			this._Greenhouses = new EntitySet<Greenhouse>(new Action<Greenhouse>(this.attach_Greenhouses), new Action<Greenhouse>(this.detach_Greenhouses));
-			OnCreated();
-		}
-		
-		[Column(Storage="_AddressID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AddressID
-		{
-			get
-			{
-				return this._AddressID;
-			}
-			set
-			{
-				if ((this._AddressID != value))
-				{
-					this.OnAddressIDChanging(value);
-					this.SendPropertyChanging();
-					this._AddressID = value;
-					this.SendPropertyChanged("AddressID");
-					this.OnAddressIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_City", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string City
-		{
-			get
-			{
-				return this._City;
-			}
-			set
-			{
-				if ((this._City != value))
-				{
-					this.OnCityChanging(value);
-					this.SendPropertyChanging();
-					this._City = value;
-					this.SendPropertyChanged("City");
-					this.OnCityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_StateOrProvince", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string StateOrProvince
-		{
-			get
-			{
-				return this._StateOrProvince;
-			}
-			set
-			{
-				if ((this._StateOrProvince != value))
-				{
-					this.OnStateOrProvinceChanging(value);
-					this.SendPropertyChanging();
-					this._StateOrProvince = value;
-					this.SendPropertyChanged("StateOrProvince");
-					this.OnStateOrProvinceChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_StreetLine1", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string StreetLine1
-		{
-			get
-			{
-				return this._StreetLine1;
-			}
-			set
-			{
-				if ((this._StreetLine1 != value))
-				{
-					this.OnStreetLine1Changing(value);
-					this.SendPropertyChanging();
-					this._StreetLine1 = value;
-					this.SendPropertyChanged("StreetLine1");
-					this.OnStreetLine1Changed();
-				}
-			}
-		}
-		
-		[Column(Storage="_StreetLine2", DbType="NVarChar(255)")]
-		public string StreetLine2
-		{
-			get
-			{
-				return this._StreetLine2;
-			}
-			set
-			{
-				if ((this._StreetLine2 != value))
-				{
-					this.OnStreetLine2Changing(value);
-					this.SendPropertyChanging();
-					this._StreetLine2 = value;
-					this.SendPropertyChanged("StreetLine2");
-					this.OnStreetLine2Changed();
-				}
-			}
-		}
-		
-		[Column(Storage="_Zip", DbType="Int NOT NULL")]
-		public int Zip
-		{
-			get
-			{
-				return this._Zip;
-			}
-			set
-			{
-				if ((this._Zip != value))
-				{
-					this.OnZipChanging(value);
-					this.SendPropertyChanging();
-					this._Zip = value;
-					this.SendPropertyChanged("Zip");
-					this.OnZipChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Country", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Country
-		{
-			get
-			{
-				return this._Country;
-			}
-			set
-			{
-				if ((this._Country != value))
-				{
-					this.OnCountryChanging(value);
-					this.SendPropertyChanging();
-					this._Country = value;
-					this.SendPropertyChanged("Country");
-					this.OnCountryChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IsDefault", DbType="Bit NOT NULL")]
-		public bool IsDefault
-		{
-			get
-			{
-				return this._IsDefault;
-			}
-			set
-			{
-				if ((this._IsDefault != value))
-				{
-					this.OnIsDefaultChanging(value);
-					this.SendPropertyChanging();
-					this._IsDefault = value;
-					this.SendPropertyChanged("IsDefault");
-					this.OnIsDefaultChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Address_Greenhouse", Storage="_Greenhouses", OtherKey="AddressID")]
-		public EntitySet<Greenhouse> Greenhouses
-		{
-			get
-			{
-				return this._Greenhouses;
-			}
-			set
-			{
-				this._Greenhouses.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Greenhouses(Greenhouse entity)
-		{
-			this.SendPropertyChanging();
-			entity.Address = this;
-		}
-		
-		private void detach_Greenhouses(Greenhouse entity)
-		{
-			this.SendPropertyChanging();
-			entity.Address = null;
-		}
-	}
-	
 	[Table(Name="dbo.dvent_Greenhouse")]
 	public partial class Greenhouse : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -666,7 +408,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Greenhouse_Section", Storage="_Sections", OtherKey="GreenhouseID")]
+		[Association(Name="Greenhouse_dvent_Section", Storage="_Sections", OtherKey="GreenhouseID")]
 		public EntitySet<Section> Sections
 		{
 			get
@@ -679,7 +421,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Address_Greenhouse", Storage="_Address", ThisKey="AddressID", IsForeignKey=true)]
+		[Association(Name="dvent_Address_Greenhouse", Storage="_Address", ThisKey="AddressID", IsForeignKey=true)]
 		public Address Address
 		{
 			get
@@ -746,6 +488,670 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		}
 	}
 	
+	[Table(Name="dbo.dvent_Task")]
+	public partial class Task : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TaskID;
+		
+		private System.DateTime _StartTime;
+		
+		private System.DateTime _EndTime;
+		
+		private int _TaskTypeID;
+		
+		private System.DateTime _DateCreated;
+		
+		private System.Nullable<System.DateTime> _DateDeleted;
+		
+		private int _SectionID;
+		
+		private EntityRef<TaskType> _TaskType;
+		
+		private EntityRef<Section> _Section;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTaskIDChanging(int value);
+    partial void OnTaskIDChanged();
+    partial void OnStartTimeChanging(System.DateTime value);
+    partial void OnStartTimeChanged();
+    partial void OnEndTimeChanging(System.DateTime value);
+    partial void OnEndTimeChanged();
+    partial void OnTaskTypeIDChanging(int value);
+    partial void OnTaskTypeIDChanged();
+    partial void OnDateCreatedChanging(System.DateTime value);
+    partial void OnDateCreatedChanged();
+    partial void OnDateDeletedChanging(System.Nullable<System.DateTime> value);
+    partial void OnDateDeletedChanged();
+    partial void OnSectionIDChanging(int value);
+    partial void OnSectionIDChanged();
+    #endregion
+		
+		public Task()
+		{
+			this._TaskType = default(EntityRef<TaskType>);
+			this._Section = default(EntityRef<Section>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_TaskID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int TaskID
+		{
+			get
+			{
+				return this._TaskID;
+			}
+			set
+			{
+				if ((this._TaskID != value))
+				{
+					this.OnTaskIDChanging(value);
+					this.SendPropertyChanging();
+					this._TaskID = value;
+					this.SendPropertyChanged("TaskID");
+					this.OnTaskIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this.OnStartTimeChanging(value);
+					this.SendPropertyChanging();
+					this._StartTime = value;
+					this.SendPropertyChanged("StartTime");
+					this.OnStartTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EndTime", DbType="DateTime NOT NULL")]
+		public System.DateTime EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this.OnEndTimeChanging(value);
+					this.SendPropertyChanging();
+					this._EndTime = value;
+					this.SendPropertyChanged("EndTime");
+					this.OnEndTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TaskTypeID", DbType="Int NOT NULL")]
+		public int TaskTypeID
+		{
+			get
+			{
+				return this._TaskTypeID;
+			}
+			set
+			{
+				if ((this._TaskTypeID != value))
+				{
+					if (this._TaskType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTaskTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._TaskTypeID = value;
+					this.SendPropertyChanged("TaskTypeID");
+					this.OnTaskTypeIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCreated
+		{
+			get
+			{
+				return this._DateCreated;
+			}
+			set
+			{
+				if ((this._DateCreated != value))
+				{
+					this.OnDateCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCreated = value;
+					this.SendPropertyChanged("DateCreated");
+					this.OnDateCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateDeleted", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DateDeleted
+		{
+			get
+			{
+				return this._DateDeleted;
+			}
+			set
+			{
+				if ((this._DateDeleted != value))
+				{
+					this.OnDateDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._DateDeleted = value;
+					this.SendPropertyChanged("DateDeleted");
+					this.OnDateDeletedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SectionID", DbType="Int NOT NULL")]
+		public int SectionID
+		{
+			get
+			{
+				return this._SectionID;
+			}
+			set
+			{
+				if ((this._SectionID != value))
+				{
+					if (this._Section.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSectionIDChanging(value);
+					this.SendPropertyChanging();
+					this._SectionID = value;
+					this.SendPropertyChanged("SectionID");
+					this.OnSectionIDChanged();
+				}
+			}
+		}
+		
+		[Association(Name="TaskType_Task", Storage="_TaskType", ThisKey="TaskTypeID", IsForeignKey=true)]
+		public TaskType TaskType
+		{
+			get
+			{
+				return this._TaskType.Entity;
+			}
+			set
+			{
+				TaskType previousValue = this._TaskType.Entity;
+				if (((previousValue != value) 
+							|| (this._TaskType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TaskType.Entity = null;
+						previousValue.Tasks.Remove(this);
+					}
+					this._TaskType.Entity = value;
+					if ((value != null))
+					{
+						value.Tasks.Add(this);
+						this._TaskTypeID = value.TaskTypeId;
+					}
+					else
+					{
+						this._TaskTypeID = default(int);
+					}
+					this.SendPropertyChanged("TaskType");
+				}
+			}
+		}
+		
+		[Association(Name="dvent_Section_Task", Storage="_Section", ThisKey="SectionID", IsForeignKey=true)]
+		public Section Section
+		{
+			get
+			{
+				return this._Section.Entity;
+			}
+			set
+			{
+				Section previousValue = this._Section.Entity;
+				if (((previousValue != value) 
+							|| (this._Section.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Section.Entity = null;
+						previousValue.Tasks.Remove(this);
+					}
+					this._Section.Entity = value;
+					if ((value != null))
+					{
+						value.Tasks.Add(this);
+						this._SectionID = value.SectionID;
+					}
+					else
+					{
+						this._SectionID = default(int);
+					}
+					this.SendPropertyChanged("Section");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.aspnet_Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ApplicationId;
+		
+		private System.Guid _UserId;
+		
+		private string _UserName;
+		
+		private string _LoweredUserName;
+		
+		private string _MobileAlias;
+		
+		private bool _IsAnonymous;
+		
+		private System.DateTime _LastActivityDate;
+		
+		private EntitySet<Section> _Sections;
+		
+		private EntitySet<Crop> _Crops;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnApplicationIdChanging(System.Guid value);
+    partial void OnApplicationIdChanged();
+    partial void OnUserIdChanging(System.Guid value);
+    partial void OnUserIdChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnLoweredUserNameChanging(string value);
+    partial void OnLoweredUserNameChanged();
+    partial void OnMobileAliasChanging(string value);
+    partial void OnMobileAliasChanged();
+    partial void OnIsAnonymousChanging(bool value);
+    partial void OnIsAnonymousChanged();
+    partial void OnLastActivityDateChanging(System.DateTime value);
+    partial void OnLastActivityDateChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Sections = new EntitySet<Section>(new Action<Section>(this.attach_Sections), new Action<Section>(this.detach_Sections));
+			this._Crops = new EntitySet<Crop>(new Action<Crop>(this.attach_Crops), new Action<Crop>(this.detach_Crops));
+			OnCreated();
+		}
+		
+		[Column(Storage="_ApplicationId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ApplicationId
+		{
+			get
+			{
+				return this._ApplicationId;
+			}
+			set
+			{
+				if ((this._ApplicationId != value))
+				{
+					this.OnApplicationIdChanging(value);
+					this.SendPropertyChanging();
+					this._ApplicationId = value;
+					this.SendPropertyChanged("ApplicationId");
+					this.OnApplicationIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LoweredUserName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string LoweredUserName
+		{
+			get
+			{
+				return this._LoweredUserName;
+			}
+			set
+			{
+				if ((this._LoweredUserName != value))
+				{
+					this.OnLoweredUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._LoweredUserName = value;
+					this.SendPropertyChanged("LoweredUserName");
+					this.OnLoweredUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_MobileAlias", DbType="NVarChar(16)")]
+		public string MobileAlias
+		{
+			get
+			{
+				return this._MobileAlias;
+			}
+			set
+			{
+				if ((this._MobileAlias != value))
+				{
+					this.OnMobileAliasChanging(value);
+					this.SendPropertyChanging();
+					this._MobileAlias = value;
+					this.SendPropertyChanged("MobileAlias");
+					this.OnMobileAliasChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsAnonymous", DbType="Bit NOT NULL")]
+		public bool IsAnonymous
+		{
+			get
+			{
+				return this._IsAnonymous;
+			}
+			set
+			{
+				if ((this._IsAnonymous != value))
+				{
+					this.OnIsAnonymousChanging(value);
+					this.SendPropertyChanging();
+					this._IsAnonymous = value;
+					this.SendPropertyChanged("IsAnonymous");
+					this.OnIsAnonymousChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LastActivityDate", DbType="DateTime NOT NULL")]
+		public System.DateTime LastActivityDate
+		{
+			get
+			{
+				return this._LastActivityDate;
+			}
+			set
+			{
+				if ((this._LastActivityDate != value))
+				{
+					this.OnLastActivityDateChanging(value);
+					this.SendPropertyChanging();
+					this._LastActivityDate = value;
+					this.SendPropertyChanged("LastActivityDate");
+					this.OnLastActivityDateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_dvent_Section", Storage="_Sections", OtherKey="UserID")]
+		public EntitySet<Section> Sections
+		{
+			get
+			{
+				return this._Sections;
+			}
+			set
+			{
+				this._Sections.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_dvent_Crop", Storage="_Crops", OtherKey="UserID")]
+		public EntitySet<Crop> Crops
+		{
+			get
+			{
+				return this._Crops;
+			}
+			set
+			{
+				this._Crops.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Sections(Section entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Sections(Section entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Crops(Crop entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Crops(Crop entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+	}
+	
+	[Table(Name="dbo.dvent_TaskType")]
+	public partial class TaskType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TaskTypeId;
+		
+		private string _Name;
+		
+		private EntitySet<Task> _Tasks;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTaskTypeIdChanging(int value);
+    partial void OnTaskTypeIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public TaskType()
+		{
+			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
+			OnCreated();
+		}
+		
+		[Column(Storage="_TaskTypeId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TaskTypeId
+		{
+			get
+			{
+				return this._TaskTypeId;
+			}
+			set
+			{
+				if ((this._TaskTypeId != value))
+				{
+					this.OnTaskTypeIdChanging(value);
+					this.SendPropertyChanging();
+					this._TaskTypeId = value;
+					this.SendPropertyChanged("TaskTypeId");
+					this.OnTaskTypeIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="NVarChar(253) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="TaskType_Task", Storage="_Tasks", OtherKey="TaskTypeID")]
+		public EntitySet<Task> Tasks
+		{
+			get
+			{
+				return this._Tasks;
+			}
+			set
+			{
+				this._Tasks.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Tasks(Task entity)
+		{
+			this.SendPropertyChanging();
+			entity.TaskType = this;
+		}
+		
+		private void detach_Tasks(Task entity)
+		{
+			this.SendPropertyChanging();
+			entity.TaskType = null;
+		}
+	}
+	
 	[Table(Name="dbo.dvent_Section")]
 	public partial class Section : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -782,15 +1188,13 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		private System.DateTime _DateCreated;
 		
-		private System.Nullable<System.DateTime> _DateDeleted;
-		
 		private System.DateTime _DateUpdated;
 		
 		private EntitySet<Task> _Tasks;
 		
-		private EntityRef<Greenhouse> _Greenhouse;
-		
 		private EntityRef<User> _User;
+		
+		private EntityRef<Greenhouse> _Greenhouse;
 		
 		private EntityRef<Crop> _Crop;
 		
@@ -828,8 +1232,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
     partial void OnUserIDChanged();
     partial void OnDateCreatedChanging(System.DateTime value);
     partial void OnDateCreatedChanged();
-    partial void OnDateDeletedChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateDeletedChanged();
     partial void OnDateUpdatedChanging(System.DateTime value);
     partial void OnDateUpdatedChanged();
     #endregion
@@ -837,8 +1239,8 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		public Section()
 		{
 			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
-			this._Greenhouse = default(EntityRef<Greenhouse>);
 			this._User = default(EntityRef<User>);
+			this._Greenhouse = default(EntityRef<Greenhouse>);
 			this._Crop = default(EntityRef<Crop>);
 			OnCreated();
 		}
@@ -1155,26 +1557,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Column(Storage="_DateDeleted", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateDeleted
-		{
-			get
-			{
-				return this._DateDeleted;
-			}
-			set
-			{
-				if ((this._DateDeleted != value))
-				{
-					this.OnDateDeletedChanging(value);
-					this.SendPropertyChanging();
-					this._DateDeleted = value;
-					this.SendPropertyChanged("DateDeleted");
-					this.OnDateDeletedChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
 		public System.DateTime DateUpdated
 		{
@@ -1195,7 +1577,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Section_Task", Storage="_Tasks", OtherKey="SectionID")]
+		[Association(Name="dvent_Section_Task", Storage="_Tasks", OtherKey="SectionID")]
 		public EntitySet<Task> Tasks
 		{
 			get
@@ -1208,41 +1590,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Greenhouse_Section", Storage="_Greenhouse", ThisKey="GreenhouseID", IsForeignKey=true)]
-		public Greenhouse Greenhouse
-		{
-			get
-			{
-				return this._Greenhouse.Entity;
-			}
-			set
-			{
-				Greenhouse previousValue = this._Greenhouse.Entity;
-				if (((previousValue != value) 
-							|| (this._Greenhouse.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Greenhouse.Entity = null;
-						previousValue.Sections.Remove(this);
-					}
-					this._Greenhouse.Entity = value;
-					if ((value != null))
-					{
-						value.Sections.Add(this);
-						this._GreenhouseID = value.GreenhouseID;
-					}
-					else
-					{
-						this._GreenhouseID = default(int);
-					}
-					this.SendPropertyChanged("Greenhouse");
-				}
-			}
-		}
-		
-		[Association(Name="User_Section", Storage="_User", ThisKey="UserID", IsForeignKey=true)]
+		[Association(Name="User_dvent_Section", Storage="_User", ThisKey="UserID", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -1276,7 +1624,41 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Crop_Section", Storage="_Crop", ThisKey="CropID", IsForeignKey=true)]
+		[Association(Name="Greenhouse_dvent_Section", Storage="_Greenhouse", ThisKey="GreenhouseID", IsForeignKey=true)]
+		public Greenhouse Greenhouse
+		{
+			get
+			{
+				return this._Greenhouse.Entity;
+			}
+			set
+			{
+				Greenhouse previousValue = this._Greenhouse.Entity;
+				if (((previousValue != value) 
+							|| (this._Greenhouse.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Greenhouse.Entity = null;
+						previousValue.Sections.Remove(this);
+					}
+					this._Greenhouse.Entity = value;
+					if ((value != null))
+					{
+						value.Sections.Add(this);
+						this._GreenhouseID = value.GreenhouseID;
+					}
+					else
+					{
+						this._GreenhouseID = default(int);
+					}
+					this.SendPropertyChanged("Greenhouse");
+				}
+			}
+		}
+		
+		[Association(Name="dvent_Crop_Section", Storage="_Crop", ThisKey="CropID", IsForeignKey=true)]
 		public Crop Crop
 		{
 			get
@@ -1343,556 +1725,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		}
 	}
 	
-	[Table(Name="dbo.dvent_Task")]
-	public partial class Task : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TaskID;
-		
-		private System.DateTime _StartTime;
-		
-		private System.DateTime _EndTime;
-		
-		private int _TaskTypeID;
-		
-		private System.DateTime _DateCreated;
-		
-		private System.Nullable<System.DateTime> _DateDeleted;
-		
-		private int _SectionID;
-		
-		private EntityRef<Section> _Section;
-		
-		private EntityRef<TaskType> _TaskType;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTaskIDChanging(int value);
-    partial void OnTaskIDChanged();
-    partial void OnStartTimeChanging(System.DateTime value);
-    partial void OnStartTimeChanged();
-    partial void OnEndTimeChanging(System.DateTime value);
-    partial void OnEndTimeChanged();
-    partial void OnTaskTypeIDChanging(int value);
-    partial void OnTaskTypeIDChanged();
-    partial void OnDateCreatedChanging(System.DateTime value);
-    partial void OnDateCreatedChanged();
-    partial void OnDateDeletedChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateDeletedChanged();
-    partial void OnSectionIDChanging(int value);
-    partial void OnSectionIDChanged();
-    #endregion
-		
-		public Task()
-		{
-			this._Section = default(EntityRef<Section>);
-			this._TaskType = default(EntityRef<TaskType>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_TaskID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int TaskID
-		{
-			get
-			{
-				return this._TaskID;
-			}
-			set
-			{
-				if ((this._TaskID != value))
-				{
-					this.OnTaskIDChanging(value);
-					this.SendPropertyChanging();
-					this._TaskID = value;
-					this.SendPropertyChanged("TaskID");
-					this.OnTaskIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
-		public System.DateTime StartTime
-		{
-			get
-			{
-				return this._StartTime;
-			}
-			set
-			{
-				if ((this._StartTime != value))
-				{
-					this.OnStartTimeChanging(value);
-					this.SendPropertyChanging();
-					this._StartTime = value;
-					this.SendPropertyChanged("StartTime");
-					this.OnStartTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EndTime", DbType="DateTime NOT NULL")]
-		public System.DateTime EndTime
-		{
-			get
-			{
-				return this._EndTime;
-			}
-			set
-			{
-				if ((this._EndTime != value))
-				{
-					this.OnEndTimeChanging(value);
-					this.SendPropertyChanging();
-					this._EndTime = value;
-					this.SendPropertyChanged("EndTime");
-					this.OnEndTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_TaskTypeID", DbType="Int NOT NULL")]
-		public int TaskTypeID
-		{
-			get
-			{
-				return this._TaskTypeID;
-			}
-			set
-			{
-				if ((this._TaskTypeID != value))
-				{
-					if (this._TaskType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTaskTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._TaskTypeID = value;
-					this.SendPropertyChanged("TaskTypeID");
-					this.OnTaskTypeIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
-		public System.DateTime DateCreated
-		{
-			get
-			{
-				return this._DateCreated;
-			}
-			set
-			{
-				if ((this._DateCreated != value))
-				{
-					this.OnDateCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateCreated = value;
-					this.SendPropertyChanged("DateCreated");
-					this.OnDateCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateDeleted", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateDeleted
-		{
-			get
-			{
-				return this._DateDeleted;
-			}
-			set
-			{
-				if ((this._DateDeleted != value))
-				{
-					this.OnDateDeletedChanging(value);
-					this.SendPropertyChanging();
-					this._DateDeleted = value;
-					this.SendPropertyChanged("DateDeleted");
-					this.OnDateDeletedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SectionID", DbType="Int NOT NULL")]
-		public int SectionID
-		{
-			get
-			{
-				return this._SectionID;
-			}
-			set
-			{
-				if ((this._SectionID != value))
-				{
-					if (this._Section.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSectionIDChanging(value);
-					this.SendPropertyChanging();
-					this._SectionID = value;
-					this.SendPropertyChanged("SectionID");
-					this.OnSectionIDChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Section_Task", Storage="_Section", ThisKey="SectionID", IsForeignKey=true)]
-		public Section Section
-		{
-			get
-			{
-				return this._Section.Entity;
-			}
-			set
-			{
-				Section previousValue = this._Section.Entity;
-				if (((previousValue != value) 
-							|| (this._Section.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Section.Entity = null;
-						previousValue.Tasks.Remove(this);
-					}
-					this._Section.Entity = value;
-					if ((value != null))
-					{
-						value.Tasks.Add(this);
-						this._SectionID = value.SectionID;
-					}
-					else
-					{
-						this._SectionID = default(int);
-					}
-					this.SendPropertyChanged("Section");
-				}
-			}
-		}
-		
-		[Association(Name="TaskType_Task", Storage="_TaskType", ThisKey="TaskTypeID", IsForeignKey=true)]
-		public TaskType TaskType
-		{
-			get
-			{
-				return this._TaskType.Entity;
-			}
-			set
-			{
-				TaskType previousValue = this._TaskType.Entity;
-				if (((previousValue != value) 
-							|| (this._TaskType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TaskType.Entity = null;
-						previousValue.Tasks.Remove(this);
-					}
-					this._TaskType.Entity = value;
-					if ((value != null))
-					{
-						value.Tasks.Add(this);
-						this._TaskTypeID = value.TaskTypeId;
-					}
-					else
-					{
-						this._TaskTypeID = default(int);
-					}
-					this.SendPropertyChanged("TaskType");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="dbo.aspnet_Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ApplicationId;
-		
-		private System.Guid _UserId;
-		
-		private string _UserName;
-		
-		private string _LoweredUserName;
-		
-		private string _MobileAlias;
-		
-		private bool _IsAnonymous;
-		
-		private System.DateTime _LastActivityDate;
-		
-		private EntitySet<Section> _Sections;
-		
-		private EntitySet<Crop> _Crops;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnApplicationIdChanging(System.Guid value);
-    partial void OnApplicationIdChanged();
-    partial void OnUserIdChanging(System.Guid value);
-    partial void OnUserIdChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnLoweredUserNameChanging(string value);
-    partial void OnLoweredUserNameChanged();
-    partial void OnMobileAliasChanging(string value);
-    partial void OnMobileAliasChanged();
-    partial void OnIsAnonymousChanging(bool value);
-    partial void OnIsAnonymousChanged();
-    partial void OnLastActivityDateChanging(System.DateTime value);
-    partial void OnLastActivityDateChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Sections = new EntitySet<Section>(new Action<Section>(this.attach_Sections), new Action<Section>(this.detach_Sections));
-			this._Crops = new EntitySet<Crop>(new Action<Crop>(this.attach_Crops), new Action<Crop>(this.detach_Crops));
-			OnCreated();
-		}
-		
-		[Column(Storage="_ApplicationId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid ApplicationId
-		{
-			get
-			{
-				return this._ApplicationId;
-			}
-			set
-			{
-				if ((this._ApplicationId != value))
-				{
-					this.OnApplicationIdChanging(value);
-					this.SendPropertyChanging();
-					this._ApplicationId = value;
-					this.SendPropertyChanged("ApplicationId");
-					this.OnApplicationIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LoweredUserName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
-		public string LoweredUserName
-		{
-			get
-			{
-				return this._LoweredUserName;
-			}
-			set
-			{
-				if ((this._LoweredUserName != value))
-				{
-					this.OnLoweredUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._LoweredUserName = value;
-					this.SendPropertyChanged("LoweredUserName");
-					this.OnLoweredUserNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_MobileAlias", DbType="NVarChar(16)")]
-		public string MobileAlias
-		{
-			get
-			{
-				return this._MobileAlias;
-			}
-			set
-			{
-				if ((this._MobileAlias != value))
-				{
-					this.OnMobileAliasChanging(value);
-					this.SendPropertyChanging();
-					this._MobileAlias = value;
-					this.SendPropertyChanged("MobileAlias");
-					this.OnMobileAliasChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IsAnonymous", DbType="Bit NOT NULL")]
-		public bool IsAnonymous
-		{
-			get
-			{
-				return this._IsAnonymous;
-			}
-			set
-			{
-				if ((this._IsAnonymous != value))
-				{
-					this.OnIsAnonymousChanging(value);
-					this.SendPropertyChanging();
-					this._IsAnonymous = value;
-					this.SendPropertyChanged("IsAnonymous");
-					this.OnIsAnonymousChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LastActivityDate", DbType="DateTime NOT NULL")]
-		public System.DateTime LastActivityDate
-		{
-			get
-			{
-				return this._LastActivityDate;
-			}
-			set
-			{
-				if ((this._LastActivityDate != value))
-				{
-					this.OnLastActivityDateChanging(value);
-					this.SendPropertyChanging();
-					this._LastActivityDate = value;
-					this.SendPropertyChanged("LastActivityDate");
-					this.OnLastActivityDateChanged();
-				}
-			}
-		}
-		
-		[Association(Name="User_Section", Storage="_Sections", OtherKey="UserID")]
-		public EntitySet<Section> Sections
-		{
-			get
-			{
-				return this._Sections;
-			}
-			set
-			{
-				this._Sections.Assign(value);
-			}
-		}
-		
-		[Association(Name="User_Crop", Storage="_Crops", OtherKey="UserID")]
-		public EntitySet<Crop> Crops
-		{
-			get
-			{
-				return this._Crops;
-			}
-			set
-			{
-				this._Crops.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Sections(Section entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Sections(Section entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-		
-		private void attach_Crops(Crop entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Crops(Crop entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
-		}
-	}
-	
 	[Table(Name="dbo.dvent_Crop")]
 	public partial class Crop : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1916,8 +1748,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		private System.Nullable<int> _HumidityThreshold;
 		
 		private System.DateTime _DateCreated;
-		
-		private System.Nullable<System.DateTime> _DateDeleted;
 		
 		private System.DateTime _DateUpdated;
 		
@@ -1951,8 +1781,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
     partial void OnHumidityThresholdChanged();
     partial void OnDateCreatedChanging(System.DateTime value);
     partial void OnDateCreatedChanged();
-    partial void OnDateDeletedChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateDeletedChanged();
     partial void OnDateUpdatedChanging(System.DateTime value);
     partial void OnDateUpdatedChanged();
     partial void OnUserIDChanging(System.Nullable<System.Guid> value);
@@ -2148,26 +1976,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Column(Storage="_DateDeleted", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateDeleted
-		{
-			get
-			{
-				return this._DateDeleted;
-			}
-			set
-			{
-				if ((this._DateDeleted != value))
-				{
-					this.OnDateDeletedChanging(value);
-					this.SendPropertyChanging();
-					this._DateDeleted = value;
-					this.SendPropertyChanged("DateDeleted");
-					this.OnDateDeletedChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
 		public System.DateTime DateUpdated
 		{
@@ -2232,7 +2040,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Crop_Section", Storage="_Sections", OtherKey="CropID")]
+		[Association(Name="dvent_Crop_Section", Storage="_Sections", OtherKey="CropID")]
 		public EntitySet<Section> Sections
 		{
 			get
@@ -2245,7 +2053,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="User_Crop", Storage="_User", ThisKey="UserID", IsForeignKey=true)]
+		[Association(Name="User_dvent_Crop", Storage="_User", ThisKey="UserID", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -2312,84 +2120,276 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		}
 	}
 	
-	[Table(Name="dbo.dvent_TaskType")]
-	public partial class TaskType : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.dvent_Address")]
+	public partial class Address : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _TaskTypeId;
+		private int _AddressID;
 		
-		private string _Name;
+		private string _City;
 		
-		private EntitySet<Task> _Tasks;
+		private string _StateOrProvince;
+		
+		private string _StreetLine1;
+		
+		private string _StreetLine2;
+		
+		private int _Zip;
+		
+		private string _Country;
+		
+		private bool _IsDefault;
+		
+		private System.DateTime _DateCreated;
+		
+		private string _DateUpdated;
+		
+		private EntitySet<Greenhouse> _Greenhouses;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnTaskTypeIdChanging(int value);
-    partial void OnTaskTypeIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
+    partial void OnAddressIDChanging(int value);
+    partial void OnAddressIDChanged();
+    partial void OnCityChanging(string value);
+    partial void OnCityChanged();
+    partial void OnStateOrProvinceChanging(string value);
+    partial void OnStateOrProvinceChanged();
+    partial void OnStreetLine1Changing(string value);
+    partial void OnStreetLine1Changed();
+    partial void OnStreetLine2Changing(string value);
+    partial void OnStreetLine2Changed();
+    partial void OnZipChanging(int value);
+    partial void OnZipChanged();
+    partial void OnCountryChanging(string value);
+    partial void OnCountryChanged();
+    partial void OnIsDefaultChanging(bool value);
+    partial void OnIsDefaultChanged();
+    partial void OnDateCreatedChanging(System.DateTime value);
+    partial void OnDateCreatedChanged();
+    partial void OnDateUpdatedChanging(string value);
+    partial void OnDateUpdatedChanged();
     #endregion
 		
-		public TaskType()
+		public Address()
 		{
-			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
+			this._Greenhouses = new EntitySet<Greenhouse>(new Action<Greenhouse>(this.attach_Greenhouses), new Action<Greenhouse>(this.detach_Greenhouses));
 			OnCreated();
 		}
 		
-		[Column(Storage="_TaskTypeId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TaskTypeId
+		[Column(Storage="_AddressID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int AddressID
 		{
 			get
 			{
-				return this._TaskTypeId;
+				return this._AddressID;
 			}
 			set
 			{
-				if ((this._TaskTypeId != value))
+				if ((this._AddressID != value))
 				{
-					this.OnTaskTypeIdChanging(value);
+					this.OnAddressIDChanging(value);
 					this.SendPropertyChanging();
-					this._TaskTypeId = value;
-					this.SendPropertyChanged("TaskTypeId");
-					this.OnTaskTypeIdChanged();
+					this._AddressID = value;
+					this.SendPropertyChanged("AddressID");
+					this.OnAddressIDChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Name", DbType="NVarChar(253) NOT NULL", CanBeNull=false)]
-		public string Name
+		[Column(Storage="_City", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string City
 		{
 			get
 			{
-				return this._Name;
+				return this._City;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._City != value))
 				{
-					this.OnNameChanging(value);
+					this.OnCityChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
+					this._City = value;
+					this.SendPropertyChanged("City");
+					this.OnCityChanged();
 				}
 			}
 		}
 		
-		[Association(Name="TaskType_Task", Storage="_Tasks", OtherKey="TaskTypeID")]
-		public EntitySet<Task> Tasks
+		[Column(Storage="_StateOrProvince", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string StateOrProvince
 		{
 			get
 			{
-				return this._Tasks;
+				return this._StateOrProvince;
 			}
 			set
 			{
-				this._Tasks.Assign(value);
+				if ((this._StateOrProvince != value))
+				{
+					this.OnStateOrProvinceChanging(value);
+					this.SendPropertyChanging();
+					this._StateOrProvince = value;
+					this.SendPropertyChanged("StateOrProvince");
+					this.OnStateOrProvinceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StreetLine1", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string StreetLine1
+		{
+			get
+			{
+				return this._StreetLine1;
+			}
+			set
+			{
+				if ((this._StreetLine1 != value))
+				{
+					this.OnStreetLine1Changing(value);
+					this.SendPropertyChanging();
+					this._StreetLine1 = value;
+					this.SendPropertyChanged("StreetLine1");
+					this.OnStreetLine1Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_StreetLine2", DbType="NVarChar(255)")]
+		public string StreetLine2
+		{
+			get
+			{
+				return this._StreetLine2;
+			}
+			set
+			{
+				if ((this._StreetLine2 != value))
+				{
+					this.OnStreetLine2Changing(value);
+					this.SendPropertyChanging();
+					this._StreetLine2 = value;
+					this.SendPropertyChanged("StreetLine2");
+					this.OnStreetLine2Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_Zip", DbType="Int NOT NULL")]
+		public int Zip
+		{
+			get
+			{
+				return this._Zip;
+			}
+			set
+			{
+				if ((this._Zip != value))
+				{
+					this.OnZipChanging(value);
+					this.SendPropertyChanging();
+					this._Zip = value;
+					this.SendPropertyChanged("Zip");
+					this.OnZipChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Country", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Country
+		{
+			get
+			{
+				return this._Country;
+			}
+			set
+			{
+				if ((this._Country != value))
+				{
+					this.OnCountryChanging(value);
+					this.SendPropertyChanging();
+					this._Country = value;
+					this.SendPropertyChanged("Country");
+					this.OnCountryChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsDefault", DbType="Bit NOT NULL")]
+		public bool IsDefault
+		{
+			get
+			{
+				return this._IsDefault;
+			}
+			set
+			{
+				if ((this._IsDefault != value))
+				{
+					this.OnIsDefaultChanging(value);
+					this.SendPropertyChanging();
+					this._IsDefault = value;
+					this.SendPropertyChanged("IsDefault");
+					this.OnIsDefaultChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCreated
+		{
+			get
+			{
+				return this._DateCreated;
+			}
+			set
+			{
+				if ((this._DateCreated != value))
+				{
+					this.OnDateCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCreated = value;
+					this.SendPropertyChanged("DateCreated");
+					this.OnDateCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateUpdated", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string DateUpdated
+		{
+			get
+			{
+				return this._DateUpdated;
+			}
+			set
+			{
+				if ((this._DateUpdated != value))
+				{
+					this.OnDateUpdatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateUpdated = value;
+					this.SendPropertyChanged("DateUpdated");
+					this.OnDateUpdatedChanged();
+				}
+			}
+		}
+		
+		[Association(Name="dvent_Address_Greenhouse", Storage="_Greenhouses", OtherKey="AddressID")]
+		public EntitySet<Greenhouse> Greenhouses
+		{
+			get
+			{
+				return this._Greenhouses;
+			}
+			set
+			{
+				this._Greenhouses.Assign(value);
 			}
 		}
 		
@@ -2413,16 +2413,16 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		private void attach_Tasks(Task entity)
+		private void attach_Greenhouses(Greenhouse entity)
 		{
 			this.SendPropertyChanging();
-			entity.TaskType = this;
+			entity.Address = this;
 		}
 		
-		private void detach_Tasks(Task entity)
+		private void detach_Greenhouses(Greenhouse entity)
 		{
 			this.SendPropertyChanging();
-			entity.TaskType = null;
+			entity.Address = null;
 		}
 	}
 }

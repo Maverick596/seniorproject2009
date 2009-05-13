@@ -73,8 +73,7 @@ namespace DV_Enterprises.Web.Data.Domain
                                    IdealHumidity = s.IdealHumidity,
                                    HumidityTreshold = s.HumidityThreshold,
                                    DateCreated = s.DateCreated,
-                                   DateUpdated = s.DateUpdated,
-                                   DateDeleted = s.DateDeleted
+                                   DateUpdated = s.DateUpdated
                                };
             return r;
         }
