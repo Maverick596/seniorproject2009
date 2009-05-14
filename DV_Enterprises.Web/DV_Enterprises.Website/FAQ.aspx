@@ -27,6 +27,10 @@
         <li><a href="#faq20">What happens in a power failure?</a></li>
         <li><a href="#faq21">What backup systems are recommended?</a></li>
      </ul>
+     <br />
+     <br />
+     <br />
+     
      <div id="faq1" class="faq">
          <span class="question">What does Smart Greenhouse Solutions Sell?</span>
          <ul>
@@ -36,6 +40,7 @@
         </ul>
         <a href="#questions">back to questions</a>
     </div>
+    <br />
     <div id="faq2" class="faq">
         <span class="question">What equipment and service guarantees does Smart Greenhouse Solutions offer?</span>
         <ul>
@@ -45,6 +50,7 @@
         </ul>
          <a href="#questions">back to questions</a>
      </div>
+     <br />
     <div id="faq3" class="faq"> 
         <span class="question">How does Smart Greenhouse Solutions handle customer support?</span>
         <ul>
@@ -52,7 +58,9 @@
             <li>Our modular system allows for easy parts removal and replacing.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq4" class="faq">
         <span class="question">What should I consider when looking to purchase an environmental control system?</span>
         <ul>
@@ -62,7 +70,9 @@
             <li>Service guarantees are also something to consider when making your final decision.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq5" class="faq">
         <span class="question">What level of computer competency is required for the system?</span>
         <ul>
@@ -70,22 +80,27 @@
             <li>As for installation the ability to follow instruction is the only requirement as the system has been manufactured to require as little technical knowledge as possible during installation</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq6" class="faq">
         <span class="question">Will I save money by investing in a Smart Greenhouse Solutions System?</span>
         <ul>
             <li>Purchasing a Green Smart Solution system will save you not only money but time as well. Ideal growing environments will lead to better quality crops and reduce the risk of the destruction of crops due to poor environmental settings.</li>
             <li>The efficiency of the Smart Greenhouse Solutions modules also leads to reduced energy costs.</li>
         </ul>
-        <a href="#questions">back to questions</a>
+        <a href="#questions">back to questions</a><br />
     </div>
+    <br />
     <div id="faq7" class="faq">
         <span class="question">What does a system cost?</span>
         <ul>
             <li>The price will vary depending on the number of features (modules) that you wish to add to your system, all prices are listed on the website.</li>
        </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq8" class="faq"> 
         <span class="question">Can I install the system myself?</span>
         <ul>
@@ -94,7 +109,9 @@
             <li>For an additional fee a trained technician can install the system for you.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id ="faq9" class="faq">
         <span class="question">How often will I need to upgrade my system hardware?</span>
         <ul>
@@ -102,7 +119,9 @@
             <li>The system can be upgraded to fit the user’s specific preferences.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq10" class="faq">
         <span class="question">How does Smart Greenhouse Solutions handle software upgrades?</span>
         <ul>
@@ -110,21 +129,25 @@
             <li>If there is a major software version update adding new features and functions you have the option to purchase the upgrades at a discounted rate.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq11" class="faq">
         <span class="question">What happens when I need to expand my control system?</span>
         <ul>
             <li>All our systems are upgradeable – as we create and add new features to our system and make them available to you, should you choose to upgrade and add more functions to your control system a slight software modification might become necessary which will be of no additional cost to you.</li>
             <li>The control system will expand as much as you want it to.</li>
         </ul>
-        <a href="#questions">back to questions</a>
+        <a href="#questions">back to questions</a><br />
     </div>
+    <br />
     <div id="faq12" class="faq">
         <span class="question">Do you provide wireless and mobile access?</span>
         <ul>
             <li>No, mobile and wireless access is the responsibility of the customer.</li> 
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
     <div id="faq13" class="faq">
         <span class="question">What is the Smart Greenhouse Solutions’ Liability should the control system fail?</span>
@@ -133,8 +156,9 @@
            <li>Hardware failure and software failure resulting from proper use will result in replacement of the product, or should the customer choose a full refund will be given.</li>
             <li>If, however, the requirements are ignored and the system fails because of the user’s inability to follow the instructions given to care for the system then the customer becomes liable for the system failure.</li>
         </ul>
-        <a href="#questions">back to questions</a>
+        <a href="#questions">back to questions</a><br />
     </div>
+    <br />
     <div id="faq14" class="faq">
         <span class="question">What are some of your available sensors and uses?</span>
         <ul>
@@ -142,21 +166,27 @@
             <li>The second sensor used is the Light to frequency sensor, which takes the light level present in the room and converts it to a frequency that is then manipulated to control the light level in the room.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq15" class="faq">
         <span class="question">How does Smart Greenhouse Solutions handle indoor/outdoor relationships?</span>
         <ul>
             <li>In cases like temperature the Smart Greenhouse Solution Module can detect the temperature from both inside and outside the greenhouse and through that can decide whether or not the opening or closing of the vent could assist in the cooling/heating of the greenhouse.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq16" class="faq">
         <span class="question">How are climate zones handled?</span>
         <ul>
             <li>The control system is designed to coordinate the activities of all equipment that is used to produce and modify a climate zone.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq17" class="faq">
         <span class="question">How does Smart Greenhouse Solutions control light?</span>
         <ul>
@@ -164,7 +194,9 @@
             <li>Lighting is set to the ideal light level required for the particular crops that are being grown.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq18" class="faq">
         <strong>How does Smart Greenhouse Solutions control temperature?</strong>
         <ul>
@@ -172,14 +204,18 @@
             <li>The system stores the ideal temperature for growing particular crops and as a result keeps the temperature within a set threshold ideal for the system.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq19" class="faq">
         <strong>What happens if the PC fails?</strong>
         <ul>
             <li>The microcontroller built into the hardware is responsible for monitoring and controlling the environmental settings and as a result if the PC fails the system should still be running perfectly.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id"faq20" class="faq">
         <span class="question">What happens in a power failure?</span>
         <ul>
@@ -188,7 +224,9 @@
             <li>The software will be stored in non-volatile memory and as a result the loss of power will not result in the loss of information.</li>
         </ul>
         <a href="#questions">back to questions</a>
+        <br />
     </div>
+    <br />
     <div id="faq21" class="faq">
         <span class="question">What backup systems are recommended?</span>
         <ul>
@@ -196,4 +234,5 @@
         </ul>
         <a href="#questions">back to questions</a>
     </div>
+    
 </asp:Content>
