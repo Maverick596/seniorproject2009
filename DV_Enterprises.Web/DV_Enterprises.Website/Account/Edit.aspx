@@ -7,7 +7,7 @@
         <legend>Personal Information</legend>
         <ol>
             <li>
-                <asp:Label ID="lblFirstName" runat="server" Text="Frist Name"></asp:Label>
+                <asp:Label ID="lblFirstName" runat="server" Text="First Name"></asp:Label>
                 <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox><br />
             </li>
             <li>

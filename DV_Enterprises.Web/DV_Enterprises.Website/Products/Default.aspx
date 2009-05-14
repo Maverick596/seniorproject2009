@@ -36,7 +36,7 @@
                 </tr>
                 <tr valign="top">
                     <td style="text-align:left; vertical-align:top">
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/images/noImage.png" />
+                        <asp:Image ID="Image1" runat="server" ImageUrl= '<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Path %>' Width="100px" Height="100px" />
                     </td>
                     <td style="text-align:left; vertical-align:top">
                         <asp:Label ID="lblProductDescription" runat="server" Text='<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Description %>' />
