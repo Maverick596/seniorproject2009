@@ -43,4 +43,8 @@ public partial class Account_Edit : System.Web.UI.Page
         UpdateProfile();
         Response.Redirect("~/Account/default.aspx");
     }
+    protected void txtFirstName_TextChanged(object sender, EventArgs e)
+    {
+
+    }
 }
