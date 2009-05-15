@@ -8,7 +8,8 @@
         <ol>
             <li>
                 <asp:Label ID="lblFirstName" runat="server" Text="Frist Name"></asp:Label>
-                <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtFirstName" runat="server" 
+                    ontextchanged="txtFirstName_TextChanged"></asp:TextBox><br />
             </li>
             <li>
                 <asp:Label ID="lblLastName" runat="server" Text="Last Name"></asp:Label>
