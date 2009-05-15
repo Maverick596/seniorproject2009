@@ -23,7 +23,6 @@ namespace DV_Enterprises.Web.Data.Domain
         public decimal Price { get; set; }
         public bool Active { get; set; }
         public DateTime? UpdateDate { get; private set; }
-        public string Path { get; set; }
 
         #endregion
 
@@ -54,8 +53,7 @@ namespace DV_Enterprises.Web.Data.Domain
                                    Description = p.Description,
                                    Price = p.Price,
                                    Active = p.Active,
-                                   UpdateDate = p.UpdateDate,
-                                   Path = p.Path
+                                   UpdateDate = p.UpdateDate
                                };
             return r.ToList();
         }
@@ -113,7 +111,6 @@ namespace DV_Enterprises.Web.Data.Domain
             dbProduct.Price = product.Price;
             dbProduct.Active = product.Active;
             dbProduct.UpdateDate = DateTime.Now;
-            dbProduct.Path = product.Path;
 
             if (isNew)
                 dc.Products.InsertOnSubmit(dbProduct);

@@ -24,14 +24,12 @@
 <p>SmartGreenhouseSolutions.com does not currently partner with or have special relationships with any ad server companies. Advertising (adware) is not embedded in any of our software or downloads.</p>
 <h3 class="title">Links</h3>
 <p>This website may contain links to third party websites that are not affiliated in any way with SmartGreenhouseSolutions.com. You are advised to verify the privacy practices of these websites as SmartGreenhouseSolutions.com is not responsible for misuse of information provided at other websites. Nor will SmartGreenhouseSolutions.com be responsible for the content of such sites.</p>
-<p>If you have any questions about this privacy statement, the practices of this website or your dealings with this website, you can contact 
-    us at:</p>
+<p>If you have any questions about this privacy statement, the practices of this website or your dealings with this website, you can contact SmartGreenhouseSolutions.com at: sales@SmartGreenhouseSolutions.com</p>
 <div class="address">
-    Smart Greenhouse Solutions<br />
-    4000 Millenia Blvd.<br />
-    Orlando, FL 32839<br /><br />
+    4000 Millenia Blvd<br />
+    Orlando, FL 32839.<br />
 </div>
-<div class="email">By Email <a href="mailto:sales@SmartGreenhouseSolutions.com">sales@SmartGreenhouseSolutions.com</a>
-<div class="phone">By Telephone: 1-800-SMART-GREEN</div>
+<div class="email">By <a href="mailto:sales@SmartGreenhouseSolutions.com">Email</a>
+<div class="phone">By Telephone: 1-800-SMARTSOLUTION</div>
 </asp:Content>
 
