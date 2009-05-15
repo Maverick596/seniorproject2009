@@ -21,8 +21,9 @@ namespace DV_Enterprises.Web.Data.Domain
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public bool Active { get; set; }
-        public DateTime? UpdateDate { get; private set; }
+        public bool IsActive { get; set; }
+        public string Image { get; set; }
+        public DateTime? DateUpdated { get; private set; }
 
         #endregion
 
@@ -52,8 +53,9 @@ namespace DV_Enterprises.Web.Data.Domain
                                    Name = p.Name,
                                    Description = p.Description,
                                    Price = p.Price,
-                                   Active = p.Active,
-                                   UpdateDate = p.UpdateDate
+                                   IsActive = p.IsActive,
+                                   Image = p.Image,
+                                   DateUpdated = p.DateUpdated
                                };
             return r.ToList();
         }
@@ -109,8 +111,9 @@ namespace DV_Enterprises.Web.Data.Domain
             dbProduct.Name = product.Name;
             dbProduct.Description = product.Description;
             dbProduct.Price = product.Price;
-            dbProduct.Active = product.Active;
-            dbProduct.UpdateDate = DateTime.Now;
+            dbProduct.IsActive = product.IsActive;
+            dbProduct.Image = product.Image;
+            dbProduct.DateUpdated = DateTime.Now;
 
             if (isNew)
                 dc.Products.InsertOnSubmit(dbProduct);

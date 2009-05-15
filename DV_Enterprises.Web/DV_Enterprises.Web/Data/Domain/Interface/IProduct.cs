@@ -16,8 +16,9 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         string Name { get; set; }
         string Description { get; set; }
         decimal Price { get; set; }
-        bool Active { get; set; }
-        DateTime? UpdateDate { get; }
+        bool IsActive { get; set; }
+        string Image { get; set; }
+        DateTime? DateUpdated { get; }
 
         #endregion
     }

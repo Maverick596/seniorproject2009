@@ -22,7 +22,7 @@ namespace Products
             txtName.Text = product.Name;
             txtDescription.Text = product.Description;
             txtPrice.Text = product.Price.ToString();
-            cboActive.Checked = product.Active;
+            cboIsActive.Checked = product.IsActive;
         }
 
         protected void butSubmit_Click(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace Products
                                   Name = txtName.Text,
                                   Description = txtDescription.Text,
                                   Price = Convert.ToDecimal(txtPrice.Text),
-                                  Active = cboActive.Checked,
+                                  IsActive = cboIsActive.Checked,
                               };
 
             _presenter.SaveProduct(product);

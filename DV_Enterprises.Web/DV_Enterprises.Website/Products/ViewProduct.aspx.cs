@@ -21,7 +21,7 @@ namespace Products
             lblName.Text = product.Name;
             lblPrice.Text = product.Price.ToString();
             lblDescription.Text = product.Description;
-            cboActive.Checked = product.Active;
+            cboActive.Checked = product.IsActive;
         }
     }
 }

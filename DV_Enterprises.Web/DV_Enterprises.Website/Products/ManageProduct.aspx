@@ -19,8 +19,8 @@
                 <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
             </li>
             <li>
-                <label for="active">Active:</label>
-                <asp:CheckBox ID="cboActive" runat="server" />
+                <label for="isActive">Active?:</label>
+                <asp:CheckBox ID="cboIsActive" runat="server" />
             </li>
         </ol>
         <asp:Literal ID="litProductId" runat="server" Visible="false"></asp:Literal>
