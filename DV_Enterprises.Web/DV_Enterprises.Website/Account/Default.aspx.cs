@@ -31,7 +31,11 @@ public partial class Customer_Default : System.Web.UI.Page
         ZipCodeLBL.Text = d.ZipCode;
         
     }
- }
+    protected void imgbGreenhouses_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("~/Greenhouses/Default.aspx");
+    }
+}
 
     
 

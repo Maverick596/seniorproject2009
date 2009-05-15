@@ -37,10 +37,12 @@
     <br />
     <br />
     <br />
-    Select Your Greenhouse
+    Go to my Greenhouses
     <br />
-    <img id="GHimage" alt="" src="../Images/greenhouse.png" 
-        style="width: 121px; height: 147px" />
+    <asp:ImageButton ID="imgbGreenhouses" runat="server" 
+        ImageUrl="~/images/greenhouse.png" width="121px" height="147px" 
+        onclick="imgbGreenhouses_Click"  />
+<%--    <img id="GHimage" alt="" src="../images/greenhouse.png" style="width: 121px; height: 147px" />--%>
     
 </asp:Content>
 
