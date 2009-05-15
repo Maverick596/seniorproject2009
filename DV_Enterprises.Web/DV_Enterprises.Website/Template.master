@@ -53,7 +53,7 @@
                 Other materpages must be made to take advantage of 2 or 3 
                 col pages will have additional #content-related and #content-extra
             -->
-            <div id="content" class="container_16">  
+            <div id="content" class="container_16 clearfix">  
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
                     <h1>Hearder 1</h1>
                         <h2>Header 2</h2>
