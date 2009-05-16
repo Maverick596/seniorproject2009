@@ -35,7 +35,9 @@ namespace DV_Enterprises.Web.Service
             }
         }
 
-        public bool IsAdmin(System.Web.Security.MembershipUser user)
+        public MembershipUser User { get { return Membership.GetUser();  } }
+
+        public bool IsAdmin()
         {
             return true;
             //retrun Roles.IsUserInRole(user.UserName, "Administrator");
