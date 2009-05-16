@@ -1,9 +1,30 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Greenhouses.Default" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Greenhouses.Default" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:ListView ID="lvGreenhouses" runat="server">
+<div style="text-align:center">
+    <h2 class="title">Select a Greenhouse:</h2>
+    <asp:Repeater runat="server" ID="rptGreenHouses">
+    <HeaderTemplate>
+        <table>
+            <tr>        
+    </HeaderTemplate>
+    
+    <ItemTemplate>
+        <td>
+           <asp:Image runat="server" ID="imageGreenHouse" ImageUrl="~/images/greenhouse.png" width="121px" height="147px" />
+           <br />
+           <asp:Button ID="btnSelectGreenhouse" runat="server" Text='<%# "Greenhouse:" + Eval("ID") %>' width="121px" OnClick="btnSelectGreenhouse_Click" />
+        </td>
+    </ItemTemplate>
+    
+    <FooterTemplate>
+            </tr>
+        </table>
+    </FooterTemplate>
+    </asp:Repeater>
+</div>
+<%--    <asp:ListView ID="lvGreenhouses" runat="server">
         <LayoutTemplate>
             <ul class="greenhouses">
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
@@ -19,6 +40,6 @@
         <EmptyDataTemplate>
         
         </EmptyDataTemplate>
-    </asp:ListView>
+    </asp:ListView>--%>
 </asp:Content>
 

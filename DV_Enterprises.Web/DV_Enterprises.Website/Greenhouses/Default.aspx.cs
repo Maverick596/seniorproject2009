@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Greenhouses;
 using DV_Enterprises.Web.Presenter.Greenhouses.Interface;
@@ -19,8 +20,23 @@ namespace Greenhouses
 
         public void LoadData(IList<Greenhouse> greenhouses)
         {
-            lvGreenhouses.DataSource = greenhouses;
-            lvGreenhouses.DataBind();
+            rptGreenHouses.DataSource = greenhouses;
+            rptGreenHouses.DataBind();
+        }
+
+        protected void btnSelectGreenhouse_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+
+            int id = button.Text.IndexOf(':');
+
+            String greenhouseID = button.Text.Substring(id + 1);
+
+            //Store the text of the button, the Greenhouse's ID, into a session variable.
+            Session["greenhouseID"] = greenhouseID;
+
+            //Redirect to ManageGreenhouse.aspx
+            Response.Redirect("ManageGreenhouse.aspx");
         }
     }
 }
