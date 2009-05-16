@@ -20,7 +20,7 @@ namespace DV_Enterprises.Web.Presenter.Products
             _view = view;
 
             // do some security
-            if (_webContext.IsAdmin(null))
+            if (_webContext.IsAdmin())
                 return;
 
             if(_webContext.ProductId > 0 && !isPostBack)

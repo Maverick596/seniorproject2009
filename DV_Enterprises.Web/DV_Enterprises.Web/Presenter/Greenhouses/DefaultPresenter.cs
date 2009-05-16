@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Greenhouses.Interface;
@@ -9,7 +10,7 @@ namespace DV_Enterprises.Web.Presenter.Greenhouses
     public class DefaultPresenter
     {
         private IDefault _view;
-        private IWebContext _webContext;
+        private readonly IWebContext _webContext;
 
         public DefaultPresenter()
         {
@@ -19,7 +20,8 @@ namespace DV_Enterprises.Web.Presenter.Greenhouses
         public void Init(IDefault view)
         {
             _view = view;
-            _view.LoadData(Greenhouse.All());
+            // TODO: Admin can see everything
+            _view.LoadData(Greenhouse.All().Where(g => g.UserIDs.Contains(new Guid(_webContext.User.ProviderUserKey.ToString()))).ToList());
         }
     }
 }

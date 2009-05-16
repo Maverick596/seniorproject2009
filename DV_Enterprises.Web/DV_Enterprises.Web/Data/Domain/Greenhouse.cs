@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
@@ -20,6 +21,7 @@ namespace DV_Enterprises.Web.Data.Domain
         public int ID { get; set; }
         public Address Address { get; set; }
         public LazyList<Section> Sections { get; set; }
+        public List<Guid> UserIDs { get; set; }
 
         #endregion
 
@@ -45,11 +47,13 @@ namespace DV_Enterprises.Web.Data.Domain
             var r = from g in dc.Greenhouses
                     let location = Address.Find(dc, g.Address.AddressID)
                     let sections = LoadSections(dc, g.GreenhouseID)
+                    let users = LoadUsers(sections)
                     select new Greenhouse
                                {
                                    ID = g.GreenhouseID,
                                    Address = location,
-                                   Sections = sections
+                                   Sections = new LazyList<Section>(sections),
+                                   UserIDs = users
                                };
             return r.ToList();
         }
@@ -147,10 +151,20 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <param name="dc"></param>
         /// <param name="gId"></param>
         /// <returns></returns>
-        private static LazyList<Section> LoadSections(DataContext dc, int gId)
+        private static IQueryable<Section> LoadSections(DataContext dc, int gId)
         {
             var r = Section.All(dc).Where(s => s.GreenhouseID == gId);
-            return new LazyList<Section>(r);
+            return r;
+        }
+
+        private static List<Guid> LoadUsers(IEnumerable<Section> sections)
+        {
+            List<Guid> result = new List<Guid>();
+            foreach (var section in sections)
+            {
+                result.Add(section.UserID);
+            }
+            return result;
         }
 
         #endregion
