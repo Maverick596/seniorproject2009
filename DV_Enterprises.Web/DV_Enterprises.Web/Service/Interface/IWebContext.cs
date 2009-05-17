@@ -8,7 +8,7 @@ namespace DV_Enterprises.Web.Service.Interface
     public interface IWebContext
     {
         MembershipUser User { get; }
-        bool IsAdmin();
+        bool IsAdmin { get; }
         Int32 ProductId { get; }
         Int32 GreenhouseId { get; }
     }

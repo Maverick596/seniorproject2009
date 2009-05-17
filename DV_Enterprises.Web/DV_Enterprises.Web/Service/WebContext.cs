@@ -37,11 +37,7 @@ namespace DV_Enterprises.Web.Service
 
         public MembershipUser User { get { return Membership.GetUser();  } }
 
-        public bool IsAdmin()
-        {
-            return true;
-            //retrun Roles.IsUserInRole(user.UserName, "Administrator");
-        }
+        public bool IsAdmin { get { return Roles.IsUserInRole(User.UserName, "Administrator"); } }
 
         public void ClearSession()
         {

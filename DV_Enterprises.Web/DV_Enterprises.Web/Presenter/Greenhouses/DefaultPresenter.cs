@@ -20,8 +20,14 @@ namespace DV_Enterprises.Web.Presenter.Greenhouses
         public void Init(IDefault view)
         {
             _view = view;
-            // TODO: Admin can see everything
-            _view.LoadData(Greenhouse.All().Where(g => g.UserIDs.Contains(new Guid(_webContext.User.ProviderUserKey.ToString()))).ToList());
+            if (_webContext.IsAdmin)
+            {
+                _view.LoadData(Greenhouse.All());
+            }
+            else
+            {
+                _view.LoadData(Greenhouse.All().Where(g => g.UserIDs.Contains(new Guid(_webContext.User.ProviderUserKey.ToString()))).ToList());    
+            }
         }
     }
 }
