@@ -35,8 +35,24 @@ namespace Greenhouses
             //Store the text of the button, the Greenhouse's ID, into a session variable.
             Session["greenhouseID"] = greenhouseID;
 
-            //Redirect to ManageGreenhouse.aspx
-            Response.Redirect("ManageGreenhouse.aspx");
+            //Redirect to ViewGreenhouse.aspx
+            Response.Redirect("ViewGreenhouse.aspx");
         }
-    }
+        protected void btnNewGreenhouse_Click(object sender, EventArgs e)
+        {
+            String clientscript = "";
+            String strWindowName = "";
+            String strWinAttrib = "";
+            String strUrl = "";
+
+            strWindowName = "NewGreenhouse";
+            strUrl = "NewGreenhouse.aspx";
+            strWinAttrib = "toolbar=no,menu=no,status=no,width=300,height=400";
+            clientscript = "window.open('" + strUrl + "','" + strWindowName + "','" + strWinAttrib + "')";
+
+            //button.Attributes.Add("OnClick", clientscript);
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
+        }
+}
 }

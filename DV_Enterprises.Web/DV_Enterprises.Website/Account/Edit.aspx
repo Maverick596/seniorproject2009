@@ -46,7 +46,7 @@
             </li>
         </ol>
     </fieldset>
-    <fieldset class="butons">
+    <fieldset class="buttons">
         <ol>
             <li>
                 <asp:Button ID="butUpdateProfile" runat="server" Text="Save Profile" onclick="butUpdateProfile_Click" />

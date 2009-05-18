@@ -2,7 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div style="text-align:center">
+<%--<div style="text-align:center">--%>
+
+<table>
+<tr>
+    <td>
     <h2 class="title">Select a Greenhouse:</h2>
     <asp:Repeater runat="server" ID="rptGreenHouses">
     <HeaderTemplate>
@@ -23,7 +27,22 @@
         </table>
     </FooterTemplate>
     </asp:Repeater>
-</div>
+        </td>
+    
+    </tr>
+    <tr>
+        <td align="left">
+            <br />
+            <asp:Button ID="btnNewGreenhouse" runat="server" Text="New Greenhouse" onclick="btnNewGreenhouse_Click" />
+        </td>
+    </tr>
+</table>
+<%--</div>--%>
+
+
+
+
+
 <%--    <asp:ListView ID="lvGreenhouses" runat="server">
         <LayoutTemplate>
             <ul class="greenhouses">

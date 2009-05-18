@@ -11,15 +11,28 @@ namespace Greenhouses
     {
         private ViewGreenhousePresenter _presenter;
 
+        //The selected GreenhouseID from the Greenhouses/Default page
+        private static int ManagingGreenhouseID = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             _presenter = new ViewGreenhousePresenter();
             _presenter.Init(this, IsPostBack);
+
+            if (Session["greenhouseID"] == null)
+            {
+                Response.Redirect("~/Greenhouses/Default.aspx");
+            }
+
+            if (!Page.IsPostBack)
+            {
+                ManagingGreenhouseID = Int32.Parse(Session["greenhouseID"].ToString());
+            }
         }
 
         public void LoadData(Greenhouse greenhouse)
         {
-            return; //Doee nothing now ???
+            return; //Does nothing now ???
         }
 
         public void LoadLocation(Address address)
