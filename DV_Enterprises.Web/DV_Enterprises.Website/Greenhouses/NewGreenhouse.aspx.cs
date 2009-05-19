@@ -17,11 +17,12 @@ public partial class Greenhouses_NewGreenhouse : System.Web.UI.Page
     {
 
     }
+
     protected void btnSave_Click(object sender, EventArgs e)
     {
         // Capture form information and store in database
 
-        // Close current window and refresh Parent window ----
+        // Close current window and refresh Parent window
 
         ClientScript.RegisterStartupScript(this.GetType(), "CloseCurrentandRefreshParent", "window.opener.document.forms[0].submit();self.close();", true);
     }

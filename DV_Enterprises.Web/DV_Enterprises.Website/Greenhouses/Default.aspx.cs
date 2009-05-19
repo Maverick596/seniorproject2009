@@ -38,6 +38,7 @@ namespace Greenhouses
             //Redirect to ViewGreenhouse.aspx
             Response.Redirect("ViewGreenhouse.aspx");
         }
+
         protected void btnNewGreenhouse_Click(object sender, EventArgs e)
         {
             String clientscript = "";
@@ -47,10 +48,8 @@ namespace Greenhouses
 
             strWindowName = "NewGreenhouse";
             strUrl = "NewGreenhouse.aspx";
-            strWinAttrib = "toolbar=no,menu=no,status=no,width=300,height=400";
+            strWinAttrib = "toolbar=no,menu=no,status=no,width=420,height=400";
             clientscript = "window.open('" + strUrl + "','" + strWindowName + "','" + strWinAttrib + "')";
-
-            //button.Attributes.Add("OnClick", clientscript);
 
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
         }

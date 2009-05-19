@@ -27,6 +27,7 @@ namespace Greenhouses
             if (!Page.IsPostBack)
             {
                 ManagingGreenhouseID = Int32.Parse(Session["greenhouseID"].ToString());
+                lblGreenhouseID.Text = ManagingGreenhouseID.ToString();
             }
         }
 
@@ -44,6 +45,26 @@ namespace Greenhouses
         {
             lvSections.DataSource = sections;
             lvSections.DataBind();
+        }
+
+        protected void btnNewSection_Click(object sender, EventArgs e)
+        {
+            // Does nothing yet
+        }
+
+        protected void btnManageGreenhouse_Click(object sender, EventArgs e)
+        {
+            String clientscript = "";
+            String strWindowName = "";
+            String strWinAttrib = "";
+            String strUrl = "";
+
+            strWindowName = "NewGreenhouse";
+            strUrl = "ManageGreenhouse.aspx";
+            strWinAttrib = "toolbar=no,menu=no,status=no,width=420,height=400";
+            clientscript = "window.open('" + strUrl + "','" + strWindowName + "','" + strWinAttrib + "')";
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
         }
     }
 }
