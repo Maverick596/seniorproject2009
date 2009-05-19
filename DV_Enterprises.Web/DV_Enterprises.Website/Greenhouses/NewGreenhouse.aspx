@@ -15,61 +15,81 @@
     <br />
     <br />
     <br />
-    <table>
+    <table width="400px">
         <tr>
-            <td colspan="2" align="center">
+            <td colspan="3" align="center">
             <h2 class="title">Address:</h2>
             </td>
         </tr>
-        <tr>
+        <tr style="text-align:right">
             <td>
                 <asp:Label ID="lblAddress1" runat="server" Text="Street Line 1:" />
             </td>
+            
             <td>
                 <asp:TextBox ID="txtAddress1" runat="server" />
             </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfvAddress1" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtAddress1" />
+            
+            </td>
         </tr>
-        <tr>
+        <tr style="text-align:right">
             <td>
                 <asp:Label ID="lblAddress2" runat="server" Text="Street Line 2:" />
             </td>
             <td>
                 <asp:TextBox ID="txtAddress2" runat="server" />
             </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfvAddress2" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtAddress2" />
+            </td>
         </tr>
-        <tr>
+        <tr style="text-align:right">
             <td>
                 <asp:Label ID="lblCity" runat="server" Text="City" />
             </td>
             <td>
                 <asp:TextBox ID="txtCity" runat="server" />
             </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfvCity" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtCity" />
+            </td>
         </tr>
-        <tr>
+        <tr style="text-align:right">
             <td>
                 <asp:Label ID="lblState" runat="server" Text="State" />
             </td>
             <td>
                 <asp:TextBox ID="txtState" runat="server" />
             </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfvState" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtState" />
+            </td>
         </tr>
-        <tr>
+        <tr style="text-align:right">
             <td>
                 <asp:Label ID="lblZipCode" runat="server" Text="Zip Code" />
             </td>
             <td>
                 <asp:TextBox ID="txtZipCode" runat="server" />
             </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfvZipCode" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtZipCode" />
+            </td>
         </tr>
-        <tr>
+        <tr style="text-align:right">
             <td>
                 <asp:Label ID="lblCountry" runat="server" Text="Country" />
             </td>
             <td>
                 <asp:TextBox ID="txtCountry" runat="server" />
             </td>
+            <td>
+                <asp:RequiredFieldValidator ID="rfvCountry" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtCountry" />
+            </td>
         </tr>
-        <tr>
+        <tr style="text-align:center">
             <td>
                 <asp:Label ID="lblIsDefault" runat="server" Text="Is Default? (Yes/No)" />
             </td>
@@ -79,8 +99,8 @@
         </tr>
     </table>
     <br />
-    <asp:Button ID="btnSave" runat="server" Text="Save" onclick="btnSave_Click" />&nbsp;
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+    <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />&nbsp;
+    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClientClick="self.close();" />
     </div>
     </form>
 </body>
