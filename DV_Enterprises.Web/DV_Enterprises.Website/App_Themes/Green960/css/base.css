@@ -1,6 +1,5 @@
 ﻿html { background: #333333 url('../images/html-bg.png') repeat-y center top; }
-body { background: url('../images/body-bg.png') repeat-x center top; }
-#body2 { background: url('../images/body2-bg.png') no-repeat center top; }
+body { background: url('../images/body-bg.png') no-repeat center top; }
 
 h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
     { font-size: 2.5em; letter-spacing: -0.03em; margin-top: 0.3333em; }
@@ -8,22 +7,20 @@ h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
     {color:#666; line-height: 1.25em; margin-bottom: 0;}
 
 /** Header **/
-#header { /** padding-top: 20px; **/ }
-#header h1 { height: 55px; float: left; margin-top: 20px; }
-#header a.logo { z-index: 100; display: block; height: 115px; width: 51px; float:left; }
+#header h1 { height: 55px; float: left; margin-top: 20px; margin-bottom: 35px; padding-bottom: 5px; }
+#header a.logo { z-index: 100; display: block; height: 110px; width: 200px; float:left; }
 #header h1 a {
     background: url('../images/site-name.png') no-repeat left top;
     display: block;
-    height: 45px;
-    width: 536px;
+    height: 55px;
+    width: 570px;
     text-decoration: none;
     text-indent: -9999em;
-    margin: 16px 0 0 0;
     z-index: 99;
 }
 #header #slogan { display: none; }
-#header #userbox {float: right; height: 30px; margin: 25px 0 40px 0; text-align: center; width: 172px;}
-#header #navigation { height: 50px; font-size: 18px; color: #000; clear: right;}
+#header #userbox {background: url('../images/user-box-bg.png'); float: right; height: 50px; text-align: center; width: 190px;}
+#header #navigation { height: 50px; font-size: 18px; color: #000; clear: left;}
 #header #navigation ul { text-align: center; }
 #header #navigation li { margin: 0; display:inline; }
 #header #navigation a { display: block; padding: 10px; height: 30px !important; color: #000; }
