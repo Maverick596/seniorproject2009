@@ -1,9 +1,8 @@
 ﻿html { background-color: #000; }
 body { background: #92CC47 url('../images/body.png') repeat-x; }
-/**#header > .inner, #navigation > .inner, #content > .inner #footer > .inner { padding: 0 20px; }**/
 
 h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
-    { font-size: 2.5em; letter-spacing: -0.03em; margin-top: 0.3333em; }
+    { font-size: 2em; letter-spacing: -0.03em; margin-top: 0.3333em; }
 .title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
     {color:#666; line-height: 1.25em; margin-bottom: 0;}
 
@@ -34,6 +33,9 @@ h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
 /** Content **/
 #content {background: url('../images/content.png') repeat-x center bottom; }
 #content > .inner { background: #f7f7f7 url('../images/content_inner.png') repeat-x center bottom; padding: 1px 0;}
+#content .why, #content .features { font-size: 16px; }
+#content .why .title, #content .features .title { font-size: 1.4375em; margin-top: 2.5em; }
+#content .secondary { background-color: #eaeaea; }
 
 /** Footer **/
 #footer { background-color: #000; text-align: center; padding-top: 10px;}
