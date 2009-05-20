@@ -13,12 +13,11 @@
 </head>
 <body>
     <form runat="server">
-        <div id="body2">
-            <div id="header" class="container_16">
+        <div id="header">
+            <div class="container_16 inner clearfix"><div class="grid_16">
                 <asp:HyperLink ID="lnkLogo" runat="server" NavigateUrl="~/Default.aspx" ToolTip="Home" CssClass="logo"><asp:Image runat="server" SkinID="Logo" /></asp:HyperLink>
                 <h1>
                     <asp:HyperLink ID="lnkSiteName" runat="server" NavigateUrl="~/Default.aspx" Text="Smart Greenhouse Solutions" ToolTip="Home" /></h1>
-                <div id="slogan">better slogan here</div>
                 <div id="userbox">
                     <asp:LoginView ID="LoginView1" runat="server">
                         <LoggedInTemplate>
@@ -31,115 +30,33 @@
                             <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Login.aspx">Login</asp:HyperLink>
                         </AnonymousTemplate>
                     </asp:LoginView>
-                </div>
-                <!-- END userbox -->
-                
-                <div id="navigation">
-                    
-                    <asp:Menu ID="Menu" runat="server" DataSourceID="SiteMapDataSource1" 
-                        Orientation="Horizontal" CssClass="grid_16" StaticSubMenuIndent="">
-                    </asp:Menu>
-                </div>
-                <div id="subhead">
-                    This bar will have the breadcrumb and search
-                </div>
-            </div>
-            <!-- END #header -->
-            
-            <div id="billboard" class="container_16"></div>
-            <!-- END #billboard -->
-            
-            <!-- 
-                Other materpages must be made to take advantage of 2 or 3 
-                col pages will have additional #content-related and #content-extra
-            -->
-            <div id="content" class="container_16 clearfix">  
-                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-                    <h1>Hearder 1</h1>
-                        <h2>Header 2</h2>
-                        <h3>Header 3</h3>
-                        <h1 class="title>Title 1</h1>
-                        <h2 class="title>Title 2</h2>
-                        <h3 class="title>Title 3</h3>
-                        <h2 class="title grid_16">This is a Sample page</h2>
-                        <p class="grid_16">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula 
-                            ultricies est. Sed a ligula quis erat molestie bibendum. Nulla in urna. Nullam 
-                            dapibus velit eu arcu. Nulla sem massa, tristique quis, eleifend at, pulvinar 
-                            id, libero. Vestibulum ipsum. Ut neque. Proin interdum metus sed nibh. Cras 
-                            lobortis, lacus eu placerat eleifend, ipsum metus tempor urna, a vulputate nisi 
-                            libero imperdiet lorem. Fusce urna diam, vulputate quis, consequat quis, ornare 
-                            ac, eros. Donec est lacus, fringilla et, luctus in, commodo nec, mauris. Quisque 
-                            id dolor. Pellentesque tempor fermentum lorem. Quisque quam est, vestibulum a, 
-                            dignissim sed, auctor vitae, mauris.
-                        </p>
-                        
-                        <p class="grid_16">
-                            Etiam sapien orci, ullamcorper nec, tincidunt et, malesuada id, ligula. Etiam 
-                            metus neque, hendrerit ac, feugiat viverra, tincidunt eu, ligula. Vestibulum 
-                            nisl ipsum, tristique id, tincidunt a, posuere a, elit. Nulla facilisi. Morbi 
-                            vitae odio vitae neque mattis fermentum. Proin suscipit faucibus leo. Morbi ac 
-                            massa a lectus tristique euismod. Phasellus aliquet libero in lectus. Cras ac 
-                            magna. Ut nisi risus, ultricies ac, cursus fringilla, tristique in, massa. 
-                            Vestibulum urna.
-                        </p>
-                        
-                        <p class="grid_16">
-                            Proin vitae mauris. Quisque eget arcu sit amet tellus commodo tempor. Integer 
-                            vel tortor. Pellentesque sapien. Duis vitae eros. Integer pharetra ipsum sit 
-                            amet mauris. Curabitur commodo metus et enim. Nulla neque ante, fermentum sed, 
-                            consequat eu, eleifend eu, mauris. Praesent in metus et libero vulputate 
-                            posuere. Fusce est. Aliquam sem risus, scelerisque vulputate, tempus ac, 
-                            sagittis vel, odio. Donec ultricies, odio vel rutrum laoreet, lectus purus 
-                            vestibulum nisl, non semper justo ante at lectus. Nam nunc sapien, varius vel, 
-                            volutpat id, facilisis vitae, ante. Nullam viverra. Proin facilisis mauris 
-                            iaculis diam. Fusce posuere lectus sed ipsum. Cum sociis natoque penatibus et 
-                            magnis dis parturient montes, nascetur ridiculus mus.
-                         </p>
-                         
-                         <p class="grid_16">
-                             Donec elit risus, lobortis a, faucibus non, rutrum id, elit. Vivamus tempor, 
-                             magna non feugiat ultricies, est orci pellentesque leo, ac placerat tortor lacus 
-                             in felis. Curabitur aliquam, odio ut semper tincidunt, turpis magna luctus quam, 
-                             vitae ullamcorper orci leo vel augue. Praesent malesuada velit eget dui. Donec a 
-                             justo. Sed massa. Nullam velit. Vestibulum volutpat, diam at pretium venenatis, 
-                             arcu magna vehicula tortor, sagittis scelerisque ante risus ac arcu. 
-                             Pellentesque odio purus, ultrices eget, varius nec, cursus et, mauris. Class 
-                             aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos 
-                             himenaeos. Nunc convallis. Duis in lectus et est mattis facilisis. Ut eu sapien. 
-                             Cras rutrum tristique sem. Nunc rhoncus, urna eget sollicitudin iaculis, neque 
-                             neque feugiat risus, non blandit ipsum nisl eget quam. Aenean tempus mauris eget 
-                             ante. Ut at enim. Etiam vitae nisl.
-                         </p>
-                         
-                         <p class="grid_16">
-                             Duis iaculis. Etiam adipiscing semper nisi. Curabitur cursus tristique lacus. 
-                             Mauris elit. Nam interdum viverra diam. In hac habitasse platea dictumst. 
-                             Quisque pharetra ante eu nulla. Proin at leo id nisi feugiat mollis. Ut rhoncus 
-                             justo vel mi. Vestibulum risus ipsum, auctor et, pellentesque quis, molestie et, 
-                             sapien. Suspendisse sit amet justo. Aliquam orci nisi, porta ac, condimentum ac, 
-                             molestie eu, lacus. Morbi cursus ornare justo. Etiam fringilla ornare orci.                    
-                        </p>        
-                </asp:ContentPlaceHolder>
+                </div><!-- END userbox -->
+            </div></div>
+        </div> <!-- #Header -->
+        <div id="navigation">
+            <div class="inner container_16 clearfix"><div class="grid_16">
+                <asp:Menu ID="Menu" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticSubMenuIndent="" />
+            </div></div>
+        </div>
+        <div id="content">
+            <div class="inner container_16 clearfix">
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server" />
             </div>
         </div>
+            
         <div id="footer">
-            <ul class="links">
-                <li><asp:HyperLink ID="lnkHome" runat="server" Text="Home" 
-                        NavigateUrl="~/Default.aspx"></asp:HyperLink></li>
-                <li><asp:HyperLink ID="lnkTermsOfUse" runat="server" Text="Terms Of Use" 
-                        NavigateUrl="~/Legal/TermsOfUse.aspx" BorderStyle="None"></asp:HyperLink></li>
-                <li><asp:HyperLink ID="lnkContactUs" runat="server" Text="Contact Us" 
-                        NavigateUrl="~/ContactUs.aspx"></asp:HyperLink></li>
-                <li><asp:HyperLink ID="lnkPrivacyPolicy" runat="server" Text="Privacy Policy" 
-                        NavigateUrl="~/Legal/PrivacyPolicy.aspx"></asp:HyperLink></li>
-                <li class="last"><asp:HyperLink ID="lnkFAQ" runat="server" Text="FAQ's" 
-                        NavigateUrl="~/FAQ.aspx"></asp:HyperLink></li>
-            </ul>
-            <div class="copy">&copy; DVEnterprise 2009</div>
+            <div class="inner container_16">
+                <ul class="links">
+                    <li><asp:HyperLink ID="lnkHome" runat="server" Text="Home" NavigateUrl="~/Default.aspx"></asp:HyperLink></li>
+                    <li><asp:HyperLink ID="lnkTermsOfUse" runat="server" Text="Terms Of Use" NavigateUrl="~/Legal/TermsOfUse.aspx" BorderStyle="None"></asp:HyperLink></li>
+                    <li><asp:HyperLink ID="lnkContactUs" runat="server" Text="Contact Us" NavigateUrl="~/ContactUs.aspx"></asp:HyperLink></li>
+                    <li><asp:HyperLink ID="lnkPrivacyPolicy" runat="server" Text="Privacy Policy" NavigateUrl="~/Legal/PrivacyPolicy.aspx"></asp:HyperLink></li>
+                    <li class="last"><asp:HyperLink ID="lnkFAQ" runat="server" Text="FAQ's" NavigateUrl="~/FAQ.aspx"></asp:HyperLink></li>
+                </ul>
+                <div class="copy">&copy; DVEnterprise 2009</div>
+            </div>
         </div>
-        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" 
-            ShowStartingNode="False" />
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="False" />
     </form>
 </body>
 </html>

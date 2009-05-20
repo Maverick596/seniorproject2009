@@ -1,5 +1,6 @@
-﻿html { background: #333333 url('../images/html-bg.png') repeat-y center top; }
-body { background: url('../images/body-bg.png') no-repeat center top; }
+﻿html { background-color: #000; }
+body { background: #92CC47 url('../images/body.png') repeat-x; }
+/**#header > .inner, #navigation > .inner, #content > .inner #footer > .inner { padding: 0 20px; }**/
 
 h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
     { font-size: 2.5em; letter-spacing: -0.03em; margin-top: 0.3333em; }
@@ -7,29 +8,38 @@ h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
     {color:#666; line-height: 1.25em; margin-bottom: 0;}
 
 /** Header **/
-#header h1 { height: 55px; float: left; margin-top: 20px; margin-bottom: 35px; padding-bottom: 5px; }
-#header a.logo { z-index: 100; display: block; height: 110px; width: 200px; float:left; }
+#header { height: 110px; }
+#header h1 { height: 50px; float: left; margin-top: 20px; }
+#header a.logo { float: left; }
 #header h1 a {
-    background: url('../images/site-name.png') no-repeat left top;
+    background: url('../images/site_name.png') no-repeat left top;
     display: block;
-    height: 55px;
-    width: 570px;
+    height: 50px;
+    width: 550px;
     text-decoration: none;
     text-indent: -9999em;
     z-index: 99;
 }
-#header #slogan { display: none; }
 #header #userbox {background: url('../images/user-box-bg.png'); float: right; height: 50px; text-align: center; width: 190px;}
-#header #navigation { height: 50px; font-size: 18px; color: #000; clear: left;}
-#header #navigation ul { text-align: center; }
-#header #navigation li { margin: 0; display:inline; }
-#header #navigation a { display: block; padding: 10px; height: 30px !important; color: #000; }
-#header #navigation a:hover { background-color: #c7e3a4; }
-#header #subhead { height: 40px; }
 
-#footer { text-align: center; }
+/** Navigatiion **/
+#navigation { height: 50px; }
+#navigation > .inner { background: url('../images/navigation.png') no-repeat center top; }
+#navigation { height: 50px; font-size: 18px; color: #000; clear: left;}
+#navigation ul { text-align: center; }
+#navigation li { margin: 0; display:inline; }
+#navigation a { display: block; margin: 8px 0  12px; padding: 0 10px; height: 30px !important; color: #000; }
+#navigation a:hover { background-color: #c7e3a4; }
+
+/** Content **/
+#content {background: url('../images/content.png') repeat-x center bottom; }
+#content > .inner { background: #f7f7f7 url('../images/content_inner.png') repeat-x center bottom; padding: 1px 0;}
+
+/** Footer **/
+#footer { background-color: #000; text-align: center; padding-top: 10px;}
 #footer ul.links { text-align: center; }
 #footer ul.links li { margin: 0; margin-left: 0 !important;display: inline; border-right:1px solid #333333; padding: 0 5px}
 #footer ul.links li.last { border: none }
+#footer ul a { color: #f7f7f7; }
 
 .faq span.question { font-weight: bold; }
