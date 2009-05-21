@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
@@ -24,6 +25,9 @@ namespace DV_Enterprises.Web.Data.Domain
         public string StreetLine1 { get; set; }
         public string StreetLine2 { get; set; }
         public bool IsDefault { get; set; }
+        public DateTime DateCreated { get; private set;}
+        public DateTime DateUpdated { get; private set; }
+        
 
         #endregion
 
@@ -56,7 +60,9 @@ namespace DV_Enterprises.Web.Data.Domain
                                    Zip = a.Zip,
                                    StreetLine1 = a.StreetLine1,
                                    StreetLine2 = a.StreetLine2,
-                                   IsDefault = a.IsDefault
+                                   IsDefault = a.IsDefault,
+                                   DateCreated = a.DateCreated,
+                                   DateUpdated = a.DateUpdated
                                };
             return r.ToList();
         }
@@ -117,9 +123,13 @@ namespace DV_Enterprises.Web.Data.Domain
             dbAddress.StreetLine1 = address.StreetLine1;
             dbAddress.StreetLine2 = address.StreetLine2;
             dbAddress.IsDefault = address.IsDefault;
+            dbAddress.DateUpdated = DateTime.Now;
 
             if (isNew)
+            {
+                dbAddress.DateCreated = DateTime.Now;
                 dc.Addresses.InsertOnSubmit(dbAddress);
+            }
             dc.SubmitChanges();
             return dbAddress.AddressID;
         }
