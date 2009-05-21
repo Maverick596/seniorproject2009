@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="ASPNETDB" EntityNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" ContextNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" Class="DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=C:\dev\SeniorProject2009\DV_Enterprises.Web\DV_Enterprises.Website\App_Data\ASPNETDB.MDF;Integrated Security=True;User Instance=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="ASPNETDBConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=C:\SenProj\SenProjRepo4\seniorproject2009\DV_Enterprises.Web\DV_Enterprises.Website\App_Data\ASPNETDB.MDF;Integrated Security=True;User Instance=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="ASPNETDBConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.dvent_Greenhouse" Member="Greenhouses">
     <Type Name="Greenhouse">
       <Column Name="GreenhouseID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Greenhouse_Section" Member="Sections" OtherKey="GreenhouseID" Type="Section" />
-      <Association Name="Address_Greenhouse" Member="Address" ThisKey="AddressID" Type="Address" IsForeignKey="true" />
+      <Association Name="Greenhouse_Section" Member="Sections" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Section" />
+      <Association Name="Address_Greenhouse" Member="Address" ThisKey="AddressID" OtherKey="AddressID" Type="Address" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Task" Member="Tasks">
@@ -18,8 +18,8 @@
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="SectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="TaskType_Task" Member="TaskType" ThisKey="TaskTypeID" Type="TaskType" IsForeignKey="true" />
-      <Association Name="Section_Task" Member="Section" ThisKey="SectionID" Type="Section" IsForeignKey="true" />
+      <Association Name="TaskType_Task" Member="TaskType" ThisKey="TaskTypeID" OtherKey="TaskTypeId" Type="TaskType" IsForeignKey="true" />
+      <Association Name="Section_Task" Member="Section" ThisKey="SectionID" OtherKey="SectionID" Type="Section" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.aspnet_Users" Member="Users">
@@ -31,15 +31,15 @@
       <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
       <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="User_Section" Member="Sections" OtherKey="UserID" Type="Section" />
-      <Association Name="User_Crop" Member="Crops" OtherKey="UserID" Type="Crop" />
+      <Association Name="User_Section" Member="Sections" ThisKey="UserId" OtherKey="UserID" Type="Section" />
+      <Association Name="User_Crop" Member="Crops" ThisKey="UserId" OtherKey="UserID" Type="Crop" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_TaskType" Member="TaskTypes">
     <Type Name="TaskType">
       <Column Name="TaskTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(253) NOT NULL" CanBeNull="false" />
-      <Association Name="TaskType_Task" Member="Tasks" OtherKey="TaskTypeID" Type="Task" />
+      <Association Name="TaskType_Task" Member="Tasks" ThisKey="TaskTypeId" OtherKey="TaskTypeID" Type="Task" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Section" Member="Sections">
@@ -60,10 +60,10 @@
       <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Section_Task" Member="Tasks" OtherKey="SectionID" Type="Task" />
-      <Association Name="User_Section" Member="User" ThisKey="UserID" Type="User" IsForeignKey="true" />
-      <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
-      <Association Name="Crop_Section" Member="Crop" ThisKey="CropID" Type="Crop" IsForeignKey="true" />
+      <Association Name="Section_Task" Member="Tasks" ThisKey="SectionID" OtherKey="SectionID" Type="Task" />
+      <Association Name="User_Section" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
+      <Association Name="Crop_Section" Member="Crop" ThisKey="CropID" OtherKey="CropID" Type="Crop" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Crop" Member="Crops">
@@ -80,8 +80,8 @@
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="IsGlobal" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Crop_Section" Member="Sections" OtherKey="CropID" Type="Section" />
-      <Association Name="User_Crop" Member="User" ThisKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Crop_Section" Member="Sections" ThisKey="CropID" OtherKey="CropID" Type="Section" />
+      <Association Name="User_Crop" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Address" Member="Addresses">
@@ -94,9 +94,9 @@
       <Column Name="Zip" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Country" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="IsDefault" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="DateUpdated" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Association Name="Address_Greenhouse" Member="Greenhouses" OtherKey="AddressID" Type="Greenhouse" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="true" />
+      <Column Name="DateUpdated" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="true" />
+      <Association Name="Address_Greenhouse" Member="Greenhouses" ThisKey="AddressID" OtherKey="AddressID" Type="Greenhouse" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Product" Member="Products">
