@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="ASPNETDB" EntityNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" ContextNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" Class="DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=C:\SenProj\SenProjRepo4\seniorproject2009\DV_Enterprises.Web\DV_Enterprises.Website\App_Data\ASPNETDB.MDF;Integrated Security=True;User Instance=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="ASPNETDBConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=C:\Users\negonicrac\Development\seniorproject2009\DV_Enterprises.Web\DV_Enterprises.Website\App_Data\ASPNETDB.MDF;Integrated Security=True;User Instance=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="DVENTDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.dvent_Greenhouse" Member="Greenhouses">
     <Type Name="Greenhouse">
       <Column Name="GreenhouseID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Greenhouse_Section" Member="Sections" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Section" />
-      <Association Name="dvent_Address_Greenhouse" Member="Address" ThisKey="AddressID" OtherKey="AddressID" Type="Address" IsForeignKey="true" />
+      <Association Name="Address_Greenhouse" Member="Address" ThisKey="AddressID" OtherKey="AddressID" Type="Address" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Task" Member="Tasks">
@@ -108,7 +108,7 @@
       <Column Name="IsDefault" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="dvent_Address_Greenhouse" Member="Greenhouses" ThisKey="AddressID" OtherKey="AddressID" Type="Greenhouse" />
+      <Association Name="Address_Greenhouse" Member="Greenhouses" ThisKey="AddressID" OtherKey="AddressID" Type="Greenhouse" />
     </Type>
   </Table>
 </Database>
