@@ -29,44 +29,9 @@ namespace DV_Enterprises.Web.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Users\\negonicrac\\Development\\seniorp" +
             "roject2009\\DV_Enterprises.Web\\DV_Enterprises.Website\\App_Data\\ASPNETDB.MDF;Integ" +
             "rated Security=True;User Instance=True")]
-        public string ASPNETDBConnectionString {
+        public string DVENTDBConnectionString {
             get {
-                return ((string)(this["ASPNETDBConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\dev\\SeniorProject2009\\DV_Enterprises" +
-            ".Web\\DV_Enterprises.Website\\App_Data\\ASPNETDB.MDF;Integrated Security=True;User " +
-            "Instance=True")]
-        public string ASPNETDBConnectionString1 {
-            get {
-                return ((string)(this["ASPNETDBConnectionString1"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost\\SQLEXPRESS;Initial Catalog=dvent_sgs;Integrated Security=Tr" +
-            "ue")]
-        public string ASPNETDBConnectionString2 {
-            get {
-                return ((string)(this["ASPNETDBConnectionString2"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=C:\\Users\\negonicrac\\Development\\seniorp" +
-            "roject2009\\DV_Enterprises.Web\\DV_Enterprises.Website\\App_Data\\ASPNETDB.MDF;Integ" +
-            "rated Security=True;User Instance=True")]
-        public string ASPNETDBConnectionString3 {
-            get {
-                return ((string)(this["ASPNETDBConnectionString3"]));
+                return ((string)(this["DVENTDBConnectionString"]));
             }
         }
     }
