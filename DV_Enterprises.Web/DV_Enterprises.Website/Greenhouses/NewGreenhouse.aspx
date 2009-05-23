@@ -18,7 +18,7 @@
     <table width="400px">
         <tr>
             <td colspan="3" align="center">
-            <h2 class="title">Address:</h2>
+        Address:</h2>
             </td>
         </tr>
         <tr style="text-align:right">
