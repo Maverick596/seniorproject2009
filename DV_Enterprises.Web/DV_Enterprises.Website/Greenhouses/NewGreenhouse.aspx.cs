@@ -18,10 +18,9 @@ public partial class Greenhouses_NewGreenhouse : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        var greenhouse = new Greenhouse
+        var a = new Address
         {
-            Address = new Address
-                    {
+           
                         ID = 0,
                         StreetLine1 = txtAddress1.Text,
                         StreetLine2 = txtAddress2.Text,
@@ -29,12 +28,17 @@ public partial class Greenhouses_NewGreenhouse : System.Web.UI.Page
                         StateOrProvince = txtState.Text,
                         Zip = Convert.ToInt32(txtZipCode.Text),
                         Country = txtCountry.Text
-                    }
+                    
         };
-        greenhouse.Save();
+        a.Save();
+        //var g = new Greenhouse
+        //if(g.Address != null)
+      // {
+        //  g.Address.Save();
+      // }
 
         // Close current window and refresh Parent window
         ClientScript.RegisterStartupScript(this.GetType(), "CloseCurrentandRefreshParent", "window.opener.document.forms[0].submit();self.close();", true);
-    }                if (greenhouse.Address != null)
-                    greenhouse.Address.Save();
+    }               
+    
 }
