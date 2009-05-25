@@ -9,19 +9,20 @@ namespace DV_Enterprises.Web.Presenter.Products
     {
         private IManageProduct _view;
         private readonly IWebContext _webContext;
+        private readonly IRedirector _redirector;
 
         public ManageProductPresenter()
         {
             _webContext = ObjectFactory.GetInstance<IWebContext>();
+            _redirector = ObjectFactory.GetInstance<IRedirector>();
         }
 
         public void Init(IManageProduct view, bool isPostBack)
         {
             _view = view;
 
-            // do some security
-            if (_webContext.IsAdmin)
-                return;
+            if (!_webContext.IsAdmin)
+                _redirector.GoToHomePage();
 
             if(_webContext.ProductId > 0 && !isPostBack)
             {
@@ -31,9 +32,7 @@ namespace DV_Enterprises.Web.Presenter.Products
 
         public void SaveProduct(Product product)
         {
-            // Check the data
             product.Save();
-
         }
     }
 }
