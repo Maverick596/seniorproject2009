@@ -9,20 +9,17 @@ namespace DV_Enterprises.Web.Presenter.Products
     {
         private IManageProduct _view;
         private readonly IWebContext _webContext;
-        private readonly IRedirector _redirector;
+        public readonly IRedirector Redirector;
 
         public ManageProductPresenter()
         {
             _webContext = ObjectFactory.GetInstance<IWebContext>();
-            _redirector = ObjectFactory.GetInstance<IRedirector>();
+            Redirector = ObjectFactory.GetInstance<IRedirector>();
         }
 
         public void Init(IManageProduct view, bool isPostBack)
         {
             _view = view;
-
-            if (!_webContext.IsAdmin)
-                _redirector.GoToHomePage();
 
             if(_webContext.ProductId > 0 && !isPostBack)
             {

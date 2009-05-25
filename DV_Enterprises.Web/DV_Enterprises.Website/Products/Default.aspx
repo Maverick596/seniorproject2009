@@ -1,4 +1,5 @@
 <%@ Page Title="Products &mdash; Smart Greenhouse Solutions" Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Products.Default" %>
+<%@ Import Namespace="DV_Enterprises.Web.Data.Domain"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server" >
 </asp:Content>
@@ -7,7 +8,7 @@
     
     <p class="grid_16">Smart Greenhouse Solutions is a company that is devoted to providing the most innovative products to small family farmers. SGS is proud to introduce the SGS Green Thumb Modular Greenhouse monitoring system. Not only are our products manufactured with the smallest carbon footprint possible, but they are made from <span class="green">green</span> materials.</p>
     
-    <asp:ListView ID="lvProducts" runat="server" style="text-align: center">
+    <asp:ListView ID="lvProducts" runat="server" OnItemDataBound="lvProdusts_ItemDataBound">
         <LayoutTemplate>
             <ul class="products">
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
@@ -16,9 +17,11 @@
         
         <ItemTemplate>
             <li class="product grid_16">
-                <asp:Image ID="Image2" CssClass="grid_3 alpha" runat="server" ImageUrl="<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Image %>" />
-                <h3 class="title gird_12 omega"><asp:Label ID="Label1" runat="server" Font-Bold="true" Text='<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Name %>' /></h3>
-                <p class="grid_12 omega"><asp:Label ID="Label2" runat="server" Text='<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Description %>' /></p>
+                <asp:Image ID="Image2" CssClass="grid_3 alpha" runat="server" ImageUrl="<%# ((Product)Container.DataItem).Image %>" />
+                <h3 class="title gird_12 omega"><asp:HyperLink ID="linkProductName" runat="server" Text='<%# ((Product)Container.DataItem).Name %>' /></h3>
+                <asp:LinkButton ID="lbEdit" runat="server"  Text="Edit" OnClick="lbEdit_Click" />
+                <p class="grid_12 omega"><asp:Label ID="lblProductDescription" runat="server" Text='<%# ((Product)Container.DataItem).Description %>' /></p>
+                <asp:Literal ID="litProductID" runat="server" Visible="false"  Text='<%# ((Product)Container.DataItem).ID %>' />
             </li>
         </ItemTemplate>
         

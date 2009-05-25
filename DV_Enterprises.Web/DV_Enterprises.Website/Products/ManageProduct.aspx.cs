@@ -13,7 +13,15 @@ namespace Products
         protected void Page_Load(object sender, EventArgs e)
         {
             _presenter = new ManageProductPresenter();
-            _presenter.Init(this, IsPostBack);
+
+            if (!User.IsInRole("administrator"))
+            {
+                _presenter.Redirector.GoToHomePage();
+            }
+            else
+            {
+                _presenter.Init(this, IsPostBack);
+            }
         }
 
         public void LoadData(Product product)

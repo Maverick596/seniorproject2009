@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Web.Security;
 using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Greenhouses.Interface;
 using DV_Enterprises.Web.Service.Interface;
@@ -20,13 +21,13 @@ namespace DV_Enterprises.Web.Presenter.Greenhouses
         public void Init(IDefault view)
         {
             _view = view;
-            if (_webContext.IsAdmin)
+            if (_webContext.IsAdmin(_view.User.Identity.Name))
             {
                 _view.LoadData(Greenhouse.All());
             }
             else
             {
-                _view.LoadData(Greenhouse.All().Where(g => g.UserIDs.Contains(new Guid(_webContext.User.ProviderUserKey.ToString()))).ToList());    
+                _view.LoadData(Greenhouse.All().Where(g => g.UserIDs.Contains(new Guid(Membership.GetUser(_view.User.Identity.Name).ProviderUserKey.ToString()))).ToList());    
             }
         }
     }
