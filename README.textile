@@ -6,7 +6,7 @@ h2. Authors:
 
 * Matt Cordero
 * "Louis Taylor":http://www.twitter.com/negonicrac
-* Kinberly C.
+* "Kinberly C.":http://twitter.com/kinberly_a
 * Stephon Burrows
 * Allen Gatlin
 
