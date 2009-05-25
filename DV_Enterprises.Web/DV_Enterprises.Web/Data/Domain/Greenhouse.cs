@@ -109,10 +109,10 @@ namespace DV_Enterprises.Web.Data.Domain
                 if (greenhouse.Address != null)
                     greenhouse.Address.Save();
 
-                foreach (Section section in greenhouse.Sections)
-                {
-                    section.Save();
-                }
+                //foreach (Section section in greenhouse.Sections)
+                //{
+                //    section.Save();
+                //}
 
                 if (isNew)
                     dc.Greenhouses.InsertOnSubmit(dbGreenhouse);
