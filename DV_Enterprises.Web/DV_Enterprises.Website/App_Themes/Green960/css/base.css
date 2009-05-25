@@ -37,6 +37,7 @@ h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
 #content .why .title, #content .features .title { font-size: 1.4375em; margin-top: 2.5em; }
 #content .secondary { background-color: #eaeaea; }
 #content .faq .back_to_top { float: right; }
+#content address { text-align: center; }
 
 /** Footer **/
 #footer { background-color: #000; text-align: center; padding-top: 10px;}
