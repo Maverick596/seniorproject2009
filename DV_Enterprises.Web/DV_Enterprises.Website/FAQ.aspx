@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
   
     <div class="grid_16">
-        <h2 class="title">FAQ</h2>
+        <h2 class="title">Frequently Asked Questions</h2>
         <ul id="questions">
             <li><a href="#faq1">What does Smart Greenhouse Solutions Sell?</a></li>
             <li><a href="#faq2">What equipment and service guarantees does Smart Greenhouse Solutions offer?</a></li>
