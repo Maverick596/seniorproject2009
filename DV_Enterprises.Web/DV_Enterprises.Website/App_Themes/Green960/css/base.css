@@ -1,4 +1,5 @@
-﻿html { background-color: #000; }
+﻿@import forms.css;
+html { background-color: #000; }
 body { background: #92CC47 url('../images/body.png') repeat-x; }
 
 h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
@@ -38,6 +39,7 @@ h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
 #content .secondary { background-color: #eaeaea; }
 #content .faq .back_to_top { float: right; }
 #content address { text-align: center; }
+#content span.green { color: #009900; }
 
 /** Footer **/
 #footer { background-color: #000; text-align: center; padding-top: 10px;}

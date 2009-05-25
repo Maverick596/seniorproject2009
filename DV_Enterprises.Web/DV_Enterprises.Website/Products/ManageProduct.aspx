@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <fieldset>
-        <legend>Wow</legend>
+    <fieldset class="grid_16">
+        <legend>Product Information</legend>
         <ol>
             <li>
                 <label for="name">Name:</label>

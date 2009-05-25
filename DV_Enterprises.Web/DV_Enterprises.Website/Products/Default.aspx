@@ -3,19 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server" >
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h2 class="title">Product Line</h2>
-    <p>
-    Smart Greenhouse Solutions is a company that is devoted to providing the most innovative products to small family farmers. 
-    SGS is proud to introduce the SGS Green Thumb Modular Greenhouse monitoring system. Not only are our products manufactured with the smallest carbon footprint possible, 
-    but they are made from “green” materials.
-    <br />
-    <br /> 
-    Smart Greenhouse Solutions is committed to providing the best quality products to help you enhance your growing. 
-    We back our products with an unbeatable 3 year warranty and a 24 hr customer service help line.
-    </p>
-    <p>
-    Now Available:
-    </p>
+    <h2 class="title grid_16">Featured Products</h2>
+    
+    <p class="grid_16">Smart Greenhouse Solutions is a company that is devoted to providing the most innovative products to small family farmers. SGS is proud to introduce the SGS Green Thumb Modular Greenhouse monitoring system. Not only are our products manufactured with the smallest carbon footprint possible, but they are made from <span class="green">green</span> materials.</p>
+    
     <asp:ListView ID="lvProducts" runat="server" style="text-align: center">
         <LayoutTemplate>
             <ul class="products">
@@ -24,31 +15,19 @@
         </LayoutTemplate>
         
         <ItemTemplate>
-<%--            <li>
-                <asp:Label ID="lblName" runat="server" Text='<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Name %>' />
-                </li>--%>
-            <table cellpadding="3" cellspacing="3">
-                <tr>
-                    <td colspan="2" valign="top" style="text-align:left; vertical-align:top">
-                        <asp:Label ID="lblProductName" runat="server" Font-Bold="true" Text='<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Name %>' />
-                        <br />
-                    </td>
-                </tr>
-                <tr valign="top">
-                    <td style="text-align:left; vertical-align:top">
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/images/noImage.png" />
-                    </td>
-                    <td style="text-align:left; vertical-align:top">
-                        <asp:Label ID="lblProductDescription" runat="server" Text='<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Description %>' />
-                    </td>
-                </tr>
-            </table>
+            <li class="product grid_16">
+                <asp:Image ID="Image2" CssClass="grid_3 alpha" runat="server" ImageUrl="<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Image %>" />
+                <h3 class="title gird_12 omega"><asp:Label ID="Label1" runat="server" Font-Bold="true" Text='<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Name %>' /></h3>
+                <p class="grid_12 omega"><asp:Label ID="Label2" runat="server" Text='<%# ((DV_Enterprises.Web.Data.Domain.Product)Container.DataItem).Description %>' /></p>
+            </li>
         </ItemTemplate>
         
         <EmptyDataTemplate>
-        No products found.
+            <p class="grid_16">No products found.</p>
         </EmptyDataTemplate>
     </asp:ListView>
+    
+    <p class="grid_16">Smart Greenhouse Solutions is committed to providing the best quality products to help you enhance your growing. We back our products with an unbeatable 3 year warranty and a 24 hr customer service help line.</p>
     
 </asp:Content>
 

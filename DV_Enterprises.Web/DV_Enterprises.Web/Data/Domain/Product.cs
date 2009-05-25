@@ -24,6 +24,7 @@ namespace DV_Enterprises.Web.Data.Domain
         public bool IsActive { get; set; }
         public string Image { get; set; }
         public DateTime? DateUpdated { get; private set; }
+        public DateTime DateCreated { get; private set; }
 
         #endregion
 
@@ -55,7 +56,8 @@ namespace DV_Enterprises.Web.Data.Domain
                                    Price = p.Price,
                                    IsActive = p.IsActive,
                                    Image = p.Image,
-                                   DateUpdated = p.DateUpdated
+                                   DateUpdated = p.DateUpdated,
+                                   DateCreated = p.DateCreated
                                };
             return r.ToList();
         }
@@ -116,7 +118,10 @@ namespace DV_Enterprises.Web.Data.Domain
             dbProduct.DateUpdated = DateTime.Now;
 
             if (isNew)
+            {
+                dbProduct.DateCreated = DateTime.Now;
                 dc.Products.InsertOnSubmit(dbProduct);
+            }
             dc.SubmitChanges();
             return dbProduct.ProductID;
         }
