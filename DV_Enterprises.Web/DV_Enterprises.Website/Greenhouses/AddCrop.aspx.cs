@@ -21,9 +21,9 @@ public partial class Greenhouses_AddCrop : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        var c = new Preset
+        var p = new Preset
         {
-            CropID = 0,
+            ID = 0,
             Name = txtCropName.Text,
             IdealTemperture = Convert.ToInt32(txtIdealTemp.Text),
             TempertureTreshold = Convert.ToInt32(txtTempRange.Text),
@@ -33,6 +33,6 @@ public partial class Greenhouses_AddCrop : System.Web.UI.Page
             HumidityTreshold = Convert.ToInt32(txtHumidityRange.Text)
 
         };
-        c.Save();
+        p.Save();
     }
 }

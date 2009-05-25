@@ -26,7 +26,7 @@ public partial class Greenhouses_NewSection : System.Web.UI.Page
         var s = new Section
         {
           Name = txtSectionName.Text,
-          CropID = Convert.ToInt32(ddlCropName.SelectedValue),
+          PresetID = Convert.ToInt32(ddlCropName.SelectedValue),
           IdealTemperture = Convert.ToInt32(ddlTemp.SelectedValue),
           TempertureTreshold = Convert.ToInt32(ddlTemp.SelectedValue),
           IdealLightIntensity = Convert.ToInt32(ddlLight.SelectedValue),

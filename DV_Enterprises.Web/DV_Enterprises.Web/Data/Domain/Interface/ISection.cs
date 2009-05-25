@@ -15,7 +15,7 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         new int ID { get; set; }
         string Name { get; set; }
         int GreenhouseID { get; set; }
-        int CropID { get; set; }
+        int PresetID { get; set; }
         Guid UserID { get; set; }
         bool IsTempertureActivated { get; set; }
         int? IdealTemperture { get; set; }

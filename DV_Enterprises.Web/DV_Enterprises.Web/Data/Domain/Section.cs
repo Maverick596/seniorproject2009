@@ -19,7 +19,7 @@ namespace DV_Enterprises.Web.Data.Domain
         public int ID { get; set; }
         public string Name { get; set; }
         public int GreenhouseID { get; set; }
-        public int CropID { get; set; }
+        public int PresetID { get; set; }
         public Guid UserID { get; set; }
         public bool IsTempertureActivated { get; set; }
         public int? IdealTemperture { get; set; }
@@ -61,7 +61,7 @@ namespace DV_Enterprises.Web.Data.Domain
                                    ID = s.SectionID,
                                    Name = s.Name,
                                    GreenhouseID = s.GreenhouseID,
-                                   CropID = s.CropID,
+                                   PresetID = s.PresetID,
                                    UserID = s.UserID,
                                    IsTempertureActivated = s.IsTemeratureActivited,
                                    IdealTemperture = s.IdealTemperature,
@@ -128,7 +128,7 @@ namespace DV_Enterprises.Web.Data.Domain
 
             dbSection.Name = section.Name;
             dbSection.GreenhouseID = section.GreenhouseID;
-            dbSection.CropID = section.CropID;
+            dbSection.PresetID = section.PresetID;
             dbSection.UserID = section.UserID;
             dbSection.IsTemeratureActivited = section.IsTempertureActivated;
             dbSection.IdealTemperature = section.IdealTemperture;
