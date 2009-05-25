@@ -4,7 +4,7 @@ using StructureMap;
 namespace DV_Enterprises.Web.Data.Domain.Interface
 {
     [PluginFamily("Default")]
-    public interface ICrop : IDomainModel
+    public interface IPreset : IDomainModel
     {
         #region Static properties
 
@@ -14,7 +14,6 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
 
         new int ID { get; set; }
         string Name { get; set; }
-        int CropID { get; set; }
         Guid? UserID { get; set; }
         int? IdealTemperture { get; set; }
         int? TempertureTreshold { get; set; }
@@ -25,7 +24,6 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         bool IsGlobal { get; set; }
         DateTime DateCreated { get; }
         DateTime DateUpdated { get; }
-        DateTime? DateDeleted { get; }
 
         #endregion
     }

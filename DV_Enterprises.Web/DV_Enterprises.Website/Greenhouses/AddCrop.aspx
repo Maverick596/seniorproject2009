@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:Label ID="Label1" runat="server" Text="Crop Name"></asp:Label>
+    <asp:Label ID="Label1" runat="server" Text="Preset Name"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="txtCropName" runat="server"></asp:TextBox>
 &nbsp;<br />
@@ -35,7 +35,7 @@
 &nbsp;<br />
     <br />
     <asp:Button ID="btnSave" runat="server" BorderStyle="Inset" Height="18px" 
-        onclick="btnSave_Click" Text="Save Crop" Width="106px" />
+        onclick="btnSave_Click" Text="Save Preset" Width="106px" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:Button ID="btnCancel" runat="server" BorderStyle="Inset" Height="18px" 
         Text="Cancel" Width="67px" />

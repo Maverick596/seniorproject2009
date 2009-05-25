@@ -8,7 +8,7 @@ using StructureMap;
 namespace DV_Enterprises.Web.Data.Domain
 {
     [Pluggable("Default")]
-    public class Crop : DomainModel, ICrop
+    public class Preset : DomainModel, IPreset
     {
         #region Static properties
 
@@ -18,7 +18,6 @@ namespace DV_Enterprises.Web.Data.Domain
 
         public int ID { get; set; }
         public string Name { get; set; }
-        public int CropID { get; set; }
         public Guid? UserID { get; set; }
         public int? IdealTemperture { get; set; }
         public int? TempertureTreshold { get; set; }
@@ -29,35 +28,33 @@ namespace DV_Enterprises.Web.Data.Domain
         public bool IsGlobal { get; set; }
         public DateTime DateCreated { get; private set; }
         public DateTime DateUpdated { get; private set; }
-        public DateTime? DateDeleted { get; private set; }
 
         #endregion
 
         # region Static Methods
 
         /// <summary>
-        /// Find all Crop's
+        /// Find all Preset's
         /// </summary>
-        /// <returns>return an IQueryable collection of Crop</returns>
-        public static IQueryable<Crop> All()
+        /// <returns>return an IQueryable collection of Preset</returns>
+        public static IQueryable<Preset> All()
         {
             return All(null);
         }
         
         /// <summary>
-        /// Find all Crop's
+        /// Find all Preset's
         /// </summary>
         /// <param name="dc">DataContext</param>
-        /// <returns>return an IQueryable collection of Crop</returns>
-        public static IQueryable<Crop> All(DataContext dc)
+        /// <returns>return an IQueryable collection of Preset</returns>
+        public static IQueryable<Preset> All(DataContext dc)
         {
             dc = dc ?? Conn.GetContext();
-            var r = from c in dc.Crops
-                    select new Crop
+            var r = from c in dc.Presets
+                    select new Preset
                     {
-                        ID = c.CropID,
+                        ID = c.PresetID,
                         Name = c.Name,
-                        CropID = c.CropID,
                         UserID = c.UserID,
                         IdealTemperture = c.IdealTemperature,
                         TempertureTreshold = c.TemperatureThreshold,
@@ -73,95 +70,94 @@ namespace DV_Enterprises.Web.Data.Domain
         }
 
         /// <summary>
-        /// Find an Crop by it's id.
+        /// Find an Preset by it's id.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>returns a Crop</returns>
-        public static Crop Find(int id)
+        /// <returns>returns a Preset</returns>
+        public static Preset Find(int id)
         {
             return Find(null, id);
         }
          
         /// <summary>
-        /// Find an Crop by it's id.
+        /// Find an Preset by it's id.
         /// </summary>
         /// <param name="dc"></param>
         /// <param name="id"></param>
-        /// <returns>returns a Crop</returns>
-        public static Crop Find(DataContext dc, int id)
+        /// <returns>returns a Preset</returns>
+        public static Preset Find(DataContext dc, int id)
         {
             return All(dc).Where(c => c.ID == id).SingleOrDefault();
         }
 
         /// <summary>
-        /// Save a Crop
+        /// Save a Preset
         /// </summary>
-        /// <param name="crop"></param>
-        /// <returns>returns the id of the saved crop</returns>
-        public static int Save(Crop crop)
+        /// <param name="preset"></param>
+        /// <returns>returns the id of the saved preset</returns>
+        public static int Save(Preset preset)
         {
-            return Save(null, crop);
+            return Save(null, preset);
         }
 
         /// <summary>
-        /// Save a Crop
+        /// Save a Preset
         /// </summary>
         /// <param name="dc">DataContext</param>
-        /// <param name="crop"></param>
-        /// <returns>returns the id of the saved crop</returns>
-        public static int Save(DataContext dc, Crop crop)
+        /// <param name="preset"></param>
+        /// <returns>returns the id of the saved preset</returns>
+        public static int Save(DataContext dc, Preset preset)
         {
             dc = dc ?? Conn.GetContext();
-            var dbCrop = dc.Crops.Where(c => c.CropID == crop.ID).SingleOrDefault();
+            var dbPreset = dc.Presets.Where(p => p.PresetID == preset.ID).SingleOrDefault();
             var isNew = false;
-            if (dbCrop == null)
+            if (dbPreset == null)
             {
-                dbCrop = new DataAccess.SqlRepository.Crop();
+                dbPreset = new DataAccess.SqlRepository.Preset();
                 isNew = true;
             }
 
-            dbCrop.Name = crop.Name;
-            dbCrop.CropID = crop.CropID;
-            dbCrop.UserID = crop.UserID;
-            dbCrop.IdealTemperature = crop.IdealTemperture;
-            dbCrop.TemperatureThreshold = crop.TempertureTreshold;
-            dbCrop.IdealLightIntensity = crop.IdealLightIntensity;
-            dbCrop.LightIntensityTreshold = crop.LightIntensityTreshold;
-            dbCrop.IdealHumidity = crop.IdealHumidity;
-            dbCrop.HumidityThreshold = crop.HumidityTreshold;
-            dbCrop.IsGlobal = crop.IsGlobal;
-            dbCrop.DateUpdated = DateTime.Now;
+            dbPreset.Name = preset.Name;
+            dbPreset.UserID = preset.UserID;
+            dbPreset.IdealTemperature = preset.IdealTemperture;
+            dbPreset.TemperatureThreshold = preset.TempertureTreshold;
+            dbPreset.IdealLightIntensity = preset.IdealLightIntensity;
+            dbPreset.LightIntensityTreshold = preset.LightIntensityTreshold;
+            dbPreset.IdealHumidity = preset.IdealHumidity;
+            dbPreset.HumidityThreshold = preset.HumidityTreshold;
+            dbPreset.IsGlobal = preset.IsGlobal;
+            dbPreset.DateUpdated = DateTime.Now;
 
             if (isNew)
             {
-                dbCrop.DateCreated = DateTime.Now;
-                dc.Crops.InsertOnSubmit(dbCrop);
+                dbPreset.DateCreated = DateTime.Now;
+                dc.Presets.InsertOnSubmit(dbPreset);
             }
             dc.SubmitChanges();
-            return dbCrop.CropID;
+            return dbPreset.PresetID;
         }
 
         /// <summary>
-        /// Delete a single Crop
+        /// Delete a single Preset
         /// </summary>
-        /// <param name="crop"></param>
-        public static void Delete(Crop crop)
+        /// <param name="preset"></param>
+        public static void Delete(Preset preset)
         {
-            Delete(null, crop);
+            Delete(null, preset);
         }
         
         /// <summary>
-        /// Delete a single Crop
+        /// Delete a single Preset
         /// </summary>
         /// <param name="dc">DataContext</param>
-        /// <param name="crop"></param>
-        public static void Delete(DataContext dc, Crop crop)
+        /// <param name="preset"></param>
+        public static void Delete(DataContext dc, Preset preset)
         {
             dc = dc ?? Conn.GetContext();
-            var dbCrop = dc.Crops.Where(c => c.CropID == crop.ID).SingleOrDefault();
-            if (dbCrop == null) return;
-            dc.Crops.Attach(dbCrop, true);
-            dc.Crops.DeleteOnSubmit(dbCrop);
+            var dbPreset = dc.Presets.Where(p => p.PresetID == preset.ID).SingleOrDefault();
+            if (dbPreset == null) return;
+            dc.Presets.Attach(dbPreset, true);
+            dc.Presets.DeleteOnSubmit(dbPreset);
             dc.SubmitChanges();
         }
          
@@ -171,7 +167,7 @@ namespace DV_Enterprises.Web.Data.Domain
         #region Instance Methods
 
         /// <summary>
-        /// Save Crop
+        /// Save Preset
         /// </summary>
         /// <returns>returns the id of the saved crop</returns>
         public int Save()
@@ -180,7 +176,7 @@ namespace DV_Enterprises.Web.Data.Domain
         }
 
         /// <summary>
-        /// Save Crop
+        /// Save Preset
         /// </summary>
         /// <param name="dc"></param>
         /// <returns>returns the id of the saved crop</returns>
@@ -190,7 +186,7 @@ namespace DV_Enterprises.Web.Data.Domain
         }
 
         /// <summary>
-        /// Delete Crop
+        /// Delete Preset
         /// </summary>
         public void Delete()
         {
@@ -198,7 +194,7 @@ namespace DV_Enterprises.Web.Data.Domain
         }
 
         /// <summary>
-        /// Delete Crop
+        /// Delete Preset
         /// </summary>
         /// <param name="dc"></param>
         public void Delete(DataContext dc)

@@ -22,7 +22,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="ASPNETDB")]
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="dvent_web")]
 	public partial class DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -42,18 +42,18 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
     partial void InsertTaskType(TaskType instance);
     partial void UpdateTaskType(TaskType instance);
     partial void DeleteTaskType(TaskType instance);
-    partial void InsertSection(Section instance);
-    partial void UpdateSection(Section instance);
-    partial void DeleteSection(Section instance);
-    partial void InsertCrop(Crop instance);
-    partial void UpdateCrop(Crop instance);
-    partial void DeleteCrop(Crop instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
     partial void InsertAddress(Address instance);
     partial void UpdateAddress(Address instance);
     partial void DeleteAddress(Address instance);
+    partial void InsertSection(Section instance);
+    partial void UpdateSection(Section instance);
+    partial void DeleteSection(Section instance);
+    partial void InsertPreset(Preset instance);
+    partial void UpdatePreset(Preset instance);
+    partial void DeletePreset(Preset instance);
     #endregion
 		
 		public DataContext() : 
@@ -118,22 +118,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		public System.Data.Linq.Table<Section> Sections
-		{
-			get
-			{
-				return this.GetTable<Section>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Crop> Crops
-		{
-			get
-			{
-				return this.GetTable<Crop>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Product> Products
 		{
 			get
@@ -147,6 +131,22 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			get
 			{
 				return this.GetTable<Address>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Section> Sections
+		{
+			get
+			{
+				return this.GetTable<Section>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Preset> Presets
+		{
+			get
+			{
+				return this.GetTable<Preset>();
 			}
 		}
 	}
@@ -616,7 +616,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		private EntitySet<Section> _Sections;
 		
-		private EntitySet<Crop> _Crops;
+		private EntitySet<Preset> _dvent_Presets;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -641,7 +641,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		public User()
 		{
 			this._Sections = new EntitySet<Section>(new Action<Section>(this.attach_Sections), new Action<Section>(this.detach_Sections));
-			this._Crops = new EntitySet<Crop>(new Action<Crop>(this.attach_Crops), new Action<Crop>(this.detach_Crops));
+			this._dvent_Presets = new EntitySet<Preset>(new Action<Preset>(this.attach_dvent_Presets), new Action<Preset>(this.detach_dvent_Presets));
 			OnCreated();
 		}
 		
@@ -798,16 +798,16 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="User_Crop", Storage="_Crops", ThisKey="UserId", OtherKey="UserID")]
-		public EntitySet<Crop> Crops
+		[Association(Name="User_dvent_Preset", Storage="_dvent_Presets", ThisKey="UserId", OtherKey="UserID")]
+		public EntitySet<Preset> Presets
 		{
 			get
 			{
-				return this._Crops;
+				return this._dvent_Presets;
 			}
 			set
 			{
-				this._Crops.Assign(value);
+				this._dvent_Presets.Assign(value);
 			}
 		}
 		
@@ -843,13 +843,13 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			entity.User = null;
 		}
 		
-		private void attach_Crops(Crop entity)
+		private void attach_dvent_Presets(Preset entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = this;
 		}
 		
-		private void detach_Crops(Crop entity)
+		private void detach_dvent_Presets(Preset entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
@@ -967,974 +967,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		{
 			this.SendPropertyChanging();
 			entity.TaskType = null;
-		}
-	}
-	
-	[Table(Name="dbo.dvent_Section")]
-	public partial class Section : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _SectionID;
-		
-		private int _GreenhouseID;
-		
-		private string _Name;
-		
-		private bool _IsTemeratureActivited;
-		
-		private System.Nullable<int> _IdealTemperature;
-		
-		private System.Nullable<int> _TemperatureThreshold;
-		
-		private bool _IsLightActivited;
-		
-		private System.Nullable<int> _IdealLightIntensity;
-		
-		private System.Nullable<int> _LightIntensityThreshold;
-		
-		private bool _IsHumidityActivited;
-		
-		private System.Nullable<int> _IdealHumidity;
-		
-		private System.Nullable<int> _HumidityThreshold;
-		
-		private int _CropID;
-		
-		private System.Guid _UserID;
-		
-		private System.DateTime _DateCreated;
-		
-		private System.DateTime _DateUpdated;
-		
-		private EntitySet<Task> _Tasks;
-		
-		private EntityRef<User> _User;
-		
-		private EntityRef<Greenhouse> _Greenhouse;
-		
-		private EntityRef<Crop> _Crop;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnSectionIDChanging(int value);
-    partial void OnSectionIDChanged();
-    partial void OnGreenhouseIDChanging(int value);
-    partial void OnGreenhouseIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnIsTemeratureActivitedChanging(bool value);
-    partial void OnIsTemeratureActivitedChanged();
-    partial void OnIdealTemperatureChanging(System.Nullable<int> value);
-    partial void OnIdealTemperatureChanged();
-    partial void OnTemperatureThresholdChanging(System.Nullable<int> value);
-    partial void OnTemperatureThresholdChanged();
-    partial void OnIsLightActivitedChanging(bool value);
-    partial void OnIsLightActivitedChanged();
-    partial void OnIdealLightIntensityChanging(System.Nullable<int> value);
-    partial void OnIdealLightIntensityChanged();
-    partial void OnLightIntensityThresholdChanging(System.Nullable<int> value);
-    partial void OnLightIntensityThresholdChanged();
-    partial void OnIsHumidityActivitedChanging(bool value);
-    partial void OnIsHumidityActivitedChanged();
-    partial void OnIdealHumidityChanging(System.Nullable<int> value);
-    partial void OnIdealHumidityChanged();
-    partial void OnHumidityThresholdChanging(System.Nullable<int> value);
-    partial void OnHumidityThresholdChanged();
-    partial void OnCropIDChanging(int value);
-    partial void OnCropIDChanged();
-    partial void OnUserIDChanging(System.Guid value);
-    partial void OnUserIDChanged();
-    partial void OnDateCreatedChanging(System.DateTime value);
-    partial void OnDateCreatedChanged();
-    partial void OnDateUpdatedChanging(System.DateTime value);
-    partial void OnDateUpdatedChanged();
-    #endregion
-		
-		public Section()
-		{
-			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
-			this._User = default(EntityRef<User>);
-			this._Greenhouse = default(EntityRef<Greenhouse>);
-			this._Crop = default(EntityRef<Crop>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_SectionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int SectionID
-		{
-			get
-			{
-				return this._SectionID;
-			}
-			set
-			{
-				if ((this._SectionID != value))
-				{
-					this.OnSectionIDChanging(value);
-					this.SendPropertyChanging();
-					this._SectionID = value;
-					this.SendPropertyChanged("SectionID");
-					this.OnSectionIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_GreenhouseID", DbType="Int NOT NULL")]
-		public int GreenhouseID
-		{
-			get
-			{
-				return this._GreenhouseID;
-			}
-			set
-			{
-				if ((this._GreenhouseID != value))
-				{
-					if (this._Greenhouse.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGreenhouseIDChanging(value);
-					this.SendPropertyChanging();
-					this._GreenhouseID = value;
-					this.SendPropertyChanged("GreenhouseID");
-					this.OnGreenhouseIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IsTemeratureActivited", DbType="Bit NOT NULL")]
-		public bool IsTemeratureActivited
-		{
-			get
-			{
-				return this._IsTemeratureActivited;
-			}
-			set
-			{
-				if ((this._IsTemeratureActivited != value))
-				{
-					this.OnIsTemeratureActivitedChanging(value);
-					this.SendPropertyChanging();
-					this._IsTemeratureActivited = value;
-					this.SendPropertyChanged("IsTemeratureActivited");
-					this.OnIsTemeratureActivitedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdealTemperature", DbType="Int")]
-		public System.Nullable<int> IdealTemperature
-		{
-			get
-			{
-				return this._IdealTemperature;
-			}
-			set
-			{
-				if ((this._IdealTemperature != value))
-				{
-					this.OnIdealTemperatureChanging(value);
-					this.SendPropertyChanging();
-					this._IdealTemperature = value;
-					this.SendPropertyChanged("IdealTemperature");
-					this.OnIdealTemperatureChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_TemperatureThreshold", DbType="Int")]
-		public System.Nullable<int> TemperatureThreshold
-		{
-			get
-			{
-				return this._TemperatureThreshold;
-			}
-			set
-			{
-				if ((this._TemperatureThreshold != value))
-				{
-					this.OnTemperatureThresholdChanging(value);
-					this.SendPropertyChanging();
-					this._TemperatureThreshold = value;
-					this.SendPropertyChanged("TemperatureThreshold");
-					this.OnTemperatureThresholdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IsLightActivited", DbType="Bit NOT NULL")]
-		public bool IsLightActivited
-		{
-			get
-			{
-				return this._IsLightActivited;
-			}
-			set
-			{
-				if ((this._IsLightActivited != value))
-				{
-					this.OnIsLightActivitedChanging(value);
-					this.SendPropertyChanging();
-					this._IsLightActivited = value;
-					this.SendPropertyChanged("IsLightActivited");
-					this.OnIsLightActivitedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdealLightIntensity", DbType="Int")]
-		public System.Nullable<int> IdealLightIntensity
-		{
-			get
-			{
-				return this._IdealLightIntensity;
-			}
-			set
-			{
-				if ((this._IdealLightIntensity != value))
-				{
-					this.OnIdealLightIntensityChanging(value);
-					this.SendPropertyChanging();
-					this._IdealLightIntensity = value;
-					this.SendPropertyChanged("IdealLightIntensity");
-					this.OnIdealLightIntensityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LightIntensityThreshold", DbType="Int")]
-		public System.Nullable<int> LightIntensityThreshold
-		{
-			get
-			{
-				return this._LightIntensityThreshold;
-			}
-			set
-			{
-				if ((this._LightIntensityThreshold != value))
-				{
-					this.OnLightIntensityThresholdChanging(value);
-					this.SendPropertyChanging();
-					this._LightIntensityThreshold = value;
-					this.SendPropertyChanged("LightIntensityThreshold");
-					this.OnLightIntensityThresholdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IsHumidityActivited", DbType="Bit NOT NULL")]
-		public bool IsHumidityActivited
-		{
-			get
-			{
-				return this._IsHumidityActivited;
-			}
-			set
-			{
-				if ((this._IsHumidityActivited != value))
-				{
-					this.OnIsHumidityActivitedChanging(value);
-					this.SendPropertyChanging();
-					this._IsHumidityActivited = value;
-					this.SendPropertyChanged("IsHumidityActivited");
-					this.OnIsHumidityActivitedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdealHumidity", DbType="Int")]
-		public System.Nullable<int> IdealHumidity
-		{
-			get
-			{
-				return this._IdealHumidity;
-			}
-			set
-			{
-				if ((this._IdealHumidity != value))
-				{
-					this.OnIdealHumidityChanging(value);
-					this.SendPropertyChanging();
-					this._IdealHumidity = value;
-					this.SendPropertyChanged("IdealHumidity");
-					this.OnIdealHumidityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_HumidityThreshold", DbType="Int")]
-		public System.Nullable<int> HumidityThreshold
-		{
-			get
-			{
-				return this._HumidityThreshold;
-			}
-			set
-			{
-				if ((this._HumidityThreshold != value))
-				{
-					this.OnHumidityThresholdChanging(value);
-					this.SendPropertyChanging();
-					this._HumidityThreshold = value;
-					this.SendPropertyChanged("HumidityThreshold");
-					this.OnHumidityThresholdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_CropID", DbType="Int NOT NULL")]
-		public int CropID
-		{
-			get
-			{
-				return this._CropID;
-			}
-			set
-			{
-				if ((this._CropID != value))
-				{
-					if (this._Crop.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCropIDChanging(value);
-					this.SendPropertyChanging();
-					this._CropID = value;
-					this.SendPropertyChanged("CropID");
-					this.OnCropIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserID = value;
-					this.SendPropertyChanged("UserID");
-					this.OnUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
-		public System.DateTime DateCreated
-		{
-			get
-			{
-				return this._DateCreated;
-			}
-			set
-			{
-				if ((this._DateCreated != value))
-				{
-					this.OnDateCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateCreated = value;
-					this.SendPropertyChanged("DateCreated");
-					this.OnDateCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
-		public System.DateTime DateUpdated
-		{
-			get
-			{
-				return this._DateUpdated;
-			}
-			set
-			{
-				if ((this._DateUpdated != value))
-				{
-					this.OnDateUpdatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateUpdated = value;
-					this.SendPropertyChanged("DateUpdated");
-					this.OnDateUpdatedChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Section_Task", Storage="_Tasks", ThisKey="SectionID", OtherKey="SectionID")]
-		public EntitySet<Task> Tasks
-		{
-			get
-			{
-				return this._Tasks;
-			}
-			set
-			{
-				this._Tasks.Assign(value);
-			}
-		}
-		
-		[Association(Name="User_Section", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Sections.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Sections.Add(this);
-						this._UserID = value.UserId;
-					}
-					else
-					{
-						this._UserID = default(System.Guid);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		[Association(Name="Greenhouse_Section", Storage="_Greenhouse", ThisKey="GreenhouseID", OtherKey="GreenhouseID", IsForeignKey=true)]
-		public Greenhouse Greenhouse
-		{
-			get
-			{
-				return this._Greenhouse.Entity;
-			}
-			set
-			{
-				Greenhouse previousValue = this._Greenhouse.Entity;
-				if (((previousValue != value) 
-							|| (this._Greenhouse.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Greenhouse.Entity = null;
-						previousValue.Sections.Remove(this);
-					}
-					this._Greenhouse.Entity = value;
-					if ((value != null))
-					{
-						value.Sections.Add(this);
-						this._GreenhouseID = value.GreenhouseID;
-					}
-					else
-					{
-						this._GreenhouseID = default(int);
-					}
-					this.SendPropertyChanged("Greenhouse");
-				}
-			}
-		}
-		
-		[Association(Name="Crop_Section", Storage="_Crop", ThisKey="CropID", OtherKey="CropID", IsForeignKey=true)]
-		public Crop Crop
-		{
-			get
-			{
-				return this._Crop.Entity;
-			}
-			set
-			{
-				Crop previousValue = this._Crop.Entity;
-				if (((previousValue != value) 
-							|| (this._Crop.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Crop.Entity = null;
-						previousValue.Sections.Remove(this);
-					}
-					this._Crop.Entity = value;
-					if ((value != null))
-					{
-						value.Sections.Add(this);
-						this._CropID = value.CropID;
-					}
-					else
-					{
-						this._CropID = default(int);
-					}
-					this.SendPropertyChanged("Crop");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Tasks(Task entity)
-		{
-			this.SendPropertyChanging();
-			entity.Section = this;
-		}
-		
-		private void detach_Tasks(Task entity)
-		{
-			this.SendPropertyChanging();
-			entity.Section = null;
-		}
-	}
-	
-	[Table(Name="dbo.dvent_Crop")]
-	public partial class Crop : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _CropID;
-		
-		private string _Name;
-		
-		private System.Nullable<int> _IdealTemperature;
-		
-		private System.Nullable<int> _TemperatureThreshold;
-		
-		private System.Nullable<int> _IdealLightIntensity;
-		
-		private System.Nullable<int> _LightIntensityTreshold;
-		
-		private System.Nullable<int> _IdealHumidity;
-		
-		private System.Nullable<int> _HumidityThreshold;
-		
-		private System.DateTime _DateCreated;
-		
-		private System.DateTime _DateUpdated;
-		
-		private System.Nullable<System.Guid> _UserID;
-		
-		private bool _IsGlobal;
-		
-		private EntitySet<Section> _Sections;
-		
-		private EntityRef<User> _User;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCropIDChanging(int value);
-    partial void OnCropIDChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnIdealTemperatureChanging(System.Nullable<int> value);
-    partial void OnIdealTemperatureChanged();
-    partial void OnTemperatureThresholdChanging(System.Nullable<int> value);
-    partial void OnTemperatureThresholdChanged();
-    partial void OnIdealLightIntensityChanging(System.Nullable<int> value);
-    partial void OnIdealLightIntensityChanged();
-    partial void OnLightIntensityTresholdChanging(System.Nullable<int> value);
-    partial void OnLightIntensityTresholdChanged();
-    partial void OnIdealHumidityChanging(System.Nullable<int> value);
-    partial void OnIdealHumidityChanged();
-    partial void OnHumidityThresholdChanging(System.Nullable<int> value);
-    partial void OnHumidityThresholdChanged();
-    partial void OnDateCreatedChanging(System.DateTime value);
-    partial void OnDateCreatedChanged();
-    partial void OnDateUpdatedChanging(System.DateTime value);
-    partial void OnDateUpdatedChanged();
-    partial void OnUserIDChanging(System.Nullable<System.Guid> value);
-    partial void OnUserIDChanged();
-    partial void OnIsGlobalChanging(bool value);
-    partial void OnIsGlobalChanged();
-    #endregion
-		
-		public Crop()
-		{
-			this._Sections = new EntitySet<Section>(new Action<Section>(this.attach_Sections), new Action<Section>(this.detach_Sections));
-			this._User = default(EntityRef<User>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_CropID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int CropID
-		{
-			get
-			{
-				return this._CropID;
-			}
-			set
-			{
-				if ((this._CropID != value))
-				{
-					this.OnCropIDChanging(value);
-					this.SendPropertyChanging();
-					this._CropID = value;
-					this.SendPropertyChanged("CropID");
-					this.OnCropIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdealTemperature", DbType="Int")]
-		public System.Nullable<int> IdealTemperature
-		{
-			get
-			{
-				return this._IdealTemperature;
-			}
-			set
-			{
-				if ((this._IdealTemperature != value))
-				{
-					this.OnIdealTemperatureChanging(value);
-					this.SendPropertyChanging();
-					this._IdealTemperature = value;
-					this.SendPropertyChanged("IdealTemperature");
-					this.OnIdealTemperatureChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_TemperatureThreshold", DbType="Int")]
-		public System.Nullable<int> TemperatureThreshold
-		{
-			get
-			{
-				return this._TemperatureThreshold;
-			}
-			set
-			{
-				if ((this._TemperatureThreshold != value))
-				{
-					this.OnTemperatureThresholdChanging(value);
-					this.SendPropertyChanging();
-					this._TemperatureThreshold = value;
-					this.SendPropertyChanged("TemperatureThreshold");
-					this.OnTemperatureThresholdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdealLightIntensity", DbType="Int")]
-		public System.Nullable<int> IdealLightIntensity
-		{
-			get
-			{
-				return this._IdealLightIntensity;
-			}
-			set
-			{
-				if ((this._IdealLightIntensity != value))
-				{
-					this.OnIdealLightIntensityChanging(value);
-					this.SendPropertyChanging();
-					this._IdealLightIntensity = value;
-					this.SendPropertyChanged("IdealLightIntensity");
-					this.OnIdealLightIntensityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_LightIntensityTreshold", DbType="Int")]
-		public System.Nullable<int> LightIntensityTreshold
-		{
-			get
-			{
-				return this._LightIntensityTreshold;
-			}
-			set
-			{
-				if ((this._LightIntensityTreshold != value))
-				{
-					this.OnLightIntensityTresholdChanging(value);
-					this.SendPropertyChanging();
-					this._LightIntensityTreshold = value;
-					this.SendPropertyChanged("LightIntensityTreshold");
-					this.OnLightIntensityTresholdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IdealHumidity", DbType="Int")]
-		public System.Nullable<int> IdealHumidity
-		{
-			get
-			{
-				return this._IdealHumidity;
-			}
-			set
-			{
-				if ((this._IdealHumidity != value))
-				{
-					this.OnIdealHumidityChanging(value);
-					this.SendPropertyChanging();
-					this._IdealHumidity = value;
-					this.SendPropertyChanged("IdealHumidity");
-					this.OnIdealHumidityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_HumidityThreshold", DbType="Int")]
-		public System.Nullable<int> HumidityThreshold
-		{
-			get
-			{
-				return this._HumidityThreshold;
-			}
-			set
-			{
-				if ((this._HumidityThreshold != value))
-				{
-					this.OnHumidityThresholdChanging(value);
-					this.SendPropertyChanging();
-					this._HumidityThreshold = value;
-					this.SendPropertyChanged("HumidityThreshold");
-					this.OnHumidityThresholdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
-		public System.DateTime DateCreated
-		{
-			get
-			{
-				return this._DateCreated;
-			}
-			set
-			{
-				if ((this._DateCreated != value))
-				{
-					this.OnDateCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateCreated = value;
-					this.SendPropertyChanged("DateCreated");
-					this.OnDateCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
-		public System.DateTime DateUpdated
-		{
-			get
-			{
-				return this._DateUpdated;
-			}
-			set
-			{
-				if ((this._DateUpdated != value))
-				{
-					this.OnDateUpdatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateUpdated = value;
-					this.SendPropertyChanged("DateUpdated");
-					this.OnDateUpdatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_UserID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UserID
-		{
-			get
-			{
-				return this._UserID;
-			}
-			set
-			{
-				if ((this._UserID != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserID = value;
-					this.SendPropertyChanged("UserID");
-					this.OnUserIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IsGlobal", DbType="Bit NOT NULL")]
-		public bool IsGlobal
-		{
-			get
-			{
-				return this._IsGlobal;
-			}
-			set
-			{
-				if ((this._IsGlobal != value))
-				{
-					this.OnIsGlobalChanging(value);
-					this.SendPropertyChanging();
-					this._IsGlobal = value;
-					this.SendPropertyChanged("IsGlobal");
-					this.OnIsGlobalChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Crop_Section", Storage="_Sections", ThisKey="CropID", OtherKey="CropID")]
-		public EntitySet<Section> Sections
-		{
-			get
-			{
-				return this._Sections;
-			}
-			set
-			{
-				this._Sections.Assign(value);
-			}
-		}
-		
-		[Association(Name="User_Crop", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Crops.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Crops.Add(this);
-						this._UserID = value.UserId;
-					}
-					else
-					{
-						this._UserID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Sections(Section entity)
-		{
-			this.SendPropertyChanging();
-			entity.Crop = this;
-		}
-		
-		private void detach_Sections(Section entity)
-		{
-			this.SendPropertyChanging();
-			entity.Crop = null;
 		}
 	}
 	
@@ -2471,6 +1503,974 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		{
 			this.SendPropertyChanging();
 			entity.Address = null;
+		}
+	}
+	
+	[Table(Name="dbo.dvent_Section")]
+	public partial class Section : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _SectionID;
+		
+		private int _GreenhouseID;
+		
+		private string _Name;
+		
+		private bool _IsTemeratureActivited;
+		
+		private System.Nullable<int> _IdealTemperature;
+		
+		private System.Nullable<int> _TemperatureThreshold;
+		
+		private bool _IsLightActivited;
+		
+		private System.Nullable<int> _IdealLightIntensity;
+		
+		private System.Nullable<int> _LightIntensityThreshold;
+		
+		private bool _IsHumidityActivited;
+		
+		private System.Nullable<int> _IdealHumidity;
+		
+		private System.Nullable<int> _HumidityThreshold;
+		
+		private int _PresetID;
+		
+		private System.Guid _UserID;
+		
+		private System.DateTime _DateCreated;
+		
+		private System.DateTime _DateUpdated;
+		
+		private EntitySet<Task> _Tasks;
+		
+		private EntityRef<User> _User;
+		
+		private EntityRef<Greenhouse> _Greenhouse;
+		
+		private EntityRef<Preset> _dvent_Preset;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSectionIDChanging(int value);
+    partial void OnSectionIDChanged();
+    partial void OnGreenhouseIDChanging(int value);
+    partial void OnGreenhouseIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnIsTemeratureActivitedChanging(bool value);
+    partial void OnIsTemeratureActivitedChanged();
+    partial void OnIdealTemperatureChanging(System.Nullable<int> value);
+    partial void OnIdealTemperatureChanged();
+    partial void OnTemperatureThresholdChanging(System.Nullable<int> value);
+    partial void OnTemperatureThresholdChanged();
+    partial void OnIsLightActivitedChanging(bool value);
+    partial void OnIsLightActivitedChanged();
+    partial void OnIdealLightIntensityChanging(System.Nullable<int> value);
+    partial void OnIdealLightIntensityChanged();
+    partial void OnLightIntensityThresholdChanging(System.Nullable<int> value);
+    partial void OnLightIntensityThresholdChanged();
+    partial void OnIsHumidityActivitedChanging(bool value);
+    partial void OnIsHumidityActivitedChanged();
+    partial void OnIdealHumidityChanging(System.Nullable<int> value);
+    partial void OnIdealHumidityChanged();
+    partial void OnHumidityThresholdChanging(System.Nullable<int> value);
+    partial void OnHumidityThresholdChanged();
+    partial void OnPresetIDChanging(int value);
+    partial void OnPresetIDChanged();
+    partial void OnUserIDChanging(System.Guid value);
+    partial void OnUserIDChanged();
+    partial void OnDateCreatedChanging(System.DateTime value);
+    partial void OnDateCreatedChanged();
+    partial void OnDateUpdatedChanging(System.DateTime value);
+    partial void OnDateUpdatedChanged();
+    #endregion
+		
+		public Section()
+		{
+			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
+			this._User = default(EntityRef<User>);
+			this._Greenhouse = default(EntityRef<Greenhouse>);
+			this._dvent_Preset = default(EntityRef<Preset>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_SectionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int SectionID
+		{
+			get
+			{
+				return this._SectionID;
+			}
+			set
+			{
+				if ((this._SectionID != value))
+				{
+					this.OnSectionIDChanging(value);
+					this.SendPropertyChanging();
+					this._SectionID = value;
+					this.SendPropertyChanged("SectionID");
+					this.OnSectionIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_GreenhouseID", DbType="Int NOT NULL")]
+		public int GreenhouseID
+		{
+			get
+			{
+				return this._GreenhouseID;
+			}
+			set
+			{
+				if ((this._GreenhouseID != value))
+				{
+					if (this._Greenhouse.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGreenhouseIDChanging(value);
+					this.SendPropertyChanging();
+					this._GreenhouseID = value;
+					this.SendPropertyChanged("GreenhouseID");
+					this.OnGreenhouseIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsTemeratureActivited", DbType="Bit NOT NULL")]
+		public bool IsTemeratureActivited
+		{
+			get
+			{
+				return this._IsTemeratureActivited;
+			}
+			set
+			{
+				if ((this._IsTemeratureActivited != value))
+				{
+					this.OnIsTemeratureActivitedChanging(value);
+					this.SendPropertyChanging();
+					this._IsTemeratureActivited = value;
+					this.SendPropertyChanged("IsTemeratureActivited");
+					this.OnIsTemeratureActivitedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdealTemperature", DbType="Int")]
+		public System.Nullable<int> IdealTemperature
+		{
+			get
+			{
+				return this._IdealTemperature;
+			}
+			set
+			{
+				if ((this._IdealTemperature != value))
+				{
+					this.OnIdealTemperatureChanging(value);
+					this.SendPropertyChanging();
+					this._IdealTemperature = value;
+					this.SendPropertyChanged("IdealTemperature");
+					this.OnIdealTemperatureChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TemperatureThreshold", DbType="Int")]
+		public System.Nullable<int> TemperatureThreshold
+		{
+			get
+			{
+				return this._TemperatureThreshold;
+			}
+			set
+			{
+				if ((this._TemperatureThreshold != value))
+				{
+					this.OnTemperatureThresholdChanging(value);
+					this.SendPropertyChanging();
+					this._TemperatureThreshold = value;
+					this.SendPropertyChanged("TemperatureThreshold");
+					this.OnTemperatureThresholdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsLightActivited", DbType="Bit NOT NULL")]
+		public bool IsLightActivited
+		{
+			get
+			{
+				return this._IsLightActivited;
+			}
+			set
+			{
+				if ((this._IsLightActivited != value))
+				{
+					this.OnIsLightActivitedChanging(value);
+					this.SendPropertyChanging();
+					this._IsLightActivited = value;
+					this.SendPropertyChanged("IsLightActivited");
+					this.OnIsLightActivitedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdealLightIntensity", DbType="Int")]
+		public System.Nullable<int> IdealLightIntensity
+		{
+			get
+			{
+				return this._IdealLightIntensity;
+			}
+			set
+			{
+				if ((this._IdealLightIntensity != value))
+				{
+					this.OnIdealLightIntensityChanging(value);
+					this.SendPropertyChanging();
+					this._IdealLightIntensity = value;
+					this.SendPropertyChanged("IdealLightIntensity");
+					this.OnIdealLightIntensityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LightIntensityThreshold", DbType="Int")]
+		public System.Nullable<int> LightIntensityThreshold
+		{
+			get
+			{
+				return this._LightIntensityThreshold;
+			}
+			set
+			{
+				if ((this._LightIntensityThreshold != value))
+				{
+					this.OnLightIntensityThresholdChanging(value);
+					this.SendPropertyChanging();
+					this._LightIntensityThreshold = value;
+					this.SendPropertyChanged("LightIntensityThreshold");
+					this.OnLightIntensityThresholdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsHumidityActivited", DbType="Bit NOT NULL")]
+		public bool IsHumidityActivited
+		{
+			get
+			{
+				return this._IsHumidityActivited;
+			}
+			set
+			{
+				if ((this._IsHumidityActivited != value))
+				{
+					this.OnIsHumidityActivitedChanging(value);
+					this.SendPropertyChanging();
+					this._IsHumidityActivited = value;
+					this.SendPropertyChanged("IsHumidityActivited");
+					this.OnIsHumidityActivitedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdealHumidity", DbType="Int")]
+		public System.Nullable<int> IdealHumidity
+		{
+			get
+			{
+				return this._IdealHumidity;
+			}
+			set
+			{
+				if ((this._IdealHumidity != value))
+				{
+					this.OnIdealHumidityChanging(value);
+					this.SendPropertyChanging();
+					this._IdealHumidity = value;
+					this.SendPropertyChanged("IdealHumidity");
+					this.OnIdealHumidityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HumidityThreshold", DbType="Int")]
+		public System.Nullable<int> HumidityThreshold
+		{
+			get
+			{
+				return this._HumidityThreshold;
+			}
+			set
+			{
+				if ((this._HumidityThreshold != value))
+				{
+					this.OnHumidityThresholdChanging(value);
+					this.SendPropertyChanging();
+					this._HumidityThreshold = value;
+					this.SendPropertyChanged("HumidityThreshold");
+					this.OnHumidityThresholdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PresetID", DbType="Int NOT NULL")]
+		public int PresetID
+		{
+			get
+			{
+				return this._PresetID;
+			}
+			set
+			{
+				if ((this._PresetID != value))
+				{
+					if (this._dvent_Preset.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPresetIDChanging(value);
+					this.SendPropertyChanging();
+					this._PresetID = value;
+					this.SendPropertyChanged("PresetID");
+					this.OnPresetIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCreated
+		{
+			get
+			{
+				return this._DateCreated;
+			}
+			set
+			{
+				if ((this._DateCreated != value))
+				{
+					this.OnDateCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCreated = value;
+					this.SendPropertyChanged("DateCreated");
+					this.OnDateCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateUpdated
+		{
+			get
+			{
+				return this._DateUpdated;
+			}
+			set
+			{
+				if ((this._DateUpdated != value))
+				{
+					this.OnDateUpdatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateUpdated = value;
+					this.SendPropertyChanged("DateUpdated");
+					this.OnDateUpdatedChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Section_Task", Storage="_Tasks", ThisKey="SectionID", OtherKey="SectionID")]
+		public EntitySet<Task> Tasks
+		{
+			get
+			{
+				return this._Tasks;
+			}
+			set
+			{
+				this._Tasks.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_Section", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Sections.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Sections.Add(this);
+						this._UserID = value.UserId;
+					}
+					else
+					{
+						this._UserID = default(System.Guid);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[Association(Name="Greenhouse_Section", Storage="_Greenhouse", ThisKey="GreenhouseID", OtherKey="GreenhouseID", IsForeignKey=true)]
+		public Greenhouse Greenhouse
+		{
+			get
+			{
+				return this._Greenhouse.Entity;
+			}
+			set
+			{
+				Greenhouse previousValue = this._Greenhouse.Entity;
+				if (((previousValue != value) 
+							|| (this._Greenhouse.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Greenhouse.Entity = null;
+						previousValue.Sections.Remove(this);
+					}
+					this._Greenhouse.Entity = value;
+					if ((value != null))
+					{
+						value.Sections.Add(this);
+						this._GreenhouseID = value.GreenhouseID;
+					}
+					else
+					{
+						this._GreenhouseID = default(int);
+					}
+					this.SendPropertyChanged("Greenhouse");
+				}
+			}
+		}
+		
+		[Association(Name="dvent_Preset_Section", Storage="_dvent_Preset", ThisKey="PresetID", OtherKey="PresetID", IsForeignKey=true)]
+		public Preset Preset
+		{
+			get
+			{
+				return this._dvent_Preset.Entity;
+			}
+			set
+			{
+				Preset previousValue = this._dvent_Preset.Entity;
+				if (((previousValue != value) 
+							|| (this._dvent_Preset.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._dvent_Preset.Entity = null;
+						previousValue.Sections.Remove(this);
+					}
+					this._dvent_Preset.Entity = value;
+					if ((value != null))
+					{
+						value.Sections.Add(this);
+						this._PresetID = value.PresetID;
+					}
+					else
+					{
+						this._PresetID = default(int);
+					}
+					this.SendPropertyChanged("Preset");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Tasks(Task entity)
+		{
+			this.SendPropertyChanging();
+			entity.Section = this;
+		}
+		
+		private void detach_Tasks(Task entity)
+		{
+			this.SendPropertyChanging();
+			entity.Section = null;
+		}
+	}
+	
+	[Table(Name="dbo.dvent_Preset")]
+	public partial class Preset : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _PresetID;
+		
+		private string _Name;
+		
+		private System.Nullable<int> _IdealTemperature;
+		
+		private System.Nullable<int> _TemperatureThreshold;
+		
+		private System.Nullable<int> _IdealLightIntensity;
+		
+		private System.Nullable<int> _LightIntensityTreshold;
+		
+		private System.Nullable<int> _IdealHumidity;
+		
+		private System.Nullable<int> _HumidityThreshold;
+		
+		private System.DateTime _DateCreated;
+		
+		private System.DateTime _DateUpdated;
+		
+		private System.Nullable<System.Guid> _UserID;
+		
+		private bool _IsGlobal;
+		
+		private EntitySet<Section> _Sections;
+		
+		private EntityRef<User> _User;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPresetIDChanging(int value);
+    partial void OnPresetIDChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnIdealTemperatureChanging(System.Nullable<int> value);
+    partial void OnIdealTemperatureChanged();
+    partial void OnTemperatureThresholdChanging(System.Nullable<int> value);
+    partial void OnTemperatureThresholdChanged();
+    partial void OnIdealLightIntensityChanging(System.Nullable<int> value);
+    partial void OnIdealLightIntensityChanged();
+    partial void OnLightIntensityTresholdChanging(System.Nullable<int> value);
+    partial void OnLightIntensityTresholdChanged();
+    partial void OnIdealHumidityChanging(System.Nullable<int> value);
+    partial void OnIdealHumidityChanged();
+    partial void OnHumidityThresholdChanging(System.Nullable<int> value);
+    partial void OnHumidityThresholdChanged();
+    partial void OnDateCreatedChanging(System.DateTime value);
+    partial void OnDateCreatedChanged();
+    partial void OnDateUpdatedChanging(System.DateTime value);
+    partial void OnDateUpdatedChanged();
+    partial void OnUserIDChanging(System.Nullable<System.Guid> value);
+    partial void OnUserIDChanged();
+    partial void OnIsGlobalChanging(bool value);
+    partial void OnIsGlobalChanged();
+    #endregion
+		
+		public Preset()
+		{
+			this._Sections = new EntitySet<Section>(new Action<Section>(this.attach_Sections), new Action<Section>(this.detach_Sections));
+			this._User = default(EntityRef<User>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_PresetID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int PresetID
+		{
+			get
+			{
+				return this._PresetID;
+			}
+			set
+			{
+				if ((this._PresetID != value))
+				{
+					this.OnPresetIDChanging(value);
+					this.SendPropertyChanging();
+					this._PresetID = value;
+					this.SendPropertyChanged("PresetID");
+					this.OnPresetIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdealTemperature", DbType="Int")]
+		public System.Nullable<int> IdealTemperature
+		{
+			get
+			{
+				return this._IdealTemperature;
+			}
+			set
+			{
+				if ((this._IdealTemperature != value))
+				{
+					this.OnIdealTemperatureChanging(value);
+					this.SendPropertyChanging();
+					this._IdealTemperature = value;
+					this.SendPropertyChanged("IdealTemperature");
+					this.OnIdealTemperatureChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TemperatureThreshold", DbType="Int")]
+		public System.Nullable<int> TemperatureThreshold
+		{
+			get
+			{
+				return this._TemperatureThreshold;
+			}
+			set
+			{
+				if ((this._TemperatureThreshold != value))
+				{
+					this.OnTemperatureThresholdChanging(value);
+					this.SendPropertyChanging();
+					this._TemperatureThreshold = value;
+					this.SendPropertyChanged("TemperatureThreshold");
+					this.OnTemperatureThresholdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdealLightIntensity", DbType="Int")]
+		public System.Nullable<int> IdealLightIntensity
+		{
+			get
+			{
+				return this._IdealLightIntensity;
+			}
+			set
+			{
+				if ((this._IdealLightIntensity != value))
+				{
+					this.OnIdealLightIntensityChanging(value);
+					this.SendPropertyChanging();
+					this._IdealLightIntensity = value;
+					this.SendPropertyChanged("IdealLightIntensity");
+					this.OnIdealLightIntensityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_LightIntensityTreshold", DbType="Int")]
+		public System.Nullable<int> LightIntensityTreshold
+		{
+			get
+			{
+				return this._LightIntensityTreshold;
+			}
+			set
+			{
+				if ((this._LightIntensityTreshold != value))
+				{
+					this.OnLightIntensityTresholdChanging(value);
+					this.SendPropertyChanging();
+					this._LightIntensityTreshold = value;
+					this.SendPropertyChanged("LightIntensityTreshold");
+					this.OnLightIntensityTresholdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IdealHumidity", DbType="Int")]
+		public System.Nullable<int> IdealHumidity
+		{
+			get
+			{
+				return this._IdealHumidity;
+			}
+			set
+			{
+				if ((this._IdealHumidity != value))
+				{
+					this.OnIdealHumidityChanging(value);
+					this.SendPropertyChanging();
+					this._IdealHumidity = value;
+					this.SendPropertyChanged("IdealHumidity");
+					this.OnIdealHumidityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_HumidityThreshold", DbType="Int")]
+		public System.Nullable<int> HumidityThreshold
+		{
+			get
+			{
+				return this._HumidityThreshold;
+			}
+			set
+			{
+				if ((this._HumidityThreshold != value))
+				{
+					this.OnHumidityThresholdChanging(value);
+					this.SendPropertyChanging();
+					this._HumidityThreshold = value;
+					this.SendPropertyChanged("HumidityThreshold");
+					this.OnHumidityThresholdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCreated
+		{
+			get
+			{
+				return this._DateCreated;
+			}
+			set
+			{
+				if ((this._DateCreated != value))
+				{
+					this.OnDateCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCreated = value;
+					this.SendPropertyChanged("DateCreated");
+					this.OnDateCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateUpdated
+		{
+			get
+			{
+				return this._DateUpdated;
+			}
+			set
+			{
+				if ((this._DateUpdated != value))
+				{
+					this.OnDateUpdatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateUpdated = value;
+					this.SendPropertyChanged("DateUpdated");
+					this.OnDateUpdatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserID = value;
+					this.SendPropertyChanged("UserID");
+					this.OnUserIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsGlobal", DbType="Bit NOT NULL")]
+		public bool IsGlobal
+		{
+			get
+			{
+				return this._IsGlobal;
+			}
+			set
+			{
+				if ((this._IsGlobal != value))
+				{
+					this.OnIsGlobalChanging(value);
+					this.SendPropertyChanging();
+					this._IsGlobal = value;
+					this.SendPropertyChanged("IsGlobal");
+					this.OnIsGlobalChanged();
+				}
+			}
+		}
+		
+		[Association(Name="dvent_Preset_Section", Storage="_Sections", ThisKey="PresetID", OtherKey="PresetID")]
+		public EntitySet<Section> Sections
+		{
+			get
+			{
+				return this._Sections;
+			}
+			set
+			{
+				this._Sections.Assign(value);
+			}
+		}
+		
+		[Association(Name="User_dvent_Preset", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Presets.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Presets.Add(this);
+						this._UserID = value.UserId;
+					}
+					else
+					{
+						this._UserID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Sections(Section entity)
+		{
+			this.SendPropertyChanging();
+			entity.Preset = this;
+		}
+		
+		private void detach_Sections(Section entity)
+		{
+			this.SendPropertyChanging();
+			entity.Preset = null;
 		}
 	}
 }

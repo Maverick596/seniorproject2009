@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="ASPNETDB" EntityNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" ContextNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" Class="DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+<Database Name="dvent_web" EntityNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" ContextNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" Class="DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=dvent_web;Integrated Security=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="DVENTDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.dvent_Greenhouse" Member="Greenhouses">
     <Type Name="Greenhouse">
@@ -32,7 +32,7 @@
       <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="User_Section" Member="Sections" ThisKey="UserId" OtherKey="UserID" Type="Section" />
-      <Association Name="User_Crop" Member="Crops" ThisKey="UserId" OtherKey="UserID" Type="Crop" />
+      <Association Name="User_dvent_Preset" Member="Presets" Storage="_dvent_Presets" ThisKey="UserId" OtherKey="UserID" Type="Preset" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_TaskType" Member="TaskTypes">
@@ -40,48 +40,6 @@
       <Column Name="TaskTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(253) NOT NULL" CanBeNull="false" />
       <Association Name="TaskType_Task" Member="Tasks" ThisKey="TaskTypeId" OtherKey="TaskTypeID" Type="Task" />
-    </Type>
-  </Table>
-  <Table Name="dbo.dvent_Section" Member="Sections">
-    <Type Name="Section">
-      <Column Name="SectionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="GreenhouseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="IsTemeratureActivited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="IdealTemperature" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TemperatureThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IsLightActivited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="IdealLightIntensity" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LightIntensityThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IsHumidityActivited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="IdealHumidity" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="HumidityThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CropID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Section_Task" Member="Tasks" ThisKey="SectionID" OtherKey="SectionID" Type="Task" />
-      <Association Name="User_Section" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
-      <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
-      <Association Name="Crop_Section" Member="Crop" ThisKey="CropID" OtherKey="CropID" Type="Crop" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.dvent_Crop" Member="Crops">
-    <Type Name="Crop">
-      <Column Name="CropID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="IdealTemperature" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TemperatureThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IdealLightIntensity" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LightIntensityTreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IdealHumidity" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="HumidityThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="IsGlobal" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Crop_Section" Member="Sections" ThisKey="CropID" OtherKey="CropID" Type="Section" />
-      <Association Name="User_Crop" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Product" Member="Products">
@@ -109,6 +67,48 @@
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Address_Greenhouse" Member="Greenhouses" ThisKey="AddressID" OtherKey="AddressID" Type="Greenhouse" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_Section" Member="Sections">
+    <Type Name="Section">
+      <Column Name="SectionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GreenhouseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="IsTemeratureActivited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IdealTemperature" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TemperatureThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsLightActivited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IdealLightIntensity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LightIntensityThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsHumidityActivited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IdealHumidity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HumidityThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PresetID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Section_Task" Member="Tasks" ThisKey="SectionID" OtherKey="SectionID" Type="Task" />
+      <Association Name="User_Section" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
+      <Association Name="dvent_Preset_Section" Member="Preset" Storage="_dvent_Preset" ThisKey="PresetID" OtherKey="PresetID" Type="Preset" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_Preset" Member="Presets">
+    <Type Name="Preset">
+      <Column Name="PresetID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="IdealTemperature" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TemperatureThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdealLightIntensity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LightIntensityTreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdealHumidity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HumidityThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="IsGlobal" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="dvent_Preset_Section" Member="Sections" ThisKey="PresetID" OtherKey="PresetID" Type="Section" />
+      <Association Name="User_dvent_Preset" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

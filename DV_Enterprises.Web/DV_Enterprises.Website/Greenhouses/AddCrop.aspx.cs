@@ -21,7 +21,7 @@ public partial class Greenhouses_AddCrop : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        var c = new Crop
+        var c = new Preset
         {
             CropID = 0,
             Name = txtCropName.Text,

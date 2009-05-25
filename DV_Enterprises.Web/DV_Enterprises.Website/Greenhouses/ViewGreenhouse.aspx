@@ -26,7 +26,7 @@
                         <asp:Label ID="lblSectionName" runat="server" Text='<%# "Name: " + DataBinder.Eval(Container.DataItem, "Name") %>' />
                     </td>
                     <td style="width:200px; text-align:center">
-                        <asp:Label ID="lblCrop" runat="server" Text='<%# "Crop: " + DataBinder.Eval(Container.DataItem, "Crop") %>' />
+                        <asp:Label ID="lblCrop" runat="server" Text='<%# "Preset: " + DataBinder.Eval(Container.DataItem, "Preset") %>' />
                     </td>
                     <td style="width:200px; text-align:right">
                         <asp:LinkButton ID="lnkBtnEditSection" runat="server" Text="Edit" ForeColor="Blue" Font-Underline="true" CommandArgument='<%# DataBinder.Eval(Container.DataItem, "SectionID") %>' OnClick="lnkBtnEditSection_Click"  />
@@ -73,7 +73,7 @@
     
     <asp:LinqDataSource ID="LinqDataSource" runat="server" 
             ContextTypeName="DV_Enterprises.Web.Data.DataAccess.SqlRepository.DataContext" 
-            Select="new (SectionID, Name, Crop)" TableName="Sections" 
+            Select="new (SectionID, Name, Preset)" TableName="Sections" 
             Where="GreenhouseID == @GreenhouseID">
                 <WhereParameters>
                     <asp:SessionParameter Name="GreenhouseID" SessionField="GreenhouseID" 
@@ -83,7 +83,7 @@
         
     <asp:SqlDataSource ID="SqlDataSource" runat="server" 
         ConnectionString="<%$ ConnectionStrings:ASPNETDBConnectionString %>"
-        SelectCommand="SELECT S.Name AS Name, C.Name AS Crop, S.SectionID FROM [dvent_Section] S INNER JOIN [dvent_Crop] C ON S.CropID = C.CropID WHERE ([GreenhouseID] = @GreenhouseID)">
+        SelectCommand="SELECT S.Name AS Name, C.Name AS Preset, S.SectionID FROM [dvent_Section] S INNER JOIN [dvent_Crop] C ON S.CropID = C.CropID WHERE ([GreenhouseID] = @GreenhouseID)">
         <SelectParameters>
             <asp:SessionParameter DefaultValue="&quot;&quot;" Name="GreenhouseID" 
                 SessionField="GreenhouseID" Type="Int32" />

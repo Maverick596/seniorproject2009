@@ -6,7 +6,7 @@
     <asp:Label ID="Label1" runat="server" Text="Section Name"></asp:Label>
 &nbsp;&nbsp;<asp:TextBox ID="txtSectionName" runat="server"></asp:TextBox>
     <br />
-    <asp:Label ID="Label8" runat="server" Text="Crop Name"></asp:Label>
+    <asp:Label ID="Label8" runat="server" Text="Preset Name"></asp:Label>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:DropDownList ID="ddlCropName" runat="server" 
         DataSourceID="LinqDataSource1" DataTextField="Name" 
