@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="NewSection.aspx.cs" Inherits="Greenhouses_NewSection" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/Template.master" AutoEventWireup="true" CodeFile="NewSection.aspx.cs" Inherits="Greenhouses_NewSection" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -11,19 +11,19 @@
     <asp:DropDownList ID="ddlCropName" runat="server" 
         DataSourceID="LinqDataSource1" DataTextField="Name" 
         DataValueField="CropID" AutoPostBack="True"> </asp:DropDownList>
+    <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
+        ContextTypeName="DV_Enterprises.Web.Data.DataAccess.SqlRepository.DataContext" 
+        TableName="Presets" Select="new (Name, PresetID)">
+    </asp:LinqDataSource>
+    
     <br />
-    <br />
+
     <asp:Label ID="Label2" runat="server" Text="Ideal Temperature"></asp:Label>
-&nbsp;
     <asp:DropDownList ID="ddlTemp" runat="server" 
          DataTextField="IdealTemperature" 
         DataValueField="IdealTemperature" DataSourceID="LinqDataSource1">
     </asp:DropDownList>
-    <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
-        ContextTypeName="DV_Enterprises.Web.Data.DataAccess.SqlRepository.DataContext" 
-        TableName="Crops">
-    </asp:LinqDataSource>
-&nbsp;<br />
+    <br />
     <asp:Label ID="Label3" runat="server" Text="Temperature Threshold"></asp:Label>
 &nbsp;
     <asp:DropDownList ID="ddlTempThreshold" runat="server" 
