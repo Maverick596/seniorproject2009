@@ -1,4 +1,4 @@
-﻿%<%@ Page Language="C#" AutoEventWireup="true" CodeFile="NewGreenhouse.aspx.cs" Inherits="Greenhouses_NewGreenhouse" Title="New Greenhouse" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="NewGreenhouse.aspx.cs" Inherits="Greenhouses_NewGreenhouse" Title="New Greenhouse" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,13 +8,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="text-align:center">
+        <div id="content"><div class="inner">
     
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
     <table width="400px">
         <tr>
             <td colspan="3" align="center">
@@ -101,7 +96,8 @@
     <br />
     <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" />&nbsp;
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClientClick="self.close();" />
-    </div>
+    
+    </div></div>
     </form>
 </body>
 </html>

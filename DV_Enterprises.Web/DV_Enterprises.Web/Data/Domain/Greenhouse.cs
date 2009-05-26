@@ -19,9 +19,28 @@ namespace DV_Enterprises.Web.Data.Domain
         #region Instance properties
 
         public int ID { get; set; }
-        public Address Address { get; set; }
-        public LazyList<Section> Sections { get; set; }
-        public List<Guid> UserIDs { get; set; }
+        public int AddressID { get; set; }
+
+        private Address _address;
+        public Address Address
+        {
+            get { return _address ?? (Address = Address.Find(AddressID)); }
+            set { _address = value; }
+        }
+
+        private LazyList<Section> _sections;
+        public LazyList<Section> Sections
+        {
+            get { return _sections ?? (Sections = new LazyList<Section>(LoadSections(ID))); }
+            set { _sections = value; }
+        }
+
+        private List<Guid> _userIDs;
+        public List<Guid> UserIDs
+        {
+            get { return _userIDs ?? (UserIDs = LoadUsers(Sections)); }
+            set { _userIDs = value; }
+        }
 
         #endregion
 
@@ -45,15 +64,16 @@ namespace DV_Enterprises.Web.Data.Domain
         {
             dc = dc ?? Conn.GetContext();
             var r = from g in dc.Greenhouses
-                    let location = Address.Find(dc, g.Address.AddressID)
-                    let sections = LoadSections(dc, g.GreenhouseID)
-                    let users = LoadUsers(sections)
+                    //let location = Address.Find(dc, g.Address.AddressID)
+                    //let sections = LoadSections(dc, g.GreenhouseID)
+                    //let users = LoadUsers(sections)
                     select new Greenhouse
                                {
                                    ID = g.GreenhouseID,
-                                   Address = location,
-                                   Sections = new LazyList<Section>(sections),
-                                   UserIDs = users
+                                   //Address = location,
+                                   AddressID = g.AddressID,
+                                   //Sections = new LazyList<Section>(sections),
+                                   //UserIDs = users
                                };
             return r.ToList();
         }
@@ -98,27 +118,30 @@ namespace DV_Enterprises.Web.Data.Domain
         public static int Save(DataContext dc, Greenhouse greenhouse)
         {
             dc = dc ?? Conn.GetContext();
-                var dbGreenhouse = dc.Greenhouses.Where(g => g.GreenhouseID == greenhouse.ID).SingleOrDefault();
-                var isNew = false;
-                if (dbGreenhouse == null)
-                {
-                    dbGreenhouse = new DataAccess.SqlRepository.Greenhouse();
-                    isNew = true;
-                }
-
-                if (greenhouse.Address != null)
-                    greenhouse.Address.Save();
-
-                //foreach (Section section in greenhouse.Sections)
-                //{
-                //    section.Save();
-                //}
-
-                if (isNew)
-                    dc.Greenhouses.InsertOnSubmit(dbGreenhouse);
-                dc.SubmitChanges();
-                return dbGreenhouse.GreenhouseID;
+            var dbGreenhouse = dc.Greenhouses.Where(g => g.GreenhouseID == greenhouse.ID).SingleOrDefault();
+            var isNew = false;
+            if (dbGreenhouse == null)
+            {
+                dbGreenhouse = new DataAccess.SqlRepository.Greenhouse();
+                isNew = true;
             }
+
+            if (greenhouse.Address != null)
+                dbGreenhouse.AddressID = greenhouse.Address.Save();
+
+            if (isNew)
+                dc.Greenhouses.InsertOnSubmit(dbGreenhouse);
+            dc.SubmitChanges();
+
+            greenhouse.ID = dbGreenhouse.GreenhouseID;
+
+            foreach (Section section in greenhouse.Sections)
+            {
+                section.Save();
+            }
+
+            return greenhouse.ID;
+        }
 
         /// <summary>
         /// Delete a single greenhouse
@@ -157,9 +180,15 @@ namespace DV_Enterprises.Web.Data.Domain
             return r;
         }
 
+        private static IQueryable<Section> LoadSections(int gId)
+        {
+            var r = Section.All().Where(s => s.GreenhouseID == gId);
+            return r;
+        }
+
         private static List<Guid> LoadUsers(IEnumerable<Section> sections)
         {
-            List<Guid> result = new List<Guid>();
+            var result = new List<Guid>();
             foreach (var section in sections)
             {
                 result.Add(section.UserID);

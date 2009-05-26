@@ -72,8 +72,8 @@
     </asp:ListView>--%>
     
     <asp:LinqDataSource ID="LinqDataSource" runat="server" 
-            ContextTypeName="DV_Enterprises.Web.Data.DataAccess.SqlRepository.DataContext" 
-            Select="new (SectionID, Name, Preset)" TableName="Sections" 
+            
+        ContextTypeName="DV_Enterprises.Web.Data.DataAccess.SqlRepository.DataContext" TableName="Addresses" 
             Where="GreenhouseID == @GreenhouseID">
                 <WhereParameters>
                     <asp:SessionParameter Name="GreenhouseID" SessionField="GreenhouseID" 
@@ -82,11 +82,7 @@
         </asp:LinqDataSource>
         
     <asp:SqlDataSource ID="SqlDataSource" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:ASPNETDBConnectionString %>"
-        SelectCommand="SELECT S.Name AS Name, C.Name AS Preset, S.SectionID FROM [dvent_Section] S INNER JOIN [dvent_Crop] C ON S.CropID = C.CropID WHERE ([GreenhouseID] = @GreenhouseID)">
-        <SelectParameters>
-            <asp:SessionParameter DefaultValue="&quot;&quot;" Name="GreenhouseID" 
-                SessionField="GreenhouseID" Type="Int32" />
-        </SelectParameters>
+        ConnectionString="<%$ ConnectionStrings:LocalSqlServer %>"
+        SelectCommand="SELECT * FROM [dvent_Section]">
     </asp:SqlDataSource>
 </asp:Content>
