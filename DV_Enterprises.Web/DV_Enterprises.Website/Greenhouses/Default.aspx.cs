@@ -20,8 +20,24 @@ namespace Greenhouses
 
         public void LoadData(IList<Greenhouse> greenhouses)
         {
-            rptGreenHouses.DataSource = greenhouses;
-            rptGreenHouses.DataBind();
+            lvGreenhouses.DataSource = greenhouses;
+            lvGreenhouses.DataBind();
+        }
+
+        protected void lvGreenhouses_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            var linkGreenhouseName = e.Item.FindControl("linkGreenhouseName") as HyperLink;
+            var litGreenhouseId = e.Item.FindControl("litGreenhouseId") as Literal;
+            var lbView = e.Item.FindControl("lbView") as LinkButton;
+
+            lbView.Attributes.Add("GreenhouseID", litGreenhouseId.Text);
+            linkGreenhouseName.NavigateUrl = string.Format("~/Greenhouses/ViewGreenhouse.aspx?GreenhouseID={0}",litGreenhouseId.Text);
+        }
+
+        protected void lbView_Click(object sender, EventArgs e)
+        {
+            var lbView = sender as LinkButton;
+            _presenter.Redirector.GoToViewGreenhouse(Convert.ToInt32(lbView.Attributes["GreenhouseID"]));
         }
 
         protected void btnSelectGreenhouse_Click(object sender, EventArgs e)
@@ -41,17 +57,12 @@ namespace Greenhouses
 
         protected void btnNewGreenhouse_Click(object sender, EventArgs e)
         {
-            String clientscript = "";
-            String strWindowName = "";
-            String strWinAttrib = "";
-            String strUrl = "";
-
-            strWindowName = "NewGreenhouse";
-            strUrl = "NewGreenhouse.aspx";
-            strWinAttrib = "toolbar=no,menu=no,status=no,width=420,height=400";
-            clientscript = "window.open('" + strUrl + "','" + strWindowName + "','" + strWinAttrib + "')";
+            const string windowName = "NewGreenhouse";
+            const string url = "NewGreenhouse.aspx";
+            const string windowAttribute = "toolbar=no,menu=no,status=no,width=420,height=400";
+            var clientscript = string.Format("window.open('{0}', '{1}', '{2}')", url, windowName, windowAttribute);
 
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
         }
-}
+    }
 }

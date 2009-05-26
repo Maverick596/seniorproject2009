@@ -12,16 +12,18 @@ namespace DV_Enterprises.Web.Presenter.Greenhouses
     {
         private IDefault _view;
         private readonly IWebContext _webContext;
+        public readonly IRedirector Redirector;
 
         public DefaultPresenter()
         {
             _webContext = ObjectFactory.GetInstance<IWebContext>();
+            Redirector = ObjectFactory.GetInstance<IRedirector>();
         }
 
         public void Init(IDefault view)
         {
             _view = view;
-            if (_webContext.IsAdmin(_view.User.Identity.Name))
+            if (_view.User.IsInRole("administrator"))
             {
                 _view.LoadData(Greenhouse.All());
             }

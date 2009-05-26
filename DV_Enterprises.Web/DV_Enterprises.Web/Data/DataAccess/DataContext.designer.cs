@@ -45,15 +45,15 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
-    partial void InsertAddress(Address instance);
-    partial void UpdateAddress(Address instance);
-    partial void DeleteAddress(Address instance);
     partial void InsertSection(Section instance);
     partial void UpdateSection(Section instance);
     partial void DeleteSection(Section instance);
     partial void InsertPreset(Preset instance);
     partial void UpdatePreset(Preset instance);
     partial void DeletePreset(Preset instance);
+    partial void InsertAddress(Address instance);
+    partial void UpdateAddress(Address instance);
+    partial void DeleteAddress(Address instance);
     #endregion
 		
 		public DataContext() : 
@@ -126,14 +126,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		public System.Data.Linq.Table<Address> Addresses
-		{
-			get
-			{
-				return this.GetTable<Address>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Section> Sections
 		{
 			get
@@ -147,6 +139,14 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			get
 			{
 				return this.GetTable<Preset>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Address> Addresses
+		{
+			get
+			{
+				return this.GetTable<Address>();
 			}
 		}
 	}
@@ -239,7 +239,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Address_Greenhouse", Storage="_Address", ThisKey="AddressID", OtherKey="AddressID", IsForeignKey=true)]
+		[Association(Name="dvent_Address_Greenhouse", Storage="_Address", ThisKey="AddressID", OtherKey="AddressID", IsForeignKey=true)]
 		public Address Address
 		{
 			get
@@ -798,7 +798,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="User_dvent_Preset", Storage="_dvent_Presets", ThisKey="UserId", OtherKey="UserID")]
+		[Association(Name="User_Preset", Storage="_dvent_Presets", ThisKey="UserId", OtherKey="UserID")]
 		public EntitySet<Preset> Presets
 		{
 			get
@@ -1197,312 +1197,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[Table(Name="dbo.dvent_Address")]
-	public partial class Address : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _AddressID;
-		
-		private string _City;
-		
-		private string _StateOrProvince;
-		
-		private string _StreetLine1;
-		
-		private string _StreetLine2;
-		
-		private int _Zip;
-		
-		private string _Country;
-		
-		private bool _IsDefault;
-		
-		private System.DateTime _DateCreated;
-		
-		private System.DateTime _DateUpdated;
-		
-		private EntitySet<Greenhouse> _Greenhouses;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAddressIDChanging(int value);
-    partial void OnAddressIDChanged();
-    partial void OnCityChanging(string value);
-    partial void OnCityChanged();
-    partial void OnStateOrProvinceChanging(string value);
-    partial void OnStateOrProvinceChanged();
-    partial void OnStreetLine1Changing(string value);
-    partial void OnStreetLine1Changed();
-    partial void OnStreetLine2Changing(string value);
-    partial void OnStreetLine2Changed();
-    partial void OnZipChanging(int value);
-    partial void OnZipChanged();
-    partial void OnCountryChanging(string value);
-    partial void OnCountryChanged();
-    partial void OnIsDefaultChanging(bool value);
-    partial void OnIsDefaultChanged();
-    partial void OnDateCreatedChanging(System.DateTime value);
-    partial void OnDateCreatedChanged();
-    partial void OnDateUpdatedChanging(System.DateTime value);
-    partial void OnDateUpdatedChanged();
-    #endregion
-		
-		public Address()
-		{
-			this._Greenhouses = new EntitySet<Greenhouse>(new Action<Greenhouse>(this.attach_Greenhouses), new Action<Greenhouse>(this.detach_Greenhouses));
-			OnCreated();
-		}
-		
-		[Column(Storage="_AddressID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AddressID
-		{
-			get
-			{
-				return this._AddressID;
-			}
-			set
-			{
-				if ((this._AddressID != value))
-				{
-					this.OnAddressIDChanging(value);
-					this.SendPropertyChanging();
-					this._AddressID = value;
-					this.SendPropertyChanged("AddressID");
-					this.OnAddressIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_City", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string City
-		{
-			get
-			{
-				return this._City;
-			}
-			set
-			{
-				if ((this._City != value))
-				{
-					this.OnCityChanging(value);
-					this.SendPropertyChanging();
-					this._City = value;
-					this.SendPropertyChanged("City");
-					this.OnCityChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_StateOrProvince", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string StateOrProvince
-		{
-			get
-			{
-				return this._StateOrProvince;
-			}
-			set
-			{
-				if ((this._StateOrProvince != value))
-				{
-					this.OnStateOrProvinceChanging(value);
-					this.SendPropertyChanging();
-					this._StateOrProvince = value;
-					this.SendPropertyChanged("StateOrProvince");
-					this.OnStateOrProvinceChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_StreetLine1", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string StreetLine1
-		{
-			get
-			{
-				return this._StreetLine1;
-			}
-			set
-			{
-				if ((this._StreetLine1 != value))
-				{
-					this.OnStreetLine1Changing(value);
-					this.SendPropertyChanging();
-					this._StreetLine1 = value;
-					this.SendPropertyChanged("StreetLine1");
-					this.OnStreetLine1Changed();
-				}
-			}
-		}
-		
-		[Column(Storage="_StreetLine2", DbType="NVarChar(255)")]
-		public string StreetLine2
-		{
-			get
-			{
-				return this._StreetLine2;
-			}
-			set
-			{
-				if ((this._StreetLine2 != value))
-				{
-					this.OnStreetLine2Changing(value);
-					this.SendPropertyChanging();
-					this._StreetLine2 = value;
-					this.SendPropertyChanged("StreetLine2");
-					this.OnStreetLine2Changed();
-				}
-			}
-		}
-		
-		[Column(Storage="_Zip", DbType="Int NOT NULL")]
-		public int Zip
-		{
-			get
-			{
-				return this._Zip;
-			}
-			set
-			{
-				if ((this._Zip != value))
-				{
-					this.OnZipChanging(value);
-					this.SendPropertyChanging();
-					this._Zip = value;
-					this.SendPropertyChanged("Zip");
-					this.OnZipChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Country", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Country
-		{
-			get
-			{
-				return this._Country;
-			}
-			set
-			{
-				if ((this._Country != value))
-				{
-					this.OnCountryChanging(value);
-					this.SendPropertyChanging();
-					this._Country = value;
-					this.SendPropertyChanged("Country");
-					this.OnCountryChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_IsDefault", DbType="Bit NOT NULL")]
-		public bool IsDefault
-		{
-			get
-			{
-				return this._IsDefault;
-			}
-			set
-			{
-				if ((this._IsDefault != value))
-				{
-					this.OnIsDefaultChanging(value);
-					this.SendPropertyChanging();
-					this._IsDefault = value;
-					this.SendPropertyChanged("IsDefault");
-					this.OnIsDefaultChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
-		public System.DateTime DateCreated
-		{
-			get
-			{
-				return this._DateCreated;
-			}
-			set
-			{
-				if ((this._DateCreated != value))
-				{
-					this.OnDateCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateCreated = value;
-					this.SendPropertyChanged("DateCreated");
-					this.OnDateCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
-		public System.DateTime DateUpdated
-		{
-			get
-			{
-				return this._DateUpdated;
-			}
-			set
-			{
-				if ((this._DateUpdated != value))
-				{
-					this.OnDateUpdatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateUpdated = value;
-					this.SendPropertyChanged("DateUpdated");
-					this.OnDateUpdatedChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Address_Greenhouse", Storage="_Greenhouses", ThisKey="AddressID", OtherKey="AddressID")]
-		public EntitySet<Greenhouse> Greenhouses
-		{
-			get
-			{
-				return this._Greenhouses;
-			}
-			set
-			{
-				this._Greenhouses.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Greenhouses(Greenhouse entity)
-		{
-			this.SendPropertyChanging();
-			entity.Address = this;
-		}
-		
-		private void detach_Greenhouses(Greenhouse entity)
-		{
-			this.SendPropertyChanging();
-			entity.Address = null;
 		}
 	}
 	
@@ -2012,7 +1706,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Preset_Section", Storage="_dvent_Preset", ThisKey="PresetID", OtherKey="PresetID", IsForeignKey=true)]
+		[Association(Name="Preset_Section", Storage="_dvent_Preset", ThisKey="PresetID", OtherKey="PresetID", IsForeignKey=true)]
 		public Preset Preset
 		{
 			get
@@ -2394,7 +2088,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Preset_Section", Storage="_Sections", ThisKey="PresetID", OtherKey="PresetID")]
+		[Association(Name="Preset_Section", Storage="_Sections", ThisKey="PresetID", OtherKey="PresetID")]
 		public EntitySet<Section> Sections
 		{
 			get
@@ -2407,7 +2101,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="User_dvent_Preset", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
+		[Association(Name="User_Preset", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -2471,6 +2165,312 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		{
 			this.SendPropertyChanging();
 			entity.Preset = null;
+		}
+	}
+	
+	[Table(Name="dbo.dvent_Address")]
+	public partial class Address : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _AddressID;
+		
+		private string _City;
+		
+		private string _StateOrProvince;
+		
+		private string _StreetLine1;
+		
+		private string _StreetLine2;
+		
+		private int _Zip;
+		
+		private string _Country;
+		
+		private bool _IsDefault;
+		
+		private System.DateTime _DateCreated;
+		
+		private System.DateTime _DateUpdated;
+		
+		private EntitySet<Greenhouse> _Greenhouses;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAddressIDChanging(int value);
+    partial void OnAddressIDChanged();
+    partial void OnCityChanging(string value);
+    partial void OnCityChanged();
+    partial void OnStateOrProvinceChanging(string value);
+    partial void OnStateOrProvinceChanged();
+    partial void OnStreetLine1Changing(string value);
+    partial void OnStreetLine1Changed();
+    partial void OnStreetLine2Changing(string value);
+    partial void OnStreetLine2Changed();
+    partial void OnZipChanging(int value);
+    partial void OnZipChanged();
+    partial void OnCountryChanging(string value);
+    partial void OnCountryChanged();
+    partial void OnIsDefaultChanging(bool value);
+    partial void OnIsDefaultChanged();
+    partial void OnDateCreatedChanging(System.DateTime value);
+    partial void OnDateCreatedChanged();
+    partial void OnDateUpdatedChanging(System.DateTime value);
+    partial void OnDateUpdatedChanged();
+    #endregion
+		
+		public Address()
+		{
+			this._Greenhouses = new EntitySet<Greenhouse>(new Action<Greenhouse>(this.attach_Greenhouses), new Action<Greenhouse>(this.detach_Greenhouses));
+			OnCreated();
+		}
+		
+		[Column(Storage="_AddressID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int AddressID
+		{
+			get
+			{
+				return this._AddressID;
+			}
+			set
+			{
+				if ((this._AddressID != value))
+				{
+					this.OnAddressIDChanging(value);
+					this.SendPropertyChanging();
+					this._AddressID = value;
+					this.SendPropertyChanged("AddressID");
+					this.OnAddressIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_City", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this.OnCityChanging(value);
+					this.SendPropertyChanging();
+					this._City = value;
+					this.SendPropertyChanged("City");
+					this.OnCityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StateOrProvince", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string StateOrProvince
+		{
+			get
+			{
+				return this._StateOrProvince;
+			}
+			set
+			{
+				if ((this._StateOrProvince != value))
+				{
+					this.OnStateOrProvinceChanging(value);
+					this.SendPropertyChanging();
+					this._StateOrProvince = value;
+					this.SendPropertyChanged("StateOrProvince");
+					this.OnStateOrProvinceChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StreetLine1", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string StreetLine1
+		{
+			get
+			{
+				return this._StreetLine1;
+			}
+			set
+			{
+				if ((this._StreetLine1 != value))
+				{
+					this.OnStreetLine1Changing(value);
+					this.SendPropertyChanging();
+					this._StreetLine1 = value;
+					this.SendPropertyChanged("StreetLine1");
+					this.OnStreetLine1Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_StreetLine2", DbType="NVarChar(255)")]
+		public string StreetLine2
+		{
+			get
+			{
+				return this._StreetLine2;
+			}
+			set
+			{
+				if ((this._StreetLine2 != value))
+				{
+					this.OnStreetLine2Changing(value);
+					this.SendPropertyChanging();
+					this._StreetLine2 = value;
+					this.SendPropertyChanged("StreetLine2");
+					this.OnStreetLine2Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_Zip", DbType="Int NOT NULL")]
+		public int Zip
+		{
+			get
+			{
+				return this._Zip;
+			}
+			set
+			{
+				if ((this._Zip != value))
+				{
+					this.OnZipChanging(value);
+					this.SendPropertyChanging();
+					this._Zip = value;
+					this.SendPropertyChanged("Zip");
+					this.OnZipChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Country", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Country
+		{
+			get
+			{
+				return this._Country;
+			}
+			set
+			{
+				if ((this._Country != value))
+				{
+					this.OnCountryChanging(value);
+					this.SendPropertyChanging();
+					this._Country = value;
+					this.SendPropertyChanged("Country");
+					this.OnCountryChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsDefault", DbType="Bit NOT NULL")]
+		public bool IsDefault
+		{
+			get
+			{
+				return this._IsDefault;
+			}
+			set
+			{
+				if ((this._IsDefault != value))
+				{
+					this.OnIsDefaultChanging(value);
+					this.SendPropertyChanging();
+					this._IsDefault = value;
+					this.SendPropertyChanged("IsDefault");
+					this.OnIsDefaultChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCreated
+		{
+			get
+			{
+				return this._DateCreated;
+			}
+			set
+			{
+				if ((this._DateCreated != value))
+				{
+					this.OnDateCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCreated = value;
+					this.SendPropertyChanged("DateCreated");
+					this.OnDateCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateUpdated
+		{
+			get
+			{
+				return this._DateUpdated;
+			}
+			set
+			{
+				if ((this._DateUpdated != value))
+				{
+					this.OnDateUpdatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateUpdated = value;
+					this.SendPropertyChanged("DateUpdated");
+					this.OnDateUpdatedChanged();
+				}
+			}
+		}
+		
+		[Association(Name="dvent_Address_Greenhouse", Storage="_Greenhouses", ThisKey="AddressID", OtherKey="AddressID")]
+		public EntitySet<Greenhouse> Greenhouses
+		{
+			get
+			{
+				return this._Greenhouses;
+			}
+			set
+			{
+				this._Greenhouses.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Greenhouses(Greenhouse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Address = this;
+		}
+		
+		private void detach_Greenhouses(Greenhouse entity)
+		{
+			this.SendPropertyChanging();
+			entity.Address = null;
 		}
 	}
 }

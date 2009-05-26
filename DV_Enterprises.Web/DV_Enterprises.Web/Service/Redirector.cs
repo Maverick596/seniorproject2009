@@ -42,6 +42,26 @@ namespace DV_Enterprises.Web.Service
             Redirect("~/Products/ManageProduct.aspx");
         }
 
+        public void GoToGreenhouses()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GoToViewGreenhouse(int productId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GoToManageGreenhouse(int productId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GoToManageGreenhouse()
+        {
+            throw new NotImplementedException();
+        }
+
 
         public void GoToHomePage()
         {

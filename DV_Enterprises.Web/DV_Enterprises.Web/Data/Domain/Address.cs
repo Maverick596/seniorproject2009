@@ -37,7 +37,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// Find all Address's
         /// </summary>
         /// <returns>return an IQueryable collection of Address</returns>
-        public static IList<Address> All()
+        public static IEnumerable<Address> All()
         {
             return All(null);   
         }
@@ -47,7 +47,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// </summary>
         /// <param name="dc">DataContext</param>
         /// <returns>return an IQueryable collection of Address</returns>
-        public static IList<Address> All(DataContext dc)
+        public static IEnumerable<Address> All(DataContext dc)
         {
             dc = dc ?? Conn.GetContext();
             var r = from a in dc.Addresses
@@ -85,8 +85,8 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns a Address</returns>
         public static Address Find(DataContext dc, int id)
         {
-            var g = All(dc).Where(l => l.ID == id).SingleOrDefault();
-            return g ?? new Address {ID = 0};
+            var address = All(dc).Where(a => a.ID == id).SingleOrDefault();
+            return address ?? new Address {ID = 0};
         }
 
         /// <summary>

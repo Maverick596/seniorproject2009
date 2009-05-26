@@ -13,39 +13,39 @@ namespace Greenhouses
         private ViewGreenhousePresenter _presenter;
 
         //The selected GreenhouseID from the Greenhouses/Default page
-        private static int ManagingGreenhouseID = 0;
+        //private static int ManagingGreenhouseID = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             _presenter = new ViewGreenhousePresenter();
             _presenter.Init(this, IsPostBack);
 
-            if (Session["greenhouseID"] == null)
-            {
-                Response.Redirect("~/Greenhouses/Default.aspx");
-            }
+            //if (Session["greenhouseID"] == null)
+            //{
+            //    Response.Redirect("~/Greenhouses/Default.aspx");
+            //}
 
-            if (!Page.IsPostBack)
-            {
-                ManagingGreenhouseID = Int32.Parse(Session["greenhouseID"].ToString());
-                lblGreenhouseID.Text = ManagingGreenhouseID.ToString();
-            }
+            //if (!Page.IsPostBack)
+            //{
+            //    ManagingGreenhouseID = Int32.Parse(Session["greenhouseID"].ToString());
+            //    lblGreenhouseID.Text = ManagingGreenhouseID.ToString();
+            //}
         }
 
         public void LoadData(Greenhouse greenhouse)
         {
-            return; //Does nothing now ???
+            lblGreenhouseTitle.Text = greenhouse.ToString();
         }
 
         public void LoadLocation(Address address)
         {
-            lblAddress.Text = address.StreetLine1;
+            //lblAddress.Text = address.StreetLine1;
         }
 
         public void LoadSection(List<Section> sections)
         {
-            rptSections.DataSource = sections;
-            rptSections.DataBind();
+            lvSections.DataSource = sections;
+            lvSections.DataBind();
         }
 
         protected void btnNewSection_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace Greenhouses
             var button = sender as LinkButton;
 
             String sectionID = button.CommandArgument;
-            
+
             String clientscript = "";
             String strWindowName = "";
             String strWinAttrib = "";
@@ -96,5 +96,65 @@ namespace Greenhouses
 
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
         }
+
+        protected void lvSections_ItemEditing(object sender, ListViewEditEventArgs e)
+        {
+            CloseInsert();
+            lvSections.EditIndex = e.NewEditIndex;
+            _presenter.Init(this, IsPostBack);
+        }
+
+
+        protected void lvSections_ItemInserting(object sender, ListViewInsertEventArgs e) { }
+
+
+        protected void lvSections_ItemCanceling(object sender, ListViewCancelEventArgs e)
+        {
+            if (e.CancelMode == ListViewCancelMode.CancelingInsert)
+            {
+                CloseInsert();
+            }
+            else
+            {
+                lvSections.EditIndex = -1;
+            }
+            _presenter.Init(this, IsPostBack);
+        }
+
+        protected void lvSections_ItemUpdating(object sender, ListViewUpdateEventArgs e) { }
+
+        protected void lvSections_ItemDeleting(object sender, ListViewDeleteEventArgs e) { }
+
+        protected void lvSections_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "Insert":
+                    // Save new section
+                    break;
+                case "Update":
+                    // update editied section
+                    break;
+                case "Delete":
+                    // delete old section
+                    break;
+            }
+        }
+
+        protected void lbNewSection_Click(object sender, EventArgs e)
+        {
+            lvSections.EditIndex = -1;
+            lvSections.InsertItemPosition = InsertItemPosition.LastItem;
+            ((LinkButton)sender).Visible = false;
+
+        }
+
+        private void CloseInsert()
+        {
+            lvSections.InsertItemPosition = InsertItemPosition.None;
+            lvSections.FindControl("lbNewSection").Visible = true;
+        }
+
+
     }
 }

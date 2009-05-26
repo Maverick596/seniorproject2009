@@ -236,5 +236,14 @@ namespace DV_Enterprises.Web.Data.Domain
         }
 
         #endregion
+
+        # region object overrides
+
+        public override string ToString()
+        {
+            return string.Format("Greenhouse {0}", ID);
+        }
+
+        #endregion
     }
 }

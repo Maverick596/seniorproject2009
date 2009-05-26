@@ -65,5 +65,6 @@
     <asp:Button ID="btnCancel" runat="server"  Text="Cancel" BorderStyle="Double" 
         Height="18px" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-</asp:Content>
+
+    </asp:Content>
 
