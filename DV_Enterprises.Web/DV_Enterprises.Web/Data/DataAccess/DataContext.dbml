@@ -1,27 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="dvent_web" EntityNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" ContextNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" Class="DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=dvent_web;Integrated Security=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="DVENTDBConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.dvent_Greenhouse" Member="Greenhouses">
-    <Type Name="Greenhouse">
-      <Column Name="GreenhouseID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Greenhouse_Section" Member="Sections" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Section" />
-      <Association Name="dvent_Address_Greenhouse" Member="Address" ThisKey="AddressID" OtherKey="AddressID" Type="Address" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.dvent_Task" Member="Tasks">
-    <Type Name="Task">
-      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="TaskTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="SectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="TaskType_Task" Member="TaskType" ThisKey="TaskTypeID" OtherKey="TaskTypeId" Type="TaskType" IsForeignKey="true" />
-      <Association Name="Section_Task" Member="Section" ThisKey="SectionID" OtherKey="SectionID" Type="Section" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.aspnet_Users" Member="Users">
     <Type Name="User">
       <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -33,13 +12,14 @@
       <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="User_Section" Member="Sections" ThisKey="UserId" OtherKey="UserID" Type="Section" />
       <Association Name="User_Preset" Member="Presets" Storage="_dvent_Presets" ThisKey="UserId" OtherKey="UserID" Type="Preset" />
+      <Association Name="User_GreenhouseUser" Member="GreenhouseUsers" ThisKey="UserId" OtherKey="UserId" Type="GreenhouseUser" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_TaskType" Member="TaskTypes">
     <Type Name="TaskType">
       <Column Name="TaskTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(253) NOT NULL" CanBeNull="false" />
-      <Association Name="TaskType_Task" Member="Tasks" ThisKey="TaskTypeId" OtherKey="TaskTypeID" Type="Task" />
+      <Association Name="TaskType_dvent_Task" Member="Tasks" Storage="_dvent_Tasks" ThisKey="TaskTypeId" OtherKey="TaskTypeID" Type="Task" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Product" Member="Products">
@@ -72,10 +52,10 @@
       <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Section_Task" Member="Tasks" ThisKey="SectionID" OtherKey="SectionID" Type="Task" />
+      <Association Name="Section_dvent_Task" Member="Tasks" Storage="_dvent_Tasks" ThisKey="SectionID" OtherKey="SectionID" Type="Task" />
       <Association Name="User_Section" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
-      <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
       <Association Name="Preset_Section" Member="Preset" Storage="_dvent_Preset" ThisKey="PresetID" OtherKey="PresetID" Type="Preset" IsForeignKey="true" />
+      <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Preset" Member="Presets">
@@ -96,19 +76,44 @@
       <Association Name="User_Preset" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.dvent_Address" Member="Addresses">
-    <Type Name="Address">
-      <Column Name="AddressID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+  <Table Name="dbo.dvent_Greenhouse" Member="Greenhouses">
+    <Type Name="Greenhouse">
+      <Column Name="GreenhouseID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="City" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="StateOrProvince" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="StreetLine1" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="StreetLine2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Zip" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Zip" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Country" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="IsDefault" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="dvent_Address_Greenhouse" Member="Greenhouses" ThisKey="AddressID" OtherKey="AddressID" Type="Greenhouse" />
+      <Association Name="Greenhouse_Section" Member="Sections" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Section" />
+      <Association Name="Greenhouse_GreenhouseUser" Member="GreenhouseUsers" ThisKey="GreenhouseID" OtherKey="GreenhouseId" Type="GreenhouseUser" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_GreenhouseUser" Member="GreenhouseUsers">
+    <Type Name="GreenhouseUser">
+      <Column Name="GreenhouseUserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="GreenhouseId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsAdmin" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsApproved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="User_GreenhouseUser" Member="User" ThisKey="UserId" OtherKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="Greenhouse_GreenhouseUser" Member="Greenhouse" ThisKey="GreenhouseId" OtherKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dvent_Task" Member="Tasks">
+    <Type Name="Task">
+      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TaskTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Section_dvent_Task" Member="Section" ThisKey="SectionID" OtherKey="SectionID" Type="Section" IsForeignKey="true" />
+      <Association Name="TaskType_dvent_Task" Member="TaskType" ThisKey="TaskTypeID" OtherKey="TaskTypeId" Type="TaskType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

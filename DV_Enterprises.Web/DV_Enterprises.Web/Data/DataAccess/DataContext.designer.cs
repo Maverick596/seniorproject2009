@@ -30,12 +30,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertGreenhouse(Greenhouse instance);
-    partial void UpdateGreenhouse(Greenhouse instance);
-    partial void DeleteGreenhouse(Greenhouse instance);
-    partial void InsertTask(Task instance);
-    partial void UpdateTask(Task instance);
-    partial void DeleteTask(Task instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
@@ -51,9 +45,15 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
     partial void InsertPreset(Preset instance);
     partial void UpdatePreset(Preset instance);
     partial void DeletePreset(Preset instance);
-    partial void InsertAddress(Address instance);
-    partial void UpdateAddress(Address instance);
-    partial void DeleteAddress(Address instance);
+    partial void InsertGreenhouse(Greenhouse instance);
+    partial void UpdateGreenhouse(Greenhouse instance);
+    partial void DeleteGreenhouse(Greenhouse instance);
+    partial void InsertGreenhouseUser(GreenhouseUser instance);
+    partial void UpdateGreenhouseUser(GreenhouseUser instance);
+    partial void DeleteGreenhouseUser(GreenhouseUser instance);
+    partial void InsertTask(Task instance);
+    partial void UpdateTask(Task instance);
+    partial void DeleteTask(Task instance);
     #endregion
 		
 		public DataContext() : 
@@ -84,22 +84,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Greenhouse> Greenhouses
-		{
-			get
-			{
-				return this.GetTable<Greenhouse>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Task> Tasks
-		{
-			get
-			{
-				return this.GetTable<Task>();
-			}
 		}
 		
 		public System.Data.Linq.Table<User> Users
@@ -142,454 +126,27 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		public System.Data.Linq.Table<Address> Addresses
+		public System.Data.Linq.Table<Greenhouse> Greenhouses
 		{
 			get
 			{
-				return this.GetTable<Address>();
+				return this.GetTable<Greenhouse>();
 			}
 		}
-	}
-	
-	[Table(Name="dbo.dvent_Greenhouse")]
-	public partial class Greenhouse : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _GreenhouseID;
-		
-		private int _AddressID;
-		
-		private EntitySet<Section> _Sections;
-		
-		private EntityRef<Address> _Address;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnGreenhouseIDChanging(int value);
-    partial void OnGreenhouseIDChanged();
-    partial void OnAddressIDChanging(int value);
-    partial void OnAddressIDChanged();
-    #endregion
-		
-		public Greenhouse()
-		{
-			this._Sections = new EntitySet<Section>(new Action<Section>(this.attach_Sections), new Action<Section>(this.detach_Sections));
-			this._Address = default(EntityRef<Address>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_GreenhouseID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int GreenhouseID
+		public System.Data.Linq.Table<GreenhouseUser> GreenhouseUsers
 		{
 			get
 			{
-				return this._GreenhouseID;
-			}
-			set
-			{
-				if ((this._GreenhouseID != value))
-				{
-					this.OnGreenhouseIDChanging(value);
-					this.SendPropertyChanging();
-					this._GreenhouseID = value;
-					this.SendPropertyChanged("GreenhouseID");
-					this.OnGreenhouseIDChanged();
-				}
+				return this.GetTable<GreenhouseUser>();
 			}
 		}
 		
-		[Column(Storage="_AddressID", DbType="Int NOT NULL")]
-		public int AddressID
+		public System.Data.Linq.Table<Task> Tasks
 		{
 			get
 			{
-				return this._AddressID;
-			}
-			set
-			{
-				if ((this._AddressID != value))
-				{
-					if (this._Address.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAddressIDChanging(value);
-					this.SendPropertyChanging();
-					this._AddressID = value;
-					this.SendPropertyChanged("AddressID");
-					this.OnAddressIDChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Greenhouse_Section", Storage="_Sections", ThisKey="GreenhouseID", OtherKey="GreenhouseID")]
-		public EntitySet<Section> Sections
-		{
-			get
-			{
-				return this._Sections;
-			}
-			set
-			{
-				this._Sections.Assign(value);
-			}
-		}
-		
-		[Association(Name="dvent_Address_Greenhouse", Storage="_Address", ThisKey="AddressID", OtherKey="AddressID", IsForeignKey=true)]
-		public Address Address
-		{
-			get
-			{
-				return this._Address.Entity;
-			}
-			set
-			{
-				Address previousValue = this._Address.Entity;
-				if (((previousValue != value) 
-							|| (this._Address.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Address.Entity = null;
-						previousValue.Greenhouses.Remove(this);
-					}
-					this._Address.Entity = value;
-					if ((value != null))
-					{
-						value.Greenhouses.Add(this);
-						this._AddressID = value.AddressID;
-					}
-					else
-					{
-						this._AddressID = default(int);
-					}
-					this.SendPropertyChanged("Address");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Sections(Section entity)
-		{
-			this.SendPropertyChanging();
-			entity.Greenhouse = this;
-		}
-		
-		private void detach_Sections(Section entity)
-		{
-			this.SendPropertyChanging();
-			entity.Greenhouse = null;
-		}
-	}
-	
-	[Table(Name="dbo.dvent_Task")]
-	public partial class Task : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TaskID;
-		
-		private System.DateTime _StartTime;
-		
-		private System.DateTime _EndTime;
-		
-		private int _TaskTypeID;
-		
-		private System.DateTime _DateCreated;
-		
-		private System.Nullable<System.DateTime> _DateDeleted;
-		
-		private int _SectionID;
-		
-		private EntityRef<TaskType> _TaskType;
-		
-		private EntityRef<Section> _Section;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTaskIDChanging(int value);
-    partial void OnTaskIDChanged();
-    partial void OnStartTimeChanging(System.DateTime value);
-    partial void OnStartTimeChanged();
-    partial void OnEndTimeChanging(System.DateTime value);
-    partial void OnEndTimeChanged();
-    partial void OnTaskTypeIDChanging(int value);
-    partial void OnTaskTypeIDChanged();
-    partial void OnDateCreatedChanging(System.DateTime value);
-    partial void OnDateCreatedChanged();
-    partial void OnDateDeletedChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateDeletedChanged();
-    partial void OnSectionIDChanging(int value);
-    partial void OnSectionIDChanged();
-    #endregion
-		
-		public Task()
-		{
-			this._TaskType = default(EntityRef<TaskType>);
-			this._Section = default(EntityRef<Section>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_TaskID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int TaskID
-		{
-			get
-			{
-				return this._TaskID;
-			}
-			set
-			{
-				if ((this._TaskID != value))
-				{
-					this.OnTaskIDChanging(value);
-					this.SendPropertyChanging();
-					this._TaskID = value;
-					this.SendPropertyChanged("TaskID");
-					this.OnTaskIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
-		public System.DateTime StartTime
-		{
-			get
-			{
-				return this._StartTime;
-			}
-			set
-			{
-				if ((this._StartTime != value))
-				{
-					this.OnStartTimeChanging(value);
-					this.SendPropertyChanging();
-					this._StartTime = value;
-					this.SendPropertyChanged("StartTime");
-					this.OnStartTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_EndTime", DbType="DateTime NOT NULL")]
-		public System.DateTime EndTime
-		{
-			get
-			{
-				return this._EndTime;
-			}
-			set
-			{
-				if ((this._EndTime != value))
-				{
-					this.OnEndTimeChanging(value);
-					this.SendPropertyChanging();
-					this._EndTime = value;
-					this.SendPropertyChanged("EndTime");
-					this.OnEndTimeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_TaskTypeID", DbType="Int NOT NULL")]
-		public int TaskTypeID
-		{
-			get
-			{
-				return this._TaskTypeID;
-			}
-			set
-			{
-				if ((this._TaskTypeID != value))
-				{
-					if (this._TaskType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTaskTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._TaskTypeID = value;
-					this.SendPropertyChanged("TaskTypeID");
-					this.OnTaskTypeIDChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
-		public System.DateTime DateCreated
-		{
-			get
-			{
-				return this._DateCreated;
-			}
-			set
-			{
-				if ((this._DateCreated != value))
-				{
-					this.OnDateCreatedChanging(value);
-					this.SendPropertyChanging();
-					this._DateCreated = value;
-					this.SendPropertyChanged("DateCreated");
-					this.OnDateCreatedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DateDeleted", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DateDeleted
-		{
-			get
-			{
-				return this._DateDeleted;
-			}
-			set
-			{
-				if ((this._DateDeleted != value))
-				{
-					this.OnDateDeletedChanging(value);
-					this.SendPropertyChanging();
-					this._DateDeleted = value;
-					this.SendPropertyChanged("DateDeleted");
-					this.OnDateDeletedChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SectionID", DbType="Int NOT NULL")]
-		public int SectionID
-		{
-			get
-			{
-				return this._SectionID;
-			}
-			set
-			{
-				if ((this._SectionID != value))
-				{
-					if (this._Section.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSectionIDChanging(value);
-					this.SendPropertyChanging();
-					this._SectionID = value;
-					this.SendPropertyChanged("SectionID");
-					this.OnSectionIDChanged();
-				}
-			}
-		}
-		
-		[Association(Name="TaskType_Task", Storage="_TaskType", ThisKey="TaskTypeID", OtherKey="TaskTypeId", IsForeignKey=true)]
-		public TaskType TaskType
-		{
-			get
-			{
-				return this._TaskType.Entity;
-			}
-			set
-			{
-				TaskType previousValue = this._TaskType.Entity;
-				if (((previousValue != value) 
-							|| (this._TaskType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TaskType.Entity = null;
-						previousValue.Tasks.Remove(this);
-					}
-					this._TaskType.Entity = value;
-					if ((value != null))
-					{
-						value.Tasks.Add(this);
-						this._TaskTypeID = value.TaskTypeId;
-					}
-					else
-					{
-						this._TaskTypeID = default(int);
-					}
-					this.SendPropertyChanged("TaskType");
-				}
-			}
-		}
-		
-		[Association(Name="Section_Task", Storage="_Section", ThisKey="SectionID", OtherKey="SectionID", IsForeignKey=true)]
-		public Section Section
-		{
-			get
-			{
-				return this._Section.Entity;
-			}
-			set
-			{
-				Section previousValue = this._Section.Entity;
-				if (((previousValue != value) 
-							|| (this._Section.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Section.Entity = null;
-						previousValue.Tasks.Remove(this);
-					}
-					this._Section.Entity = value;
-					if ((value != null))
-					{
-						value.Tasks.Add(this);
-						this._SectionID = value.SectionID;
-					}
-					else
-					{
-						this._SectionID = default(int);
-					}
-					this.SendPropertyChanged("Section");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<Task>();
 			}
 		}
 	}
@@ -618,6 +175,8 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		private EntitySet<Preset> _dvent_Presets;
 		
+		private EntitySet<GreenhouseUser> _GreenhouseUsers;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -642,6 +201,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		{
 			this._Sections = new EntitySet<Section>(new Action<Section>(this.attach_Sections), new Action<Section>(this.detach_Sections));
 			this._dvent_Presets = new EntitySet<Preset>(new Action<Preset>(this.attach_dvent_Presets), new Action<Preset>(this.detach_dvent_Presets));
+			this._GreenhouseUsers = new EntitySet<GreenhouseUser>(new Action<GreenhouseUser>(this.attach_GreenhouseUsers), new Action<GreenhouseUser>(this.detach_GreenhouseUsers));
 			OnCreated();
 		}
 		
@@ -811,6 +371,19 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
+		[Association(Name="User_GreenhouseUser", Storage="_GreenhouseUsers", ThisKey="UserId", OtherKey="UserId")]
+		public EntitySet<GreenhouseUser> GreenhouseUsers
+		{
+			get
+			{
+				return this._GreenhouseUsers;
+			}
+			set
+			{
+				this._GreenhouseUsers.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -854,6 +427,18 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			this.SendPropertyChanging();
 			entity.User = null;
 		}
+		
+		private void attach_GreenhouseUsers(GreenhouseUser entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_GreenhouseUsers(GreenhouseUser entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
 	}
 	
 	[Table(Name="dbo.dvent_TaskType")]
@@ -866,7 +451,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		private string _Name;
 		
-		private EntitySet<Task> _Tasks;
+		private EntitySet<Task> _dvent_Tasks;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -880,7 +465,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		public TaskType()
 		{
-			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
+			this._dvent_Tasks = new EntitySet<Task>(new Action<Task>(this.attach_dvent_Tasks), new Action<Task>(this.detach_dvent_Tasks));
 			OnCreated();
 		}
 		
@@ -924,16 +509,16 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="TaskType_Task", Storage="_Tasks", ThisKey="TaskTypeId", OtherKey="TaskTypeID")]
+		[Association(Name="TaskType_dvent_Task", Storage="_dvent_Tasks", ThisKey="TaskTypeId", OtherKey="TaskTypeID")]
 		public EntitySet<Task> Tasks
 		{
 			get
 			{
-				return this._Tasks;
+				return this._dvent_Tasks;
 			}
 			set
 			{
-				this._Tasks.Assign(value);
+				this._dvent_Tasks.Assign(value);
 			}
 		}
 		
@@ -957,13 +542,13 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		private void attach_Tasks(Task entity)
+		private void attach_dvent_Tasks(Task entity)
 		{
 			this.SendPropertyChanging();
 			entity.TaskType = this;
 		}
 		
-		private void detach_Tasks(Task entity)
+		private void detach_dvent_Tasks(Task entity)
 		{
 			this.SendPropertyChanging();
 			entity.TaskType = null;
@@ -1238,13 +823,13 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		private System.DateTime _DateUpdated;
 		
-		private EntitySet<Task> _Tasks;
+		private EntitySet<Task> _dvent_Tasks;
 		
 		private EntityRef<User> _User;
 		
-		private EntityRef<Greenhouse> _Greenhouse;
-		
 		private EntityRef<Preset> _dvent_Preset;
+		
+		private EntityRef<Greenhouse> _Greenhouse;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1286,10 +871,10 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		public Section()
 		{
-			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
+			this._dvent_Tasks = new EntitySet<Task>(new Action<Task>(this.attach_dvent_Tasks), new Action<Task>(this.detach_dvent_Tasks));
 			this._User = default(EntityRef<User>);
-			this._Greenhouse = default(EntityRef<Greenhouse>);
 			this._dvent_Preset = default(EntityRef<Preset>);
+			this._Greenhouse = default(EntityRef<Greenhouse>);
 			OnCreated();
 		}
 		
@@ -1625,16 +1210,16 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Section_Task", Storage="_Tasks", ThisKey="SectionID", OtherKey="SectionID")]
+		[Association(Name="Section_dvent_Task", Storage="_dvent_Tasks", ThisKey="SectionID", OtherKey="SectionID")]
 		public EntitySet<Task> Tasks
 		{
 			get
 			{
-				return this._Tasks;
+				return this._dvent_Tasks;
 			}
 			set
 			{
-				this._Tasks.Assign(value);
+				this._dvent_Tasks.Assign(value);
 			}
 		}
 		
@@ -1668,40 +1253,6 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 						this._UserID = default(System.Guid);
 					}
 					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		[Association(Name="Greenhouse_Section", Storage="_Greenhouse", ThisKey="GreenhouseID", OtherKey="GreenhouseID", IsForeignKey=true)]
-		public Greenhouse Greenhouse
-		{
-			get
-			{
-				return this._Greenhouse.Entity;
-			}
-			set
-			{
-				Greenhouse previousValue = this._Greenhouse.Entity;
-				if (((previousValue != value) 
-							|| (this._Greenhouse.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Greenhouse.Entity = null;
-						previousValue.Sections.Remove(this);
-					}
-					this._Greenhouse.Entity = value;
-					if ((value != null))
-					{
-						value.Sections.Add(this);
-						this._GreenhouseID = value.GreenhouseID;
-					}
-					else
-					{
-						this._GreenhouseID = default(int);
-					}
-					this.SendPropertyChanged("Greenhouse");
 				}
 			}
 		}
@@ -1740,6 +1291,40 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
+		[Association(Name="Greenhouse_Section", Storage="_Greenhouse", ThisKey="GreenhouseID", OtherKey="GreenhouseID", IsForeignKey=true)]
+		public Greenhouse Greenhouse
+		{
+			get
+			{
+				return this._Greenhouse.Entity;
+			}
+			set
+			{
+				Greenhouse previousValue = this._Greenhouse.Entity;
+				if (((previousValue != value) 
+							|| (this._Greenhouse.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Greenhouse.Entity = null;
+						previousValue.Sections.Remove(this);
+					}
+					this._Greenhouse.Entity = value;
+					if ((value != null))
+					{
+						value.Sections.Add(this);
+						this._GreenhouseID = value.GreenhouseID;
+					}
+					else
+					{
+						this._GreenhouseID = default(int);
+					}
+					this.SendPropertyChanged("Greenhouse");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1760,13 +1345,13 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		private void attach_Tasks(Task entity)
+		private void attach_dvent_Tasks(Task entity)
 		{
 			this.SendPropertyChanging();
 			entity.Section = this;
 		}
 		
-		private void detach_Tasks(Task entity)
+		private void detach_dvent_Tasks(Task entity)
 		{
 			this.SendPropertyChanging();
 			entity.Section = null;
@@ -2168,13 +1753,13 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		}
 	}
 	
-	[Table(Name="dbo.dvent_Address")]
-	public partial class Address : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.dvent_Greenhouse")]
+	public partial class Greenhouse : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _AddressID;
+		private int _GreenhouseID;
 		
 		private string _City;
 		
@@ -2184,7 +1769,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		private string _StreetLine2;
 		
-		private int _Zip;
+		private System.Nullable<int> _Zip;
 		
 		private string _Country;
 		
@@ -2194,14 +1779,16 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		private System.DateTime _DateUpdated;
 		
-		private EntitySet<Greenhouse> _Greenhouses;
+		private EntitySet<Section> _Sections;
+		
+		private EntitySet<GreenhouseUser> _GreenhouseUsers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnAddressIDChanging(int value);
-    partial void OnAddressIDChanged();
+    partial void OnGreenhouseIDChanging(int value);
+    partial void OnGreenhouseIDChanged();
     partial void OnCityChanging(string value);
     partial void OnCityChanged();
     partial void OnStateOrProvinceChanging(string value);
@@ -2210,7 +1797,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
     partial void OnStreetLine1Changed();
     partial void OnStreetLine2Changing(string value);
     partial void OnStreetLine2Changed();
-    partial void OnZipChanging(int value);
+    partial void OnZipChanging(System.Nullable<int> value);
     partial void OnZipChanged();
     partial void OnCountryChanging(string value);
     partial void OnCountryChanged();
@@ -2222,28 +1809,29 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
     partial void OnDateUpdatedChanged();
     #endregion
 		
-		public Address()
+		public Greenhouse()
 		{
-			this._Greenhouses = new EntitySet<Greenhouse>(new Action<Greenhouse>(this.attach_Greenhouses), new Action<Greenhouse>(this.detach_Greenhouses));
+			this._Sections = new EntitySet<Section>(new Action<Section>(this.attach_Sections), new Action<Section>(this.detach_Sections));
+			this._GreenhouseUsers = new EntitySet<GreenhouseUser>(new Action<GreenhouseUser>(this.attach_GreenhouseUsers), new Action<GreenhouseUser>(this.detach_GreenhouseUsers));
 			OnCreated();
 		}
 		
-		[Column(Storage="_AddressID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AddressID
+		[Column(Storage="_GreenhouseID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int GreenhouseID
 		{
 			get
 			{
-				return this._AddressID;
+				return this._GreenhouseID;
 			}
 			set
 			{
-				if ((this._AddressID != value))
+				if ((this._GreenhouseID != value))
 				{
-					this.OnAddressIDChanging(value);
+					this.OnGreenhouseIDChanging(value);
 					this.SendPropertyChanging();
-					this._AddressID = value;
-					this.SendPropertyChanged("AddressID");
-					this.OnAddressIDChanged();
+					this._GreenhouseID = value;
+					this.SendPropertyChanged("GreenhouseID");
+					this.OnGreenhouseIDChanged();
 				}
 			}
 		}
@@ -2328,8 +1916,8 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Column(Storage="_Zip", DbType="Int NOT NULL")]
-		public int Zip
+		[Column(Storage="_Zip", DbType="Int")]
+		public System.Nullable<int> Zip
 		{
 			get
 			{
@@ -2428,16 +2016,29 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Address_Greenhouse", Storage="_Greenhouses", ThisKey="AddressID", OtherKey="AddressID")]
-		public EntitySet<Greenhouse> Greenhouses
+		[Association(Name="Greenhouse_Section", Storage="_Sections", ThisKey="GreenhouseID", OtherKey="GreenhouseID")]
+		public EntitySet<Section> Sections
 		{
 			get
 			{
-				return this._Greenhouses;
+				return this._Sections;
 			}
 			set
 			{
-				this._Greenhouses.Assign(value);
+				this._Sections.Assign(value);
+			}
+		}
+		
+		[Association(Name="Greenhouse_GreenhouseUser", Storage="_GreenhouseUsers", ThisKey="GreenhouseID", OtherKey="GreenhouseId")]
+		public EntitySet<GreenhouseUser> GreenhouseUsers
+		{
+			get
+			{
+				return this._GreenhouseUsers;
+			}
+			set
+			{
+				this._GreenhouseUsers.Assign(value);
 			}
 		}
 		
@@ -2461,16 +2062,556 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		private void attach_Greenhouses(Greenhouse entity)
+		private void attach_Sections(Section entity)
 		{
 			this.SendPropertyChanging();
-			entity.Address = this;
+			entity.Greenhouse = this;
 		}
 		
-		private void detach_Greenhouses(Greenhouse entity)
+		private void detach_Sections(Section entity)
 		{
 			this.SendPropertyChanging();
-			entity.Address = null;
+			entity.Greenhouse = null;
+		}
+		
+		private void attach_GreenhouseUsers(GreenhouseUser entity)
+		{
+			this.SendPropertyChanging();
+			entity.Greenhouse = this;
+		}
+		
+		private void detach_GreenhouseUsers(GreenhouseUser entity)
+		{
+			this.SendPropertyChanging();
+			entity.Greenhouse = null;
+		}
+	}
+	
+	[Table(Name="dbo.dvent_GreenhouseUser")]
+	public partial class GreenhouseUser : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _GreenhouseUserId;
+		
+		private System.Guid _UserId;
+		
+		private int _GreenhouseId;
+		
+		private bool _IsAdmin;
+		
+		private bool _IsApproved;
+		
+		private EntityRef<User> _User;
+		
+		private EntityRef<Greenhouse> _Greenhouse;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnGreenhouseUserIdChanging(int value);
+    partial void OnGreenhouseUserIdChanged();
+    partial void OnUserIdChanging(System.Guid value);
+    partial void OnUserIdChanged();
+    partial void OnGreenhouseIdChanging(int value);
+    partial void OnGreenhouseIdChanged();
+    partial void OnIsAdminChanging(bool value);
+    partial void OnIsAdminChanged();
+    partial void OnIsApprovedChanging(bool value);
+    partial void OnIsApprovedChanged();
+    #endregion
+		
+		public GreenhouseUser()
+		{
+			this._User = default(EntityRef<User>);
+			this._Greenhouse = default(EntityRef<Greenhouse>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_GreenhouseUserId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int GreenhouseUserId
+		{
+			get
+			{
+				return this._GreenhouseUserId;
+			}
+			set
+			{
+				if ((this._GreenhouseUserId != value))
+				{
+					this.OnGreenhouseUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._GreenhouseUserId = value;
+					this.SendPropertyChanged("GreenhouseUserId");
+					this.OnGreenhouseUserIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_GreenhouseId", DbType="Int NOT NULL")]
+		public int GreenhouseId
+		{
+			get
+			{
+				return this._GreenhouseId;
+			}
+			set
+			{
+				if ((this._GreenhouseId != value))
+				{
+					if (this._Greenhouse.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGreenhouseIdChanging(value);
+					this.SendPropertyChanging();
+					this._GreenhouseId = value;
+					this.SendPropertyChanged("GreenhouseId");
+					this.OnGreenhouseIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsAdmin", DbType="Bit NOT NULL")]
+		public bool IsAdmin
+		{
+			get
+			{
+				return this._IsAdmin;
+			}
+			set
+			{
+				if ((this._IsAdmin != value))
+				{
+					this.OnIsAdminChanging(value);
+					this.SendPropertyChanging();
+					this._IsAdmin = value;
+					this.SendPropertyChanged("IsAdmin");
+					this.OnIsAdminChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsApproved", DbType="Bit NOT NULL")]
+		public bool IsApproved
+		{
+			get
+			{
+				return this._IsApproved;
+			}
+			set
+			{
+				if ((this._IsApproved != value))
+				{
+					this.OnIsApprovedChanging(value);
+					this.SendPropertyChanging();
+					this._IsApproved = value;
+					this.SendPropertyChanged("IsApproved");
+					this.OnIsApprovedChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_GreenhouseUser", Storage="_User", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.GreenhouseUsers.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.GreenhouseUsers.Add(this);
+						this._UserId = value.UserId;
+					}
+					else
+					{
+						this._UserId = default(System.Guid);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[Association(Name="Greenhouse_GreenhouseUser", Storage="_Greenhouse", ThisKey="GreenhouseId", OtherKey="GreenhouseID", IsForeignKey=true)]
+		public Greenhouse Greenhouse
+		{
+			get
+			{
+				return this._Greenhouse.Entity;
+			}
+			set
+			{
+				Greenhouse previousValue = this._Greenhouse.Entity;
+				if (((previousValue != value) 
+							|| (this._Greenhouse.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Greenhouse.Entity = null;
+						previousValue.GreenhouseUsers.Remove(this);
+					}
+					this._Greenhouse.Entity = value;
+					if ((value != null))
+					{
+						value.GreenhouseUsers.Add(this);
+						this._GreenhouseId = value.GreenhouseID;
+					}
+					else
+					{
+						this._GreenhouseId = default(int);
+					}
+					this.SendPropertyChanged("Greenhouse");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.dvent_Task")]
+	public partial class Task : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TaskID;
+		
+		private int _SectionID;
+		
+		private int _TaskTypeID;
+		
+		private System.DateTime _StartTime;
+		
+		private System.DateTime _EndTime;
+		
+		private System.DateTime _DateCreated;
+		
+		private System.DateTime _DateUpdated;
+		
+		private EntityRef<Section> _Section;
+		
+		private EntityRef<TaskType> _TaskType;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTaskIDChanging(int value);
+    partial void OnTaskIDChanged();
+    partial void OnSectionIDChanging(int value);
+    partial void OnSectionIDChanged();
+    partial void OnTaskTypeIDChanging(int value);
+    partial void OnTaskTypeIDChanged();
+    partial void OnStartTimeChanging(System.DateTime value);
+    partial void OnStartTimeChanged();
+    partial void OnEndTimeChanging(System.DateTime value);
+    partial void OnEndTimeChanged();
+    partial void OnDateCreatedChanging(System.DateTime value);
+    partial void OnDateCreatedChanged();
+    partial void OnDateUpdatedChanging(System.DateTime value);
+    partial void OnDateUpdatedChanged();
+    #endregion
+		
+		public Task()
+		{
+			this._Section = default(EntityRef<Section>);
+			this._TaskType = default(EntityRef<TaskType>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_TaskID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int TaskID
+		{
+			get
+			{
+				return this._TaskID;
+			}
+			set
+			{
+				if ((this._TaskID != value))
+				{
+					this.OnTaskIDChanging(value);
+					this.SendPropertyChanging();
+					this._TaskID = value;
+					this.SendPropertyChanged("TaskID");
+					this.OnTaskIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SectionID", DbType="Int NOT NULL")]
+		public int SectionID
+		{
+			get
+			{
+				return this._SectionID;
+			}
+			set
+			{
+				if ((this._SectionID != value))
+				{
+					if (this._Section.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSectionIDChanging(value);
+					this.SendPropertyChanging();
+					this._SectionID = value;
+					this.SendPropertyChanged("SectionID");
+					this.OnSectionIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TaskTypeID", DbType="Int NOT NULL")]
+		public int TaskTypeID
+		{
+			get
+			{
+				return this._TaskTypeID;
+			}
+			set
+			{
+				if ((this._TaskTypeID != value))
+				{
+					if (this._TaskType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTaskTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._TaskTypeID = value;
+					this.SendPropertyChanged("TaskTypeID");
+					this.OnTaskTypeIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StartTime", DbType="DateTime NOT NULL")]
+		public System.DateTime StartTime
+		{
+			get
+			{
+				return this._StartTime;
+			}
+			set
+			{
+				if ((this._StartTime != value))
+				{
+					this.OnStartTimeChanging(value);
+					this.SendPropertyChanging();
+					this._StartTime = value;
+					this.SendPropertyChanged("StartTime");
+					this.OnStartTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EndTime", DbType="DateTime NOT NULL")]
+		public System.DateTime EndTime
+		{
+			get
+			{
+				return this._EndTime;
+			}
+			set
+			{
+				if ((this._EndTime != value))
+				{
+					this.OnEndTimeChanging(value);
+					this.SendPropertyChanging();
+					this._EndTime = value;
+					this.SendPropertyChanged("EndTime");
+					this.OnEndTimeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateCreated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateCreated
+		{
+			get
+			{
+				return this._DateCreated;
+			}
+			set
+			{
+				if ((this._DateCreated != value))
+				{
+					this.OnDateCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateCreated = value;
+					this.SendPropertyChanged("DateCreated");
+					this.OnDateCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DateUpdated", DbType="DateTime NOT NULL")]
+		public System.DateTime DateUpdated
+		{
+			get
+			{
+				return this._DateUpdated;
+			}
+			set
+			{
+				if ((this._DateUpdated != value))
+				{
+					this.OnDateUpdatedChanging(value);
+					this.SendPropertyChanging();
+					this._DateUpdated = value;
+					this.SendPropertyChanged("DateUpdated");
+					this.OnDateUpdatedChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Section_dvent_Task", Storage="_Section", ThisKey="SectionID", OtherKey="SectionID", IsForeignKey=true)]
+		public Section Section
+		{
+			get
+			{
+				return this._Section.Entity;
+			}
+			set
+			{
+				Section previousValue = this._Section.Entity;
+				if (((previousValue != value) 
+							|| (this._Section.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Section.Entity = null;
+						previousValue.Tasks.Remove(this);
+					}
+					this._Section.Entity = value;
+					if ((value != null))
+					{
+						value.Tasks.Add(this);
+						this._SectionID = value.SectionID;
+					}
+					else
+					{
+						this._SectionID = default(int);
+					}
+					this.SendPropertyChanged("Section");
+				}
+			}
+		}
+		
+		[Association(Name="TaskType_dvent_Task", Storage="_TaskType", ThisKey="TaskTypeID", OtherKey="TaskTypeId", IsForeignKey=true)]
+		public TaskType TaskType
+		{
+			get
+			{
+				return this._TaskType.Entity;
+			}
+			set
+			{
+				TaskType previousValue = this._TaskType.Entity;
+				if (((previousValue != value) 
+							|| (this._TaskType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TaskType.Entity = null;
+						previousValue.Tasks.Remove(this);
+					}
+					this._TaskType.Entity = value;
+					if ((value != null))
+					{
+						value.Tasks.Add(this);
+						this._TaskTypeID = value.TaskTypeId;
+					}
+					else
+					{
+						this._TaskTypeID = default(int);
+					}
+					this.SendPropertyChanged("TaskType");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

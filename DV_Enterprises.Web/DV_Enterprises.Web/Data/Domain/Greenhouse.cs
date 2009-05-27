@@ -19,22 +19,13 @@ namespace DV_Enterprises.Web.Data.Domain
         #region Instance properties
 
         public int ID { get; set; }
-        public int AddressID { get; set; }
-
-        private Address _address;
-        public Address Address
-        {
-            get { return _address ?? (Address = Address.Find(AddressID)); }
-            set { _address = value; }
-        }
-
+        public Address Address { get; set; }
         private LazyList<Section> _sections;
         public LazyList<Section> Sections
         {
             get { return _sections ?? (Sections = new LazyList<Section>(LoadSections(ID))); }
             set { _sections = value; }
         }
-
         private List<Guid> _userIDs;
         public List<Guid> UserIDs
         {
@@ -64,16 +55,20 @@ namespace DV_Enterprises.Web.Data.Domain
         {
             dc = dc ?? Conn.GetContext();
             var r = from g in dc.Greenhouses
-                    //let location = Address.Find(dc, g.Address.AddressID)
-                    //let sections = LoadSections(dc, g.GreenhouseID)
-                    //let users = LoadUsers(sections)
                     select new Greenhouse
                                {
                                    ID = g.GreenhouseID,
-                                   //Address = location,
-                                   AddressID = g.AddressID,
-                                   //Sections = new LazyList<Section>(sections),
-                                   //UserIDs = users
+                                   Address = new Address
+                                                 {
+                                                     City = g.City,
+                                                     StateOrProvince = g.StateOrProvince,
+                                                     Country = g.Country,
+                                                     Zip = g.Zip,
+                                                     StreetLine1 = g.StreetLine1,
+                                                     StreetLine2 = g.StreetLine2,
+                                                     IsDefault = g.IsDefault,
+                                                 }
+
                                };
             return r.ToList();
         }
@@ -126,11 +121,20 @@ namespace DV_Enterprises.Web.Data.Domain
                 isNew = true;
             }
 
-            if (greenhouse.Address != null)
-                dbGreenhouse.AddressID = greenhouse.Address.Save();
+            dbGreenhouse.City = greenhouse.Address.City;
+            dbGreenhouse.Country = greenhouse.Address.Country;
+            dbGreenhouse.StateOrProvince = greenhouse.Address.StateOrProvince;
+            dbGreenhouse.Zip = greenhouse.Address.Zip;
+            dbGreenhouse.StreetLine1 = greenhouse.Address.StreetLine1;
+            dbGreenhouse.StreetLine2 = greenhouse.Address.StreetLine2;
+            dbGreenhouse.IsDefault = greenhouse.Address.IsDefault;
+            dbGreenhouse.DateUpdated = DateTime.Now;
 
             if (isNew)
+            {
+                dbGreenhouse.DateCreated = DateTime.Now;
                 dc.Greenhouses.InsertOnSubmit(dbGreenhouse);
+            }
             dc.SubmitChanges();
 
             greenhouse.ID = dbGreenhouse.GreenhouseID;

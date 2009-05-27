@@ -4,47 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<%--<div style="text-align:center">--%>
-
-<%--<table>
-<tr>
-    <td>
-    <h2 class="title">Select a Greenhouse:</h2>
-    <asp:Repeater runat="server" ID="rptGreenHouses">
-    <HeaderTemplate>
-        <table>
-            <tr>        
-    </HeaderTemplate>
-    
-    <ItemTemplate>
-        <td>
-           <asp:Image runat="server" ID="imageGreenHouse" ImageUrl="~/images/greenhouse.png" width="121px" height="147px" />
-           <br />
-           <asp:Button ID="btnSelectGreenhouse" runat="server" Text='<%# "Greenhouse:" + Eval("ID") %>' width="121px" OnClick="btnSelectGreenhouse_Click" />
-        </td>
-    </ItemTemplate>
-    
-    <FooterTemplate>
-            </tr>
-        </table>
-    </FooterTemplate>
-    </asp:Repeater>
-        </td>
-    
-    </tr>
-    <tr>
-        <td align="left">
-            <br />
-            <asp:Button ID="btnNewGreenhouse" runat="server" Text="New Greenhouse" onclick="btnNewGreenhouse_Click" />
-        </td>
-    </tr>
-</table>--%>
-<%--</div>--%>
-
-
-
-
-
     <asp:ListView ID="lvGreenhouses" runat="server" 
         onitemdatabound="lvGreenhouses_ItemDataBound">
         <LayoutTemplate>
@@ -68,6 +27,9 @@
         
         <EmptyDataTemplate>
             <p>No greenhouses found.</p>
+            <div>
+                <asp:Button ID="btnNewGreenhouse" runat="server" Text="New Greenhouse" onclick="btnNewGreenhouse_Click" />
+            </div>
         </EmptyDataTemplate>
     </asp:ListView>
 </asp:Content>
