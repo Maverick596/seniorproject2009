@@ -52,10 +52,17 @@
                         <dt>Humidity Threshold:</dt>
                         <dd><asp:Label ID="lblHumanityThreshold" runat="server" Text="<%# ((Section)Container.DataItem).HumidityTreshold %>" /></dd>
                     </dl>
-                    
                 </div>
             </li>
-            <h4>Schedule</h4>
+            <h4>Scheduler...Ugly but outputs stuff</h4>
+            <strong>Tempeture Tasks</strong><br />
+            <asp:GridView ID="gvTempetureTasks" runat="server" />
+            
+            <strong>LightIntensity Tasks</strong><br />
+            <asp:GridView ID="gvLightIntensityTasks" runat="server" />
+            
+            <strong>Humidity Tasks</strong><br />
+            <asp:GridView ID="gvHumidityTasks" runat="server" />
         </ItemTemplate>
         
         <EditItemTemplate>

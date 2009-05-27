@@ -22,9 +22,17 @@ namespace DV_Enterprises.Web.Data.Domain
         public TimeSpan EndTime { get; set; }
         public TimeSpan Interval { get; set; }
         public int TaskTypeId { get; set; }
+
+        private TaskType _taskType;
+        public TaskType TaskType
+        {
+            get { return _taskType ?? (TaskType = TaskType.Find(TaskTypeId)); }
+            set { _taskType = value; }
+        }
+
         public DateTime DateCreated { get; private set; }
         //public DateTime DateUpdated { get; private set; }
-        public DateTime? DateDeleted { get; private set; }
+        public DateTime? DateDeleted { get; private set; } //TODO: this is junk
 
         #endregion
 
@@ -55,6 +63,7 @@ namespace DV_Enterprises.Web.Data.Domain
                                    StartTime = t.StartTime.TimeOfDay,
                                    EndTime = t.EndTime.TimeOfDay,
                                    Interval = t.StartTime.TimeOfDay - t.EndTime.TimeOfDay,
+                                   TaskTypeId = t.TaskTypeID,
                                    DateCreated = t.DateCreated,
                                    DateDeleted = t.DateDeleted
                                };

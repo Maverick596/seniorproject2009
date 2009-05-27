@@ -6,6 +6,8 @@ using StructureMap;
 
 namespace DV_Enterprises.Web.Data.Domain
 {
+    public enum TaskTypes { Temperature, LightIntersity, Humidity }
+
     [Pluggable("Default")]
     public class TaskType : DomainModel, ITaskType
     {
@@ -67,6 +69,29 @@ namespace DV_Enterprises.Web.Data.Domain
         public static TaskType Find(DataContext dc, int id)
         {
             return All(dc).Where(t => t.ID == id).SingleOrDefault();
+        }
+
+        public static TaskType Find(TaskTypes type)
+        {
+            return Find(null, type);
+        }
+
+        public static TaskType Find(DataContext dc, TaskTypes type)
+        {
+            var result = new TaskType();
+            switch (type)
+            {
+                case TaskTypes.Temperature:
+                    result = All(dc).Where(t => t.Name.ToLower() == "temperature").SingleOrDefault();
+                    break;
+                case TaskTypes.LightIntersity:
+                    result = All(dc).Where(t => t.Name.ToLower() == "light intersity").SingleOrDefault();
+                    break;
+                case TaskTypes.Humidity:
+                    result = All(dc).Where(t => t.Name.ToLower() == "humidity").SingleOrDefault();
+                    break;
+            }
+            return result;
         }
 
         /// <summary>

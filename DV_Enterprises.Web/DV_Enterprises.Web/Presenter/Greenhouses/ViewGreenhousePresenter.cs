@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Greenhouses.Interface;
@@ -31,6 +32,12 @@ namespace DV_Enterprises.Web.Presenter.Greenhouses
         {
             var greenhouse = Greenhouse.Find(GreenhouseID);
             _view.LoadSection(greenhouse.Sections.ToList());
+        }
+
+        public List<Task> SectionTasks(int sectionID, TaskTypes type)
+        {
+            var tasktype = TaskType.Find(type);
+            return Task.All().Where(t => t.SectionID == sectionID && t.TaskTypeId == tasktype.ID).ToList();
         }
     }
 }

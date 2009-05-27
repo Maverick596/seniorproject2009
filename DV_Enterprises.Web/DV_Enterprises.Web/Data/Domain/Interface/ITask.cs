@@ -18,9 +18,9 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         TimeSpan EndTime { get; set; }
         TimeSpan Interval { get; set; }
         int TaskTypeId { get; set; }
+        TaskType TaskType { get; set; }
         DateTime DateCreated { get; }
         //DateTime DateUpdated { get; }
-        DateTime? DateDeleted { get; }
 
         #endregion
     }

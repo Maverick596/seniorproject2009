@@ -38,12 +38,37 @@ namespace Greenhouses
         public void lvSections_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             var ddlPreset = e.Item.FindControl("ddlPreset") as DropDownList;
+            var gvSections = e.Item.FindControl("gvSections") as GridView;
+            var gvTempetureTasks = e.Item.FindControl("gvTempetureTasks") as GridView;
+            var gvLightIntensityTasks = e.Item.FindControl("gvLightIntensityTasks") as GridView;
+            var gvHumidityTasks = e.Item.FindControl("gvHumidityTasks") as GridView;
+            var litSectionID = e.Item.FindControl("litSectionID") as Literal;
 
-            if (ddlPreset == null) return;
-            ddlPreset.DataSource = Preset.All();
-            ddlPreset.DataTextField = "Name";
-            ddlPreset.DataValueField = "ID";
-            ddlPreset.DataBind();
+            if (ddlPreset != null)
+            {
+                ddlPreset.DataSource = Preset.All();
+                ddlPreset.DataTextField = "Name";
+                ddlPreset.DataValueField = "ID";
+                ddlPreset.DataBind();
+            }
+
+            if (gvTempetureTasks != null)
+            {
+                gvTempetureTasks.DataSource = _presenter.SectionTasks(Convert.ToInt32(litSectionID.Text), TaskTypes.Temperature);
+                gvTempetureTasks.DataBind();
+            }
+
+            if (gvLightIntensityTasks != null)
+            {
+                gvLightIntensityTasks.DataSource = _presenter.SectionTasks(Convert.ToInt32(litSectionID.Text), TaskTypes.LightIntersity);
+                gvLightIntensityTasks.DataBind();
+            }
+
+            if (gvHumidityTasks != null)
+            {
+                gvHumidityTasks.DataSource = _presenter.SectionTasks(Convert.ToInt32(litSectionID.Text), TaskTypes.Humidity);
+                gvHumidityTasks.DataBind();
+            }
         }
 
         protected void lvSections_ItemEditing(object sender, ListViewEditEventArgs e)
