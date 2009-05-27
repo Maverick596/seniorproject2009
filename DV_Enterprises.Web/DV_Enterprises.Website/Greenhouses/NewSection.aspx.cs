@@ -27,8 +27,8 @@ public partial class Greenhouses_NewSection : System.Web.UI.Page
         {
           Name = txtSectionName.Text,
           PresetID = Convert.ToInt32(ddlCropName.SelectedValue),
-          IdealTemperture = Convert.ToInt32(ddlTemp.SelectedValue),
-          TempertureTreshold = Convert.ToInt32(ddlTemp.SelectedValue),
+          IdealTemperature = Convert.ToInt32(ddlTemp.SelectedValue),
+          TemperatureTreshold = Convert.ToInt32(ddlTemp.SelectedValue),
           IdealLightIntensity = Convert.ToInt32(ddlLight.SelectedValue),
           LightIntensityTreshold = Convert.ToInt32(ddlLightThreshold.SelectedValue),
           IdealHumidity = Convert.ToInt32(ddlHumidity.SelectedValue),
