@@ -130,6 +130,7 @@
         
         <EmptyDataTemplate>
             <p>No sections found.</p>
+            <asp:LinkButton ID="lbNewSection2" runat="server" Text="New Section" OnClick="lbNewSection_Click" />
         </EmptyDataTemplate>
     </asp:ListView>
 </asp:Content>
