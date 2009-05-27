@@ -32,7 +32,6 @@ public partial class Greenhouses_ManageGreenhouse : System.Web.UI.Page
         {
             Address = new Address
             {
-                ID = 0,
                 StreetLine1 = txtAddress1.Text,
                 StreetLine2 = txtAddress2.Text,
                 City = txtCity.Text,

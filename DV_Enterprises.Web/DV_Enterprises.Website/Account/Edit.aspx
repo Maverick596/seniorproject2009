@@ -4,29 +4,38 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <fieldset>
-        <legend>Personal Information</legend>
-        <ol>
+        <div class = "grid_16"> 
+            <h2 class = "title">  Personal Information </h2>        
+            <h4 class="title">           
+            <ol>
+        
             <li>
-                <asp:Label ID="lblFirstName" runat="server" Text="Frist Name"></asp:Label>
-                <asp:TextBox ID="txtFirstName" runat="server" 
-                    ontextchanged="txtFirstName_TextChanged"></asp:TextBox><br />
+            
+                <asp:Label ID="lblFirstName" runat="server" Text="First Name"></asp:Label>
+                <asp:TextBox ID="txtFirstName" runat="server" ></asp:TextBox><br />
+            
             </li>
+        
             <li>
                 <asp:Label ID="lblLastName" runat="server" Text="Last Name"></asp:Label>
-                <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtEmail" runat="server" ></asp:TextBox><br />
             </li>
             <li>
                 <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
-                <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox><br />
+                <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox><br />
             </li>
             <li>
                 <asp:Label ID="lblPhone" runat="server" Text="Phone"></asp:Label>
                 <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox><br />
             </li>
         </ol>
+         </h4>
+         </div>
     </fieldset>
     <fieldset>
-        <legend>Address Information</legend>
+    <div class = "grid_16"> 
+        <h2 class = "title">Address Information</h2>
+        <h4 class="title">    
         <ol>
             <li>
                 <asp:Label ID="lblAddress" runat="server" Text="Address"></asp:Label>
@@ -45,16 +54,22 @@
                 <asp:TextBox ID="txtZipCode" runat="server"></asp:TextBox><br />
             </li>
         </ol>
+        </h4>
+        </div>
     </fieldset>
+      <div class = "grid_16">
     <fieldset class="buttons">
-        <ol>
-            <li>
+       
+        
                 <asp:Button ID="butUpdateProfile" runat="server" Text="Save Profile" onclick="butUpdateProfile_Click" />
-            </li>
-        </ol>
+           
+       
     </fieldset>
     
+    <h4 class="title">    
     <asp:ChangePassword ID="ChangePassword1" runat="server">
     </asp:ChangePassword>
+    </h4>
+  </div>
 </asp:Content>
 

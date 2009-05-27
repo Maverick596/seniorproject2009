@@ -15,7 +15,6 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         #region Instance properties
 
         new int ID { get; set; }
-        int AddressID { get; set; }
         Address Address { get; set; }
         LazyList<Section> Sections { get; set; }
         List<Guid> UserIDs { get; set; }

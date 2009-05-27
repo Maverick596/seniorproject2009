@@ -20,7 +20,7 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         int TaskTypeId { get; set; }
         TaskType TaskType { get; set; }
         DateTime DateCreated { get; }
-        //DateTime DateUpdated { get; }
+        DateTime DateUpdated { get; }
 
         #endregion
     }

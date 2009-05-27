@@ -31,8 +31,7 @@ namespace DV_Enterprises.Web.Data.Domain
         }
 
         public DateTime DateCreated { get; private set; }
-        //public DateTime DateUpdated { get; private set; }
-        public DateTime? DateDeleted { get; private set; } //TODO: this is junk
+        public DateTime DateUpdated { get; private set; }
 
         #endregion
 
@@ -65,7 +64,7 @@ namespace DV_Enterprises.Web.Data.Domain
                                    Interval = t.StartTime.TimeOfDay - t.EndTime.TimeOfDay,
                                    TaskTypeId = t.TaskTypeID,
                                    DateCreated = t.DateCreated,
-                                   DateDeleted = t.DateDeleted
+                                   DateUpdated = t.DateUpdated
                                };
             return r;
         }

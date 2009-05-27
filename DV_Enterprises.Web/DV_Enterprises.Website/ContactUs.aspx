@@ -3,7 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<h2 class="style7">Contact Us</h2>
+<div class="grid_16">
+<h2 class="title">Contact Us</h2>
+ <h4 class="title">
    Via Phone: 1-888-857-5757 <br/>
            Via Fax: 407-859-6000
        <br/>
@@ -14,5 +16,7 @@
        Smart Greehouse Solutions<br/>
       4000 Millenia Blvd <br/>
       Orlando, Florida 32839
+ </h4>
+</div>
     </asp:Content>
 
