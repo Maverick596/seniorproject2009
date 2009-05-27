@@ -25,5 +25,11 @@ namespace DV_Enterprises.Web.Presenter.Greenhouses
             _view.LoadLocation(greenhouse.Address);
             _view.LoadSection(greenhouse.Sections.ToList());
         }
+
+        public void BindSections()
+        {
+            var greenhouse = Greenhouse.Find(_webContext.GreenhouseId);
+            _view.LoadSection(greenhouse.Sections.ToList());
+        }
     }
 }

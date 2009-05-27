@@ -101,11 +101,14 @@ namespace Greenhouses
         {
             CloseInsert();
             lvSections.EditIndex = e.NewEditIndex;
-            _presenter.Init(this, IsPostBack);
+            _presenter.BindSections();
         }
 
 
-        protected void lvSections_ItemInserting(object sender, ListViewInsertEventArgs e) { }
+        protected void lvSections_ItemInserting(object sender, ListViewInsertEventArgs e)
+        {
+            _presenter.BindSections();
+        }
 
 
         protected void lvSections_ItemCanceling(object sender, ListViewCancelEventArgs e)
@@ -118,7 +121,7 @@ namespace Greenhouses
             {
                 lvSections.EditIndex = -1;
             }
-            _presenter.Init(this, IsPostBack);
+            _presenter.BindSections();
         }
 
         protected void lvSections_ItemUpdating(object sender, ListViewUpdateEventArgs e) { }
