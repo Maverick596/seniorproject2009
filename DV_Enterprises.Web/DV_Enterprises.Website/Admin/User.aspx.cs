@@ -19,5 +19,17 @@ public partial class Admin_User : Page
         lblFullAddress.Text = userProfile.Details.Address;
         lblPhone.Text = userProfile.Details.Phone;
         lblName.Text = userProfile.Details.Name;
+
+        var roles = string.Empty;
+        foreach(var role in Roles.GetRolesForUser())
+        {
+            roles = role.ToString();
+        }
+
+        lblRoles.Text = roles;
+    }
+    protected void lvGreenhouses_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }
