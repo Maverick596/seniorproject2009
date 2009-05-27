@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Web Developer Express 2008
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DV_Enterprises.Web", "DV_Enterprises.Web\DV_Enterprises.Web.csproj", "{38AC8DA0-C557-42F4-B859-70A8A7FF12F7}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DV_Enterprises.Website", "DV_Enterprises.Website\", "{CD87568D-8644-4685-B7A9-4227AA80FE71}"
@@ -21,7 +21,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DV_Enterprises.Website", "D
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1432"
+		VWDPort = "50466"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject

@@ -168,7 +168,7 @@ namespace DV_Enterprises.Web.Data.Domain
             dc = dc ?? Conn.GetContext();
             var dbSection = dc.Sections.Where(s => s.SectionID == section.ID).SingleOrDefault();
             if (dbSection == null) return;
-            dc.Sections.Attach(dbSection, true);
+            //dc.Sections.Attach(dbSection, true);
             dc.Sections.DeleteOnSubmit(dbSection);
             dc.SubmitChanges();
         }

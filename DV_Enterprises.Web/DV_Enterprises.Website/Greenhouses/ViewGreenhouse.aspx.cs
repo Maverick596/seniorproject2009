@@ -73,6 +73,7 @@ namespace Greenhouses
                     break;
                 case "Delete":
                     // delete old section
+                    DeleteSection(e.Item);
                     break;
             }
         }
@@ -147,6 +148,13 @@ namespace Greenhouses
                         };
             s.Save();
             CloseInsert();
+            _presenter.BindSections();
+        }
+
+        private void DeleteSection(Control item)
+        {
+            var s = Section.Find(Convert.ToInt32(((Literal) item.FindControl("litSectionID")).Text));
+            s.Delete();
             _presenter.BindSections();
         }
     }

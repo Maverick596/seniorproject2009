@@ -26,9 +26,11 @@
         
         <ItemTemplate>
             <li>
+                <asp:Literal ID="litSectionID" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).ID %>" />
                 <h3 class="title">
                     <asp:Label ID="lblSectionName" runat="server" Text="<%# ((Section)Container.DataItem).Name %>" />
                     <span><asp:LinkButton ID="lbEdit" runat="server" CommandName="Edit" Text="(edit)" /></span>
+                    <span><asp:LinkButton ID="lbDelete" runat="server" CommandName="Delete" Text="(delete)" /></span>
                 </h3>
                 <div>Current Readings. This is not done yet.</div>
                 <div>
@@ -57,8 +59,8 @@
         
         <EditItemTemplate>
             <div class="form">
-                <asp:Literal ID="litUserID" runat="server" Visible="true" Text="<%# ((Section)Container.DataItem).UserID %>" />
-                <asp:Literal ID="litSectionID" runat="server" Visible="true" Text="<%# ((Section)Container.DataItem).ID %>" />
+                <asp:Literal ID="litUserID" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).UserID %>" />
+                <asp:Literal ID="litSectionID" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).ID %>" />
                 <fieldset>
                     <legend>Basic Settings</legend>
                     <ol>
