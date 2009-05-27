@@ -1,124 +1,124 @@
-﻿/* NORMALIZE AND RESET - obviously inspired by Yahoo's reset.css, but scoped to just form
+﻿/* NORMALIZE AND RESET - obviously inspired by Yahoo's reset.css, but scoped to just .form
 --------------------------------------------------------------------------------------------------*/
-form, form ul, form ol, form li, form fieldset, form legend, form input, form textarea, form select, form p { margin:0; padding:0; }
-form fieldset { border:0; }
-form em, form strong { font-style:normal; font-weight:normal; }
-form ol, form ul { list-style:none; }
-form abbr, form acronym { border:0; font-variant:normal; }
-form input, form textarea, form select { font-family:inherit; font-size:inherit; font-weight:inherit; }
-form input, form textarea, form select { font-size:100%; }
-form legend { color:#000; }
+.form, .form ul, .form ol, .form li, .form fieldset, .form legend, .form input, .form textarea, .form select, .form p { margin:0; padding:0; }
+.form fieldset { border:0; }
+.form em, .form strong { font-style:normal; font-weight:normal; }
+.form ol, .form ul { list-style:none; }
+.form abbr, .form acronym { border:0; font-variant:normal; }
+.form input, .form textarea, .form select { font-family:inherit; font-size:inherit; font-weight:inherit; }
+.form input, .form textarea, .form select { font-size:100%; }
+.form legend { color:#000; }
  
  
 /* FIELDSETS & LISTS
 --------------------------------------------------------------------------------------------------*/
-form fieldset { }
-form fieldset.inputs { }
-form fieldset.buttons { padding-left:25%; }
-form fieldset ol { }
-form fieldset.buttons li { float:left; padding-right:0.5em; }
+.form fieldset { }
+.form fieldset.inputs { }
+.form fieldset.buttons { padding-left:25%; }
+.form fieldset ol { }
+.form fieldset.buttons li { float:left; padding-right:0.5em; }
  
 /* clearfixing the fieldsets */
-form fieldset { display: inline-block; }
-form fieldset:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-html[xmlns] form fieldset { display: block; }
-* html form fieldset { height: 1%; }
+.form fieldset { display: inline-block; }
+.form fieldset:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+html[xmlns] .form fieldset { display: block; }
+* html .form fieldset { height: 1%; }
  
  
 /* INPUT LIs
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li { margin-bottom:1.5em; }
+.form fieldset ol li { margin-bottom:1.5em; }
  
 /* clearfixing the li's */
-form fieldset ol li { display: inline-block; }
-form fieldset ol li:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-html[xmlns] form fieldset ol li { display: block; }
-* html form fieldset ol li { height: 1%; }
+.form fieldset ol li { display: inline-block; }
+.form fieldset ol li:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+html[xmlns] .form fieldset ol li { display: block; }
+* html .form fieldset ol li { height: 1%; }
  
-form fieldset ol li.required { }
-form fieldset ol li.optional { }
-form fieldset ol li.error { }
+.form fieldset ol li.required { }
+.form fieldset ol li.optional { }
+.form fieldset ol li.error { }
   
  
 /* LABELS
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li label { display:block; width:25%; float:left; padding-top:.2em; }
-form fieldset ol li li label { line-height:100%; padding-top:0; }
-form fieldset ol li li label input { line-height:100%; vertical-align:middle; margin-top:-0.1em;}
+.form fieldset ol li label { display:block; width:25%; float:left; padding-top:.2em; }
+.form fieldset ol li li label { line-height:100%; padding-top:0; }
+.form fieldset ol li li label input { line-height:100%; vertical-align:middle; margin-top:-0.1em;}
  
  
 /* NESTED FIELDSETS AND LEGENDS (radio, check boxes and date/time inputs use nested fieldsets)
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li fieldset { position:relative; }
-form fieldset ol li fieldset legend { position:absolute; width:25%; padding-top:0.1em; }
-form fieldset ol li fieldset legend span { position:absolute; }
-form fieldset ol li fieldset ol { float:left; width:74%; margin:0; padding:0 0 0 25%; }
-form fieldset ol li fieldset ol li { padding:0; border:0; }
+.form fieldset ol li fieldset { position:relative; }
+.form fieldset ol li fieldset legend { position:absolute; width:25%; padding-top:0.1em; }
+.form fieldset ol li fieldset legend span { position:absolute; }
+.form fieldset ol li fieldset ol { float:left; width:74%; margin:0; padding:0 0 0 25%; }
+.form fieldset ol li fieldset ol li { padding:0; border:0; }
  
  
 /* INLINE HINTS
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li p.inline-hints { color:#666; margin:0.5em 0 0 25%; }
+.form fieldset ol li p.inline-hints { color:#666; margin:0.5em 0 0 25%; }
  
  
 /* INLINE ERRORS
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li p.inline-errors { color:#cc0000; margin:0.5em 0 0 25%; }
-form fieldset ol li ul.errors { color:#cc0000; margin:0.5em 0 0 25%; list-style:square; }
-form fieldset ol li ul.errors li { padding:0; border:none; display:list-item; }
+.form fieldset ol li p.inline-errors { color:#cc0000; margin:0.5em 0 0 25%; }
+.form fieldset ol li ul.errors { color:#cc0000; margin:0.5em 0 0 25%; list-style:square; }
+.form fieldset ol li ul.errors li { padding:0; border:none; display:list-item; }
  
  
 /* STRING & NUMERIC OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li.string input { width:74%; }
-form fieldset ol li.numeric input { width:74%; }
+.form fieldset ol li.string input { width:74%; }
+.form fieldset ol li.numeric input { width:74%; }
  
  
 /* TEXTAREA OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li.text textarea { width:74%; }
+.form fieldset ol li.text textarea { width:74%; }
  
  
 /* HIDDEN OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li.hidden { display:none; }
+.form fieldset ol li.hidden { display:none; }
  
  
 /* BOOLEAN OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li.boolean label { padding-left:25%; width:auto; }
-form fieldset ol li.boolean label input { margin:0 0.5em 0 0.2em; }
+.form fieldset ol li.boolean label { padding-left:25%; width:auto; }
+.form fieldset ol li.boolean label input { margin:0 0.5em 0 0.2em; }
  
  
 /* RADIO OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li.radio { }
-form fieldset ol li.radio fieldset ol { margin-bottom:-0.6em; }
-form fieldset ol li.radio fieldset ol li { margin:0.1em 0 0.5em 0; }
-form fieldset ol li.radio fieldset ol li label { float:none; width:100%; }
-form fieldset ol li.radio fieldset ol li label input { margin-right:0.2em; }
+.form fieldset ol li.radio { }
+.form fieldset ol li.radio fieldset ol { margin-bottom:-0.6em; }
+.form fieldset ol li.radio fieldset ol li { margin:0.1em 0 0.5em 0; }
+.form fieldset ol li.radio fieldset ol li label { float:none; width:100%; }
+.form fieldset ol li.radio fieldset ol li label input { margin-right:0.2em; }
  
  
 /* CHECK BOXES (COLLECTION) OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li.check_boxes { }
-form fieldset ol li.check_boxes fieldset ol { margin-bottom:-0.6em; }
-form fieldset ol li.check_boxes fieldset ol li { margin:0.1em 0 0.5em 0; }
-form fieldset ol li.check_boxes fieldset ol li label { float:none; width:100%; }
-form fieldset ol li.check_boxes fieldset ol li label input { margin-right:0.2em; }
+.form fieldset ol li.check_boxes { }
+.form fieldset ol li.check_boxes fieldset ol { margin-bottom:-0.6em; }
+.form fieldset ol li.check_boxes fieldset ol li { margin:0.1em 0 0.5em 0; }
+.form fieldset ol li.check_boxes fieldset ol li label { float:none; width:100%; }
+.form fieldset ol li.check_boxes fieldset ol li label input { margin-right:0.2em; }
  
  
  
 /* DATE & TIME OVERRIDES
 --------------------------------------------------------------------------------------------------*/
-form fieldset ol li.date fieldset ol li,
-form fieldset ol li.time fieldset ol li,
-form fieldset ol li.datetime fieldset ol li { float:left; width:auto; margin:0 .3em 0 0; }
+.form fieldset ol li.date fieldset ol li,
+.form fieldset ol li.time fieldset ol li,
+.form fieldset ol li.datetime fieldset ol li { float:left; width:auto; margin:0 .3em 0 0; }
  
-form fieldset ol li.date fieldset ol li label,
-form fieldset ol li.time fieldset ol li label,
-form fieldset ol li.datetime fieldset ol li label { display:none; }
+.form fieldset ol li.date fieldset ol li label,
+.form fieldset ol li.time fieldset ol li label,
+.form fieldset ol li.datetime fieldset ol li label { display:none; }
  
-form fieldset ol li.date fieldset ol li label input, 
-form fieldset ol li.time fieldset ol li label input, 
-form fieldset ol li.datetime fieldset ol li label input { display:inline; margin:0; padding:0;  }
+.form fieldset ol li.date fieldset ol li label input, 
+.form fieldset ol li.time fieldset ol li label input, 
+.form fieldset ol li.datetime fieldset ol li label input { display:inline; margin:0; padding:0;  }

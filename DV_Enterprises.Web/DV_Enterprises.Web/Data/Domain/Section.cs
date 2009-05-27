@@ -21,9 +21,9 @@ namespace DV_Enterprises.Web.Data.Domain
         public int GreenhouseID { get; set; }
         public int PresetID { get; set; }
         public Guid UserID { get; set; }
-        public bool IsTempertureActivated { get; set; }
-        public int? IdealTemperture { get; set; }
-        public int? TempertureTreshold { get; set; }
+        public bool IsTemperatureActivated { get; set; }
+        public int? IdealTemperature { get; set; }
+        public int? TemperatureTreshold { get; set; }
         public bool IsLightActivated { get; set; }
         public int? IdealLightIntensity { get; set; }
         public int? LightIntensityTreshold { get; set; }
@@ -63,9 +63,9 @@ namespace DV_Enterprises.Web.Data.Domain
                                    GreenhouseID = s.GreenhouseID,
                                    PresetID = s.PresetID,
                                    UserID = s.UserID,
-                                   IsTempertureActivated = s.IsTemeratureActivited,
-                                   IdealTemperture = s.IdealTemperature,
-                                   TempertureTreshold = s.TemperatureThreshold,
+                                   IsTemperatureActivated = s.IsTemeratureActivited,
+                                   IdealTemperature = s.IdealTemperature,
+                                   TemperatureTreshold = s.TemperatureThreshold,
                                    IsLightActivated = s.IsLightActivited,
                                    IdealLightIntensity = s.IdealLightIntensity,
                                    LightIntensityTreshold = s.LightIntensityThreshold,
@@ -130,9 +130,9 @@ namespace DV_Enterprises.Web.Data.Domain
             dbSection.GreenhouseID = section.GreenhouseID;
             dbSection.PresetID = section.PresetID;
             dbSection.UserID = section.UserID;
-            dbSection.IsTemeratureActivited = section.IsTempertureActivated;
-            dbSection.IdealTemperature = section.IdealTemperture;
-            dbSection.TemperatureThreshold = section.TempertureTreshold;
+            dbSection.IsTemeratureActivited = section.IsTemperatureActivated;
+            dbSection.IdealTemperature = section.IdealTemperature;
+            dbSection.TemperatureThreshold = section.TemperatureTreshold;
             dbSection.IsLightActivited = section.IsLightActivated;
             dbSection.IdealLightIntensity = section.IdealLightIntensity;
             dbSection.LightIntensityThreshold = section.LightIntensityTreshold;

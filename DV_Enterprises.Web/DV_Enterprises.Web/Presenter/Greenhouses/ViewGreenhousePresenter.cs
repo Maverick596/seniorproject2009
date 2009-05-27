@@ -8,6 +8,7 @@ namespace DV_Enterprises.Web.Presenter.Greenhouses
 {
     public class ViewGreenhousePresenter
     {
+        public int GreenhouseID { get { return _webContext.GreenhouseId; } }
         private IViewGreenhouse _view;
         private readonly IWebContext _webContext;
 
@@ -20,7 +21,7 @@ namespace DV_Enterprises.Web.Presenter.Greenhouses
         {
             _view = view;
             if (isPostBack || _webContext.GreenhouseId <= 0) return;
-            var greenhouse = Greenhouse.Find(_webContext.GreenhouseId);
+            var greenhouse = Greenhouse.Find(GreenhouseID);
             _view.LoadData(greenhouse);
             _view.LoadLocation(greenhouse.Address);
             _view.LoadSection(greenhouse.Sections.ToList());
@@ -28,7 +29,7 @@ namespace DV_Enterprises.Web.Presenter.Greenhouses
 
         public void BindSections()
         {
-            var greenhouse = Greenhouse.Find(_webContext.GreenhouseId);
+            var greenhouse = Greenhouse.Find(GreenhouseID);
             _view.LoadSection(greenhouse.Sections.ToList());
         }
     }

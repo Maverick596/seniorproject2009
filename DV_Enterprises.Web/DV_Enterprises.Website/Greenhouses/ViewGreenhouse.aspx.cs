@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DV_Enterprises.Web.Data.Domain;
@@ -12,24 +13,10 @@ namespace Greenhouses
     {
         private ViewGreenhousePresenter _presenter;
 
-        //The selected GreenhouseID from the Greenhouses/Default page
-        //private static int ManagingGreenhouseID = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             _presenter = new ViewGreenhousePresenter();
             _presenter.Init(this, IsPostBack);
-
-            //if (Session["greenhouseID"] == null)
-            //{
-            //    Response.Redirect("~/Greenhouses/Default.aspx");
-            //}
-
-            //if (!Page.IsPostBack)
-            //{
-            //    ManagingGreenhouseID = Int32.Parse(Session["greenhouseID"].ToString());
-            //    lblGreenhouseID.Text = ManagingGreenhouseID.ToString();
-            //}
         }
 
         public void LoadData(Greenhouse greenhouse)
@@ -48,55 +35,6 @@ namespace Greenhouses
             lvSections.DataBind();
         }
 
-        protected void btnNewSection_Click(object sender, EventArgs e)
-        {
-            // Does nothing yet
-        }
-
-        protected void btnManageGreenhouse_Click(object sender, EventArgs e)
-        {
-            String clientscript = "";
-            String strWindowName = "";
-            String strWinAttrib = "";
-            String strUrl = "";
-
-            strWindowName = "NewGreenhouse";
-            strUrl = "ManageGreenhouse.aspx";
-            strWinAttrib = "toolbar=no,menu=no,status=no,width=420,height=400";
-            clientscript = "window.open('" + strUrl + "','" + strWindowName + "','" + strWinAttrib + "')";
-
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
-        }
-
-        protected void lnkbtnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void rptSections_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-
-        }
-
-        protected void lnkBtnEditSection_Click(object sender, EventArgs e)
-        {
-            var button = sender as LinkButton;
-
-            String sectionID = button.CommandArgument;
-
-            String clientscript = "";
-            String strWindowName = "";
-            String strWinAttrib = "";
-            String strUrl = "";
-
-            strWindowName = "ManageSection";
-            strUrl = "ManageSection.aspx?&section=" + sectionID;
-            strWinAttrib = "toolbar=no,menu=no,status=no,width=420,height=500";
-            clientscript = "window.open('" + strUrl + "','" + strWindowName + "','" + strWinAttrib + "')";
-
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
-        }
-
         protected void lvSections_ItemEditing(object sender, ListViewEditEventArgs e)
         {
             CloseInsert();
@@ -104,12 +42,9 @@ namespace Greenhouses
             _presenter.BindSections();
         }
 
-
-        protected void lvSections_ItemInserting(object sender, ListViewInsertEventArgs e)
-        {
-            _presenter.BindSections();
-        }
-
+        protected void lvSections_ItemInserting(object sender, ListViewInsertEventArgs e){}
+        protected void lvSections_ItemUpdating(object sender, ListViewUpdateEventArgs e) { }
+        protected void lvSections_ItemDeleting(object sender, ListViewDeleteEventArgs e) { }
 
         protected void lvSections_ItemCanceling(object sender, ListViewCancelEventArgs e)
         {
@@ -124,19 +59,17 @@ namespace Greenhouses
             _presenter.BindSections();
         }
 
-        protected void lvSections_ItemUpdating(object sender, ListViewUpdateEventArgs e) { }
-
-        protected void lvSections_ItemDeleting(object sender, ListViewDeleteEventArgs e) { }
-
         protected void lvSections_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             switch (e.CommandName)
             {
                 case "Insert":
                     // Save new section
+                    InsertSection(e.Item);
                     break;
                 case "Update":
                     // update editied section
+                    SaveSection(e.Item);
                     break;
                 case "Delete":
                     // delete old section
@@ -149,7 +82,7 @@ namespace Greenhouses
             lvSections.EditIndex = -1;
             lvSections.InsertItemPosition = InsertItemPosition.LastItem;
             ((LinkButton)sender).Visible = false;
-
+            _presenter.BindSections();
         }
 
         private void CloseInsert()
@@ -158,6 +91,63 @@ namespace Greenhouses
             lvSections.FindControl("lbNewSection").Visible = true;
         }
 
+        private void SaveSection(Control item)
+        {
+            var s = new Section
+                        {
+                            ID = Convert.ToInt32(((Literal) item.FindControl("litSectionID")).Text),
+                            Name = ((TextBox) item.FindControl("tbxName")).Text,
+                            GreenhouseID = _presenter.GreenhouseID,
+                            UserID = new Guid(((Literal) item.FindControl("litUserID")).Text),
+                            PresetID = 1,// TODO: ((DropDownList)item.FindControl("ddlPrefix")).SelectedIndex,
+                            IsTemperatureActivated = ((CheckBox) item.FindControl("cboIsTemperatureActivated")).Checked,
+                            IdealTemperature = Convert.ToInt32(((TextBox) item.FindControl("tbxIdealTemperature")).Text),
+                            TemperatureTreshold =
+                                Convert.ToInt32(((TextBox) item.FindControl("tbxTemperatureTreshold")).Text),
+                            IsLightActivated = ((CheckBox) item.FindControl("cboIsLightActivated")).Checked,
+                            IdealLightIntensity =
+                                Convert.ToInt32(((TextBox) item.FindControl("tbxIdealLightIntensity")).Text),
+                            LightIntensityTreshold =
+                                Convert.ToInt32(((TextBox) item.FindControl("tbxLightIntensityTreshold")).Text),
+                            IsHumidityActivated = ((CheckBox) item.FindControl("cboIsHumidityActivated")).Checked,
+                            IdealHumidity = Convert.ToInt32(((TextBox) item.FindControl("tbxIdealHumidity")).Text),
+                            HumidityTreshold = Convert.ToInt32(((TextBox) item.FindControl("tbxHumidityTreshold")).Text)
+                        };
+            s.Save();
+            lvSections.EditIndex = -1;
+            _presenter.BindSections();
+        }
 
+
+        /// <summary>
+        /// inserts a new section. At the moment it only inserts the current User as the section owner
+        /// </summary>
+        /// <param name="item">ListView item. This should be a section</param>
+        private void InsertSection(Control item)
+        {
+            var s = new Section
+                        {
+                            ID = 0,
+                            Name = ((TextBox) item.FindControl("tbxName")).Text,
+                            GreenhouseID = _presenter.GreenhouseID,
+                            UserID = new Guid(Membership.GetUser().ProviderUserKey.ToString()),
+                            PresetID = 1, // TODO: ((DropDownList)item.FindControl("ddlPrefix")).SelectedIndex,
+                            IsTemperatureActivated = ((CheckBox) item.FindControl("cboIsTemperatureActivated")).Checked,
+                            IdealTemperature = Convert.ToInt32(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
+                            TemperatureTreshold =
+                                Convert.ToInt32(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
+                            IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
+                            IdealLightIntensity =
+                                Convert.ToInt32(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
+                            LightIntensityTreshold =
+                                Convert.ToInt32(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
+                            IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
+                            IdealHumidity = Convert.ToInt32(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
+                            HumidityTreshold = Convert.ToInt32(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
+                        };
+            s.Save();
+            CloseInsert();
+            _presenter.BindSections();
+        }
     }
 }
