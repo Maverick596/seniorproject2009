@@ -15,7 +15,8 @@
         onitemcommand="lvSections_ItemCommand"
         onitemdeleting="lvSections_ItemDeleting"
         onitemupdating="lvSections_ItemUpdating"
-        OnItemInserting="lvSections_ItemInserting">
+        OnItemInserting="lvSections_ItemInserting"
+        OnItemDataBound="lvSections_ItemDataBound">
         
         <LayoutTemplate>
             <ul class="sections">

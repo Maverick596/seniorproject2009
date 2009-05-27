@@ -35,6 +35,17 @@ namespace Greenhouses
             lvSections.DataBind();
         }
 
+        public void lvSections_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            var ddlPreset = e.Item.FindControl("ddlPreset") as DropDownList;
+
+            if (ddlPreset == null) return;
+            ddlPreset.DataSource = Preset.All();
+            ddlPreset.DataTextField = "Name";
+            ddlPreset.DataValueField = "ID";
+            ddlPreset.DataBind();
+        }
+
         protected void lvSections_ItemEditing(object sender, ListViewEditEventArgs e)
         {
             CloseInsert();
@@ -42,7 +53,7 @@ namespace Greenhouses
             _presenter.BindSections();
         }
 
-        protected void lvSections_ItemInserting(object sender, ListViewInsertEventArgs e){}
+        protected void lvSections_ItemInserting(object sender, ListViewInsertEventArgs e) { }
         protected void lvSections_ItemUpdating(object sender, ListViewUpdateEventArgs e) { }
         protected void lvSections_ItemDeleting(object sender, ListViewDeleteEventArgs e) { }
 
@@ -80,10 +91,19 @@ namespace Greenhouses
 
         protected void lbNewSection_Click(object sender, EventArgs e)
         {
+
             lvSections.EditIndex = -1;
             lvSections.InsertItemPosition = InsertItemPosition.LastItem;
             ((LinkButton)sender).Visible = false;
             _presenter.BindSections();
+
+            var ddlPreset = lvSections.InsertItem.FindControl("ddlPreset") as DropDownList;
+
+            if (ddlPreset == null) return;
+            ddlPreset.DataSource = Preset.All();
+            ddlPreset.DataTextField = "Name";
+            ddlPreset.DataValueField = "ID";
+            ddlPreset.DataBind();
         }
 
         private void CloseInsert()
@@ -96,23 +116,23 @@ namespace Greenhouses
         {
             var s = new Section
                         {
-                            ID = Convert.ToInt32(((Literal) item.FindControl("litSectionID")).Text),
-                            Name = ((TextBox) item.FindControl("tbxName")).Text,
+                            ID = Convert.ToInt32(((Literal)item.FindControl("litSectionID")).Text),
+                            Name = ((TextBox)item.FindControl("tbxName")).Text,
                             GreenhouseID = _presenter.GreenhouseID,
-                            UserID = new Guid(((Literal) item.FindControl("litUserID")).Text),
-                            PresetID = 1,// TODO: ((DropDownList)item.FindControl("ddlPrefix")).SelectedIndex,
-                            IsTemperatureActivated = ((CheckBox) item.FindControl("cboIsTemperatureActivated")).Checked,
-                            IdealTemperature = Convert.ToInt32(((TextBox) item.FindControl("tbxIdealTemperature")).Text),
+                            UserID = new Guid(((Literal)item.FindControl("litUserID")).Text),
+                            PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
+                            IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
+                            IdealTemperature = Convert.ToInt32(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
                             TemperatureTreshold =
-                                Convert.ToInt32(((TextBox) item.FindControl("tbxTemperatureTreshold")).Text),
-                            IsLightActivated = ((CheckBox) item.FindControl("cboIsLightActivated")).Checked,
+                                Convert.ToInt32(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
+                            IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
                             IdealLightIntensity =
-                                Convert.ToInt32(((TextBox) item.FindControl("tbxIdealLightIntensity")).Text),
+                                Convert.ToInt32(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
                             LightIntensityTreshold =
-                                Convert.ToInt32(((TextBox) item.FindControl("tbxLightIntensityTreshold")).Text),
-                            IsHumidityActivated = ((CheckBox) item.FindControl("cboIsHumidityActivated")).Checked,
-                            IdealHumidity = Convert.ToInt32(((TextBox) item.FindControl("tbxIdealHumidity")).Text),
-                            HumidityTreshold = Convert.ToInt32(((TextBox) item.FindControl("tbxHumidityTreshold")).Text)
+                                Convert.ToInt32(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
+                            IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
+                            IdealHumidity = Convert.ToInt32(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
+                            HumidityTreshold = Convert.ToInt32(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
                         };
             s.Save();
             lvSections.EditIndex = -1;
@@ -129,11 +149,11 @@ namespace Greenhouses
             var s = new Section
                         {
                             ID = 0,
-                            Name = ((TextBox) item.FindControl("tbxName")).Text,
+                            Name = ((TextBox)item.FindControl("tbxName")).Text,
                             GreenhouseID = _presenter.GreenhouseID,
                             UserID = new Guid(Membership.GetUser().ProviderUserKey.ToString()),
-                            PresetID = 1, // TODO: ((DropDownList)item.FindControl("ddlPrefix")).SelectedIndex,
-                            IsTemperatureActivated = ((CheckBox) item.FindControl("cboIsTemperatureActivated")).Checked,
+                            PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
+                            IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
                             IdealTemperature = Convert.ToInt32(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
                             TemperatureTreshold =
                                 Convert.ToInt32(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
@@ -153,7 +173,7 @@ namespace Greenhouses
 
         private void DeleteSection(Control item)
         {
-            var s = Section.Find(Convert.ToInt32(((Literal) item.FindControl("litSectionID")).Text));
+            var s = Section.Find(Convert.ToInt32(((Literal)item.FindControl("litSectionID")).Text));
             s.Delete();
             _presenter.BindSections();
         }
