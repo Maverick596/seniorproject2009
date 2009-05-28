@@ -6,7 +6,7 @@ using StructureMap;
 
 namespace DV_Enterprises.Web.Data.Domain
 {
-    public enum TaskTypes { Temperature, LightIntersity, Humidity }
+    public enum TaskTypes { Temperature, LightIntensity, Humidity }
 
     [Pluggable("Default")]
     public class TaskType : DomainModel, ITaskType
@@ -84,8 +84,8 @@ namespace DV_Enterprises.Web.Data.Domain
                 case TaskTypes.Temperature:
                     result = All(dc).Where(t => t.Name.ToLower() == "temperature").SingleOrDefault();
                     break;
-                case TaskTypes.LightIntersity:
-                    result = All(dc).Where(t => t.Name.ToLower() == "light intersity").SingleOrDefault();
+                case TaskTypes.LightIntensity:
+                    result = All(dc).Where(t => t.Name.ToLower() == "light intensity").SingleOrDefault();
                     break;
                 case TaskTypes.Humidity:
                     result = All(dc).Where(t => t.Name.ToLower() == "humidity").SingleOrDefault();

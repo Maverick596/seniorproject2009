@@ -60,7 +60,7 @@ namespace Greenhouses
 
             if (gvLightIntensityTasks != null)
             {
-                gvLightIntensityTasks.DataSource = _presenter.SectionTasks(Convert.ToInt32(litSectionID.Text), TaskTypes.LightIntersity);
+                gvLightIntensityTasks.DataSource = _presenter.SectionTasks(Convert.ToInt32(litSectionID.Text), TaskTypes.LightIntensity);
                 gvLightIntensityTasks.DataBind();
             }
 
