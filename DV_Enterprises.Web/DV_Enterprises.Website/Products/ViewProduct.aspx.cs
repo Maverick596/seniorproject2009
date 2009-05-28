@@ -19,9 +19,9 @@ namespace Products
         public void LoadData(Product product)
         {
             lblName.Text = product.Name;
-            lblPrice.Text = product.Price.ToString();
+            lblPrice.Text = "Price: " + product.Price.ToString("C");
             lblDescription.Text = product.Description;
-            cboActive.Checked = product.IsActive;
+            ImgProduct.ImageUrl = product.Image;
         }
     }
 }

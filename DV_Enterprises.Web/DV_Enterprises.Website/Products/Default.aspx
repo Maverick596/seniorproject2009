@@ -25,9 +25,11 @@
             <li class="product grid_16">
                 <asp:Image ID="Image2" CssClass="grid_3 alpha" runat="server" ImageUrl="<%# ((Product)Container.DataItem).Image %>" />
                 <h3 class="title gird_12 omega"><asp:HyperLink ID="linkProductName" runat="server" Text='<%# ((Product)Container.DataItem).Name %>' /></h3>
+                
                 <asp:LinkButton ID="lbEdit" runat="server"  Text="Edit" OnClick="lbEdit_Click" />
                 <p class="grid_12 omega"><asp:Label ID="lblProductDescription" runat="server" Text='<%# ((Product)Container.DataItem).Description %>' /></p>
-                <p class="grid_12 omega"><asp:Label ID="lblProductPrice" runat="server" Text='<%#    ((Product)Container.DataItem).Price %>' /></p>
+                <p class="grid_12 omega"><asp:Label ID="lblProductPrice" runat="server" 
+                Text=' <%# "Price: " + ((Product)Container.DataItem).Price.ToString("C") %>' /></p>
                 <asp:Literal ID="litProductID" runat="server" Visible="false"  Text='<%# ((Product)Container.DataItem).ID %>' />
             </li>
         </ItemTemplate>

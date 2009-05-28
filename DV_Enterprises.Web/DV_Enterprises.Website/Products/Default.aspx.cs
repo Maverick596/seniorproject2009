@@ -28,9 +28,9 @@ namespace Products
         {
             var litProductId = e.Item.FindControl("litProductID") as Literal;
             var linkProductName = e.Item.FindControl("linkProductName") as HyperLink;
-            //var lbEdit = e.Item.FindControl("lbEdit") as LinkButton;
+            var lbEdit = e.Item.FindControl("lbEdit") as LinkButton;
 
-            //lbEdit.Attributes.Add("ProductID", litProductId.Text);
+            lbEdit.Attributes.Add("ProductID", litProductId.Text);
             
             linkProductName.NavigateUrl = string.Format("~/Products/ViewProduct.aspx?ProductID={0}", litProductId.Text);
 
