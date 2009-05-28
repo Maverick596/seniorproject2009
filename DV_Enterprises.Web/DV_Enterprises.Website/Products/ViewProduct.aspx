@@ -6,8 +6,14 @@
     <h2 class="title">
         <asp:Label ID="lblName" runat="server"></asp:Label>
     </h2>
-    <asp:Label ID="lblPrice" runat="server"></asp:Label>
+    <asp:Image ID="ImgProduct" runat="server" CssClass="grid_3 alpha" 
+        ImageUrl="" />
     <asp:Label ID="lblDescription" runat="server"></asp:Label>
-    <asp:CheckBox ID="cboActive" runat="server" />
+    
+      
+    <br />
+    
+      
+    <asp:Label ID="lblPrice" runat="server"></asp:Label>
 </asp:Content>
 
