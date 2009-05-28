@@ -147,17 +147,14 @@ namespace Greenhouses
                             UserID = new Guid(((Literal)item.FindControl("litUserID")).Text),
                             PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
                             IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
-                            IdealTemperature = Convert.ToInt32(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
-                            TemperatureTreshold =
-                                Convert.ToInt32(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
+                            IdealTemperature = Parse(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
+                            TemperatureTreshold = Parse(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
                             IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
-                            IdealLightIntensity =
-                                Convert.ToInt32(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
-                            LightIntensityTreshold =
-                                Convert.ToInt32(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
+                            IdealLightIntensity = Parse(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
+                            LightIntensityTreshold = Parse(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
                             IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
-                            IdealHumidity = Convert.ToInt32(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
-                            HumidityTreshold = Convert.ToInt32(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
+                            IdealHumidity = Parse(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
+                            HumidityTreshold = Parse(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
                         };
             s.Save();
             lvSections.EditIndex = -1;
@@ -179,17 +176,14 @@ namespace Greenhouses
                             UserID = new Guid(Membership.GetUser().ProviderUserKey.ToString()),
                             PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
                             IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
-                            IdealTemperature = Convert.ToInt32(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
-                            TemperatureTreshold =
-                                Convert.ToInt32(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
+                            IdealTemperature = Parse(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
+                            TemperatureTreshold = Parse(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
                             IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
-                            IdealLightIntensity =
-                                Convert.ToInt32(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
-                            LightIntensityTreshold =
-                                Convert.ToInt32(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
+                            IdealLightIntensity = Parse(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
+                            LightIntensityTreshold = Parse(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
                             IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
-                            IdealHumidity = Convert.ToInt32(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
-                            HumidityTreshold = Convert.ToInt32(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
+                            IdealHumidity = Parse(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
+                            HumidityTreshold = Parse(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
                         };
             s.Save();
             CloseInsert();
@@ -201,6 +195,14 @@ namespace Greenhouses
             var s = Section.Find(Convert.ToInt32(((Literal)item.FindControl("litSectionID")).Text));
             s.Delete();
             _presenter.BindSections();
+        }
+
+        private static int? Parse(string s)
+        {
+            int result;
+            if (int.TryParse(s, out result))
+                result = 0;
+            return result == 0 ? (int?) null : result;
         }
     }
 }
