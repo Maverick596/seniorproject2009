@@ -77,7 +77,7 @@
                         </li>
                         <li>
                             <label>Preset:</label>
-                            <asp:DropDownList ID="ddlPreset" runat="server" />
+                            <asp:DropDownList ID="ddlPreset" runat="server" AutoPostBack="true" />
                         </li>
                     </ol>
                 </fieldset>

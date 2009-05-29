@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Products;
@@ -24,11 +25,18 @@ namespace Products
             lvProducts.DataBind();
         }
 
-        public void lvProdusts_ItemDataBound(object sender, ListViewItemEventArgs e)
+        public void lvProducts_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             var litProductId = e.Item.FindControl("litProductID") as Literal;
             var linkProductName = e.Item.FindControl("linkProductName") as HyperLink;
+
+            
             var lbEdit = e.Item.FindControl("lbEdit") as LinkButton;
+
+            if (Roles.IsUserInRole("Administrator"))
+            {
+                lbEdit.Visible = true;
+            }
 
             lbEdit.Attributes.Add("ProductID", litProductId.Text);
             

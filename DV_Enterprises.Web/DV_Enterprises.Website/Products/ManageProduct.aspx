@@ -7,20 +7,26 @@
         <legend>Product Information</legend>
         <ol>
             <li>
-                <label for="name">Name:</label>
-                <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+                <asp:Label ID="lblName" runat="server" Text="Name:" Width="100px" />
+                <asp:TextBox ID="txtName" runat="server" Width="250px" />
             </li>
             <li>
-                <label for="description">Description:</label>
-                <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
+                <asp:Label ID="lblDescription" runat="server" Text="Description" Width="100px" />
+                <asp:TextBox ID="txtDescription" runat="server" Width="250px" Height="60px" TextMode="MultiLine" Wrap="true" />
             </li>
             <li>
-                <label for="price">Price:</label>
+                <asp:Label ID="lblPrice" runat="server" Text="Price: " Width="100px" />
                 <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
+                <asp:RegularExpressionValidator
+                    ID="revPrice" runat="server" ErrorMessage="ERROR: Price must be a numeric, decimal value" ControlToValidate="txtPrice" ValidationExpression="^\d*\.?\d*" />
             </li>
             <li>
-                <label for="isActive">Active?:</label>
-                <asp:CheckBox ID="cboIsActive" runat="server" />
+                <asp:Label ID="lblImage" runat="server" Text="Image Path?:" Width="100px" />
+                <asp:TextBox ID="txtImage" runat="server" Width="250px" />
+            </li>
+            <li>
+                <asp:Label ID="lblActive" runat="server" Text="Active?:" Width="100px" />
+                <asp:CheckBox ID="cboIsActive" runat="server" Text="" />
             </li>
         </ol>
         <asp:Literal ID="litProductId" runat="server" Visible="false"></asp:Literal>

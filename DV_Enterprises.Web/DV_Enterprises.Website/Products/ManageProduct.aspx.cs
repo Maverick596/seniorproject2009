@@ -14,7 +14,7 @@ namespace Products
         {
             _presenter = new ManageProductPresenter();
 
-            if (!User.IsInRole("administrator"))
+            if (!User.IsInRole("Administrator"))
             {
                 _presenter.Redirector.GoToHomePage();
             }
@@ -31,6 +31,7 @@ namespace Products
             txtDescription.Text = product.Description;
             txtPrice.Text = product.Price.ToString();
             cboIsActive.Checked = product.IsActive;
+            txtImage.Text = product.Image;
         }
 
         protected void butSubmit_Click(object sender, EventArgs e)
@@ -42,10 +43,11 @@ namespace Products
                                   Description = txtDescription.Text,
                                   Price = Convert.ToDecimal(txtPrice.Text),
                                   IsActive = cboIsActive.Checked,
+                                  Image = txtImage.Text,
                               };
 
             _presenter.SaveProduct(product);
             Response.Redirect("~/Products/Default.aspx");
         }
-}
+    }
 }

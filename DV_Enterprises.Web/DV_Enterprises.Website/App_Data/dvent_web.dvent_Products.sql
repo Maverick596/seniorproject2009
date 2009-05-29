@@ -1,3 +1,6 @@
+TRUNCATE TABLE [dvent_web].[dbo].[dvent_Product]
+GO
+
 INSERT INTO [dvent_web].[dbo].[dvent_Product]
            ([Name]
            ,[Description]
@@ -11,7 +14,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Product]
            ,'The SGS TempModule will help you monitor and control the environment in your greenhouse by regulating the programmed temperature.'
            ,76.70
            ,1
-           ,'~/images/sgsmc.jpg '
+           ,'~/images/sgsmc.jpg'
            ,'5/29/2009'
            ,'5/29/2009')
 GO
@@ -43,7 +46,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Product]
            ,[DateUpdated]
            ,[DateCreated])
      VALUES
-           ('The Complete SGS GreenThumb Tempature System'
+           ('The Complete SGS GreenThumb Temperature System'
            ,'Purchase the entire SGS System for your greenhouse. This system will control temperature, lighting, irrigation and CO2 levels.'
            ,99.97
            ,1
@@ -61,11 +64,11 @@ INSERT INTO [dvent_web].[dbo].[dvent_Product]
            ,[DateUpdated]
            ,[DateCreated])
      VALUES
-           ('The Complete SGS GreenThumb Portable A.C.'
-           ,'Purchase the entire SGS System for your greenhouse. This system will control temperature, lighting, irrigation and CO2 levels.'
-           ,357.60
+           ('SGS GreenThumb Portable A.C.'
+           ,'Purchase the SGS Portable A.C. unit. This system will handle the heating and cooling of your greenhouse.'
+           ,359.80
            ,1
-           ,''
+           ,'~/images/noImage.jpg'
            ,'5/29/2009'
            ,'5/29/2009')
 GO
@@ -79,12 +82,10 @@ INSERT INTO [dvent_web].[dbo].[dvent_Product]
            ,[DateUpdated]
            ,[DateCreated])
      VALUES
-           ('The Complete SGS GreenThumb Grow Pro'
-           ,'Purchase the entire SGS System for your greenhouse. This system will control temperature, lighting, irrigation and CO2 levels.'
-           ,101.93
+           ('SGS GreenThumb Grow Pro Light Kit'
+           ,'Purchase the SGS Grow Pro Light Kit. This light will provide additional sunlight long into the evening hours.'
+           ,36.30
            ,1
-           ,''
+           ,'~/images/noImage.jpg'
            ,'5/29/2009'
            ,'5/29/2009')
-
-
