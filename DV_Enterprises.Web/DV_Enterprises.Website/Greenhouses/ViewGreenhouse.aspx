@@ -6,7 +6,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h2 class="title"><asp:Label ID="lblGreenhouseTitle" runat="server"></asp:Label></h2>
     <div>
-        This is the greenhouse address.
+        <%--This is the greenhouse address.--%>
+        <h3 class="title">Address:</h3>
+        <asp:Label ID="lblAddress" runat="server" Text="" />
     </div>
 
     <asp:ListView ID="lvSections" runat="server" 
@@ -148,7 +150,7 @@
                         </li>
                         <li>
                             <label>Preset:</label>
-                            <asp:DropDownList ID="ddlPreset" runat="server" />
+                            <asp:DropDownList ID="ddlPreset" runat="server" AutoPostBack="true" />
                         </li>
                     </ol>
                 </fieldset>

@@ -22,6 +22,9 @@ namespace Greenhouses
         public void LoadData(Greenhouse greenhouse)
         {
             lblGreenhouseTitle.Text = greenhouse.ToString();
+
+            lblAddress.Text = greenhouse.Address.StreetLine1 + "<br />" + greenhouse.Address.StreetLine2 +
+                "<br />" + greenhouse.Address.City + ", " + greenhouse.Address.StateOrProvince + " " + greenhouse.Address.Zip + "<br /><br />";
         }
 
         public void LoadLocation(Address address)
