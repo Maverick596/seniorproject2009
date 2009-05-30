@@ -9,20 +9,23 @@
             <li>
                 <asp:Label ID="lblName" runat="server" Text="Name:" Width="100px" />
                 <asp:TextBox ID="txtName" runat="server" Width="250px" />
+                <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="ERROR: Field required." ControlToValidate="txtName" />
             </li>
             <li>
                 <asp:Label ID="lblDescription" runat="server" Text="Description" Width="100px" />
                 <asp:TextBox ID="txtDescription" runat="server" Width="250px" Height="60px" TextMode="MultiLine" Wrap="true" />
+                <asp:RequiredFieldValidator ID="rfvDescription" runat="server" ErrorMessage="ERROR: Field required." ControlToValidate="txtDescription" />
             </li>
             <li>
-                <asp:Label ID="lblPrice" runat="server" Text="Price: " Width="100px" />
-                <asp:TextBox ID="txtPrice" runat="server"></asp:TextBox>
-                <asp:RegularExpressionValidator
-                    ID="revPrice" runat="server" ErrorMessage="ERROR: Price must be a numeric, decimal value" ControlToValidate="txtPrice" ValidationExpression="^\d*\.?\d*" />
+                <asp:Label ID="lblPrice" runat="server" Text="Price:" Width="100px" />
+                <asp:TextBox ID="txtPrice" runat="server" Width="250px" />
+                <asp:RegularExpressionValidator ID="revPrice" runat="server" ErrorMessage="ERROR: Price must be a positive numeric, decimal value." ControlToValidate="txtPrice" ValidationExpression="^\d+(\.\d\d)?$" />
+                <asp:RequiredFieldValidator ID="rfvPrice" runat="server" ErrorMessage="ERROR: Field required." ControlToValidate="txtPrice" />
             </li>
             <li>
                 <asp:Label ID="lblImage" runat="server" Text="Image Path?:" Width="100px" />
                 <asp:TextBox ID="txtImage" runat="server" Width="250px" />
+                <asp:RequiredFieldValidator ID="rfvImage" runat="server" ErrorMessage="ERROR: Field required." ControlToValidate="txtImage" />
             </li>
             <li>
                 <asp:Label ID="lblActive" runat="server" Text="Active?:" Width="100px" />
