@@ -18,75 +18,79 @@
         </tr>
         <tr style="text-align:right">
             <td>
-                <asp:Label ID="lblAddress1" runat="server" Text="Street Line 1:" />
+                <asp:Label ID="lblAddress1" runat="server" Text="Street Line 1:" Width="200px" />
             </td>
             
             <td>
                 <asp:TextBox ID="txtAddress1" runat="server" />
             </td>
             <td>
-                <asp:RequiredFieldValidator ID="rfvAddress1" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtAddress1" />
+                <asp:RequiredFieldValidator ID="rfvAddress1" runat="server" ForeColor="Red" ErrorMessage="* Field Required" ControlToValidate="txtAddress1" />
             
             </td>
         </tr>
         <tr style="text-align:right">
             <td>
-                <asp:Label ID="lblAddress2" runat="server" Text="Street Line 2:" />
+                <asp:Label ID="lblAddress2" runat="server" Text="Street Line 2:" Width="200px" />
             </td>
             <td>
                 <asp:TextBox ID="txtAddress2" runat="server" />
             </td>
             <td>
-                <asp:RequiredFieldValidator ID="rfvAddress2" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtAddress2" />
             </td>
         </tr>
         <tr style="text-align:right">
             <td>
-                <asp:Label ID="lblCity" runat="server" Text="City" />
+                <asp:Label ID="lblCity" runat="server" Text="City" Width="200px" />
             </td>
             <td>
-                <asp:TextBox ID="txtCity" runat="server" />
+                <asp:TextBox ID="txtCity" runat="server" MaxLength="40" />
             </td>
             <td>
-                <asp:RequiredFieldValidator ID="rfvCity" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtCity" />
+                <asp:RequiredFieldValidator ID="rfvCity" runat="server" ForeColor="Red" ErrorMessage="* Field Required" ControlToValidate="txtCity" />
+                <asp:RegularExpressionValidator ID="revCity" runat="server" 
+                ErrorMessage="ERROR: Field must be a valid string." ValidationExpression="^[a-zA-Z''-'\s]{1,40}$" ControlToValidate="txtCity" />
             </td>
         </tr>
         <tr style="text-align:right">
             <td>
-                <asp:Label ID="lblState" runat="server" Text="State" />
+                <asp:Label ID="lblState" runat="server" Text="State" Width="200px" />
             </td>
             <td>
                 <asp:TextBox ID="txtState" runat="server" />
             </td>
             <td>
-                <asp:RequiredFieldValidator ID="rfvState" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtState" />
+                <asp:RequiredFieldValidator ID="rfvState" runat="server" ForeColor="Red" ErrorMessage="* Field Required" ControlToValidate="txtState" />
+                <asp:RegularExpressionValidator ID="revState" runat="server" ErrorMessage="ERROR: Field must be a valid state." ValidationExpression="^[A-Z]{2}$" ControlToValidate="txtState" />
             </td>
         </tr>
         <tr style="text-align:right">
             <td>
-                <asp:Label ID="lblZipCode" runat="server" Text="Zip Code" />
+                <asp:Label ID="lblZipCode" runat="server" Text="Zip Code" Width="200px" />
             </td>
             <td>
                 <asp:TextBox ID="txtZipCode" runat="server" />
             </td>
             <td>
-                <asp:RequiredFieldValidator ID="rfvZipCode" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtZipCode" />
+                <asp:RequiredFieldValidator ID="rfvZipCode" runat="server" ForeColor="Red" ErrorMessage="* Field Required" ControlToValidate="txtZipCode" />
+                <asp:RegularExpressionValidator ID="revZipCode" runat="server" ErrorMessage="ERROR: Field must be a 5 digit, numeric value" ControlToValidate="txtZipCode" ValidationExpression="^\d{5}$" />
             </td>
         </tr>
         <tr style="text-align:right">
             <td>
-                <asp:Label ID="lblCountry" runat="server" Text="Country" />
+                <asp:Label ID="lblCountry" runat="server" Text="Country" Width="200px" />
             </td>
             <td>
-                <asp:TextBox ID="txtCountry" runat="server" />
+                <asp:TextBox ID="txtCountry" runat="server" MaxLength="3" />
             </td>
             <td>
-                <asp:RequiredFieldValidator ID="rfvCountry" runat="server" ForeColor="Red" Font-Bold="true" ErrorMessage="* Field Required" ControlToValidate="txtCountry" />
+                <asp:RequiredFieldValidator ID="rfvCountry" runat="server" ForeColor="Red" ErrorMessage="* Field Required" ControlToValidate="txtCountry" />
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="ERROR: Field must be a valid country." ValidationExpression="^[A-Z]{3}$" ControlToValidate="txtCountry" />
             </td>
         </tr>
-        <tr style="text-align:center">
+        <tr style="text-align:right">
             <td>
-                <asp:Label ID="lblIsDefault" runat="server" Text="Is Default? (Yes/No)" />
+                <asp:Label ID="lblIsDefault" runat="server" Text="Is Default? (Yes/No)" Width="200px" />
             </td>
             <td>
                 <asp:Checkbox ID="chkDefault" runat="server" />
@@ -101,8 +105,6 @@
     </form>
 </body>
 </html>
-
-
                 
                 
 

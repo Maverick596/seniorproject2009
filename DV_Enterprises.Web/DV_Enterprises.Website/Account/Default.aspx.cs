@@ -23,18 +23,18 @@ public partial class Customer_Default : System.Web.UI.Page
         if (d == null) return;
         FirstNameLBL.Text = d.FirstName;
         LastNameLBL.Text = d.LastName;
-        LastNameLBL.Text = user.Email;
-        EmailLBL.Text = d.Phone;
-        phoneLBL.Text = d.Address;
-        AddressLBL.Text = d.City;
-        CityLBL.Text = d.State;
+        EmailLBL.Text = user.Email;
+        phoneLBL.Text = d.Phone;
+        AddressLBL.Text = d.Address;
+        CityLBL.Text = d.City;
+        StateLBL.Text = d.State;
         ZipCodeLBL.Text = d.ZipCode;
         
     }
-    protected void imgbGreenhouses_Click(object sender, ImageClickEventArgs e)
-    {
-        Response.Redirect("~/Greenhouses/Default.aspx");
-    }
+    //protected void imgbGreenhouses_Click(object sender, ImageClickEventArgs e)
+    //{
+    //    Response.Redirect("~/Greenhouses/Default.aspx");
+    //}
 }
 
     

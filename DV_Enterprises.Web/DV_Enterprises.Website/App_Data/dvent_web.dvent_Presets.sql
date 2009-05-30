@@ -1,7 +1,3 @@
---Insert Original Presets
---UserID added is for the Customer login originally created in the ASPNET database
---'b0aa3551-f62d-4c11-bd8c-1b3fcc305c0d'
-
 INSERT INTO [dvent_web].[dbo].[dvent_Preset]
            ([Name]
            ,[IdealTemperature]
