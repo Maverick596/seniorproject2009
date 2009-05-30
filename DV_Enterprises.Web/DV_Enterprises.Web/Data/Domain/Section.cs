@@ -23,13 +23,13 @@ namespace DV_Enterprises.Web.Data.Domain
         public Guid UserID { get; set; }
         public bool IsTemperatureActivated { get; set; }
         public int? IdealTemperature { get; set; }
-        public int? TemperatureTreshold { get; set; }
+        public int? TemperatureThreshold { get; set; }
         public bool IsLightActivated { get; set; }
         public int? IdealLightIntensity { get; set; }
-        public int? LightIntensityTreshold { get; set; }
+        public int? LightIntensityThreshold { get; set; }
         public bool IsHumidityActivated { get; set; }
         public int? IdealHumidity { get; set; }
-        public int? HumidityTreshold { get; set; }
+        public int? HumidityThreshold { get; set; }
         public DateTime DateCreated { get; private set; }
         public DateTime DateUpdated { get; private set; }
         public DateTime? DateDeleted { get; private set; }
@@ -65,13 +65,13 @@ namespace DV_Enterprises.Web.Data.Domain
                                    UserID = s.UserID,
                                    IsTemperatureActivated = s.IsTemeratureActivited,
                                    IdealTemperature = s.IdealTemperature,
-                                   TemperatureTreshold = s.TemperatureThreshold,
+                                   TemperatureThreshold = s.TemperatureThreshold,
                                    IsLightActivated = s.IsLightActivited,
                                    IdealLightIntensity = s.IdealLightIntensity,
-                                   LightIntensityTreshold = s.LightIntensityThreshold,
+                                   LightIntensityThreshold = s.LightIntensityThreshold,
                                    IsHumidityActivated = s.IsHumidityActivited,
                                    IdealHumidity = s.IdealHumidity,
-                                   HumidityTreshold = s.HumidityThreshold,
+                                   HumidityThreshold = s.HumidityThreshold,
                                    DateCreated = s.DateCreated,
                                    DateUpdated = s.DateUpdated
                                };
@@ -132,13 +132,13 @@ namespace DV_Enterprises.Web.Data.Domain
             dbSection.UserID = section.UserID;
             dbSection.IsTemeratureActivited = section.IsTemperatureActivated;
             dbSection.IdealTemperature = section.IdealTemperature;
-            dbSection.TemperatureThreshold = section.TemperatureTreshold;
+            dbSection.TemperatureThreshold = section.TemperatureThreshold;
             dbSection.IsLightActivited = section.IsLightActivated;
             dbSection.IdealLightIntensity = section.IdealLightIntensity;
-            dbSection.LightIntensityThreshold = section.LightIntensityTreshold;
+            dbSection.LightIntensityThreshold = section.LightIntensityThreshold;
             dbSection.IsHumidityActivited = section.IsHumidityActivated;
             dbSection.IdealHumidity = section.IdealHumidity;
-            dbSection.HumidityThreshold = section.HumidityTreshold;
+            dbSection.HumidityThreshold = section.HumidityThreshold;
             dbSection.DateUpdated = DateTime.Now;
 
             if (isNew)

@@ -42,15 +42,15 @@
                         <dt>Ideal Tempeture:</dt>
                         <dd><asp:Label ID="lblSectionIdealTempeture" runat="server" Text="<%# ((Section)Container.DataItem).IdealTemperature %>" /></dd>
                         <dt>Tempeture Threshold:</dt>
-                        <dd><asp:Label ID="lblTempretureThreshold" runat="server" Text="<%# ((Section)Container.DataItem).TemperatureTreshold %>" /></dd>
+                        <dd><asp:Label ID="lblTempretureThreshold" runat="server" Text="<%# ((Section)Container.DataItem).TemperatureThreshold %>" /></dd>
                         <dt>Ideal Lighting:</dt>
                         <dd><asp:Label ID="lblIdealLighting" runat="server" Text="<%# ((Section)Container.DataItem).IdealLightIntensity %>" /></dd>
                         <dt>Lighting Threshold:</dt>
-                        <dd><asp:Label ID="lblLightingThreshold" runat="server" Text="<%# ((Section)Container.DataItem).LightIntensityTreshold %>" /></dd>
+                        <dd><asp:Label ID="lblLightingThreshold" runat="server" Text="<%# ((Section)Container.DataItem).LightIntensityThreshold %>" /></dd>
                         <dt>Ideal Humidity:</dt>
                         <dd><asp:Label ID="lblIdealHumidity" runat="server" Text="<%# ((Section)Container.DataItem).IdealHumidity %>" /></dd>
                         <dt>Humidity Threshold:</dt>
-                        <dd><asp:Label ID="lblHumanityThreshold" runat="server" Text="<%# ((Section)Container.DataItem).HumidityTreshold %>" /></dd>
+                        <dd><asp:Label ID="lblHumanityThreshold" runat="server" Text="<%# ((Section)Container.DataItem).HumidityThreshold %>" /></dd>
                     </dl>
                 </div>
             </li>
@@ -93,7 +93,7 @@
                         </li>
                         <li>
                             <label>Temperature threshold:</label>
-                            <asp:TextBox ID="tbxTemperatureTreshold" runat="server" Text="<%# ((Section)Container.DataItem).TemperatureTreshold %>" />
+                            <asp:TextBox ID="tbxTemperatureTreshold" runat="server" Text="<%# ((Section)Container.DataItem).TemperatureThreshold %>" />
                         </li>
                     </ol>
                 </fieldset>
@@ -109,7 +109,7 @@
                         </li>
                         <li>
                             <label>Light intensity threshold:</label>
-                            <asp:TextBox ID="tbxLightIntensityTreshold" runat="server" Text="<%# ((Section)Container.DataItem).LightIntensityTreshold %>" />
+                            <asp:TextBox ID="tbxLightIntensityTreshold" runat="server" Text="<%# ((Section)Container.DataItem).LightIntensityThreshold %>" />
                         </li>
                     </ol>
                 </fieldset>
@@ -125,7 +125,7 @@
                         </li>
                         <li>
                             <label>Humidity threshold:</label>
-                            <asp:TextBox ID="tbxHumidityTreshold" runat="server" Text="<%# ((Section)Container.DataItem).HumidityTreshold %>" />
+                            <asp:TextBox ID="tbxHumidityTreshold" runat="server" Text="<%# ((Section)Container.DataItem).HumidityThreshold %>" />
                         </li>
                     </ol>
                 </fieldset>

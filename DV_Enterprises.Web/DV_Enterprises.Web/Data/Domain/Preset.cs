@@ -19,12 +19,12 @@ namespace DV_Enterprises.Web.Data.Domain
         public int ID { get; set; }
         public string Name { get; set; }
         public Guid? UserID { get; set; }
-        public int? IdealTemperture { get; set; }
-        public int? TempertureTreshold { get; set; }
+        public int? IdealTemperature { get; set; }
+        public int? TemperatureThreshold { get; set; }
         public int? IdealLightIntensity { get; set; }
-        public int? LightIntensityTreshold { get; set; }
+        public int? LightIntensityThreshold { get; set; }
         public int? IdealHumidity { get; set; }
-        public int? HumidityTreshold { get; set; }
+        public int? HumidityThreshold { get; set; }
         public bool IsGlobal { get; set; }
         public DateTime DateCreated { get; private set; }
         public DateTime DateUpdated { get; private set; }
@@ -56,12 +56,12 @@ namespace DV_Enterprises.Web.Data.Domain
                         ID = c.PresetID,
                         Name = c.Name,
                         UserID = c.UserID,
-                        IdealTemperture = c.IdealTemperature,
-                        TempertureTreshold = c.TemperatureThreshold,
+                        IdealTemperature = c.IdealTemperature,
+                        TemperatureThreshold = c.TemperatureThreshold,
                         IdealLightIntensity = c.IdealLightIntensity,
-                        LightIntensityTreshold = c.LightIntensityTreshold,
+                        LightIntensityThreshold =c.LightIntensityTreshold,
                         IdealHumidity = c.IdealHumidity,
-                        HumidityTreshold = c.HumidityThreshold,
+                        HumidityThreshold = c.HumidityThreshold,
                         IsGlobal = c.IsGlobal,
                         DateCreated = c.DateCreated,
                         DateUpdated = c.DateUpdated
@@ -119,12 +119,12 @@ namespace DV_Enterprises.Web.Data.Domain
 
             dbPreset.Name = preset.Name;
             dbPreset.UserID = preset.UserID;
-            dbPreset.IdealTemperature = preset.IdealTemperture;
-            dbPreset.TemperatureThreshold = preset.TempertureTreshold;
+            dbPreset.IdealTemperature = preset.IdealTemperature;
+            dbPreset.TemperatureThreshold = preset.TemperatureThreshold;
             dbPreset.IdealLightIntensity = preset.IdealLightIntensity;
-            dbPreset.LightIntensityTreshold = preset.LightIntensityTreshold;
+            dbPreset.LightIntensityTreshold = preset.LightIntensityThreshold;
             dbPreset.IdealHumidity = preset.IdealHumidity;
-            dbPreset.HumidityThreshold = preset.HumidityTreshold;
+            dbPreset.HumidityThreshold = preset.HumidityThreshold;
             dbPreset.IsGlobal = preset.IsGlobal;
             dbPreset.DateUpdated = DateTime.Now;
 

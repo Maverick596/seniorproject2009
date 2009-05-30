@@ -148,13 +148,13 @@ namespace Greenhouses
                             PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
                             IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
                             IdealTemperature = Parse(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
-                            TemperatureTreshold = Parse(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
+                            TemperatureThreshold = Parse(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
                             IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
                             IdealLightIntensity = Parse(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
-                            LightIntensityTreshold = Parse(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
+                            LightIntensityThreshold = Parse(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
                             IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
                             IdealHumidity = Parse(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
-                            HumidityTreshold = Parse(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
+                            HumidityThreshold = Parse(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
                         };
             s.Save();
             lvSections.EditIndex = -1;
@@ -177,13 +177,13 @@ namespace Greenhouses
                             PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
                             IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
                             IdealTemperature = Parse(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
-                            TemperatureTreshold = Parse(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
+                            TemperatureThreshold = Parse(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
                             IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
                             IdealLightIntensity = Parse(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
-                            LightIntensityTreshold = Parse(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
+                            LightIntensityThreshold = Parse(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
                             IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
                             IdealHumidity = Parse(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
-                            HumidityTreshold = Parse(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
+                            HumidityThreshold = Parse(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
                         };
             s.Save();
             CloseInsert();

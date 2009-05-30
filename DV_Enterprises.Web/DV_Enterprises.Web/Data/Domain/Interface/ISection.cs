@@ -19,13 +19,13 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         Guid UserID { get; set; }
         bool IsTemperatureActivated { get; set; }
         int? IdealTemperature { get; set; }
-        int? TemperatureTreshold { get; set; }
+        int? TemperatureThreshold { get; set; }
         bool IsLightActivated { get; set; }
         int? IdealLightIntensity { get; set; }
-        int? LightIntensityTreshold { get; set; }
+        int? LightIntensityThreshold { get; set; }
         bool IsHumidityActivated { get; set; }
         int? IdealHumidity { get; set; }
-        int? HumidityTreshold { get; set; }
+        int? HumidityThreshold { get; set; }
         DateTime DateCreated { get; }
         DateTime DateUpdated { get; }
         DateTime? DateDeleted { get; }

@@ -25,12 +25,12 @@ public partial class Greenhouses_AddCrop : System.Web.UI.Page
         {
             ID = 0,
             Name = txtCropName.Text,
-            IdealTemperture = Convert.ToInt32(txtIdealTemp.Text),
-            TempertureTreshold = Convert.ToInt32(txtTempRange.Text),
+            IdealTemperature = Convert.ToInt32(txtIdealTemp.Text),
+            TemperatureThreshold = Convert.ToInt32(txtTempRange.Text),
             IdealLightIntensity = Convert.ToInt32(txtLightRange.Text),
-            LightIntensityTreshold = Convert.ToInt32(txtLightRange.Text),
+            LightIntensityThreshold = Convert.ToInt32(txtLightRange.Text),
             IdealHumidity = Convert.ToInt32(txtHumidity.Text),
-            HumidityTreshold = Convert.ToInt32(txtHumidityRange.Text)
+            HumidityThreshold = Convert.ToInt32(txtHumidityRange.Text)
 
         };
         p.Save();

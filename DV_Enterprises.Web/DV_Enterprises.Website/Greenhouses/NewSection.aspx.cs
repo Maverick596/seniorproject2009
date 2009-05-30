@@ -10,7 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using DV_Enterprises.Web.Data.Domain;
+using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
 public partial class Greenhouses_NewSection : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -28,14 +28,16 @@ public partial class Greenhouses_NewSection : System.Web.UI.Page
           Name = txtSectionName.Text,
           PresetID = Convert.ToInt32(ddlCropName.SelectedValue),
           IdealTemperature = Convert.ToInt32(ddlTemp.SelectedValue),
-          TemperatureTreshold = Convert.ToInt32(ddlTemp.SelectedValue),
+          TemperatureThreshold = Convert.ToInt32(ddlTemp.SelectedValue),
           IdealLightIntensity = Convert.ToInt32(ddlLight.SelectedValue),
-          LightIntensityTreshold = Convert.ToInt32(ddlLightThreshold.SelectedValue),
+          LightIntensityThreshold = Convert.ToInt32(ddlLightThreshold.SelectedValue),
           IdealHumidity = Convert.ToInt32(ddlHumidity.SelectedValue),
-          HumidityTreshold = Convert.ToInt32(ddlHumidityThreshold.SelectedValue),
+          HumidityThreshold = Convert.ToInt32(ddlHumidityThreshold.SelectedValue),
          
                     
         };
-        s.Save();
+        
     }
+    
+   
 }
