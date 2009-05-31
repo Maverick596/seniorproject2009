@@ -8,6 +8,7 @@
     <asp:LinkButton ID="lbManage" runat="server" Text="Manage" 
         onclick="lbManage_Click" />
         <br />
+        
     <div>
         <br />
         <h3 class="title">Address:</h3>
@@ -60,14 +61,35 @@
                 </div>
             </li>
             <h4>Scheduler...Ugly but outputs stuff</h4>
-            <strong>Temperature Tasks</strong><br />
-            <asp:GridView ID="gvTempetureTasks" runat="server" />
+            <asp:Label ID="Label1" runat="server" Text="Temperature Tasks" Font-Bold="true" Width="140px" /><asp:LinkButton ID="lbNewTemperatureTask" runat="server" Text="New Task" CommandArgument="Temperature" OnClick="lbNewlbNewTemperatureTask_OnClick" /><br />
+            <asp:GridView ID="gvTempetureTasks" runat="server" AllowSorting="false" AllowPaging="false" AutoGenerateColumns="false" CellPadding="3" CellSpacing="3">
+                <Columns>
+                    <asp:BoundField HeaderText="Task" DataField="ID" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="250px" />
+                    <asp:BoundField HeaderText="Start Time" DataField="StartTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                    <asp:BoundField HeaderText="End Time" DataField="EndTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                </Columns>
+                <RowStyle HorizontalAlign="Center" />
+            </asp:GridView>
             
-            <strong>LightIntensity Tasks</strong><br />
-            <asp:GridView ID="gvLightIntensityTasks" runat="server" />
+            <asp:Label ID="Label2" runat="server" Text="Light Intensity Tasks" Font-Bold="true" Width="140px" /><asp:LinkButton ID="lbNewLightIntensityTask" runat="server" Text="New Task" CommandArgument="LightIntensity" OnClick="lbNewLightIntensityTask_OnClick" /><br />
+            <asp:GridView ID="gvLightIntensityTasks" runat="server" AllowSorting="false" AllowPaging="false" AutoGenerateColumns="false" CellPadding="3" CellSpacing="3">
+                <Columns>
+                    <asp:BoundField HeaderText="Task" DataField="ID" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="250px" />
+                    <asp:BoundField HeaderText="Start Time" DataField="StartTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                    <asp:BoundField HeaderText="End Time" DataField="EndTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                </Columns>
+                <RowStyle HorizontalAlign="Center" />
+            </asp:GridView>
             
-            <strong>Humidity Tasks</strong><br />
-            <asp:GridView ID="gvHumidityTasks" runat="server" />
+            <asp:Label ID="Label3" runat="server" Text="Humidity Tasks" Font-Bold="true" Width="140px" /><asp:LinkButton ID="lbNewHumidityTask" runat="server" Text="New Task" CommandArgument="Humidity" OnClick="lbNewHumidityTask_OnClick" /><br />
+            <asp:GridView ID="gvHumidityTasks" runat="server" AllowSorting="false" AllowPaging="false" AutoGenerateColumns="false" CellPadding="3" CellSpacing="3">
+                <Columns>
+                    <asp:BoundField HeaderText="Task" DataField="ID" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="250px" />
+                    <asp:BoundField HeaderText="Start Time" DataField="StartTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                    <asp:BoundField HeaderText="End Time" DataField="EndTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                </Columns>
+                <RowStyle HorizontalAlign="Center" />
+            </asp:GridView>
         </ItemTemplate>
         
         <EditItemTemplate>
@@ -226,4 +248,5 @@
         </EmptyDataTemplate>
         
     </asp:ListView>
+    
 </asp:Content>

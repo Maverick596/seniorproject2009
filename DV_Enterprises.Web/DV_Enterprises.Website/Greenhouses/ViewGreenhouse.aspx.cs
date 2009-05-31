@@ -56,6 +56,17 @@ namespace Greenhouses
             var gvHumidityTasks = e.Item.FindControl("gvHumidityTasks") as GridView;
             var litSectionID = e.Item.FindControl("litSectionID") as Literal;
 
+            //binding SectionIDs to Task Buttons - Start
+            var tempTask = e.Item.FindControl("lbNewTemperatureTask") as LinkButton;
+            tempTask.CommandArgument = litSectionID.Text;
+
+            var lightIntensityTask = e.Item.FindControl("lbNewLightIntensityTask") as LinkButton;
+            lightIntensityTask.CommandArgument = litSectionID.Text;
+
+            var humidityTask = e.Item.FindControl("lbNewHumidityTask") as LinkButton;
+            humidityTask.CommandArgument = litSectionID.Text;
+            //binding SectionIDs to Task Buttons - Done
+
             if (ddlPreset != null)
             {
                 ddlPreset.DataSource = Preset.All();
@@ -242,6 +253,48 @@ namespace Greenhouses
         {
             const string windowName = "ManageGreenhouse";
             const string url = "ManageGreenhouse.aspx";
+            const string windowAttribute = "toolbar=no,menu=no,status=no,width=420,height=400";
+            var clientscript = string.Format("window.open('{0}', '{1}', '{2}')", url, windowName, windowAttribute);
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
+        }
+
+        protected void lbNewlbNewTemperatureTask_OnClick(object sender, EventArgs e)
+        {
+            var button = sender as LinkButton;
+
+            String sectionID = button.CommandArgument;
+
+            const string windowName = "AddTask";
+            string url = "AddTask.aspx?&TaskType=Temperature&SectionID=" + sectionID;
+            const string windowAttribute = "toolbar=no,menu=no,status=no,width=420,height=400";
+            var clientscript = string.Format("window.open('{0}', '{1}', '{2}')", url, windowName, windowAttribute);
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
+        }
+
+        protected void lbNewLightIntensityTask_OnClick(object sender, EventArgs e)
+        {
+            var button = sender as LinkButton;
+
+            String sectionID = button.CommandArgument;
+
+            const string windowName = "AddTask";
+            string url = "AddTask.aspx?&TaskType=LightIntensity&SectionID=" + sectionID;
+            const string windowAttribute = "toolbar=no,menu=no,status=no,width=420,height=400";
+            var clientscript = string.Format("window.open('{0}', '{1}', '{2}')", url, windowName, windowAttribute);
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
+        }
+
+        protected void lbNewHumidityTask_OnClick(object sender, EventArgs e)
+        {
+            var button = sender as LinkButton;
+
+            String sectionID = button.CommandArgument;
+
+            const string windowName = "AddTask";
+            string url = "AddTask.aspx?&TaskType=Humidity&SectionID=" + sectionID;
             const string windowAttribute = "toolbar=no,menu=no,status=no,width=420,height=400";
             var clientscript = string.Format("window.open('{0}', '{1}', '{2}')", url, windowName, windowAttribute);
 

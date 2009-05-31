@@ -51,7 +51,7 @@
                 <asp:Label ID="lblAddress" runat="server" Text="Address" Width="100px" />
                 <asp:TextBox ID="txtAddress" MaxLength="40" runat="server" />
                 <asp:RegularExpressionValidator ID="revAddress" runat="server" 
-                ErrorMessage="ERROR: Field must be a valid string." ValidationExpression="^[a-zA-Z''-'\s]{1,40}$" ControlToValidate="txtAddress" />
+                ErrorMessage="ERROR: Field must be a valid string." ValidationExpression="^[0-9a-zA-Z''-'\s]{1,40}$" ControlToValidate="txtAddress" />
                 <br />
             </li>
             <li>
