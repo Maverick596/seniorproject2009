@@ -58,13 +58,23 @@ namespace Greenhouses
 
             //binding SectionIDs to Task Buttons - Start
             var tempTask = e.Item.FindControl("lbNewTemperatureTask") as LinkButton;
-            tempTask.CommandArgument = litSectionID.Text;
+            if (tempTask != null)
+            {
+                tempTask.CommandArgument = litSectionID.Text;
+            }
 
             var lightIntensityTask = e.Item.FindControl("lbNewLightIntensityTask") as LinkButton;
-            lightIntensityTask.CommandArgument = litSectionID.Text;
+            if (lightIntensityTask != null)
+            {
+                lightIntensityTask.CommandArgument = litSectionID.Text;
+            }
 
             var humidityTask = e.Item.FindControl("lbNewHumidityTask") as LinkButton;
-            humidityTask.CommandArgument = litSectionID.Text;
+
+            if (humidityTask != null)
+            {
+                humidityTask.CommandArgument = litSectionID.Text;
+            }
             //binding SectionIDs to Task Buttons - Done
 
             if (ddlPreset != null)

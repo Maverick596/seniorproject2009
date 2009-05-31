@@ -7,7 +7,9 @@
     <div class="grid_9">
         <embed src="http://flash.picturetrail.com/pflicks/3/spflick.swf" quality="high" FlashVars="ql=2&src1=http://pic18.picturetrail.com/VOL931/4959386/flicks/1/7104362" wmode="transparent" bgcolor="#000000" width="540" height="410" name="revolution" align="middle" allowScriptAccess="sameDomain" style="height:410px;width:540px" type="application/x-shockwave-flash"></embed>
     </div>
+    
     <ul class="grid_7">
+    "Mean Greens is a fun and interactive real time farming game for all levels of growers. It is also a great way to see what the SGS GreenThumb Modules can do for you!"<br /><br />
         <h3 class="title">Features</h3>
         <li>Build your own greenhouse</li>
         <li>Over 20 unique greenhouse upgrades</li>
