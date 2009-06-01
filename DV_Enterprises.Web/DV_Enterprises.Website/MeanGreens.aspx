@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h2 class="title grid_16">Mean Green</h2>
+    <h2 class="title grid_16">Mean Greens</h2>
     <div class="grid_9">
         <embed src="http://flash.picturetrail.com/pflicks/3/spflick.swf" quality="high" FlashVars="ql=2&src1=http://pic18.picturetrail.com/VOL931/4959386/flicks/1/7104362" wmode="transparent" bgcolor="#000000" width="540" height="410" name="revolution" align="middle" allowScriptAccess="sameDomain" style="height:410px;width:540px" type="application/x-shockwave-flash"></embed>
     </div>
