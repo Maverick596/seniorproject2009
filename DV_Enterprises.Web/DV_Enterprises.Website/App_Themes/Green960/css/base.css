@@ -7,6 +7,11 @@ h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
 .title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
     {color:#666; line-height: 1.25em; margin-bottom: 0;}
 
+h2 span { font-size: 19px; }    
+h4 span { font-size: 13px; }
+
+a { text-decoration: none; }
+
 /** Header **/
 #header { height: 110px; }
 #header h1 { height: 50px; float: left; margin-top: 20px; }
@@ -45,7 +50,6 @@ h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
 #content dt { clear: both; }
 /* end hack */
 #content .table_display dd { float: left; width: 40%; margin: 0 0 0 0; padding: .5em; border-top: 1px solid #999; }
-#content .sections h4 span { font-size: 13px; }
 #content .sections .table_display dt { width: 70%; padding: 0.5em 0 0.5em 0.5em; }
 #content .sections .table_display dd { width: 20%; padding: 0.5em 0; }
 #content .sections .task_list  { text-align: center }
