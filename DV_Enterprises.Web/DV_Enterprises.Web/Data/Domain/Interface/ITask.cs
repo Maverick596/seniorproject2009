@@ -14,9 +14,9 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
 
         new int ID { get; set; }
         int SectionID { get; set; }
-        TimeSpan StartTime { get; set; }
-        TimeSpan EndTime { get; set; }
-        TimeSpan Interval { get; set; }
+        DateTime StartTime { get; set; }
+        DateTime EndTime { get; set; }
+        double Interval { get; set; }
         int TaskTypeId { get; set; }
         TaskType TaskType { get; set; }
         DateTime DateCreated { get; }

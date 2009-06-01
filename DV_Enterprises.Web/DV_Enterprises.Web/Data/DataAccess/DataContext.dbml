@@ -19,7 +19,7 @@
     <Type Name="TaskType">
       <Column Name="TaskTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(253) NOT NULL" CanBeNull="false" />
-      <Association Name="TaskType_dvent_Task" Member="Tasks" Storage="_dvent_Tasks" ThisKey="TaskTypeId" OtherKey="TaskTypeID" Type="Task" />
+      <Association Name="TaskType_dvent_Task" Member="Tasks" ThisKey="TaskTypeId" OtherKey="TaskTypeID" Type="Task" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Product" Member="Products">
@@ -52,7 +52,7 @@
       <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Section_dvent_Task" Member="Tasks" Storage="_dvent_Tasks" ThisKey="SectionID" OtherKey="SectionID" Type="Task" />
+      <Association Name="Section_dvent_Task" Member="Tasks" ThisKey="SectionID" OtherKey="SectionID" Type="Task" />
       <Association Name="User_Section" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
       <Association Name="Preset_Section" Member="Preset" Storage="_dvent_Preset" ThisKey="PresetID" OtherKey="PresetID" Type="Preset" IsForeignKey="true" />
       <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
@@ -105,7 +105,7 @@
   </Table>
   <Table Name="dbo.dvent_Task" Member="Tasks">
     <Type Name="Task">
-      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TaskID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="SectionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TaskTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />

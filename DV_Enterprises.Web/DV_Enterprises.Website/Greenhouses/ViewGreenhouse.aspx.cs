@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Controls;
 using DV_Enterprises.Web.Data.Domain;
 using DV_Enterprises.Web.Presenter.Greenhouses;
 using DV_Enterprises.Web.Presenter.Greenhouses.Interface;
@@ -21,24 +22,23 @@ namespace Greenhouses
 
         public void LoadData(Greenhouse greenhouse)
         {
+            Page.Title = string.Format("{0} &mdash; Smart Greenhouse Solutions", greenhouse);
             lblGreenhouseTitle.Text = greenhouse.ToString();
-
-            lblAddress.Text = greenhouse.Address.StreetLine1 + "<br />";
-
-            if (greenhouse.Address.StreetLine2 != "")
-            {
-                lblAddress.Text += greenhouse.Address.StreetLine2 + "<br />";
-            }
-
-            lblAddress.Text += greenhouse.Address.City + ", " + 
-                               greenhouse.Address.StateOrProvince + " " + 
-                               greenhouse.Address.Zip +
-                                "<br /><br />";
         }
 
         public void LoadLocation(Address address)
         {
-            //lblAddress.Text = address.StreetLine1;
+            lblAddress.Text = address.StreetLine1 + "<br />";
+
+            if (address.StreetLine2 != "")
+            {
+                lblAddress.Text += address.StreetLine2 + "<br />";
+            }
+
+            lblAddress.Text += address.City + ", " +
+                               address.StateOrProvince + " " +
+                               address.Zip +
+                                "<br /><br />";
         }
 
         public void LoadSection(List<Section> sections)
@@ -50,22 +50,21 @@ namespace Greenhouses
         public void lvSections_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             var ddlPreset = e.Item.FindControl("ddlPreset") as DropDownList;
-            var gvSections = e.Item.FindControl("gvSections") as GridView;
-            var gvTempetureTasks = e.Item.FindControl("gvTempetureTasks") as GridView;
-            var gvLightIntensityTasks = e.Item.FindControl("gvLightIntensityTasks") as GridView;
-            var gvHumidityTasks = e.Item.FindControl("gvHumidityTasks") as GridView;
+            var tlstTemperature = e.Item.FindControl("tlstTemperature") as TaskList;
+            var tlstLightIntensity = e.Item.FindControl("tlstLightIntensity") as TaskList;
+            var tlstHumidity = e.Item.FindControl("tlstHumidity") as TaskList;
             var litSectionID = e.Item.FindControl("litSectionID") as Literal;
 
-            //binding SectionIDs to Task Buttons - Start
-            var tempTask = e.Item.FindControl("lbNewTemperatureTask") as LinkButton;
-            tempTask.CommandArgument = litSectionID.Text;
+            ////binding SectionIDs to Task Buttons - Start
+            //var tempTask = e.Item.FindControl("lbNewTemperatureTask") as LinkButton;
+            //tempTask.CommandArgument = litSectionID.Text;
 
-            var lightIntensityTask = e.Item.FindControl("lbNewLightIntensityTask") as LinkButton;
-            lightIntensityTask.CommandArgument = litSectionID.Text;
+            //var lightIntensityTask = e.Item.FindControl("lbNewLightIntensityTask") as LinkButton;
+            //lightIntensityTask.CommandArgument = litSectionID.Text;
 
-            var humidityTask = e.Item.FindControl("lbNewHumidityTask") as LinkButton;
-            humidityTask.CommandArgument = litSectionID.Text;
-            //binding SectionIDs to Task Buttons - Done
+            //var humidityTask = e.Item.FindControl("lbNewHumidityTask") as LinkButton;
+            //humidityTask.CommandArgument = litSectionID.Text;
+            ////binding SectionIDs to Task Buttons - Done
 
             if (ddlPreset != null)
             {
@@ -75,22 +74,22 @@ namespace Greenhouses
                 ddlPreset.DataBind();
             }
 
-            if (gvTempetureTasks != null)
+            if (tlstTemperature != null)
             {
-                gvTempetureTasks.DataSource = _presenter.SectionTasks(Convert.ToInt32(litSectionID.Text), TaskTypes.Temperature);
-                gvTempetureTasks.DataBind();
+                tlstTemperature.SectionID = Convert.ToInt32(litSectionID.Text);
+                tlstTemperature.Type = TaskTypes.Temperature;
             }
 
-            if (gvLightIntensityTasks != null)
+            if (tlstLightIntensity != null)
             {
-                gvLightIntensityTasks.DataSource = _presenter.SectionTasks(Convert.ToInt32(litSectionID.Text), TaskTypes.LightIntensity);
-                gvLightIntensityTasks.DataBind();
+                tlstLightIntensity.SectionID = Convert.ToInt32(litSectionID.Text);
+                tlstLightIntensity.Type = TaskTypes.LightIntensity;
             }
 
-            if (gvHumidityTasks != null)
+            if (tlstHumidity != null)
             {
-                gvHumidityTasks.DataSource = _presenter.SectionTasks(Convert.ToInt32(litSectionID.Text), TaskTypes.Humidity);
-                gvHumidityTasks.DataBind();
+                tlstHumidity.SectionID = Convert.ToInt32(litSectionID.Text);
+                tlstHumidity.Type = TaskTypes.Humidity;
             }
         }
 

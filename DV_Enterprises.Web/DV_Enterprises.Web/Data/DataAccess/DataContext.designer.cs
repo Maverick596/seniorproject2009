@@ -451,7 +451,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		private string _Name;
 		
-		private EntitySet<Task> _dvent_Tasks;
+		private EntitySet<Task> _Tasks;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -465,7 +465,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		public TaskType()
 		{
-			this._dvent_Tasks = new EntitySet<Task>(new Action<Task>(this.attach_dvent_Tasks), new Action<Task>(this.detach_dvent_Tasks));
+			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
 			OnCreated();
 		}
 		
@@ -509,16 +509,16 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="TaskType_dvent_Task", Storage="_dvent_Tasks", ThisKey="TaskTypeId", OtherKey="TaskTypeID")]
+		[Association(Name="TaskType_dvent_Task", Storage="_Tasks", ThisKey="TaskTypeId", OtherKey="TaskTypeID")]
 		public EntitySet<Task> Tasks
 		{
 			get
 			{
-				return this._dvent_Tasks;
+				return this._Tasks;
 			}
 			set
 			{
-				this._dvent_Tasks.Assign(value);
+				this._Tasks.Assign(value);
 			}
 		}
 		
@@ -542,13 +542,13 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		private void attach_dvent_Tasks(Task entity)
+		private void attach_Tasks(Task entity)
 		{
 			this.SendPropertyChanging();
 			entity.TaskType = this;
 		}
 		
-		private void detach_dvent_Tasks(Task entity)
+		private void detach_Tasks(Task entity)
 		{
 			this.SendPropertyChanging();
 			entity.TaskType = null;
@@ -823,7 +823,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		private System.DateTime _DateUpdated;
 		
-		private EntitySet<Task> _dvent_Tasks;
+		private EntitySet<Task> _Tasks;
 		
 		private EntityRef<User> _User;
 		
@@ -871,7 +871,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 		
 		public Section()
 		{
-			this._dvent_Tasks = new EntitySet<Task>(new Action<Task>(this.attach_dvent_Tasks), new Action<Task>(this.detach_dvent_Tasks));
+			this._Tasks = new EntitySet<Task>(new Action<Task>(this.attach_Tasks), new Action<Task>(this.detach_Tasks));
 			this._User = default(EntityRef<User>);
 			this._dvent_Preset = default(EntityRef<Preset>);
 			this._Greenhouse = default(EntityRef<Greenhouse>);
@@ -1210,16 +1210,16 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Section_dvent_Task", Storage="_dvent_Tasks", ThisKey="SectionID", OtherKey="SectionID")]
+		[Association(Name="Section_dvent_Task", Storage="_Tasks", ThisKey="SectionID", OtherKey="SectionID")]
 		public EntitySet<Task> Tasks
 		{
 			get
 			{
-				return this._dvent_Tasks;
+				return this._Tasks;
 			}
 			set
 			{
-				this._dvent_Tasks.Assign(value);
+				this._Tasks.Assign(value);
 			}
 		}
 		
@@ -1345,13 +1345,13 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		private void attach_dvent_Tasks(Task entity)
+		private void attach_Tasks(Task entity)
 		{
 			this.SendPropertyChanging();
 			entity.Section = this;
 		}
 		
-		private void detach_dvent_Tasks(Task entity)
+		private void detach_Tasks(Task entity)
 		{
 			this.SendPropertyChanging();
 			entity.Section = null;
@@ -2378,7 +2378,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			OnCreated();
 		}
 		
-		[Column(Storage="_TaskID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[Column(Storage="_TaskID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int TaskID
 		{
 			get

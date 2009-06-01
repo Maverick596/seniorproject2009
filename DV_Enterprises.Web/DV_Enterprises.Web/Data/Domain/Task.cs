@@ -18,9 +18,9 @@ namespace DV_Enterprises.Web.Data.Domain
 
         public int ID { get; set; }
         public int SectionID { get; set; }
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
-        public TimeSpan Interval { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public double Interval { get; set; }
         public int TaskTypeId { get; set; }
 
         private TaskType _taskType;
@@ -59,9 +59,9 @@ namespace DV_Enterprises.Web.Data.Domain
                                {
                                    ID = t.TaskID,
                                    SectionID = t.SectionID,
-                                   StartTime = t.StartTime.TimeOfDay,
-                                   EndTime = t.EndTime.TimeOfDay,
-                                   Interval = t.StartTime.TimeOfDay - t.EndTime.TimeOfDay,
+                                   StartTime = t.StartTime,
+                                   EndTime = t.EndTime,
+                                   Interval = (t.EndTime.TimeOfDay - t.StartTime.TimeOfDay).TotalMinutes,
                                    TaskTypeId = t.TaskTypeID,
                                    DateCreated = t.DateCreated,
                                    DateUpdated = t.DateUpdated
@@ -119,9 +119,10 @@ namespace DV_Enterprises.Web.Data.Domain
             }
 
             dbTask.SectionID = task.SectionID;
-            dbTask.StartTime = Convert.ToDateTime(task.StartTime);
-            dbTask.EndTime = Convert.ToDateTime(task.StartTime + task.Interval);
+            dbTask.StartTime = task.StartTime;
+            dbTask.EndTime = task.StartTime.AddMinutes(task.Interval);
             dbTask.TaskTypeID = task.TaskTypeId;
+            dbTask.DateUpdated = DateTime.Now;
 
             if (isNew)
             {
@@ -151,7 +152,7 @@ namespace DV_Enterprises.Web.Data.Domain
             dc = dc ?? Conn.GetContext();
             var dbTask = dc.Tasks.Where(t => t.TaskID == task.ID).SingleOrDefault();
             if (dbTask == null) return;
-            dc.Tasks.Attach(dbTask, true);
+            //dc.Tasks.Attach(dbTask, true);
             dc.Tasks.DeleteOnSubmit(dbTask);
             dc.SubmitChanges();
         }
