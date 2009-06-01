@@ -176,13 +176,13 @@ namespace Greenhouses
                             PresetID = Int32.Parse((listView.FindControl("ddlPreset") as DropDownList).SelectedValue),
                             IsTemperatureActivated = (listView.FindControl("cboIsTemperatureActivated") as CheckBox).Checked,
                             IdealTemperature = Int32.Parse((listView.FindControl("tbxIdealTemperature") as TextBox).Text),
-                            TemperatureTreshold = Int32.Parse((listView.FindControl("tbxTemperatureTreshold") as TextBox).Text),
+                            TemperatureThreshold = Int32.Parse((listView.FindControl("tbxTemperatureTreshold") as TextBox).Text),
                             IsLightActivated = (listView.FindControl("cboIsLightActivated") as CheckBox).Checked,
                             IdealLightIntensity = Int32.Parse((listView.FindControl("tbxIdealLightIntensity") as TextBox).Text),
-                            LightIntensityTreshold = Int32.Parse((listView.FindControl("tbxLightIntensityTreshold") as TextBox).Text),
+                            LightIntensityThreshold = Int32.Parse((listView.FindControl("tbxLightIntensityTreshold") as TextBox).Text),
                             IsHumidityActivated = (listView.FindControl("cboIsHumidityActivated") as CheckBox).Checked,
                             IdealHumidity = Int32.Parse((listView.FindControl("tbxIdealHumidity") as TextBox).Text),
-                            HumidityTreshold = Int32.Parse((listView.FindControl("tbxHumidityTreshold") as TextBox).Text),
+                            HumidityThreshold = Int32.Parse((listView.FindControl("tbxHumidityTreshold") as TextBox).Text),
                             //original code:
 
                             //ID = Convert.ToInt32(((Literal)item.FindControl("litSectionID")).Text),

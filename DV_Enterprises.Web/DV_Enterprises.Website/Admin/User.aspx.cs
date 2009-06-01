@@ -13,7 +13,7 @@ public partial class Admin_User : Page
         var userName = Request.QueryString["Id"];
         MembershipUser user = users[userName];
         ProfileCommon  userProfile = Profile.GetProfile(user.UserName);
-
+        
         lblUserName.Text = user.UserName;
         lblEmail.Text = string.Format("&lt;a href=mailto:{0}&gt;{0}&lt;a&gt", user.Email);
         lblFullAddress.Text = userProfile.Details.Address;
@@ -31,5 +31,12 @@ public partial class Admin_User : Page
     protected void lvGreenhouses_SelectedIndexChanged(object sender, EventArgs e)
     {
 
+    }
+
+
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        users.Remove(User.Identity.Name);
     }
 }

@@ -121,7 +121,7 @@
                         </li>
                         <li>
                             <label>Temperature threshold:</label>
-                            <asp:TextBox ID="tbxTemperatureTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).TemperatureTreshold %>" />
+                            <asp:TextBox ID="tbxTemperatureTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).TemperatureThreshold %>" />
                             <asp:RegularExpressionValidator ID="revTemperatureTreshold" runat="server" ErrorMessage="ERROR: Field must be a 1-3 digit, numeric value" ControlToValidate="tbxTemperatureTreshold" ValidationExpression="^[0-9]+$" />
                         </li>
                     </ol>
@@ -139,7 +139,7 @@
                         </li>
                         <li>
                             <label>Light intensity threshold:</label>
-                            <asp:TextBox ID="tbxLightIntensityTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).LightIntensityTreshold %>" />
+                            <asp:TextBox ID="tbxLightIntensityTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).LightIntensityThreshold %>" />
                             <asp:RegularExpressionValidator ID="revLightIntensityTreshold" runat="server" ErrorMessage="ERROR: Field must be a 1-3 digit, numeric value" ControlToValidate="tbxLightIntensityTreshold" ValidationExpression="^[0-9]+$" />
                         </li>
                     </ol>
@@ -157,7 +157,7 @@
                         </li>
                         <li>
                             <label>Humidity threshold:</label>
-                            <asp:TextBox ID="tbxHumidityTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).HumidityTreshold %>" />
+                            <asp:TextBox ID="tbxHumidityTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).HumidityThreshold %>" />
                             <asp:RegularExpressionValidator ID="revHumidityTreshold" runat="server" ErrorMessage="ERROR: Field must be a 1-3 digit, numeric value" ControlToValidate="tbxHumidityTreshold" ValidationExpression="^[0-9]+$" />
                         </li>
                     </ol>
