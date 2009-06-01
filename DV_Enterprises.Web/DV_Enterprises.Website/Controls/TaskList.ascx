@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="TaskList.ascx.cs" Inherits="Controls.TaskList" %>
-<asp:Literal ID="litSectionID" runat="server" Visible ="false" />
-<asp:Literal ID="litTaskTypeID" runat="server" Visible ="false" />
-<asp:Literal ID="litTaskName" runat="server" Visible ="false" />
+<asp:Literal ID="litSectionID" runat="server" Visible ="true" />
+<asp:Literal ID="litTaskTypeID" runat="server" Visible ="true" />
+<asp:Literal ID="litTaskName" runat="server" Visible ="true" />
 
 <h4 class="title"><asp:Literal ID="litTaskTitle" runat="server" /></h4>
 <asp:GridView ID="gvwTasks" runat="server" AutoGenerateColumns="false" CssClass="task_list" OnRowDeleting="gvwTasks_RowDeleting">

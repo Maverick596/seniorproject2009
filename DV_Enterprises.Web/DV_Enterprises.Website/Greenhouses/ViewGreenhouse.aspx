@@ -8,6 +8,7 @@
         <h2 class="title grid_16">
             <asp:Literal ID="litGreenhouseTitle" runat="server" />
             <span><asp:LinkButton ID="linkEdit" runat="server" Text="(edit)" onclick="linkEdit_Click" /></span>
+            <span><asp:LinkButton ID="lbNewSection" runat="server" Text="(new section)" OnClick="lbNewSection_Click" /></span>
         </h2>
         <address class="greenhouse grid_16">
             <asp:Literal ID="litStreetAddress1" runat="server" /><br />
@@ -27,7 +28,6 @@
             <LayoutTemplate>
                 <ul class="sections grid_16">
                     <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
-                    <asp:LinkButton ID="lbNewSection" runat="server" Text="New Section" OnClick="lbNewSection_Click" />
                 </ul>
             </LayoutTemplate>
             
@@ -58,9 +58,9 @@
                         <dt>Humidity Threshold:</dt>
                         <dd><asp:Label ID="lblHumanityThreshold" runat="server" Text="<%# ((Section)Container.DataItem).HumidityThreshold %>" /></dd>
                     </dl>
-                    <div class="grid_4"><dvent:TaskList ID="tlstTemperature" runat="server" TaskName="Temperature" /></div>
-                    <div class="grid_4"><dvent:TaskList ID="tlstLightIntensity" runat="server" TaskName="Light Intensity" /></div>
-                    <div class="grid_4 omega"><dvent:TaskList ID="tlstHumidity" runat="server" TaskName="Humidity" /></div>
+                    <div class="grid_4"><dvent:TaskList ID="tlstTemperature" runat="server" TaskName="Temperature" Type="Temperature" SectionID="<%# ((Section)Container.DataItem).ID %>" /></div>
+                    <div class="grid_4"><dvent:TaskList ID="tlstLightIntensity" runat="server" TaskName="Light Intensity" Type="LightIntensity" SectionID="<%# ((Section)Container.DataItem).ID %>" /></div>
+                    <div class="grid_4 omega"><dvent:TaskList ID="tlstHumidity" runat="server" TaskName="Humidity" Type="Humidity" SectionID="<%# ((Section)Container.DataItem).ID %>" /></div>
                 </li>
             </ItemTemplate>
             
@@ -251,10 +251,7 @@
             </InsertItemTemplate>
             
             <EmptyDataTemplate>
-                <div class="grid_16">
-                    <p>No sections found.</p>
-                    <asp:LinkButton ID="lbNewSection2" runat="server" Text="New Section" OnClick="lbNewSection_Click" />
-                </div>
+                <p class="grid_16">No sections found.</p>
             </EmptyDataTemplate>
             
         </asp:ListView>

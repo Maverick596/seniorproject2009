@@ -15,9 +15,25 @@ namespace Controls
         private readonly IWebContext _webContext;
         private readonly IRedirector _redirector;
         private int _taskTypeID;
+        private int _sectionID;
 
         [Category("Appearance")]
-        public int SectionID { get; set; }
+        public int SectionID
+        {
+            get
+            {
+                if (_sectionID == 0 && litSectionID.Text != string.Empty)
+                {
+                    _sectionID = Convert.ToInt32(litSectionID.Text);
+                }
+                return _sectionID;
+            }
+            set
+            {
+                _sectionID = value;
+                litSectionID.Text = value.ToString();
+            }
+        }
 
         [Category("Appearance")]
         public TaskTypes Type { get; set; }
@@ -41,28 +57,28 @@ namespace Controls
         {
             litTaskTitle.Text = string.Format("{0} tasks", TaskName);
 
-            if (!Page.IsPostBack)
-            {
-                litSectionID.Text = SectionID.ToString();
-                litTaskTypeID.Text = TaskTypeID.ToString();
-                litTaskName.Text = TaskName;
-                BindTasks();
-            }
-            else
-            {
-                if (litSectionID.Text != string.Empty)
-                {
-                    SectionID = Convert.ToInt32(litSectionID.Text);
-                }
-                if (litTaskTypeID.Text != string.Empty)
-                {
-                    TaskTypeID = Convert.ToInt32(litTaskTypeID.Text);
-                }
-                if (litTaskName.Text != string.Empty)
-                {
-                    TaskName = litTaskName.Text;
-                }
-            }
+            //if (!Page.IsPostBack)
+            //{
+            //litSectionID.Text = SectionID.ToString();
+            litTaskTypeID.Text = TaskTypeID.ToString();
+            litTaskName.Text = TaskName;
+            BindTasks();
+            //}
+            //else
+            //{
+            //    if (litSectionID.Text != string.Empty)
+            //    {
+            //        SectionID = Convert.ToInt32(litSectionID.Text);
+            //    }
+            //    if (litTaskTypeID.Text != string.Empty)
+            //    {
+            //        TaskTypeID = Convert.ToInt32(litTaskTypeID.Text);
+            //    }
+            //    if (litTaskName.Text != string.Empty)
+            //    {
+            //        TaskName = litTaskName.Text;
+            //    }
+            //}
             HidePanel();
         }
 
