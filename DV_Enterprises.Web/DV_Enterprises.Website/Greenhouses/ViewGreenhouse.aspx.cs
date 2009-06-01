@@ -23,7 +23,7 @@ namespace Greenhouses
         public void LoadData(Greenhouse greenhouse)
         {
             Page.Title = string.Format("{0} &mdash; Smart Greenhouse Solutions", greenhouse);
-            lblGreenhouseTitle.Text = greenhouse.ToString();
+            litGreenhouseTitle.Text = greenhouse.ToString();
         }
 
         public void LoadLocation(Address address)
@@ -248,7 +248,7 @@ namespace Greenhouses
             return result == 0 ? (int?) null : result;
         }
 
-        protected void lbManage_Click(object sender, EventArgs e)
+        protected void linkEdit_Click(object sender, EventArgs e)
         {
             const string windowName = "ManageGreenhouse";
             const string url = "ManageGreenhouse.aspx";
@@ -299,5 +299,5 @@ namespace Greenhouses
 
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
         }
-    }
+}
 }
