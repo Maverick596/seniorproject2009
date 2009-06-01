@@ -14,10 +14,10 @@
 
 <asp:Panel ID="pnlAddTask" runat="server" CssClass="form">
     <fieldset>
-        <legend>Add Task</legend>
+        <legend>New Task</legend>
         <ol>
             <li>
-                <label>Start time:</label>
+                <label>Start at:</label>
                 <asp:DropDownList ID="ddlStartTimeHours" runat="server" >
                     <asp:ListItem>1</asp:ListItem>
                     <asp:ListItem>2</asp:ListItem>
