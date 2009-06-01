@@ -169,6 +169,10 @@ namespace DV_Enterprises.Web.Data.Domain
             var dbSection = dc.Sections.Where(s => s.SectionID == section.ID).SingleOrDefault();
             if (dbSection == null) return;
             //dc.Sections.Attach(dbSection, true);
+            foreach (var task in dbSection.Tasks)
+            {
+                dc.Tasks.DeleteOnSubmit(task);
+            }
             dc.Sections.DeleteOnSubmit(dbSection);
             dc.SubmitChanges();
         }
