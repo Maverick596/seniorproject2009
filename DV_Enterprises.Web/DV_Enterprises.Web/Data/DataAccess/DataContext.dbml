@@ -112,8 +112,8 @@
       <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Section_dvent_Task" Member="Section" ThisKey="SectionID" OtherKey="SectionID" Type="Section" IsForeignKey="true" />
-      <Association Name="TaskType_dvent_Task" Member="TaskType" ThisKey="TaskTypeID" OtherKey="TaskTypeId" Type="TaskType" IsForeignKey="true" />
+      <Association Name="Section_Task" Member="Section" ThisKey="SectionID" OtherKey="SectionID" Type="Section" IsForeignKey="true" />
+      <Association Name="TaskType_Task" Member="TaskType" ThisKey="TaskTypeID" OtherKey="TaskTypeId" Type="TaskType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

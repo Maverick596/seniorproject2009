@@ -10,10 +10,13 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:DropDownList ID="ddlCropName" runat="server" 
         DataSourceID="LinqDataSource1" DataTextField="Name" 
-        DataValueField="CropID" AutoPostBack="True"> </asp:DropDownList>
+        DataValueField="PresetID" AutoPostBack="True"> </asp:DropDownList>
     <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
         ContextTypeName="DV_Enterprises.Web.Data.DataAccess.SqlRepository.DataContext" 
-        TableName="Presets" Select="new (Name, PresetID)">
+        TableName="Presets"  
+        
+        
+        Select="new (PresetID, Name, IdealTemperature, TemperatureThreshold, IdealLightIntensity, LightIntensityTreshold, IdealHumidity, HumidityThreshold)" >
     </asp:LinqDataSource>
     
     <br />

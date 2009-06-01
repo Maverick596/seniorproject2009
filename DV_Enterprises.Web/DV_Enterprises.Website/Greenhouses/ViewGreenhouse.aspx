@@ -48,15 +48,15 @@
                         <dt>Ideal Temperature :</dt>
                         <dd><asp:Label ID="lblSectionIdealTempeture" runat="server" Text="<%# ((Section)Container.DataItem).IdealTemperature %>" /></dd>
                         <dt>Temperature  Threshold:</dt>
-                        <dd><asp:Label ID="lblTempretureThreshold" runat="server" Text="<%# ((Section)Container.DataItem).TemperatureTreshold %>" /></dd>
+                        <dd><asp:Label ID="lblTempretureThreshold" runat="server" Text="<%# ((Section)Container.DataItem).TemperatureThreshold %>" /></dd>
                         <dt>Ideal Lighting:</dt>
                         <dd><asp:Label ID="lblIdealLighting" runat="server" Text="<%# ((Section)Container.DataItem).IdealLightIntensity %>" /></dd>
                         <dt>Lighting Threshold:</dt>
-                        <dd><asp:Label ID="lblLightingThreshold" runat="server" Text="<%# ((Section)Container.DataItem).LightIntensityTreshold %>" /></dd>
+                        <dd><asp:Label ID="lblLightingThreshold" runat="server" Text="<%# ((Section)Container.DataItem).LightIntensityThreshold %>" /></dd>
                         <dt>Ideal Humidity:</dt>
                         <dd><asp:Label ID="lblIdealHumidity" runat="server" Text="<%# ((Section)Container.DataItem).IdealHumidity %>" /></dd>
                         <dt>Humidity Threshold:</dt>
-                        <dd><asp:Label ID="lblHumanityThreshold" runat="server" Text="<%# ((Section)Container.DataItem).HumidityTreshold %>" /></dd>
+                        <dd><asp:Label ID="lblHumanityThreshold" runat="server" Text="<%# ((Section)Container.DataItem).HumidityThreshold %>" /></dd>
                     </dl>
                     <div class="grid_4"><dvent:TaskList ID="tlstTemperature" runat="server" TaskName="Temperature" /></div>
                     <div class="grid_4"><dvent:TaskList ID="tlstLightIntensity" runat="server" TaskName="Light Intensity" /></div>
