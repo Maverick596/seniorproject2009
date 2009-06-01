@@ -102,7 +102,7 @@
                                 Sign Up for Your New Account</td>
                         </tr>
                         <tr>
-                            <td align="center" style="width:200px;">
+                            <td align="right" style="width:200px;">
                                 <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User Name:</asp:Label>
                             </td>
                             <td>
@@ -113,7 +113,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" style="width:200px;">
+                            <td align="right" style="width:200px;">
                                 <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label>
                             </td>
                             <td>
@@ -124,7 +124,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" style="width:200px;">
+                            <td align="right" style="width:200px;">
                                 <asp:Label ID="ConfirmPasswordLabel" runat="server" 
                                     AssociatedControlID="ConfirmPassword">Confirm Password:</asp:Label>
                             </td>
@@ -137,7 +137,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" style="width:200px;">
+                            <td align="right" style="width:200px;">
                                 <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email">E-mail:</asp:Label>
                             </td>
                             <td>
@@ -148,7 +148,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" style="width:200px;">
+                            <td align="right" style="width:200px;">
                                 <asp:Label ID="QuestionLabel" runat="server" AssociatedControlID="Question">Security Question:</asp:Label>
                             </td>
                             <td>
@@ -159,7 +159,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" style="width:200px;">
+                            <td align="right" style="width:200px;">
                                 <asp:Label ID="AnswerLabel" runat="server" AssociatedControlID="Answer">Security Answer:</asp:Label>
                             </td>
                             <td>
