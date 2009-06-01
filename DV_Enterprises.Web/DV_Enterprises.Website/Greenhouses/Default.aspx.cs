@@ -59,7 +59,7 @@ namespace Greenhouses
         {
             const string windowName = "NewGreenhouse";
             const string url = "NewGreenhouse.aspx";
-            const string windowAttribute = "toolbar=no,menu=no,status=no,width=420,height=400";
+            const string windowAttribute = "toolbar=no,menu=no,status=no,width=620,height=400";
             var clientscript = string.Format("window.open('{0}', '{1}', '{2}')", url, windowName, windowAttribute);
 
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);

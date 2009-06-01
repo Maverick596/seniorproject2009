@@ -1,13 +1,13 @@
 ﻿/* NORMALIZE AND RESET - obviously inspired by Yahoo's reset.css, but scoped to just .form
 --------------------------------------------------------------------------------------------------*/
-.form, .form ul, .form ol, .form li, .form fieldset, .form legend, .form input, .form textarea, .form select, .form p { margin:0; padding:0; }
+.form, .form ul, .form ol, .form li, .form fieldset, .form legend, .form input, .form textarea, .form select, .form p { margin:0 !important; padding:0; }
 .form fieldset { border:0; }
 .form em, .form strong { font-style:normal; font-weight:normal; }
 .form ol, .form ul { list-style:none; }
 .form abbr, .form acronym { border:0; font-variant:normal; }
 .form input, .form textarea, .form select { font-family:inherit; font-size:inherit; font-weight:inherit; }
 .form input, .form textarea, .form select { font-size:100%; }
-.form legend { color:#000; }
+.form legend { color:#666; font-size: 19px; font-weight: bold; }
  
  
 /* FIELDSETS & LISTS

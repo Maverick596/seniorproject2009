@@ -10,6 +10,12 @@
     <title>Smart GreenHouse Solutions &mdash; better slogan here</title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            color: #FFFFFF;
+        }
+    </style>
 </head>
 <body>
     <form runat="server">
@@ -53,7 +59,7 @@
                     <li><asp:HyperLink ID="lnkPrivacyPolicy" runat="server" Text="Privacy Policy" NavigateUrl="~/Legal/PrivacyPolicy.aspx"></asp:HyperLink></li>
                     <li class="last"><asp:HyperLink ID="lnkFAQ" runat="server" Text="FAQ's" NavigateUrl="~/FAQ.aspx"></asp:HyperLink></li>
                 </ul>
-                <div class="copy">&copy; DVEnterprise 2009</div>
+                <div class="style1">&copy; DVEnterprise 2009</div>
             </div>
         </div>
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="False" />

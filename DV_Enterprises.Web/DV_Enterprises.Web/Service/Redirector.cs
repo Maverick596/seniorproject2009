@@ -47,12 +47,12 @@ namespace DV_Enterprises.Web.Service
             throw new NotImplementedException();
         }
 
-        public void GoToViewGreenhouse(int productId)
+        public void GoToViewGreenhouse(int greenhouseId)
         {
-            throw new NotImplementedException();
+            Redirect(String.Format("~/Greenhouses/ViewGreenhouse.aspx?GreenhouseID={0}", greenhouseId));
         }
 
-        public void GoToManageGreenhouse(int productId)
+        public void GoToManageGreenhouse(int greenhouseId)
         {
             throw new NotImplementedException();
         }

@@ -12,7 +12,7 @@
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
             </ul>
             <div>
-                <asp:Button ID="btnNewGreenhouse" runat="server" Text="New Greenhouse" onclick="btnNewGreenhouse_Click" />
+                <asp:LinkButton ID="btnNewGreenhouse" runat="server" Text="New Greenhouse" onclick="btnNewGreenhouse_Click" />
             </div>
         </LayoutTemplate>
         
@@ -28,7 +28,7 @@
         <EmptyDataTemplate>
             <p>No greenhouses found.</p>
             <div>
-                <asp:Button ID="btnNewGreenhouse" runat="server" Text="New Greenhouse" onclick="btnNewGreenhouse_Click" />
+                <asp:LinkButton ID="btnNewGreenhouse" runat="server" Text="New Greenhouse" onclick="btnNewGreenhouse_Click" />
             </div>
         </EmptyDataTemplate>
     </asp:ListView>
