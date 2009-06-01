@@ -28,7 +28,7 @@
                 
                 <asp:LinkButton ID="lbEdit" runat="server"  Text="Edit" OnClick="lbEdit_Click" Visible="false" />
                 <p class="grid_12 omega"><asp:Label ID="lblProductDescription" runat="server" Text='<%# ((Product)Container.DataItem).Description %>' /></p>
-                <p class="grid_12 omega"><asp:Label ID="lblProductPrice" runat="server" 
+                <p class="grid_12 omega"><asp:Label ID="lblProductPrice" runat="server" Font-Bold="true" 
                 Text=' <%# "Price: " + ((Product)Container.DataItem).Price.ToString("C") %>' /></p>
                 <asp:Literal ID="litProductID" runat="server" Visible="false"  Text='<%# ((Product)Container.DataItem).ID %>' />
             </li>
@@ -38,10 +38,15 @@
             <p class="grid_16">No products found.</p>
         </EmptyDataTemplate>
     </asp:ListView>
-    
-    <p class="grid_16">Smart Greenhouse Solutions is committed to providing the best 
+    <p class="grid_16">
+        <br />
+        <br />
+        Smart Greenhouse Solutions is committed to providing the best 
         quality products to help you enhance your growing. We back our products with an 
-        unbeatable 3 year warranty and a 24 hr customer service help line.</p>
-    
+        unbeatable 3 year warranty and a 24 hr customer service help line.
+    </p>
+    <p class="grid_16">
+        Purchase the MasterController, TempModule, and LightModule together and receive 7% off of your order!
+    </p>
 </asp:Content>
 

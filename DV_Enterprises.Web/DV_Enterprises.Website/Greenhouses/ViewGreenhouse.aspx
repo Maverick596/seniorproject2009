@@ -4,9 +4,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h2 class="title"><asp:Label ID="lblGreenhouseTitle" runat="server"></asp:Label></h2>
+    <h2 class="title"><asp:Label ID="lblGreenhouseTitle" runat="server" CssClass="title" /></h2>
+    <asp:LinkButton ID="lbManage" runat="server" Text="Manage" 
+        onclick="lbManage_Click" />
+        <br />
+        
     <div>
-        This is the greenhouse address.
+        <br />
+        <h3 class="title">Address:</h3>
+        <asp:Label ID="lblAddress" runat="server" Text="" /> 
     </div>
 
     <asp:ListView ID="lvSections" runat="server" 
@@ -33,8 +39,8 @@
                     <span><asp:LinkButton ID="lbEdit" runat="server" CommandName="Edit" Text="(edit)" /></span>
                     <span><asp:LinkButton ID="lbDelete" runat="server" CommandName="Delete" Text="(delete)" /></span>
                 </h3>
-                <div>Current Readings. This is not done yet.</div>
                 <div>
+                    <br />
                     <h4 class="title">Settings</h4>
                     <dl>
                         <dt>Preset:</dt>
@@ -55,14 +61,35 @@
                 </div>
             </li>
             <h4>Scheduler...Ugly but outputs stuff</h4>
-            <strong>Tempeture Tasks</strong><br />
-            <asp:GridView ID="gvTempetureTasks" runat="server" />
+            <asp:Label ID="Label1" runat="server" Text="Temperature Tasks" Font-Bold="true" Width="140px" /><asp:LinkButton ID="lbNewTemperatureTask" runat="server" Text="New Task" CommandArgument="Temperature" OnClick="lbNewlbNewTemperatureTask_OnClick" /><br />
+            <asp:GridView ID="gvTempetureTasks" runat="server" AllowSorting="false" AllowPaging="false" AutoGenerateColumns="false" CellPadding="3" CellSpacing="3">
+                <Columns>
+                    <asp:BoundField HeaderText="Task" DataField="ID" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="250px" />
+                    <asp:BoundField HeaderText="Start Time" DataField="StartTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                    <asp:BoundField HeaderText="End Time" DataField="EndTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                </Columns>
+                <RowStyle HorizontalAlign="Center" />
+            </asp:GridView>
             
-            <strong>LightIntensity Tasks</strong><br />
-            <asp:GridView ID="gvLightIntensityTasks" runat="server" />
+            <asp:Label ID="Label2" runat="server" Text="Light Intensity Tasks" Font-Bold="true" Width="140px" /><asp:LinkButton ID="lbNewLightIntensityTask" runat="server" Text="New Task" CommandArgument="LightIntensity" OnClick="lbNewLightIntensityTask_OnClick" /><br />
+            <asp:GridView ID="gvLightIntensityTasks" runat="server" AllowSorting="false" AllowPaging="false" AutoGenerateColumns="false" CellPadding="3" CellSpacing="3">
+                <Columns>
+                    <asp:BoundField HeaderText="Task" DataField="ID" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="250px" />
+                    <asp:BoundField HeaderText="Start Time" DataField="StartTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                    <asp:BoundField HeaderText="End Time" DataField="EndTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                </Columns>
+                <RowStyle HorizontalAlign="Center" />
+            </asp:GridView>
             
-            <strong>Humidity Tasks</strong><br />
-            <asp:GridView ID="gvHumidityTasks" runat="server" />
+            <asp:Label ID="Label3" runat="server" Text="Humidity Tasks" Font-Bold="true" Width="140px" /><asp:LinkButton ID="lbNewHumidityTask" runat="server" Text="New Task" CommandArgument="Humidity" OnClick="lbNewHumidityTask_OnClick" /><br />
+            <asp:GridView ID="gvHumidityTasks" runat="server" AllowSorting="false" AllowPaging="false" AutoGenerateColumns="false" CellPadding="3" CellSpacing="3">
+                <Columns>
+                    <asp:BoundField HeaderText="Task" DataField="ID" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="250px" />
+                    <asp:BoundField HeaderText="Start Time" DataField="StartTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                    <asp:BoundField HeaderText="End Time" DataField="EndTime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="300px" DataFormatString="{0:t}" HtmlEncode="false" />
+                </Columns>
+                <RowStyle HorizontalAlign="Center" />
+            </asp:GridView>
         </ItemTemplate>
         
         <EditItemTemplate>
@@ -89,11 +116,13 @@
                         </li>
                         <li>
                             <label>Ideal temperature:</label>
-                            <asp:TextBox ID="tbxIdealTemperature" runat="server" Text="<%# ((Section)Container.DataItem).IdealTemperature %>" />
+                            <asp:TextBox ID="tbxIdealTemperature" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).IdealTemperature %>" />
+                            <asp:RegularExpressionValidator ID="revIdealTemperature" runat="server" ErrorMessage="ERROR: Field must be a 1-3 digit, numeric value" ControlToValidate="tbxIdealTemperature" ValidationExpression="^[0-9]+$" />
                         </li>
                         <li>
                             <label>Temperature threshold:</label>
-                            <asp:TextBox ID="tbxTemperatureTreshold" runat="server" Text="<%# ((Section)Container.DataItem).TemperatureThreshold %>" />
+                            <asp:TextBox ID="tbxTemperatureTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).TemperatureTreshold %>" />
+                            <asp:RegularExpressionValidator ID="revTemperatureTreshold" runat="server" ErrorMessage="ERROR: Field must be a 1-3 digit, numeric value" ControlToValidate="tbxTemperatureTreshold" ValidationExpression="^[0-9]+$" />
                         </li>
                     </ol>
                 </fieldset>
@@ -105,11 +134,13 @@
                         </li>
                         <li>
                             <label>Ideal light intensity:</label>
-                            <asp:TextBox ID="tbxIdealLightIntensity" runat="server" Text="<%# ((Section)Container.DataItem).IdealLightIntensity %>" />
+                            <asp:TextBox ID="tbxIdealLightIntensity" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).IdealLightIntensity %>" />
+                            <asp:RegularExpressionValidator ID="revIdealLightIntensity" runat="server" ErrorMessage="ERROR: Field must be a 1-3 digit, numeric value" ControlToValidate="tbxIdealLightIntensity" ValidationExpression="^[0-9]+$" />
                         </li>
                         <li>
                             <label>Light intensity threshold:</label>
-                            <asp:TextBox ID="tbxLightIntensityTreshold" runat="server" Text="<%# ((Section)Container.DataItem).LightIntensityThreshold %>" />
+                            <asp:TextBox ID="tbxLightIntensityTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).LightIntensityTreshold %>" />
+                            <asp:RegularExpressionValidator ID="revLightIntensityTreshold" runat="server" ErrorMessage="ERROR: Field must be a 1-3 digit, numeric value" ControlToValidate="tbxLightIntensityTreshold" ValidationExpression="^[0-9]+$" />
                         </li>
                     </ol>
                 </fieldset>
@@ -117,15 +148,17 @@
                     <legend>Humidity</legend>
                     <ol>
                         <li>
-                            <asp:CheckBox ID="cboIsHumidityActivated" runat="server" Checked="<%# ((Section)Container.DataItem).IsHumidityActivated %>" Text="Is Temperature Activated" />
+                            <asp:CheckBox ID="cboIsHumidityActivated" runat="server" Checked="<%# ((Section)Container.DataItem).IsHumidityActivated %>" Text="Is Humidity Activated" />
                         </li>
                         <li>
                             <label>Ideal humidity:</label>
-                            <asp:TextBox ID="tbxIdealHumidity" runat="server" Text="<%# ((Section)Container.DataItem).IdealHumidity %>" />
+                            <asp:TextBox ID="tbxIdealHumidity" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).IdealHumidity %>" />
+                            <asp:RegularExpressionValidator ID="revtbxIdealHumidity" runat="server" ErrorMessage="ERROR: Field must be a 1-3 digit, numeric value" ControlToValidate="tbxIdealHumidity" ValidationExpression="^[0-9]+$" />
                         </li>
                         <li>
                             <label>Humidity threshold:</label>
-                            <asp:TextBox ID="tbxHumidityTreshold" runat="server" Text="<%# ((Section)Container.DataItem).HumidityThreshold %>" />
+                            <asp:TextBox ID="tbxHumidityTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).HumidityTreshold %>" />
+                            <asp:RegularExpressionValidator ID="revHumidityTreshold" runat="server" ErrorMessage="ERROR: Field must be a 1-3 digit, numeric value" ControlToValidate="tbxHumidityTreshold" ValidationExpression="^[0-9]+$" />
                         </li>
                     </ol>
                 </fieldset>
@@ -148,7 +181,7 @@
                         </li>
                         <li>
                             <label>Preset:</label>
-                            <asp:DropDownList ID="ddlPreset" runat="server" />
+                            <asp:DropDownList ID="ddlPreset" runat="server" AutoPostBack="true" />
                         </li>
                     </ol>
                 </fieldset>
@@ -188,7 +221,7 @@
                     <legend>Humidity</legend>
                     <ol>
                         <li>
-                            <asp:CheckBox ID="cboIsHumidityActivated" runat="server" Text="Is Temperature Activated" />
+                            <asp:CheckBox ID="cboIsHumidityActivated" runat="server" Text="Is Humidity Activated" />
                         </li>
                         <li>
                             <label>Ideal humidity:</label>
@@ -215,4 +248,5 @@
         </EmptyDataTemplate>
         
     </asp:ListView>
+    
 </asp:Content>
