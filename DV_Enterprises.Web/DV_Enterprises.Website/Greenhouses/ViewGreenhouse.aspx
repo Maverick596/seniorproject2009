@@ -99,7 +99,7 @@
                             </li>
                             <li>
                                 <asp:Label ID="lblTemperatureTreshold" runat="server" Text="Threshold:" AssociatedControlID="tbxTemperatureTreshold" />
-                                <asp:TextBox ID="tbxTemperatureTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).TemperatureTreshold %>" ValidationGroup="update" />
+                                <asp:TextBox ID="tbxTemperatureTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).TemperatureThreshold %>" ValidationGroup="update" />
                                 <p class="inline-hints">This section's temperature threshold.</p>
                                 <asp:RegularExpressionValidator ID="revTemperatureTreshold" runat="server" ErrorMessage="Temperature threshold must be a number with 1 to 3 digits ControlToValidate="tbxTemperatureTreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
                             </li>
@@ -121,7 +121,7 @@
                             </li>
                             <li>
                                 <asp:Label ID="lblLightIntensityTreshold" runat="server" Text="Threshold:" AssociatedControlID="tbxLightIntensityTreshold" />
-                                <asp:TextBox ID="tbxLightIntensityTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).LightIntensityTreshold %>" ValidationGroup="update" />
+                                <asp:TextBox ID="tbxLightIntensityTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).LightIntensityThreshold %>" ValidationGroup="update" />
                                 <p class="inline-hints">This section's light intensity threshold.</p>
                                 <asp:RegularExpressionValidator ID="revLightIntensityTreshold" runat="server" ErrorMessage="Light intensity threshold must be a number with 1 to 3 digits" ControlToValidate="tbxLightIntensityTreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
                             </li>
@@ -143,7 +143,7 @@
                             </li>
                             <li>
                                 <asp:Label ID="lblHumidityTreshold" runat="server" Text="Threshold:" AssociatedControlID="tbxHumidityTreshold" />
-                                <asp:TextBox ID="tbxHumidityTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).HumidityTreshold %>" ValidationGroup="update" />
+                                <asp:TextBox ID="tbxHumidityTreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).HumidityThreshold %>" ValidationGroup="update" />
                                 <p class="inline-hints">This section's humidity threshold.</p>
                                 <asp:RegularExpressionValidator ID="revHumidityTreshold" runat="server" ErrorMessage="humidity threshold must be a number with 1 to 3 digits" ControlToValidate="tbxHumidityTreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
                             </li>
