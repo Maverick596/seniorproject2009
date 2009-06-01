@@ -1,4 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="TaskList.ascx.cs" Inherits="Controls.TaskList" %>
+<asp:Literal ID="litSectionID" runat="server" Visible ="false" />
+<asp:Literal ID="litTaskTypeID" runat="server" Visible ="false" />
+<asp:Literal ID="litTaskName" runat="server" Visible ="false" />
+
 <h4 class="title"><asp:Literal ID="litTaskTitle" runat="server" /></h4>
 <asp:GridView ID="gvwTasks" runat="server" AutoGenerateColumns="false" CssClass="task_list" OnRowDeleting="gvwTasks_RowDeleting">
     <Columns>
@@ -9,8 +13,6 @@
 </asp:GridView>
 
 <asp:LinkButton ID="btnAddTask" runat="server" Text="add new" onclick="btnAddTask_Click" />
-<asp:Literal ID="litSectionID" runat="server" Visible ="false" />
-<asp:Literal ID="litTaskTypeID" runat="server" Visible ="false" />
 
 <asp:Panel ID="pnlAddTask" runat="server" CssClass="form">
     <fieldset>

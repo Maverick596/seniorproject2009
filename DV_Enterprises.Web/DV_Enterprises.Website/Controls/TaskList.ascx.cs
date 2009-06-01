@@ -15,7 +15,6 @@ namespace Controls
         private readonly IWebContext _webContext;
         private readonly IRedirector _redirector;
         private int _taskTypeID;
-        private string _taskName;
 
         [Category("Appearance")]
         public int SectionID { get; set; }
@@ -23,31 +22,8 @@ namespace Controls
         [Category("Appearance")]
         public TaskTypes Type { get; set; }
 
-        public string TaskName {
-            get
-            {
-                if (_taskName != null )
-                    return _taskName;
-
-                switch (Type)
-                {
-                    case TaskTypes.Humidity:
-                        TaskName = "Humidity";
-                        break;
-                    case TaskTypes.LightIntensity:
-                        TaskName = "Light Instensity";
-                        break;
-                    case TaskTypes.Temperature:
-                        TaskName = "Temperature";
-                        break;
-                }
-                return _taskName;
-            }
-            private set
-            {
-                _taskName = value;
-            }
-        }
+        [Category("Appearance")]
+        public string TaskName { get; set; }
 
         public int TaskTypeID
         {
@@ -69,14 +45,23 @@ namespace Controls
             {
                 litSectionID.Text = SectionID.ToString();
                 litTaskTypeID.Text = TaskTypeID.ToString();
+                litTaskName.Text = TaskName;
                 BindTasks();
             }
             else
             {
                 if (litSectionID.Text != string.Empty)
+                {
                     SectionID = Convert.ToInt32(litSectionID.Text);
+                }
                 if (litTaskTypeID.Text != string.Empty)
+                {
                     TaskTypeID = Convert.ToInt32(litTaskTypeID.Text);
+                }
+                if (litTaskName.Text != string.Empty)
+                {
+                    TaskName = litTaskName.Text;
+                }
             }
             HidePanel();
         }

@@ -55,9 +55,9 @@
                         <dt>Humidity Threshold:</dt>
                         <dd><asp:Label ID="lblHumanityThreshold" runat="server" Text="<%# ((Section)Container.DataItem).HumidityTreshold %>" /></dd>
                     </dl>
-                    <div class="grid_4"><dvent:TaskList ID="tlstTemperature" runat="server" /></div>
-                    <div class="grid_4"><dvent:TaskList ID="tlstLightIntensity" runat="server" /></div>
-                    <div class="grid_4 omega"><dvent:TaskList ID="tlstHumidity" runat="server" /></div>
+                    <div class="grid_4"><dvent:TaskList ID="tlstTemperature" runat="server" TaskName="Temperature" /></div>
+                    <div class="grid_4"><dvent:TaskList ID="tlstLightIntensity" runat="server" TaskName="Light Intensity" /></div>
+                    <div class="grid_4 omega"><dvent:TaskList ID="tlstHumidity" runat="server" TaskName="Humidity" /></div>
                 </li>
             </ItemTemplate>
             
