@@ -44,6 +44,7 @@ a { text-decoration: none; }
 #content .secondary { background-color: #eaeaea; }
 #content .faq .back_to_top { float: right; }
 #content address { text-align: center; }
+#content address.greenhouse { text-align: left; }
 #content span.green { color: #009900; }
 #content .table_display dt { width: 40%; float: left; margin: 0 0 0 0; padding: .5em; border-top: 1px solid #999; font-weight: bold;  }
 /* commented backslash hack for mac-ie5 \*/

@@ -9,11 +9,11 @@
             <asp:Literal ID="litGreenhouseTitle" runat="server" />
             <span><asp:LinkButton ID="linkEdit" runat="server" Text="(edit)" onclick="linkEdit_Click" /></span>
         </h2>
-            
-        <div>
-            <h3 class="title">Address:</h3>
-            <asp:Label ID="lblAddress" runat="server" Text="" />
-        </div>
+        <address class="greenhouse grid_16">
+            <asp:Literal ID="litStreetAddress1" runat="server" /><br />
+            <asp:Literal ID="litStreetAddress2" runat="server" /><asp:Literal ID="litStreetAddress2BR" runat="server" Text="<br />" />
+            <asp:Literal ID="litCity" runat="server" />, <asp:Literal ID="litState" runat="server" /> <asp:Literal ID="litZip" runat="server" />
+        </address>
         
         <asp:ListView ID="lvSections" runat="server" 
             onitemediting="lvSections_ItemEditing"

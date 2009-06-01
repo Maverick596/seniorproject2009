@@ -28,17 +28,30 @@ namespace Greenhouses
 
         public void LoadLocation(Address address)
         {
-            lblAddress.Text = address.StreetLine1 + "<br />";
+            //lblAddress.Text = address.StreetLine1 + "<br />";
 
-            if (address.StreetLine2 != "")
+            //if (address.StreetLine2 != "")
+            //{
+            //    lblAddress.Text += address.StreetLine2 + "<br />";
+            //}
+
+            //lblAddress.Text += address.City + ", " +
+            //                   address.StateOrProvince + " " +
+            //                   address.Zip +
+            //                    "<br /><br />";
+            litStreetAddress1.Text = address.StreetLine1;
+            if (address.StreetLine2 != null)
             {
-                lblAddress.Text += address.StreetLine2 + "<br />";
+                litStreetAddress2.Text = address.StreetLine2;
             }
-
-            lblAddress.Text += address.City + ", " +
-                               address.StateOrProvince + " " +
-                               address.Zip +
-                                "<br /><br />";
+            else
+            {
+                litStreetAddress2.Visible = false;
+                litStreetAddress2BR.Visible = false;
+            }
+            litCity.Text = address.City;
+            litState.Text = address.StateOrProvince;
+            litZip.Text = address.Zip.ToString();
         }
 
         public void LoadSection(List<Section> sections)
