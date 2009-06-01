@@ -50,6 +50,7 @@ a { text-decoration: none; }
 #content dt { clear: both; }
 /* end hack */
 #content .table_display dd { float: left; width: 40%; margin: 0 0 0 0; padding: .5em; border-top: 1px solid #999; }
+#content ul.sections li.section { border-top: 1px solid #666; padding-top: 10px;}
 #content .sections .table_display dt { width: 70%; padding: 0.5em 0 0.5em 0.5em; }
 #content .sections .table_display dd { width: 20%; padding: 0.5em 0; }
 #content .sections .task_list  { text-align: center }

@@ -140,7 +140,7 @@ namespace Greenhouses
         {
 
             lvSections.EditIndex = -1;
-            lvSections.InsertItemPosition = InsertItemPosition.LastItem;
+            lvSections.InsertItemPosition = InsertItemPosition.FirstItem;
             ((LinkButton)sender).Visible = false;
             _presenter.BindSections();
 

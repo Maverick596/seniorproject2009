@@ -27,12 +27,12 @@
             <LayoutTemplate>
                 <ul class="sections grid_16">
                     <asp:PlaceHolder ID="itemPlaceholder" runat="server" />
+                    <asp:LinkButton ID="lbNewSection" runat="server" Text="New Section" OnClick="lbNewSection_Click" />
                 </ul>
-                <asp:LinkButton ID="lbNewSection" runat="server" Text="New Section" OnClick="lbNewSection_Click" />
             </LayoutTemplate>
             
             <ItemTemplate>
-                <li class="clearfix grid_16 alpha omega">
+                <li class="section clearfix grid_16 alpha omega">
                     <asp:Literal ID="litSectionID" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).ID %>" />
                     <h3>
                         <asp:Label ID="lblSectionName" runat="server" Text="<%# ((Section)Container.DataItem).Name %>" />
@@ -160,78 +160,101 @@
             
             <InsertItemTemplate>
                 <div class="form">
-                    <fieldset>
+                    <fieldset class="grid_8 alpha">
                         <legend>Basic Settings</legend>
                         <ol>
                             <li>
+                                <asp:Label ID="lblName" runat="server" Text="Name:" AssociatedControlID="tbxName" />
                                 <asp:TextBox ID="tbxName" runat="server" />
+                                <p class="inline-hints"></p>
                             </li>
                             <li>
-                                <label>Preset:</label>
+                                <asp:Label ID="lblPreset" runat="server" Text="Preset:" AssociatedControlID="tbxName" />
                                 <asp:DropDownList ID="ddlPreset" runat="server" AutoPostBack="true" />
+                                <p class="inline-hints">A set of default setting for this section</p>
                             </li>
                         </ol>
                     </fieldset>
-                    <fieldset>
-                        <legend>Temeperature</legend>
+                    <fieldset class="grid_8 omega">
+                        <legend>Temeperature Module</legend>
                         <ol>
                             <li>
-                                <asp:CheckBox ID="cboIsTemperatureActivated" runat="server" Text="Is temperature activated" />
+                                <asp:Label ID="lblIsTemperatureActivated" runat="server" Text="Activated?" AssociatedControlID="cboIsTemperatureActivated" />
+                                <asp:CheckBox ID="cboIsTemperatureActivated" runat="server" />
+                                <p class="inline-hints">Is the temperature module activated</p>
                             </li>
                             <li>
-                                <label>Ideal temperature:</label>
-                                <asp:TextBox ID="tbxIdealTemperature" runat="server" />
+                                <asp:Label ID="IdealTemperature" runat="server" Text="Ideal:" AssociatedControlID="cboIsTemperatureActivated" />
+                                <asp:TextBox ID="tbxIdealTemperature" runat="server" MaxLength="3" ValidationGroup="add" />
+                                <p class="inline-hints">This section's ideal temperature</p>
+                                <asp:RegularExpressionValidator ID="revIdealTemperature" runat="server" ErrorMessage="Ideal temperature must be a number with 1 to 3 digits" ControlToValidate="tbxIdealTemperature" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="add" />
                             </li>
                             <li>
-                                <label>Temperature threshold:</label>
-                                <asp:TextBox ID="tbxTemperatureTreshold" runat="server" />
+                                <asp:Label ID="lblTemperatureTreshold" runat="server" Text="Threshold:" AssociatedControlID="tbxTemperatureTreshold" />
+                                <asp:TextBox ID="tbxTemperatureTreshold" runat="server" MaxLength="3" ValidationGroup="add" />
+                                <p class="inline-hints">This section's temperature threshold.</p>
+                                <asp:RegularExpressionValidator ID="revTemperatureTreshold" runat="server" ErrorMessage="Temperature threshold must be a number with 1 to 3 digits ControlToValidate="tbxTemperatureTreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="add" />
                             </li>
                         </ol>
                     </fieldset>
-                    <fieldset>
-                        <legend>Lighting</legend>
+                    <fieldset class="grid_8 alpha">
+                        <legend>Lighting Module</legend>
                         <ol>
                             <li>
-                                <asp:CheckBox ID="cboIsLightActivated" runat="server" Text="Is light intensity activated" />
+                                <asp:Label ID="lblIsLightActivated" runat="server" Text="Activated?" AssociatedControlID="cboIsLightActivated" />
+                                <asp:CheckBox ID="cboIsLightActivated" runat="server" />
+                                <p class="inline-hints">Is the lighting module activated</p>
                             </li>
                             <li>
-                                <label>Ideal light intensity:</label>
-                                <asp:TextBox ID="tbxIdealLightIntensity" runat="server" />
+                                <asp:Label ID="lblIdealLightIntensity" runat="server" Text="Ideal:" AssociatedControlID="tbxIdealLightIntensity" />
+                                <asp:TextBox ID="tbxIdealLightIntensity" runat="server" MaxLength="3" ValidationGroup="add" />
+                                <p class="inline-hints">This section's ideal light intensity</p>
+                                <asp:RegularExpressionValidator ID="revIdealLightIntensity" runat="server" ErrorMessage="Ideal light intensity must be a number with 1 to 3 digits" ControlToValidate="tbxIdealLightIntensity" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="add" />
                             </li>
                             <li>
-                                <label>Light intensity threshold:</label>
-                                <asp:TextBox ID="tbxLightIntensityTreshold" runat="server" />
+                                <asp:Label ID="lblLightIntensityTreshold" runat="server" Text="Threshold:" AssociatedControlID="tbxLightIntensityTreshold" />
+                                <asp:TextBox ID="tbxLightIntensityTreshold" runat="server" MaxLength="3" ValidationGroup="add" />
+                                <p class="inline-hints">This section's light intensity threshold.</p>
+                                <asp:RegularExpressionValidator ID="revLightIntensityTreshold" runat="server" ErrorMessage="Light intensity threshold must be a number with 1 to 3 digits" ControlToValidate="tbxLightIntensityTreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="add" />
                             </li>
                         </ol>
                     </fieldset>
-                    <fieldset>
-                        <legend>Humidity</legend>
+                    <fieldset class="grid_8 omega">
+                        <legend>Humidity Module</legend>
                         <ol>
                             <li>
-                                <asp:CheckBox ID="cboIsHumidityActivated" runat="server" Text="Is Humidity Activated" />
+                                <asp:Label ID="lblIsHumidityActivated" runat="server" Text="Activated?" AssociatedControlID="tbxIdealHumidity" />
+                                <asp:CheckBox ID="cboIsHumidityActivated" runat="server" />
+                                <p class="inline-hints">Is Humidity Activated</p>
                             </li>
                             <li>
-                                <label>Ideal humidity:</label>
-                                <asp:TextBox ID="tbxIdealHumidity" runat="server" />
+                                <asp:Label ID="lblIdealHumidity" runat="server" Text="Ideal:" AssociatedControlID="tbxIdealLightIntensity" />
+                                <asp:TextBox ID="tbxIdealHumidity" runat="server" MaxLength="3" ValidationGroup="add" />
+                                <p class="inline-hints">This section's ideal humidity</p>
+                                <asp:RegularExpressionValidator ID="revtbxIdealHumidity" runat="server" ErrorMessage="Ideal humidity must be a number with 1 to 3 digits" ControlToValidate="tbxIdealHumidity" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="add" />
                             </li>
                             <li>
-                                <label>Humidity threshold:</label>
-                                <asp:TextBox ID="tbxHumidityTreshold" runat="server" />
+                                <asp:Label ID="lblHumidityTreshold" runat="server" Text="Threshold:" AssociatedControlID="tbxHumidityTreshold" />
+                                <asp:TextBox ID="tbxHumidityTreshold" runat="server" MaxLength="3" ValidationGroup="add" />
+                                <p class="inline-hints">This section's humidity threshold.</p>
+                                <asp:RegularExpressionValidator ID="revHumidityTreshold" runat="server" ErrorMessage="humidity threshold must be a number with 1 to 3 digits" ControlToValidate="tbxHumidityTreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="add" />
                             </li>
                         </ol>
                     </fieldset>
-                    <fieldset class="buttons">
+                    <fieldset class="buttons grid_16">
                         <ol>
-                            <li><asp:LinkButton ID="lbInsert" CommandName="Insert" runat="server" Text="Save" /></li>
-                            <li><asp:LinkButton ID="lbCancel" CommandName="Cancel" runat="server" Text="Cancel" /></li>
+                            <li><asp:Button ID="lbInsert" CommandName="Insert" runat="server" Text="Save" ValidationGroup="add" /></li>
+                            <li><asp:LinkButton ID="lbCancel" CommandName="Cancel" runat="server" Text="Cancel" CausesValidation="false" /></li>
                         </ol>
                     </fieldset>
                 </div>
             </InsertItemTemplate>
             
             <EmptyDataTemplate>
-                <p>No sections found.</p>
-                <asp:LinkButton ID="lbNewSection2" runat="server" Text="New Section" OnClick="lbNewSection_Click" />
+                <div class="grid_16">
+                    <p>No sections found.</p>
+                    <asp:LinkButton ID="lbNewSection2" runat="server" Text="New Section" OnClick="lbNewSection_Click" />
+                </div>
             </EmptyDataTemplate>
             
         </asp:ListView>
