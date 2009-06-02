@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
 using DV_Enterprises.Web.Data.Domain.Abstract;
@@ -19,6 +20,7 @@ namespace DV_Enterprises.Web.Data.Domain
 
         public int ID { get; set; }
         public string Name { get; set; }
+        public TaskTypes Type { get; set; }
 
         #endregion
 
@@ -42,10 +44,11 @@ namespace DV_Enterprises.Web.Data.Domain
         {
             dc = dc ?? Conn.GetContext();
             var r = from t in dc.TaskTypes
-                    select new TaskType()
+                    select new TaskType
                                {
                                    ID = t.TaskTypeId,
-                                   Name = t.Name
+                                   Name = t.Name,
+                                   Type = (TaskTypes) Enum.Parse(typeof (TaskTypes), t.Name)
                                };
             return r;
         }
@@ -78,19 +81,17 @@ namespace DV_Enterprises.Web.Data.Domain
 
         public static TaskType Find(DataContext dc, TaskTypes type)
         {
-            var result = new TaskType();
-            switch (type)
+            var result = All(dc).Where(t => t.Name == type.ToString()).SingleOrDefault();
+            if (result == null)
             {
-                case TaskTypes.Temperature:
-                    result = All(dc).Where(t => t.Name.ToLower() == "temperature").SingleOrDefault();
-                    break;
-                case TaskTypes.LightIntensity:
-                    result = All(dc).Where(t => t.Name.ToLower() == "light intensity").SingleOrDefault();
-                    break;
-                case TaskTypes.Humidity:
-                    result = All(dc).Where(t => t.Name.ToLower() == "humidity").SingleOrDefault();
-                    break;
+                result = new TaskType
+                    {
+                        Name = type.ToString(),
+                        Type = type
+                    };
+                result.Save();
             }
+
             return result;
         }
 
@@ -165,7 +166,8 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved taskType</returns>
         public int Save()
         {
-            return Save(this);
+            ID = Save(this);
+            return ID;
         }
 
         /// <summary>
@@ -175,7 +177,8 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved taskType</returns>
         public int Save(DataContext dc)
         {
-            return Save(dc, this);
+            ID = Save(dc, this);
+            return ID;
         }
 
         /// <summary>

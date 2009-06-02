@@ -1,14 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="TaskList.ascx.cs" Inherits="Controls.TaskList" %>
-<asp:Literal ID="litSectionID" runat="server" Visible ="true" />
-<asp:Literal ID="litTaskTypeID" runat="server" Visible ="true" />
-<asp:Literal ID="litTaskName" runat="server" Visible ="true" />
+<asp:Literal ID="litSectionID" runat="server" Visible ="false" />
 
 <h4 class="title"><asp:Literal ID="litTaskTitle" runat="server" /></h4>
+<span class="task_message"><asp:Literal ID="litTaskMessage" runat="server" /></span>
 <asp:GridView ID="gvwTasks" runat="server" AutoGenerateColumns="false" CssClass="task_list" OnRowDeleting="gvwTasks_RowDeleting">
     <Columns>
         <asp:BoundField HeaderText="Start Time" DataField="StartTime" DataFormatString="{0:t}" HtmlEncode="false" />
         <asp:BoundField HeaderText="Interval" DataField="Interval" DataFormatString="{0:f}" HtmlEncode="false" />
-        <asp:CommandField HeaderText="Remove" ShowDeleteButton=true />
+        <asp:CommandField HeaderText="Remove" ShowDeleteButton="true" />
     </Columns>
 </asp:GridView>
 

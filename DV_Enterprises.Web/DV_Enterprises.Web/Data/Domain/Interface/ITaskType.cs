@@ -13,6 +13,7 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
 
         new int ID { get; set; }
         string Name { get; set; }
+        TaskTypes Type { get; set; }
 
         #endregion
     }
