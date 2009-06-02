@@ -19,8 +19,8 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         double Interval { get; set; }
         int TaskTypeId { get; set; }
         TaskType TaskType { get; set; }
-        DateTime DateCreated { get; }
-        DateTime DateUpdated { get; }
+        DateTime DateCreated { get; set; }
+        DateTime DateUpdated { get; set; }
 
         #endregion
     }
