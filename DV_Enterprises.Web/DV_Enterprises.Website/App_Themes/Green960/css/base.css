@@ -7,8 +7,7 @@ h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
 .title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
     {color:#666; line-height: 1.25em; margin-bottom: 0;}
 
-h2 span { font-size: 19px; }    
-h4 span { font-size: 13px; }
+h1 span, h2 span, h3 span, h4 span, h5 span { font-size: 0.77em; }    
 
 a { text-decoration: none; }
 
@@ -45,19 +44,21 @@ a { text-decoration: none; }
 #content .faq .back_to_top { float: right; }
 #content address { text-align: center; }
 #content address.greenhouse { text-align: left; }
-#content span.green { color: #009900; }
+#content span.green, #content p.green { color: #92CC47; }
 #content .table_display dt { width: 40%; float: left; margin: 0 0 0 0; padding: .5em; border-top: 1px solid #999; font-weight: bold;  }
 /* commented backslash hack for mac-ie5 \*/
 #content dt { clear: both; }
 /* end hack */
 #content .table_display dd { float: left; width: 40%; margin: 0 0 0 0; padding: .5em; border-top: 1px solid #999; }
-#content ul.sections li.section { border-top: 1px solid #666; padding-top: 10px;}
+#content ul.sections li.section { border-top: 1px solid #666; padding-top: 10px; margin: 0; }
 #content .sections .table_display dt { width: 70%; padding: 0.5em 0 0.5em 0.5em; }
 #content .sections .table_display dd { width: 20%; padding: 0.5em 0; }
 #content .sections .task_list  { text-align: center }
 #content .sections .task_list th { }
 #content .sections .task_list th, #content .sections .task_list td { padding: 0.5em 0; border-top: 1px solid #999; }
 #content .sections .task_list td { width: 30%; }
+#content .sections .section_preset { color: #666; }
+#content .sections .no_modules { font-size: 2em; text-align: center; padding: 1em; }
 
 /** Footer **/
 #footer { background-color: #000; text-align: center; padding-top: 10px;}

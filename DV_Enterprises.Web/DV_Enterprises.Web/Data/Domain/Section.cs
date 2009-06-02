@@ -17,10 +17,13 @@ namespace DV_Enterprises.Web.Data.Domain
 
         #region Instance properties
 
+        private Preset _preset;
+
         public int ID { get; set; }
         public string Name { get; set; }
         public int GreenhouseID { get; set; }
         public int PresetID { get; set; }
+        public Preset Preset { get { return _preset ?? (_preset = Preset.Find(PresetID)); } }
         public Guid UserID { get; set; }
         public bool IsTemperatureActivated { get; set; }
         public int? IdealTemperature { get; set; }
@@ -154,6 +157,15 @@ namespace DV_Enterprises.Web.Data.Domain
         public void Delete(DataContext dc)
         {
             Delete(dc, this);
+        }
+
+        #endregion
+
+        #region Object Overrides
+
+        public override string ToString()
+        {
+            return string.Format("Section {0}", ID);
         }
 
         #endregion

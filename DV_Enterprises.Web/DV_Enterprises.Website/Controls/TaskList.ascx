@@ -1,7 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="TaskList.ascx.cs" Inherits="Controls.TaskList" %>
 <asp:Literal ID="litSectionID" runat="server" Visible ="false" />
 
-<h4 class="title"><asp:Literal ID="litTaskTitle" runat="server" /></h4>
+<h5 class="title">
+    <asp:Literal ID="litTaskTitle" runat="server" Text="Tasks" />
+    <span><asp:LinkButton ID="btnAddTask" runat="server" Text="(add new)" onclick="btnAddTask_Click" /></span>
+</h5>
 <span class="task_message"><asp:Literal ID="litTaskMessage" runat="server" /></span>
 <asp:GridView ID="gvwTasks" runat="server" AutoGenerateColumns="false" CssClass="task_list" OnRowDeleting="gvwTasks_RowDeleting">
     <Columns>
@@ -10,8 +13,6 @@
         <asp:CommandField HeaderText="Remove" ShowDeleteButton="true" />
     </Columns>
 </asp:GridView>
-
-<asp:LinkButton ID="btnAddTask" runat="server" Text="add new" onclick="btnAddTask_Click" />
 
 <asp:Panel ID="pnlAddTask" runat="server" CssClass="form">
     <fieldset>
