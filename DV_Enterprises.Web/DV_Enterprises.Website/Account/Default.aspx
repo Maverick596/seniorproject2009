@@ -3,13 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+   <div class = "grid_16">
     <h2 class="title">Home Page!</h2>
     
     <asp:HyperLink ID="lnkEditAccount" runat="server" Text="Edit Account" NavigateUrl="~/Account/Edit.aspx"></asp:HyperLink>
     <br />
-    <h3 class="title"> 
+    <h2 class="title"> 
     <br />Account Information<br />
-    </h3>
+    </h2>
     <h4 class="title">
     <br />Personal Information<br />
     <asp:Label ID="Label2" runat="server" Text="First Name: " Width="150px" />
@@ -34,9 +35,10 @@
     <asp:Label ID="Label8" runat="server" Text="State: " Width="150px" />
     <asp:Label ID="StateLBL" runat="server" Width="200px" />
     <br />
-    <asp:Label ID="Label9" runat="server" Text="ZipCoode: " Width="150px" />
+    <asp:Label ID="Label9" runat="server" Text="ZipCode: " Width="150px" />
     <asp:Label ID="ZipCodeLBL" runat="server" Width="200px" />
     </h4>
+   </div>
     <br />
 <%--    <br />
     <br />

@@ -92,7 +92,7 @@
     <Compile Include="Data\Repository\Section.cs" />
     <Compile Include="Data\Repository\Task.cs" />
     <Compile Include="Data\Repository\TaskType.cs" />
-    <Compile Include="Data\Utility\LazyList.cs" />
+    <Compile Include="Presenter\Products\Utility\LazyList.cs" />
     <Compile Include="Presenter\Products\DefaultPresenter.cs" />
     <Compile Include="Presenter\Products\Interface\IDefault.cs" />
     <Compile Include="Presenter\Products\Interface\IManageProduct.cs" />
