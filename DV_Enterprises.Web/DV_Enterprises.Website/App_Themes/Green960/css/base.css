@@ -26,7 +26,7 @@ a { text-decoration: none; }
     text-indent: -9999em;
     z-index: 99;
 }
-#header #userbox {background: url('../images/user-box-bg.png'); float: right; height: 50px; text-align: center; width: 190px;}
+#header #userbox {background: url('../images/user_box.png') no-repeat top; float: right; height: 50px; text-align: center; padding: 10px 5px; width: 180px;}
 
 /** Navigatiion **/
 #navigation { height: 50px; }
