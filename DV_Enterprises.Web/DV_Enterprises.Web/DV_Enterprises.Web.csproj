@@ -83,9 +83,13 @@
     <Compile Include="Data\Domain\TaskTypes.cs" />
     <Compile Include="Data\Repository\Greenhouse.cs" />
     <Compile Include="Data\Repository\Interface\IGreenhouse.cs" />
+    <Compile Include="Data\Repository\Interface\IPreset.cs" />
+    <Compile Include="Data\Repository\Interface\IProduct.cs" />
     <Compile Include="Data\Repository\Interface\ISection.cs" />
     <Compile Include="Data\Repository\Interface\ITask.cs" />
     <Compile Include="Data\Repository\Interface\ITaskType.cs" />
+    <Compile Include="Data\Repository\Preset.cs" />
+    <Compile Include="Data\Repository\Product.cs" />
     <Compile Include="Data\Repository\Section.cs" />
     <Compile Include="Data\Repository\Task.cs" />
     <Compile Include="Data\Repository\TaskType.cs" />

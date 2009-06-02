@@ -22,8 +22,8 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         int? IdealHumidity { get; set; }
         int? HumidityThreshold { get; set; }
         bool IsGlobal { get; set; }
-        DateTime DateCreated { get; }
-        DateTime DateUpdated { get; }
+        DateTime DateCreated { get; set; }
+        DateTime DateUpdated { get; set; }
 
         #endregion
     }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
 using DV_Enterprises.Web.Data.Domain.Abstract;
 using DV_Enterprises.Web.Data.Domain.Interface;
@@ -9,9 +8,11 @@ using StructureMap;
 namespace DV_Enterprises.Web.Data.Domain
 {
     [Pluggable("Default")]
-    public class Product : DomainModel, IProduct
+    public class Product : IProduct
     {
         #region Static properties
+
+        private static readonly Repository.Product Repository = new Repository.Product();
 
         #endregion
 
@@ -23,8 +24,8 @@ namespace DV_Enterprises.Web.Data.Domain
         public decimal Price { get; set; }
         public bool IsActive { get; set; }
         public string Image { get; set; }
-        public DateTime? DateUpdated { get; private set; }
-        public DateTime DateCreated { get; private set; }
+        public DateTime? DateUpdated { get; set; }
+        public DateTime DateCreated { get; set; }
 
         #endregion
 
@@ -46,20 +47,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>return an IQueryable collection of Product</returns>
         public static IList<Product> All(DataContext dc)
         {
-            dc = dc ?? Conn.GetContext();
-            var r = from p in dc.Products
-                    select new Product
-                               {
-                                   ID = p.ProductID,
-                                   Name = p.Name,
-                                   Description = p.Description,
-                                   Price = p.Price,
-                                   IsActive = p.IsActive,
-                                   Image = p.Image,
-                                   DateUpdated = p.DateUpdated,
-                                   DateCreated = p.DateCreated
-                               };
-            return r.ToList();
+            return Repository.All(dc);
         }
 
         /// <summary>
@@ -80,7 +68,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns a Product</returns>
         public static Product Find(DataContext dc, int id)
         {
-            return All(dc).Where(p => p.ID == id).SingleOrDefault();
+            return Repository.Find(dc, id);
         }
 
         /// <summary>
@@ -101,29 +89,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved product</returns>
         public static int Save(DataContext dc, Product product)
         {
-            dc = dc ?? Conn.GetContext();
-            var dbProduct = dc.Products.Where(p => p.ProductID == product.ID).SingleOrDefault();
-            var isNew = false;
-            if (dbProduct == null)
-            {
-                dbProduct = new DataAccess.SqlRepository.Product();
-                isNew = true;
-            }
-
-            dbProduct.Name = product.Name;
-            dbProduct.Description = product.Description;
-            dbProduct.Price = product.Price;
-            dbProduct.IsActive = product.IsActive;
-            dbProduct.Image = product.Image;
-            dbProduct.DateUpdated = DateTime.Now;
-
-            if (isNew)
-            {
-                dbProduct.DateCreated = DateTime.Now;
-                dc.Products.InsertOnSubmit(dbProduct);
-            }
-            dc.SubmitChanges();
-            return dbProduct.ProductID;
+            return Repository.Save(dc, product);
         }
 
         /// <summary>
@@ -142,12 +108,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <param name="product"></param>
         public static void Delete(DataContext dc, Product product)
         {
-            dc = dc ?? Conn.GetContext();
-            var dbProduct = dc.Products.Where(p => p.ProductID == product.ID).SingleOrDefault();
-            if (dbProduct == null) return;
-            dc.Products.Attach(dbProduct, true);
-            dc.Products.DeleteOnSubmit(dbProduct);
-            dc.SubmitChanges();
+            Repository.Delete(dc, product);
         }
 
 
