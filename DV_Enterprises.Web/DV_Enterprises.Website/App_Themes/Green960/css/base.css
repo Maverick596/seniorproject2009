@@ -43,8 +43,8 @@ a { text-decoration: none; }
 /** Content **/
 #content {background: url('../images/content.png') repeat-x center bottom; }
 #content > .inner { background: #f7f7f7 url('../images/content_inner.png') repeat-x center bottom; padding: 1px 0;}
-#content .why, #content .features { font-size: 16px; }
-#content .why .title, #content .features .title { font-size: 1.4375em; margin-top: 2.5em; }
+/** #content .why, #content .features { font-size: 16px; }
+#content .why .title, #content .features .title { font-size: 1.4375em; margin-top: 2.5em; } **/
 #content .secondary { background-color: #eaeaea; }
 #content .faq .back_to_top { float: right; }
 #content address { text-align: center; }
