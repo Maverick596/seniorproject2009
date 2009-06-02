@@ -10,12 +10,6 @@
     <title>Smart GreenHouse Solutions &mdash; better slogan here</title>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
-    <style type="text/css">
-        .style1
-        {
-            color: #FFFFFF;
-        }
-    </style>
 </head>
 <body>
     <form runat="server">
@@ -40,9 +34,23 @@
             </div></div>
         </div> <!-- #Header -->
         <div id="navigation">
-            <div class="inner container_16 clearfix"><div class="grid_16">
-                <asp:Menu ID="Menu" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticSubMenuIndent="" />
-            </div></div>
+            <div class="inner container_16 clearfix">
+                <div class="grid_14">
+                    <asp:Menu ID="Menu" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticSubMenuIndent="" />
+                </div>
+                <ul class="grid_2 social">
+                    <li>
+                        <asp:HyperLink ID="lnkFacebook" runat="server" NavigateUrl="http://www.facebook.com/profile.php?id=1846000627&ref=profile" Target="_blank" ToolTip="Follow us on Facebook">
+                            <asp:Image ID="ingFacebookF" runat="server" SkinID="FaceBookF" />
+                        </asp:HyperLink>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="lnkTwitter" runat="server" NavigateUrl="http://twitter.com/SmartGreen" Target="_blank" ToolTip="Follow us on Twitter">
+                            <asp:Image ID="imgTwitterT" runat="server" SkinID="TwitterT" />
+                        </asp:HyperLink>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div id="content">
             <div class="inner container_16 clearfix">
@@ -52,14 +60,29 @@
             
         <div id="footer">
             <div class="inner container_16">
-                <ul class="links">
+                <div class="grid_4">
+                    <h5 class="title">follow us on</h5>
+                    <ul class="social">
+                        <li>
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="http://www.facebook.com/profile.php?id=1846000627&ref=profile" Target="_blank" ToolTip="Follow us on Facebook">
+                                <asp:Image ID="Image1" runat="server" SkinID="FaceBookLogo" />
+                            </asp:HyperLink>
+                        </li>
+                        <li>
+                            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="http://twitter.com/SmartGreen" Target="_blank" ToolTip="Follow us on Twitter">
+                                <asp:Image ID="Image2" runat="server" SkinID="TwitterLogo" />
+                            </asp:HyperLink>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="links grid_8">
                     <li><asp:HyperLink ID="lnkHome" runat="server" Text="Home" NavigateUrl="~/Default.aspx"></asp:HyperLink></li>
                     <li><asp:HyperLink ID="lnkTermsOfUse" runat="server" Text="Terms Of Use" NavigateUrl="~/Legal/TermsOfUse.aspx" BorderStyle="None"></asp:HyperLink></li>
                     <li><asp:HyperLink ID="lnkContactUs" runat="server" Text="Contact Us" NavigateUrl="~/ContactUs.aspx"></asp:HyperLink></li>
                     <li><asp:HyperLink ID="lnkPrivacyPolicy" runat="server" Text="Privacy Policy" NavigateUrl="~/Legal/PrivacyPolicy.aspx"></asp:HyperLink></li>
                     <li class="last"><asp:HyperLink ID="lnkFAQ" runat="server" Text="FAQ's" NavigateUrl="~/FAQ.aspx"></asp:HyperLink></li>
                 </ul>
-                <div class="style1">&copy; DVEnterprise 2009</div>
+                <span class="green grid_4">&copy; DVEnterprise 2009</span>
             </div>
         </div>
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="False" />

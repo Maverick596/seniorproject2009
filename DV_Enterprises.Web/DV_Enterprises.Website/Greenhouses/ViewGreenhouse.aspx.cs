@@ -1,23 +1,41 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Controls;
 using DV_Enterprises.Web.Data.Domain;
-using DV_Enterprises.Web.Presenter.Greenhouses;
-using DV_Enterprises.Web.Presenter.Greenhouses.Interface;
+using DV_Enterprises.Web.Service;
+using DV_Enterprises.Web.Service.Interface;
+using StructureMap;
 
 namespace Greenhouses
 {
-    public partial class ViewGreenhouse : Page, IViewGreenhouse
+    public partial class ViewGreenhouse : Page
     {
-        private ViewGreenhousePresenter _presenter;
+        private readonly IWebContext _webContext;
+        private readonly IRedirector _redirector;
+
+        public ViewGreenhouse()
+        {
+            _webContext = ObjectFactory.GetInstance<IWebContext>();
+            _redirector = ObjectFactory.GetInstance<IRedirector>();
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _presenter = new ViewGreenhousePresenter();
-            _presenter.Init(this, IsPostBack);
+            if (IsPostBack) return;
+            if (_webContext.GreenhouseId <= 0) return;
+            Bind();
+        }
+
+        private void Bind()
+        {
+            var greenhouse = Greenhouse.Find(_webContext.GreenhouseId);
+            LoadData(greenhouse);
+            LoadLocation(greenhouse.Address);
+            LoadSection(greenhouse.Sections.ToList());
         }
 
         public void LoadData(Greenhouse greenhouse)
@@ -28,17 +46,23 @@ namespace Greenhouses
 
         public void LoadLocation(Address address)
         {
-            lblAddress.Text = address.StreetLine1 + "<br />";
-
-            if (address.StreetLine2 != "")
+            tbxSteetAddress1.Text = litStreetAddress1.Text = address.StreetLine1;
+            if (!string.IsNullOrEmpty(address.StreetLine2))
             {
-                lblAddress.Text += address.StreetLine2 + "<br />";
+                litStreetAddress2.Visible = true;
+                litStreetAddress2BR.Visible = true;
+                tbxSteetAddress2.Text = litStreetAddress2.Text = address.StreetLine2;
             }
-
-            lblAddress.Text += address.City + ", " +
-                               address.StateOrProvince + " " +
-                               address.Zip +
-                                "<br /><br />";
+            else
+            {
+                litStreetAddress2.Visible = false;
+                litStreetAddress2BR.Visible = false;
+            }
+            tbxCity.Text = litCity.Text = address.City;
+            tbxState.Text = litState.Text = address.StateOrProvince;
+            tbxCountry.Text = litCountry.Text = address.Country;
+            tbxZipCode.Text = litZip.Text = address.Zip.ToString();
+            cboIsDefault.Checked = address.IsDefault;
         }
 
         public void LoadSection(List<Section> sections)
@@ -50,21 +74,6 @@ namespace Greenhouses
         public void lvSections_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
             var ddlPreset = e.Item.FindControl("ddlPreset") as DropDownList;
-            var tlstTemperature = e.Item.FindControl("tlstTemperature") as TaskList;
-            var tlstLightIntensity = e.Item.FindControl("tlstLightIntensity") as TaskList;
-            var tlstHumidity = e.Item.FindControl("tlstHumidity") as TaskList;
-            var litSectionID = e.Item.FindControl("litSectionID") as Literal;
-
-            ////binding SectionIDs to Task Buttons - Start
-            //var tempTask = e.Item.FindControl("lbNewTemperatureTask") as LinkButton;
-            //tempTask.CommandArgument = litSectionID.Text;
-
-            //var lightIntensityTask = e.Item.FindControl("lbNewLightIntensityTask") as LinkButton;
-            //lightIntensityTask.CommandArgument = litSectionID.Text;
-
-            //var humidityTask = e.Item.FindControl("lbNewHumidityTask") as LinkButton;
-            //humidityTask.CommandArgument = litSectionID.Text;
-            ////binding SectionIDs to Task Buttons - Done
 
             if (ddlPreset != null)
             {
@@ -74,22 +83,55 @@ namespace Greenhouses
                 ddlPreset.DataBind();
             }
 
-            if (tlstTemperature != null)
+            var litIsTemperatureActivated = e.Item.FindControl("litIsTemperatureActivated") as Literal;
+            var pnlTemperature = e.Item.FindControl("pnlTemperature") as Panel;
+            if (litIsTemperatureActivated != null)
             {
-                tlstTemperature.SectionID = Convert.ToInt32(litSectionID.Text);
-                tlstTemperature.Type = TaskTypes.Temperature;
+                if (bool.Parse(litIsTemperatureActivated.Text))
+                {
+                    if (pnlTemperature != null) pnlTemperature.Visible = true;
+                }
+                else
+                {
+                    if (pnlTemperature != null) pnlTemperature.Visible = false;
+                }
             }
 
-            if (tlstLightIntensity != null)
+            var litIsLightActivated = e.Item.FindControl("litIsLightActivated") as Literal;
+            var pnlLighting = e.Item.FindControl("pnlLighting") as Panel;
+            if (litIsLightActivated != null)
             {
-                tlstLightIntensity.SectionID = Convert.ToInt32(litSectionID.Text);
-                tlstLightIntensity.Type = TaskTypes.LightIntensity;
+                if (bool.Parse(litIsLightActivated.Text))
+                {
+                    if (pnlLighting != null) pnlLighting.Visible = true;
+                }
+                else
+                {
+                    if (pnlLighting != null) pnlLighting.Visible = false;
+                }
             }
 
-            if (tlstHumidity != null)
+            var litIsHumidityActivated = e.Item.FindControl("litIsHumidityActivated") as Literal;
+            var pnlHumidity = e.Item.FindControl("pnlHumidity") as Panel;
+            if (litIsHumidityActivated != null)
             {
-                tlstHumidity.SectionID = Convert.ToInt32(litSectionID.Text);
-                tlstHumidity.Type = TaskTypes.Humidity;
+                if (bool.Parse(litIsHumidityActivated.Text))
+                {
+                    if (pnlHumidity != null) pnlHumidity.Visible = true;
+                }
+                else
+                {
+                    if (pnlHumidity != null) pnlHumidity.Visible = false;
+                }
+            }
+
+            var lblNoModules = e.Item.FindControl("lblNoModules") as Label;
+            if (litIsTemperatureActivated != null && litIsLightActivated != null && litIsHumidityActivated != null)
+            {
+                if (!bool.Parse(litIsTemperatureActivated.Text) && !bool.Parse(litIsLightActivated.Text) && !bool.Parse(litIsHumidityActivated.Text))
+                {
+                    if (lblNoModules != null) lblNoModules.Visible = true;
+                }
             }
         }
 
@@ -97,7 +139,7 @@ namespace Greenhouses
         {
             CloseInsert();
             lvSections.EditIndex = e.NewEditIndex;
-            _presenter.BindSections();
+            Bind();
         }
 
         protected void lvSections_ItemInserting(object sender, ListViewInsertEventArgs e) { }
@@ -114,7 +156,7 @@ namespace Greenhouses
             {
                 lvSections.EditIndex = -1;
             }
-            _presenter.BindSections();
+            Bind();
         }
 
         protected void lvSections_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -127,7 +169,7 @@ namespace Greenhouses
                     break;
                 case "Update":
                     // update editied section
-                    SaveSection(e.Item);
+                    UpdateSection(e.Item);
                     break;
                 case "Delete":
                     // delete old section
@@ -140,9 +182,9 @@ namespace Greenhouses
         {
 
             lvSections.EditIndex = -1;
-            lvSections.InsertItemPosition = InsertItemPosition.LastItem;
+            lvSections.InsertItemPosition = InsertItemPosition.FirstItem;
             ((LinkButton)sender).Visible = false;
-            _presenter.BindSections();
+            Bind();
 
             var ddlPreset = lvSections.InsertItem.FindControl("ddlPreset") as DropDownList;
 
@@ -156,52 +198,30 @@ namespace Greenhouses
         private void CloseInsert()
         {
             lvSections.InsertItemPosition = InsertItemPosition.None;
-            lvSections.FindControl("lbNewSection").Visible = true;
+            lbNewSection.Visible = true;
         }
 
-        private void SaveSection(Control item)
+        private void UpdateSection(Control item)
         {
-            ListViewDataItem listView = item as ListViewDataItem;
-
-            //testing reading values from ListView
-            //String sectionID = (listView.FindControl("litSectionID") as Literal).Text;
-
-            var s = new Section
-                        {
-                            ID = Int32.Parse((listView.FindControl("litSectionID") as Literal).Text),
-                            Name = (listView.FindControl("tbxName") as TextBox).Text,
-                            GreenhouseID = _presenter.GreenhouseID,
-                            UserID = new Guid((listView.FindControl("litUserID") as Literal).Text),
-                            PresetID = Int32.Parse((listView.FindControl("ddlPreset") as DropDownList).SelectedValue),
-                            IsTemperatureActivated = (listView.FindControl("cboIsTemperatureActivated") as CheckBox).Checked,
-                            IdealTemperature = Int32.Parse((listView.FindControl("tbxIdealTemperature") as TextBox).Text),
-                            TemperatureThreshold = Int32.Parse((listView.FindControl("tbxTemperatureTreshold") as TextBox).Text),
-                            IsLightActivated = (listView.FindControl("cboIsLightActivated") as CheckBox).Checked,
-                            IdealLightIntensity = Int32.Parse((listView.FindControl("tbxIdealLightIntensity") as TextBox).Text),
-                            LightIntensityThreshold = Int32.Parse((listView.FindControl("tbxLightIntensityTreshold") as TextBox).Text),
-                            IsHumidityActivated = (listView.FindControl("cboIsHumidityActivated") as CheckBox).Checked,
-                            IdealHumidity = Int32.Parse((listView.FindControl("tbxIdealHumidity") as TextBox).Text),
-                            HumidityThreshold = Int32.Parse((listView.FindControl("tbxHumidityTreshold") as TextBox).Text),
-                            //original code:
-
-                            //ID = Convert.ToInt32(((Literal)item.FindControl("litSectionID")).Text),
-                            //Name = ((TextBox)item.FindControl("tbxName")).Text,
-                            //GreenhouseID = _presenter.GreenhouseID,
-                            //UserID = new Guid(((Literal)item.FindControl("litUserID")).Text),
-                            //PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
-                            //IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
-                            //IdealTemperature = Parse(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
-                            //TemperatureTreshold = Parse(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
-                            //IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
-                            //IdealLightIntensity = Parse(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
-                            //LightIntensityTreshold = Parse(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
-                            //IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
-                            //IdealHumidity = Parse(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
-                            //HumidityTreshold = Parse(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
-                        };
-            s.Save();
+            new Section
+                {
+                    ID = Convert.ToInt32(((Literal)item.FindControl("litSectionID")).Text),
+                    Name = ((TextBox)item.FindControl("tbxName")).Text,
+                    GreenhouseID = _webContext.GreenhouseId,
+                    UserID = new Guid(((Literal)item.FindControl("litUserID")).Text),
+                    PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
+                    IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
+                    IdealTemperature = ((TextBox)item.FindControl("tbxIdealTemperature")).Text.ToNullableInt(),
+                    TemperatureThreshold = ((TextBox)item.FindControl("tbxTemperatureTreshold")).Text.ToNullableInt(),
+                    IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
+                    IdealLightIntensity = ((TextBox)item.FindControl("tbxIdealLightIntensity")).Text.ToNullableInt(),
+                    LightIntensityThreshold = ((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text.ToNullableInt(),
+                    IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
+                    IdealHumidity = ((TextBox)item.FindControl("tbxIdealHumidity")).Text.ToNullableInt(),
+                    HumidityThreshold = ((TextBox)item.FindControl("tbxHumidityTreshold")).Text.ToNullableInt()
+                }.Save();
             lvSections.EditIndex = -1;
-            _presenter.BindSections();
+            Bind();
         }
 
 
@@ -211,93 +231,74 @@ namespace Greenhouses
         /// <param name="item">ListView item. This should be a section</param>
         private void InsertSection(Control item)
         {
-            var s = new Section
-                        {
-                            ID = 0,
-                            Name = ((TextBox)item.FindControl("tbxName")).Text,
-                            GreenhouseID = _presenter.GreenhouseID,
-                            UserID = new Guid(Membership.GetUser().ProviderUserKey.ToString()),
-                            PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
-                            IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
-                            IdealTemperature = Parse(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
-                            TemperatureThreshold = Parse(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
-                            IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
-                            IdealLightIntensity = Parse(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
-                            LightIntensityThreshold = Parse(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
-                            IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
-                            IdealHumidity = Parse(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
-                            HumidityThreshold = Parse(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
-                        };
-            s.Save();
+            new Section
+                {
+                    ID = 0,
+                    Name = ((TextBox)item.FindControl("tbxName")).Text,
+                    GreenhouseID = _webContext.GreenhouseId,
+                    UserID = new Guid(Membership.GetUser().ProviderUserKey.ToString()),
+                    PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
+                    IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
+                    IdealTemperature = ((TextBox)item.FindControl("tbxIdealTemperature")).Text.ToNullableInt(),
+                    TemperatureThreshold = ((TextBox)item.FindControl("tbxTemperatureTreshold")).Text.ToNullableInt(),
+                    IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
+                    IdealLightIntensity = ((TextBox)item.FindControl("tbxIdealLightIntensity")).Text.ToNullableInt(),
+                    LightIntensityThreshold = ((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text.ToNullableInt(),
+                    IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
+                    IdealHumidity = ((TextBox)item.FindControl("tbxIdealHumidity")).Text.ToNullableInt(),
+                    HumidityThreshold = ((TextBox)item.FindControl("tbxHumidityTreshold")).Text.ToNullableInt()
+                }.Save();
             CloseInsert();
-            _presenter.BindSections();
+            Bind();
         }
 
         private void DeleteSection(Control item)
         {
             var s = Section.Find(Convert.ToInt32(((Literal)item.FindControl("litSectionID")).Text));
             s.Delete();
-            _presenter.BindSections();
+            Bind();
         }
 
-        private static int? Parse(string s)
+        public string PresetValue(int? s)
         {
-            int result;
-            if (int.TryParse(s, out result))
-                result = 0;
-            return result == 0 ? (int?) null : result;
+            return s == null ? string.Empty : string.Format("<span class='section_preset'>{0}</span>", s.ToString());
         }
 
         protected void linkEdit_Click(object sender, EventArgs e)
         {
-            const string windowName = "ManageGreenhouse";
-            const string url = "ManageGreenhouse.aspx";
-            const string windowAttribute = "toolbar=no,menu=no,status=no,width=420,height=400";
-            var clientscript = string.Format("window.open('{0}', '{1}', '{2}')", url, windowName, windowAttribute);
-
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
+            linkEdit.Visible = false;
+            pnlEditGreenhouse.Visible = true;
+            pnlGreenhouseAddress.Visible = false;
         }
 
-        protected void lbNewlbNewTemperatureTask_OnClick(object sender, EventArgs e)
+        protected void butUpdateGreenhouse_Click(object sender, EventArgs e)
         {
-            var button = sender as LinkButton;
-
-            String sectionID = button.CommandArgument;
-
-            const string windowName = "AddTask";
-            string url = "AddTask.aspx?&TaskType=Temperature&SectionID=" + sectionID;
-            const string windowAttribute = "toolbar=no,menu=no,status=no,width=420,height=400";
-            var clientscript = string.Format("window.open('{0}', '{1}', '{2}')", url, windowName, windowAttribute);
-
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
+            var g = new Greenhouse
+                {
+                    ID = _webContext.GreenhouseId,
+                    Address = new Address
+                                  {
+                                      City = tbxCity.Text,
+                                      Country = tbxCountry.Text,
+                                      IsDefault = cboIsDefault.Checked,
+                                      StateOrProvince = tbxState.Text,
+                                      StreetLine1 = tbxSteetAddress1.Text,
+                                      StreetLine2 = tbxSteetAddress2.Text,
+                                      Zip = tbxZipCode.Text.ToNullableInt()
+                                  }
+                };
+            g.Save();
+            LoadLocation(g.Address);
+            linkEdit.Visible = true;
+            pnlEditGreenhouse.Visible = false;
+            pnlGreenhouseAddress.Visible = true;
         }
 
-        protected void lbNewLightIntensityTask_OnClick(object sender, EventArgs e)
+        protected void linkCancelUpdateGreenhouse_Click(object sender, EventArgs e)
         {
-            var button = sender as LinkButton;
-
-            String sectionID = button.CommandArgument;
-
-            const string windowName = "AddTask";
-            string url = "AddTask.aspx?&TaskType=LightIntensity&SectionID=" + sectionID;
-            const string windowAttribute = "toolbar=no,menu=no,status=no,width=420,height=400";
-            var clientscript = string.Format("window.open('{0}', '{1}', '{2}')", url, windowName, windowAttribute);
-
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
+            linkEdit.Visible = true;
+            pnlEditGreenhouse.Visible = false;
+            pnlGreenhouseAddress.Visible = true;
         }
-
-        protected void lbNewHumidityTask_OnClick(object sender, EventArgs e)
-        {
-            var button = sender as LinkButton;
-
-            String sectionID = button.CommandArgument;
-
-            const string windowName = "AddTask";
-            string url = "AddTask.aspx?&TaskType=Humidity&SectionID=" + sectionID;
-            const string windowAttribute = "toolbar=no,menu=no,status=no,width=420,height=400";
-            var clientscript = string.Format("window.open('{0}', '{1}', '{2}')", url, windowName, windowAttribute);
-
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", clientscript, true);
-        }
-}
+    }
 }

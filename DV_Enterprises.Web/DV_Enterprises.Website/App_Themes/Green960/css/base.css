@@ -5,12 +5,13 @@ body { background: #92CC47 url('../images/body.png') repeat-x; }
 h2.title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
     { font-size: 2em; letter-spacing: -0.03em; margin-top: 0.3333em; }
 .title, .AspNet-CreateUserWizard-StepTitlePanel, .AspNet-Login-TitlePanel
-    {color:#666; line-height: 1.25em; margin-bottom: 0;}
+    {color:#666; line-height: 1.25em; margin-bottom: 0.7em;}
 
-h2 span { font-size: 19px; }    
-h4 span { font-size: 13px; }
+h1 span, h2 span, h3 span, h4 span, h5 span { font-size: 0.77em; }    
 
 a { text-decoration: none; }
+
+.green { color: #92CC47; }
 
 /** Header **/
 #header { height: 110px; }
@@ -25,7 +26,7 @@ a { text-decoration: none; }
     text-indent: -9999em;
     z-index: 99;
 }
-#header #userbox {background: url('../images/user-box-bg.png'); float: right; height: 50px; text-align: center; width: 190px;}
+#header #userbox {background: url('../images/user_box.png') no-repeat top; float: right; height: 50px; text-align: center; padding: 10px 5px; width: 180px;}
 
 /** Navigatiion **/
 #navigation { height: 50px; }
@@ -35,32 +36,41 @@ a { text-decoration: none; }
 #navigation li { margin: 0; display:inline; }
 #navigation a { display: block; margin: 8px 0  12px; padding: 0 10px; height: 30px !important; color: #000; }
 #navigation a:hover { background-color: #c7e3a4; }
+#navigation .social li { float: right;}
+#navigation .social a { padding: 4px;}
+#navigation .social a:hover { background-color: Transparent; }
 
 /** Content **/
 #content {background: url('../images/content.png') repeat-x center bottom; }
 #content > .inner { background: #f7f7f7 url('../images/content_inner.png') repeat-x center bottom; padding: 1px 0;}
-#content .why, #content .features { font-size: 16px; }
-#content .why .title, #content .features .title { font-size: 1.4375em; margin-top: 2.5em; }
+/** #content .why, #content .features { font-size: 16px; }
+#content .why .title, #content .features .title { font-size: 1.4375em; margin-top: 2.5em; } **/
 #content .secondary { background-color: #eaeaea; }
 #content .faq .back_to_top { float: right; }
 #content address { text-align: center; }
-#content span.green { color: #009900; }
+#content address.greenhouse { text-align: left; }
 #content .table_display dt { width: 40%; float: left; margin: 0 0 0 0; padding: .5em; border-top: 1px solid #999; font-weight: bold;  }
 /* commented backslash hack for mac-ie5 \*/
 #content dt { clear: both; }
 /* end hack */
 #content .table_display dd { float: left; width: 40%; margin: 0 0 0 0; padding: .5em; border-top: 1px solid #999; }
+#content ul.sections li.section { border-top: 1px solid #666; padding-top: 10px; margin: 0; }
 #content .sections .table_display dt { width: 70%; padding: 0.5em 0 0.5em 0.5em; }
 #content .sections .table_display dd { width: 20%; padding: 0.5em 0; }
 #content .sections .task_list  { text-align: center }
 #content .sections .task_list th { }
 #content .sections .task_list th, #content .sections .task_list td { padding: 0.5em 0; border-top: 1px solid #999; }
 #content .sections .task_list td { width: 30%; }
+#content .sections .section_preset { color: #666; }
+#content .sections .no_modules { font-size: 2em; text-align: center; padding: 1em; }
+#content ul.checked {}
+#content ul.checked h2 {}
+#content ul.checked li { background: url('../images/check.png') no-repeat left; list-style: none; margin-left: 15px; padding: 5px 0 5px 30px; }
 
 /** Footer **/
-#footer { background-color: #000; text-align: center; padding-top: 10px;}
-#footer ul.links { text-align: center; }
-#footer ul.links li { margin: 0; margin-left: 0 !important;display: inline; border-right:1px solid #333333; padding: 0 5px}
+#footer { background-color: #000; text-align: center; padding-top: 10px; color: #f7f7f7; }
+#footer ul { text-align: center; }
+#footer ul li { margin: 0; margin-left: 0 !important;display: inline; border-right:1px solid #333333; padding: 0 5px}
 #footer ul.links li.last { border: none }
 #footer ul a { color: #f7f7f7; }
 

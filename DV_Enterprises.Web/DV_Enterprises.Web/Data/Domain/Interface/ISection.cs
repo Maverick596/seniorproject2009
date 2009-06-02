@@ -16,6 +16,7 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         string Name { get; set; }
         int GreenhouseID { get; set; }
         int PresetID { get; set; }
+        Preset Preset { get; }
         Guid UserID { get; set; }
         bool IsTemperatureActivated { get; set; }
         int? IdealTemperature { get; set; }
@@ -26,9 +27,8 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         bool IsHumidityActivated { get; set; }
         int? IdealHumidity { get; set; }
         int? HumidityThreshold { get; set; }
-        DateTime DateCreated { get; }
-        DateTime DateUpdated { get; }
-        DateTime? DateDeleted { get; }
+        DateTime DateCreated { get; set; }
+        DateTime DateUpdated { get; set; }
 
 
         #endregion

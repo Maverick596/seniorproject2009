@@ -1,17 +1,16 @@
 using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
-using DV_Enterprises.Web.Data.Domain.Abstract;
 using DV_Enterprises.Web.Data.Domain.Interface;
 using StructureMap;
 
 namespace DV_Enterprises.Web.Data.Domain
 {
-    public enum TaskTypes { Temperature, LightIntensity, Humidity }
-
     [Pluggable("Default")]
-    public class TaskType : DomainModel, ITaskType
+    public class TaskType : ITaskType
     {
         #region Static properties
+
+        private static readonly Repository.TaskType Repository = new Repository.TaskType();
 
         #endregion
 
@@ -19,6 +18,7 @@ namespace DV_Enterprises.Web.Data.Domain
 
         public int ID { get; set; }
         public string Name { get; set; }
+        public TaskTypes Type { get; set; }
 
         #endregion
 
@@ -40,14 +40,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>return an IQueryable collection of TaskType</returns>
         public static IQueryable<TaskType> All(DataContext dc)
         {
-            dc = dc ?? Conn.GetContext();
-            var r = from t in dc.TaskTypes
-                    select new TaskType()
-                               {
-                                   ID = t.TaskTypeId,
-                                   Name = t.Name
-                               };
-            return r;
+            return Repository.All(dc);
         }
 
         /// <summary>
@@ -68,7 +61,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns a TaskType</returns>
         public static TaskType Find(DataContext dc, int id)
         {
-            return All(dc).Where(t => t.ID == id).SingleOrDefault();
+            return Repository.Find(dc, id);
         }
 
         public static TaskType Find(TaskTypes type)
@@ -78,20 +71,7 @@ namespace DV_Enterprises.Web.Data.Domain
 
         public static TaskType Find(DataContext dc, TaskTypes type)
         {
-            var result = new TaskType();
-            switch (type)
-            {
-                case TaskTypes.Temperature:
-                    result = All(dc).Where(t => t.Name.ToLower() == "temperature").SingleOrDefault();
-                    break;
-                case TaskTypes.LightIntensity:
-                    result = All(dc).Where(t => t.Name.ToLower() == "light intensity").SingleOrDefault();
-                    break;
-                case TaskTypes.Humidity:
-                    result = All(dc).Where(t => t.Name.ToLower() == "humidity").SingleOrDefault();
-                    break;
-            }
-            return result;
+            return Repository.Find(dc, type);
         }
 
         /// <summary>
@@ -112,23 +92,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved taskType</returns>
         public static int Save(DataContext dc, TaskType taskType)
         {
-            dc = dc ?? Conn.GetContext();
-            var dcTaskType = dc.TaskTypes.Where(t => t.TaskTypeId == taskType.ID).SingleOrDefault();
-            var isNew = false;
-            if (dcTaskType == null)
-            {
-                dcTaskType = new DataAccess.SqlRepository.TaskType();
-                isNew = true;
-            }
-
-            dcTaskType.Name = taskType.Name;
-
-            if (isNew)
-            {
-                dc.TaskTypes.InsertOnSubmit(dcTaskType);
-            }
-            dc.SubmitChanges();
-            return dcTaskType.TaskTypeId;
+            return Repository.Save(dc, taskType);
         }
 
         /// <summary>
@@ -147,12 +111,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <param name="taskType"></param>
         public static void Delete(DataContext dc, TaskType taskType)
         {
-            dc = dc ?? Conn.GetContext();
-            var dbTaskType = dc.TaskTypes.Where(t => t.TaskTypeId == taskType.ID).SingleOrDefault();
-            if (dbTaskType == null) return;
-            dc.TaskTypes.Attach(dbTaskType, true);
-            dc.TaskTypes.DeleteOnSubmit(dbTaskType);
-            dc.SubmitChanges();
+            Repository.Delete(dc, taskType);
         }
 
         #endregion
@@ -165,7 +124,8 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved taskType</returns>
         public int Save()
         {
-            return Save(this);
+            ID = Save(this);
+            return ID;
         }
 
         /// <summary>
@@ -175,7 +135,8 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved taskType</returns>
         public int Save(DataContext dc)
         {
-            return Save(dc, this);
+            ID = Save(dc, this);
+            return ID;
         }
 
         /// <summary>

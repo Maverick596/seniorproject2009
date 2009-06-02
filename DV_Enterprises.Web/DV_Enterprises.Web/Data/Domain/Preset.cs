@@ -1,16 +1,17 @@
 using System;
 using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
-using DV_Enterprises.Web.Data.Domain.Abstract;
 using DV_Enterprises.Web.Data.Domain.Interface;
 using StructureMap;
 
 namespace DV_Enterprises.Web.Data.Domain
 {
     [Pluggable("Default")]
-    public class Preset : DomainModel, IPreset
+    public class Preset : IPreset
     {
         #region Static properties
+
+        private static readonly Repository.Preset Repository = new Repository.Preset();
 
         #endregion
 
@@ -26,8 +27,8 @@ namespace DV_Enterprises.Web.Data.Domain
         public int? IdealHumidity { get; set; }
         public int? HumidityThreshold { get; set; }
         public bool IsGlobal { get; set; }
-        public DateTime DateCreated { get; private set; }
-        public DateTime DateUpdated { get; private set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
 
         #endregion
 
@@ -49,24 +50,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>return an IQueryable collection of Preset</returns>
         public static IQueryable<Preset> All(DataContext dc)
         {
-            dc = dc ?? Conn.GetContext();
-            var r = from c in dc.Presets
-                    select new Preset
-                    {
-                        ID = c.PresetID,
-                        Name = c.Name,
-                        UserID = c.UserID,
-                        IdealTemperature = c.IdealTemperature,
-                        TemperatureThreshold = c.TemperatureThreshold,
-                        IdealLightIntensity = c.IdealLightIntensity,
-                        LightIntensityThreshold =c.LightIntensityTreshold,
-                        IdealHumidity = c.IdealHumidity,
-                        HumidityThreshold = c.HumidityThreshold,
-                        IsGlobal = c.IsGlobal,
-                        DateCreated = c.DateCreated,
-                        DateUpdated = c.DateUpdated
-                    };
-            return r;
+            return Repository.All(dc);
         }
 
         /// <summary>
@@ -87,7 +71,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns a Preset</returns>
         public static Preset Find(DataContext dc, int id)
         {
-            return All(dc).Where(c => c.ID == id).SingleOrDefault();
+            return Repository.Find(dc, id);
         }
 
         /// <summary>
@@ -108,33 +92,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved preset</returns>
         public static int Save(DataContext dc, Preset preset)
         {
-            dc = dc ?? Conn.GetContext();
-            var dbPreset = dc.Presets.Where(p => p.PresetID == preset.ID).SingleOrDefault();
-            var isNew = false;
-            if (dbPreset == null)
-            {
-                dbPreset = new DataAccess.SqlRepository.Preset();
-                isNew = true;
-            }
-
-            dbPreset.Name = preset.Name;
-            dbPreset.UserID = preset.UserID;
-            dbPreset.IdealTemperature = preset.IdealTemperature;
-            dbPreset.TemperatureThreshold = preset.TemperatureThreshold;
-            dbPreset.IdealLightIntensity = preset.IdealLightIntensity;
-            dbPreset.LightIntensityTreshold = preset.LightIntensityThreshold;
-            dbPreset.IdealHumidity = preset.IdealHumidity;
-            dbPreset.HumidityThreshold = preset.HumidityThreshold;
-            dbPreset.IsGlobal = preset.IsGlobal;
-            dbPreset.DateUpdated = DateTime.Now;
-
-            if (isNew)
-            {
-                dbPreset.DateCreated = DateTime.Now;
-                dc.Presets.InsertOnSubmit(dbPreset);
-            }
-            dc.SubmitChanges();
-            return dbPreset.PresetID;
+            return Repository.Save(dc, preset);
         }
 
         /// <summary>
@@ -153,15 +111,9 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <param name="preset"></param>
         public static void Delete(DataContext dc, Preset preset)
         {
-            dc = dc ?? Conn.GetContext();
-            var dbPreset = dc.Presets.Where(p => p.PresetID == preset.ID).SingleOrDefault();
-            if (dbPreset == null) return;
-            dc.Presets.Attach(dbPreset, true);
-            dc.Presets.DeleteOnSubmit(dbPreset);
-            dc.SubmitChanges();
+            Repository.Delete(dc,preset);
         }
          
-
         #endregion
 
         #region Instance Methods
