@@ -64,7 +64,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataContext.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Data\Domain\Abstract\DomainModel.cs" />
     <Compile Include="Data\Domain\Preset.cs" />
     <Compile Include="Data\Domain\Greenhouse.cs" />
     <Compile Include="Data\Domain\Interface\IPreset.cs" />
@@ -137,6 +136,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Domain\Abstract\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

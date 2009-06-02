@@ -1,14 +1,13 @@
 using System;
 using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
-using DV_Enterprises.Web.Data.Domain.Abstract;
 using DV_Enterprises.Web.Data.Domain.Interface;
 using StructureMap;
 
 namespace DV_Enterprises.Web.Data.Domain
 {
     [Pluggable("Default")]
-    public class Section : DomainModel, ISection
+    public class Section : ISection
     {
         #region Static properties
 

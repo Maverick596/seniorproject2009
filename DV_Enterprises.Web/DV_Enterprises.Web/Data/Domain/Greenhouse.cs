@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
-using DV_Enterprises.Web.Data.Domain.Abstract;
 using DV_Enterprises.Web.Data.Domain.Interface;
 using DV_Enterprises.Web.Data.Utility;
 using StructureMap;
