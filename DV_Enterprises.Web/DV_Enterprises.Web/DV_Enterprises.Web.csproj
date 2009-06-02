@@ -80,6 +80,8 @@
     <Compile Include="Data\Domain\Product.cs" />
     <Compile Include="Data\Domain\Section.cs" />
     <Compile Include="Data\Domain\TaskType.cs" />
+    <Compile Include="Data\Repository\Greenhouse.cs" />
+    <Compile Include="Data\Repository\Interface\IGreenhouse.cs" />
     <Compile Include="Data\Utility\LazyList.cs" />
     <Compile Include="Presenter\Greenhouses\DefaultPresenter.cs" />
     <Compile Include="Presenter\Greenhouses\Interface\IDefault.cs" />

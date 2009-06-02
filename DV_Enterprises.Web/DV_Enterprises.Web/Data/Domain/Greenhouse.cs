@@ -10,23 +10,26 @@ using StructureMap;
 namespace DV_Enterprises.Web.Data.Domain
 {
     [Pluggable("Default")]
-    public class Greenhouse : DomainModel, IGreenhouse
+    public class Greenhouse : IGreenhouse
     {
         #region Static properties
+
+        private static readonly Repository.Greenhouse Repository = new Repository.Greenhouse();
 
         #endregion
 
         #region Instance properties
 
+        private List<Guid> _userIDs;
+        private LazyList<Section> _sections;
+
         public int ID { get; set; }
         public Address Address { get; set; }
-        private LazyList<Section> _sections;
         public LazyList<Section> Sections
         {
             get { return _sections ?? (Sections = new LazyList<Section>(LoadSections(ID))); }
             set { _sections = value; }
         }
-        private List<Guid> _userIDs;
         public List<Guid> UserIDs
         {
             get { return _userIDs ?? (UserIDs = LoadUsers(Sections)); }
@@ -53,24 +56,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>return an IQueryable collection of Greenhouse</returns>
         public static IList<Greenhouse> All(DataContext dc)
         {
-            dc = dc ?? Conn.GetContext();
-            var r = from g in dc.Greenhouses
-                    select new Greenhouse
-                               {
-                                   ID = g.GreenhouseID,
-                                   Address = new Address
-                                                 {
-                                                     City = g.City,
-                                                     StateOrProvince = g.StateOrProvince,
-                                                     Country = g.Country,
-                                                     Zip = g.Zip,
-                                                     StreetLine1 = g.StreetLine1,
-                                                     StreetLine2 = g.StreetLine2,
-                                                     IsDefault = g.IsDefault,
-                                                 }
-
-                               };
-            return r.ToList();
+            return Repository.All(dc);
         }
 
         /// <summary>
@@ -91,7 +77,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns a Greenhouse</returns>
         public static Greenhouse Find(DataContext dc, int id)
         {
-            return All(dc).Where(g => g.ID == id).SingleOrDefault();
+            return Repository.Find(dc, id);
         }
 
         /// <summary>
@@ -112,39 +98,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved greenhouse</returns>
         public static int Save(DataContext dc, Greenhouse greenhouse)
         {
-            dc = dc ?? Conn.GetContext();
-            var dbGreenhouse = dc.Greenhouses.Where(g => g.GreenhouseID == greenhouse.ID).SingleOrDefault();
-            var isNew = false;
-            if (dbGreenhouse == null)
-            {
-                dbGreenhouse = new DataAccess.SqlRepository.Greenhouse();
-                isNew = true;
-            }
-
-            dbGreenhouse.City = greenhouse.Address.City;
-            dbGreenhouse.Country = greenhouse.Address.Country;
-            dbGreenhouse.StateOrProvince = greenhouse.Address.StateOrProvince;
-            dbGreenhouse.Zip = greenhouse.Address.Zip;
-            dbGreenhouse.StreetLine1 = greenhouse.Address.StreetLine1;
-            dbGreenhouse.StreetLine2 = greenhouse.Address.StreetLine2;
-            dbGreenhouse.IsDefault = greenhouse.Address.IsDefault;
-            dbGreenhouse.DateUpdated = DateTime.Now;
-
-            if (isNew)
-            {
-                dbGreenhouse.DateCreated = DateTime.Now;
-                dc.Greenhouses.InsertOnSubmit(dbGreenhouse);
-            }
-            dc.SubmitChanges();
-
-            greenhouse.ID = dbGreenhouse.GreenhouseID;
-
-            foreach (Section section in greenhouse.Sections)
-            {
-                section.Save();
-            }
-
-            return greenhouse.ID;
+            return Repository.Save(dc, greenhouse);
         }
 
         /// <summary>
@@ -163,13 +117,8 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <param name="greenhouse"></param>
         public static void Delete(DataContext dc, Greenhouse greenhouse)
         {
-            dc = dc ?? Conn.GetContext();
-                var dbGreenhouse = dc.Greenhouses.Where(g => g.GreenhouseID == greenhouse.ID).SingleOrDefault();
-                if (dbGreenhouse == null) return;
-                dc.Greenhouses.Attach(dbGreenhouse, true);
-                dc.Greenhouses.DeleteOnSubmit(dbGreenhouse);
-                dc.SubmitChanges();
-            }
+            Repository.Delete(dc, greenhouse);
+        }
 
 
         /// <summary>
@@ -180,24 +129,17 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns></returns>
         private static IQueryable<Section> LoadSections(DataContext dc, int gId)
         {
-            var r = Section.All(dc).Where(s => s.GreenhouseID == gId);
-            return r;
+            return Repository.LoadSections(dc, gId);
         }
 
         private static IQueryable<Section> LoadSections(int gId)
         {
-            var r = Section.All().Where(s => s.GreenhouseID == gId);
-            return r;
+            return LoadSections(null, gId);
         }
 
         private static List<Guid> LoadUsers(IEnumerable<Section> sections)
         {
-            var result = new List<Guid>();
-            foreach (var section in sections)
-            {
-                result.Add(section.UserID);
-            }
-            return result;
+            return Repository.LoadUsers(sections);
         }
 
         #endregion
