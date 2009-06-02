@@ -124,7 +124,15 @@ namespace DV_Enterprises.Web.Data.Repository
             dc = dc ?? Conn.GetContext();
             var dbGreenhouse = dc.Greenhouses.Where(g => g.GreenhouseID == greenhouse.ID).SingleOrDefault();
             if (dbGreenhouse == null) return;
-            dc.Greenhouses.Attach(dbGreenhouse, true);
+            //dc.Greenhouses.Attach(dbGreenhouse, true);
+            foreach (var section in dbGreenhouse.Sections)
+            {
+                dc.Sections.DeleteOnSubmit(section);
+                foreach (var task in section.Tasks)
+                {
+                    dc.Tasks.DeleteOnSubmit(task);
+                }
+            }
             dc.Greenhouses.DeleteOnSubmit(dbGreenhouse);
             dc.SubmitChanges();
         }

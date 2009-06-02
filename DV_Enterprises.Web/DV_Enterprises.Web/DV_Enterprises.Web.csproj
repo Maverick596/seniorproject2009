@@ -95,7 +95,6 @@
     <Compile Include="Data\Utility\LazyList.cs" />
     <Compile Include="Presenter\Greenhouses\DefaultPresenter.cs" />
     <Compile Include="Presenter\Greenhouses\Interface\IDefault.cs" />
-    <Compile Include="Presenter\Greenhouses\Interface\IManageGreenhouse.cs" />
     <Compile Include="Presenter\Products\DefaultPresenter.cs" />
     <Compile Include="Presenter\Products\Interface\IDefault.cs" />
     <Compile Include="Presenter\Products\Interface\IManageProduct.cs" />
@@ -136,9 +135,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Domain\Abstract\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

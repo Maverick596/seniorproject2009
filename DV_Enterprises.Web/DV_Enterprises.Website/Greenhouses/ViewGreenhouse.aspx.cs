@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Controls;
 using DV_Enterprises.Web.Data.Domain;
+using DV_Enterprises.Web.Service;
 using DV_Enterprises.Web.Service.Interface;
 using StructureMap;
 
@@ -168,7 +169,7 @@ namespace Greenhouses
                     break;
                 case "Update":
                     // update editied section
-                    SaveSection(e.Item);
+                    UpdateSection(e.Item);
                     break;
                 case "Delete":
                     // delete old section
@@ -200,7 +201,7 @@ namespace Greenhouses
             lbNewSection.Visible = true;
         }
 
-        private void SaveSection(Control item)
+        private void UpdateSection(Control item)
         {
             new Section
                 {
@@ -210,14 +211,14 @@ namespace Greenhouses
                     UserID = new Guid(((Literal)item.FindControl("litUserID")).Text),
                     PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
                     IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
-                    IdealTemperature = Parse(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
-                    TemperatureThreshold = Parse(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
+                    IdealTemperature = ((TextBox)item.FindControl("tbxIdealTemperature")).Text.ToNullableInt(),
+                    TemperatureThreshold = ((TextBox)item.FindControl("tbxTemperatureTreshold")).Text.ToNullableInt(),
                     IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
-                    IdealLightIntensity = Parse(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
-                    LightIntensityThreshold = Parse(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
+                    IdealLightIntensity = ((TextBox)item.FindControl("tbxIdealLightIntensity")).Text.ToNullableInt(),
+                    LightIntensityThreshold = ((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text.ToNullableInt(),
                     IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
-                    IdealHumidity = Parse(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
-                    HumidityThreshold = Parse(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
+                    IdealHumidity = ((TextBox)item.FindControl("tbxIdealHumidity")).Text.ToNullableInt(),
+                    HumidityThreshold = ((TextBox)item.FindControl("tbxHumidityTreshold")).Text.ToNullableInt()
                 }.Save();
             lvSections.EditIndex = -1;
             Bind();
@@ -238,14 +239,14 @@ namespace Greenhouses
                     UserID = new Guid(Membership.GetUser().ProviderUserKey.ToString()),
                     PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
                     IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
-                    IdealTemperature = Parse(((TextBox)item.FindControl("tbxIdealTemperature")).Text),
-                    TemperatureThreshold = Parse(((TextBox)item.FindControl("tbxTemperatureTreshold")).Text),
+                    IdealTemperature = ((TextBox)item.FindControl("tbxIdealTemperature")).Text.ToNullableInt(),
+                    TemperatureThreshold = ((TextBox)item.FindControl("tbxTemperatureTreshold")).Text.ToNullableInt(),
                     IsLightActivated = ((CheckBox)item.FindControl("cboIsLightActivated")).Checked,
-                    IdealLightIntensity = Parse(((TextBox)item.FindControl("tbxIdealLightIntensity")).Text),
-                    LightIntensityThreshold = Parse(((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text),
+                    IdealLightIntensity = ((TextBox)item.FindControl("tbxIdealLightIntensity")).Text.ToNullableInt(),
+                    LightIntensityThreshold = ((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text.ToNullableInt(),
                     IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
-                    IdealHumidity = Parse(((TextBox)item.FindControl("tbxIdealHumidity")).Text),
-                    HumidityThreshold = Parse(((TextBox)item.FindControl("tbxHumidityTreshold")).Text)
+                    IdealHumidity = ((TextBox)item.FindControl("tbxIdealHumidity")).Text.ToNullableInt(),
+                    HumidityThreshold = ((TextBox)item.FindControl("tbxHumidityTreshold")).Text.ToNullableInt()
                 }.Save();
             CloseInsert();
             Bind();
@@ -256,14 +257,6 @@ namespace Greenhouses
             var s = Section.Find(Convert.ToInt32(((Literal)item.FindControl("litSectionID")).Text));
             s.Delete();
             Bind();
-        }
-
-        private static int? Parse(string s)
-        {
-            int result;
-            if (!int.TryParse(s, out result))
-                result = 0;
-            return result == 0 ? (int?)null : result;
         }
 
         public string PresetValue(int? s)
@@ -291,7 +284,7 @@ namespace Greenhouses
                                       StateOrProvince = tbxState.Text,
                                       StreetLine1 = tbxSteetAddress1.Text,
                                       StreetLine2 = tbxSteetAddress2.Text,
-                                      Zip = Parse(tbxZipCode.Text)
+                                      Zip = tbxZipCode.Text.ToNullableInt()
                                   }
                 };
             g.Save();

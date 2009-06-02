@@ -51,6 +51,14 @@ namespace DV_Enterprises.Web.Service
             return bytes;
         }
 
+        public static int? ToNullableInt(this string s)
+        {
+            int result;
+            if (!int.TryParse(s, out result))
+                result = 0;
+            return result == 0 ? (int?)null : result;
+        }
+
         #endregion
 
 
