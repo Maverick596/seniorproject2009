@@ -11,6 +11,8 @@ h1 span, h2 span, h3 span, h4 span, h5 span { font-size: 0.77em; }
 
 a { text-decoration: none; }
 
+.green { color: #92CC47; }
+
 /** Header **/
 #header { height: 110px; }
 #header h1 { height: 50px; float: left; margin-top: 20px; }
@@ -34,6 +36,9 @@ a { text-decoration: none; }
 #navigation li { margin: 0; display:inline; }
 #navigation a { display: block; margin: 8px 0  12px; padding: 0 10px; height: 30px !important; color: #000; }
 #navigation a:hover { background-color: #c7e3a4; }
+#navigation .social li { float: right;}
+#navigation .social a { padding: 4px;}
+#navigation .social a:hover { background-color: Transparent; }
 
 /** Content **/
 #content {background: url('../images/content.png') repeat-x center bottom; }
@@ -44,7 +49,6 @@ a { text-decoration: none; }
 #content .faq .back_to_top { float: right; }
 #content address { text-align: center; }
 #content address.greenhouse { text-align: left; }
-#content span.green, #content p.green { color: #92CC47; }
 #content .table_display dt { width: 40%; float: left; margin: 0 0 0 0; padding: .5em; border-top: 1px solid #999; font-weight: bold;  }
 /* commented backslash hack for mac-ie5 \*/
 #content dt { clear: both; }
@@ -61,9 +65,9 @@ a { text-decoration: none; }
 #content .sections .no_modules { font-size: 2em; text-align: center; padding: 1em; }
 
 /** Footer **/
-#footer { background-color: #000; text-align: center; padding-top: 10px;}
-#footer ul.links { text-align: center; }
-#footer ul.links li { margin: 0; margin-left: 0 !important;display: inline; border-right:1px solid #333333; padding: 0 5px}
+#footer { background-color: #000; text-align: center; padding-top: 10px; color: #f7f7f7; }
+#footer ul { text-align: center; }
+#footer ul li { margin: 0; margin-left: 0 !important;display: inline; border-right:1px solid #333333; padding: 0 5px}
 #footer ul.links li.last { border: none }
 #footer ul a { color: #f7f7f7; }
 

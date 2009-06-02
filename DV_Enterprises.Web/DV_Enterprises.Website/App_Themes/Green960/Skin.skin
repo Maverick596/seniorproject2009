@@ -15,3 +15,7 @@ Default skin template. The following skins are provided as examples only.
 --%>
 
 <asp:Image runat="server" SkinId="Logo" ImageUrl="images/logo.png" />
+<asp:Image runat="server" SkinId="TwitterT" ImageUrl="images/t.png" />
+<asp:Image runat="server" SkinId="TwitterLogo" ImageUrl="images/twitter.png" />
+<asp:Image runat="server" SkinId="FacebookF" ImageUrl="images/f.png" />
+<asp:Image runat="server" SkinId="FacebookLogo" ImageUrl="images/facebook.png" />
