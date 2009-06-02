@@ -12,9 +12,13 @@ namespace DV_Enterprises.Web.Data.Domain
     {
         #region Static properties
 
+        private static readonly Repository.Task Repository = new Repository.Task();
+
         #endregion
 
         #region Instance properties
+
+        private TaskType _taskType;
 
         public int ID { get; set; }
         public int SectionID { get; set; }
@@ -22,14 +26,11 @@ namespace DV_Enterprises.Web.Data.Domain
         public DateTime EndTime { get; set; }
         public double Interval { get; set; }
         public int TaskTypeId { get; set; }
-
-        private TaskType _taskType;
         public TaskType TaskType
         {
             get { return _taskType ?? (TaskType = TaskType.Find(TaskTypeId)); }
             set { _taskType = value; }
         }
-
         public DateTime DateCreated { get; set; }
         public DateTime DateUpdated { get; set; }
 
@@ -53,20 +54,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>return an IQueryable collection of Task</returns>
         public static IQueryable<Task> All(DataContext dc)
         {
-            dc = dc ?? Conn.GetContext();
-            var r = from t in dc.Tasks
-                    select new Task
-                               {
-                                   ID = t.TaskID,
-                                   SectionID = t.SectionID,
-                                   StartTime = t.StartTime,
-                                   EndTime = t.EndTime,
-                                   Interval = (t.EndTime.TimeOfDay - t.StartTime.TimeOfDay).TotalMinutes,
-                                   TaskTypeId = t.TaskTypeID,
-                                   DateCreated = t.DateCreated,
-                                   DateUpdated = t.DateUpdated
-                               };
-            return r;
+            return Repository.All(dc);
         }
 
 
@@ -88,7 +76,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns a Task</returns>
         public static Task Find(DataContext dc, int id)
         {
-            return All(dc).Where(t => t.ID == id).SingleOrDefault();
+            return Repository.Find(dc, id);
         }
 
         /// <summary>
@@ -109,28 +97,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved task</returns>
         public static int Save(DataContext dc, Task task)
         {
-            dc = dc ?? Conn.GetContext();
-            var dbTask = dc.Tasks.Where(t => t.TaskID == task.ID).SingleOrDefault();
-            var isNew = false;
-            if (dbTask == null)
-            {
-                dbTask = new DataAccess.SqlRepository.Task();
-                isNew = true;
-            }
-
-            dbTask.SectionID = task.SectionID;
-            dbTask.StartTime = task.StartTime;
-            dbTask.EndTime = task.StartTime.AddMinutes(task.Interval);
-            dbTask.TaskTypeID = task.TaskTypeId;
-            dbTask.DateUpdated = DateTime.Now;
-
-            if (isNew)
-            {
-                dbTask.DateCreated = DateTime.Now;
-                dc.Tasks.InsertOnSubmit(dbTask);
-            }
-            dc.SubmitChanges();
-            return dbTask.TaskID;
+            return Repository.Save(dc, task);
         }
 
         /// <summary>
@@ -149,14 +116,8 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <param name="task"></param>
         public static void Delete(DataContext dc, Task task)
         {
-            dc = dc ?? Conn.GetContext();
-            var dbTask = dc.Tasks.Where(t => t.TaskID == task.ID).SingleOrDefault();
-            if (dbTask == null) return;
-            //dc.Tasks.Attach(dbTask, true);
-            dc.Tasks.DeleteOnSubmit(dbTask);
-            dc.SubmitChanges();
+            Repository.Delete(dc, task);
         }
-         
 
         #endregion
 
