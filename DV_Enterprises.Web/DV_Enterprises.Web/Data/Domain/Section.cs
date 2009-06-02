@@ -12,6 +12,8 @@ namespace DV_Enterprises.Web.Data.Domain
     {
         #region Static properties
 
+        private static readonly Repository.Section Repository = new Repository.Section();
+
         #endregion
 
         #region Instance properties
@@ -30,9 +32,8 @@ namespace DV_Enterprises.Web.Data.Domain
         public bool IsHumidityActivated { get; set; }
         public int? IdealHumidity { get; set; }
         public int? HumidityThreshold { get; set; }
-        public DateTime DateCreated { get; private set; }
-        public DateTime DateUpdated { get; private set; }
-        public DateTime? DateDeleted { get; private set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
 
         #endregion
 
@@ -54,28 +55,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>return an IQueryable collection of Section</returns>
         public static IQueryable<Section> All(DataContext dc)
         {
-            dc = dc ?? Conn.GetContext();
-            var r = from s in dc.Sections
-                    select new Section
-                               {
-                                   ID = s.SectionID,
-                                   Name = s.Name,
-                                   GreenhouseID = s.GreenhouseID,
-                                   PresetID = s.PresetID,
-                                   UserID = s.UserID,
-                                   IsTemperatureActivated = s.IsTemeratureActivited,
-                                   IdealTemperature = s.IdealTemperature,
-                                   TemperatureThreshold = s.TemperatureThreshold,
-                                   IsLightActivated = s.IsLightActivited,
-                                   IdealLightIntensity = s.IdealLightIntensity,
-                                   LightIntensityThreshold = s.LightIntensityThreshold,
-                                   IsHumidityActivated = s.IsHumidityActivited,
-                                   IdealHumidity = s.IdealHumidity,
-                                   HumidityThreshold = s.HumidityThreshold,
-                                   DateCreated = s.DateCreated,
-                                   DateUpdated = s.DateUpdated
-                               };
-            return r;
+            return Repository.All(dc);
         }
 
         /// <summary>
@@ -96,7 +76,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns a Section</returns>
         public static Section Find(DataContext dc, int id)
         {
-            return All(dc).Where(s => s.ID == id).SingleOrDefault();
+            return Repository.Find(dc, id);
         }
 
         /// <summary>
@@ -117,37 +97,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <returns>returns the id of the saved section</returns>
         public static int Save(DataContext dc, Section section)
         {
-            dc = dc ?? Conn.GetContext();
-            var dbSection = dc.Sections.Where(s => s.SectionID == section.ID).SingleOrDefault();
-            var isNew = false;
-            if (dbSection == null)
-            {
-                dbSection = new DataAccess.SqlRepository.Section();
-                isNew = true;
-            }
-
-            dbSection.Name = section.Name;
-            dbSection.GreenhouseID = section.GreenhouseID;
-            dbSection.PresetID = section.PresetID;
-            dbSection.UserID = section.UserID;
-            dbSection.IsTemeratureActivited = section.IsTemperatureActivated;
-            dbSection.IdealTemperature = section.IdealTemperature;
-            dbSection.TemperatureThreshold = section.TemperatureThreshold;
-            dbSection.IsLightActivited = section.IsLightActivated;
-            dbSection.IdealLightIntensity = section.IdealLightIntensity;
-            dbSection.LightIntensityThreshold = section.LightIntensityThreshold;
-            dbSection.IsHumidityActivited = section.IsHumidityActivated;
-            dbSection.IdealHumidity = section.IdealHumidity;
-            dbSection.HumidityThreshold = section.HumidityThreshold;
-            dbSection.DateUpdated = DateTime.Now;
-
-            if (isNew)
-            {
-                dbSection.DateCreated = DateTime.Now;
-                dc.Sections.InsertOnSubmit(dbSection);
-            }
-            dc.SubmitChanges();
-            return dbSection.SectionID;
+            return Repository.Save(dc, section);
         }
 
         /// <summary>
@@ -162,19 +112,11 @@ namespace DV_Enterprises.Web.Data.Domain
         /// <summary>
         /// Delete a single 
         /// </summary>
+        /// <param name="dc"></param>
         /// <param name="section"></param>
         public static void Delete(DataContext dc, Section section)
         {
-            dc = dc ?? Conn.GetContext();
-            var dbSection = dc.Sections.Where(s => s.SectionID == section.ID).SingleOrDefault();
-            if (dbSection == null) return;
-            //dc.Sections.Attach(dbSection, true);
-            foreach (var task in dbSection.Tasks)
-            {
-                dc.Tasks.DeleteOnSubmit(task);
-            }
-            dc.Sections.DeleteOnSubmit(dbSection);
-            dc.SubmitChanges();
+            Repository.Delete(dc,section);
         }
 
         #endregion
