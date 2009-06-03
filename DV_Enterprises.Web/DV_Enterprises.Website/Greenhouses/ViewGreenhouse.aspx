@@ -296,10 +296,40 @@
                         </li>
                     </ol>
                 </fieldset>
+                
+                
+                
+                <fieldset class="grid_8 omega">
+                    <legend>Watering Module</legend>
+                    <ol>
+                        <li>
+                            <asp:Label ID="Label5" runat="server" Text="Activated?" AssociatedControlID="tbxIdealHumidity" />
+                            <asp:CheckBox ID="CheckBox2" runat="server" Checked="<%# ((Section)Container.DataItem).IsWaterLevelActivated %>" />
+                            <p class="inline-hints">Is Watering Activated</p>
+                        </li>
+                        <li>
+                            <asp:Label ID="Label6" runat="server" Text="Ideal:" AssociatedControlID="tbxIdealWaterLevel" />
+                            <asp:TextBox ID="TextBox3" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).IdealWaterLevel %>" ValidationGroup="update" />
+                            <p class="inline-hints">This section&#39;s ideal water level</p>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Ideal water level must be a number with 1 to 3 digits" ControlToValidate="tbxIdealWaterLevel" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
+                        </li>
+                        <li>
+                            <asp:Label ID="Label7" runat="server" Text="Threshold:" AssociatedControlID="tbxWaterLevelThreshold" />
+                            <asp:TextBox ID="TextBox4" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).WaterLevelThreshold %>" ValidationGroup="update" />
+                            <p class="inline-hints">This section&#39;s water level threshold.</p>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Water level threshold must be a number with 1 to 3 digits" ControlToValidate="tbxWaterLevelTreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
+                        </li>
+                    </ol>
+                </fieldset>
+                
+                
+                
                 <fieldset class="buttons grid_16">
                     <ol>
                         <li><asp:Button ID="lbUpdate" CommandName="Update" runat="server" Text="Save" ValidationGroup="update" /></li>
-                        <li><asp:LinkButton ID="lbCancel" CommandName="Cancel" runat="server" Text="Cancel" CausesValidation="false" /></li>
+                        <li><asp:LinkButton ID="lbCancel" CommandName="Cancel" runat="server" Text="Cancel" CausesValidation="false" />
+                        
+                        </li>
                     </ol>
                 </fieldset>
             </div>
