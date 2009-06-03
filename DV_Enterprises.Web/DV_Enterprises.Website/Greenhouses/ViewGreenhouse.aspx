@@ -138,7 +138,8 @@
                                         : PresetValue(((Section)Container.DataItem).Preset.TemperatureThreshold) %>" />
                             </dd>
                         </dl>
-                        <dvent:TaskList ID="tlstTemperature" runat="server" Type="Temperature" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        <dvent:TaskList ID="tlstHeating" runat="server" Type="Heating" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        <dvent:TaskList ID="tlstCooling" runat="server" Type="Cooling" SectionID="<%# ((Section)Container.DataItem).ID %>" />
                     </asp:Panel>
                     <asp:Panel ID="pnlLighting" runat="server" CssClass="grid_4">
                         <h4 class="title">Lighting Control</h4>
@@ -158,7 +159,8 @@
                                         : PresetValue(((Section)Container.DataItem).Preset.LightIntensityThreshold) %>" />
                             </dd>
                         </dl>
-                        <dvent:TaskList ID="tlstLightIntensity" runat="server" Type="LightIntensity" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        <dvent:TaskList ID="tlstLighting" runat="server" Type="Lighting" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        <dvent:TaskList ID="tlstOverrideLighting" runat="server" Type="OverrideLighting" SectionID="<%# ((Section)Container.DataItem).ID %>" />
                     </asp:Panel>
                     <asp:Panel ID="pnlHumidity" runat="server" CssClass="grid_4">
                         <h4 class="title">Humidity Control</h4>
@@ -178,7 +180,8 @@
                                     : PresetValue(((Section)Container.DataItem).Preset.HumidityThreshold) %>" />
                             </dd>
                         </dl>
-                        <dvent:TaskList ID="tlstHumidity" runat="server" Type="Humidity" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        <dvent:TaskList ID="tlstHumidifying" runat="server" Type="Humidifying" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        <dvent:TaskList ID="tlsDehumidifying" runat="server" Type="Dehumidifying" SectionID="<%# ((Section)Container.DataItem).ID %>" />
                     </asp:Panel>
                     <asp:Label ID="lblNoModules" runat="server" Visible="false" Text="There are currently no modules in this section" CssClass="title no_modules grid_16" />
                     
@@ -200,7 +203,8 @@
                                     : PresetValue(((Section)Container.DataItem).Preset.WaterLevelThreshold) %>" />
                             </dd>
                         </dl>
-                        <dvent:TaskList ID="TaskList1" runat="server" Type="Humidity" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        <dvent:TaskList ID="tlsWatering" runat="server" Type="Watering" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                         <dvent:TaskList ID="tlsNoWatering" runat="server" Type="NoWatering" SectionID="<%# ((Section)Container.DataItem).ID %>" /> 
                     </asp:Panel>
                     <asp:Label ID="Label4" runat="server" Visible="false" Text="There are currently no modules in this section" CssClass="title no_modules grid_16" />
                     
