@@ -111,6 +111,7 @@
                 <asp:Literal ID="litIsTemperatureActivated" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).IsTemperatureActivated %>" />
                 <asp:Literal ID="litIsLightActivated" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).IsLightActivated %>" />
                 <asp:Literal ID="litIsHumidityActivated" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).IsHumidityActivated %>" />
+                <asp:Literal ID="litIsWaterLevelActivated" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).IsWaterLevelActivated %>" />
                 
                 <div class="grid_16">
                     <dl class="table_display grid_4 alpha omega">
@@ -180,6 +181,32 @@
                         <dvent:TaskList ID="tlstHumidity" runat="server" Type="Humidity" SectionID="<%# ((Section)Container.DataItem).ID %>" />
                     </asp:Panel>
                     <asp:Label ID="lblNoModules" runat="server" Visible="false" Text="There are currently no modules in this section" CssClass="title no_modules grid_16" />
+                    
+                    
+                    <h4 class="title">Watering Control</h4>
+                        <dl class="table_display clearfix ">
+                            <dt>Ideal Watering Level:</dt>
+                            <dd>
+                                <asp:Literal ID="Literal1" runat="server"
+                                    Text="<%# ((Section)Container.DataItem).IdealWaterLevel != null
+                                        ? ((Section)Container.DataItem).IdealWaterLevel.ToString()
+                                        : PresetValue(((Section)Container.DataItem).Preset.IdealWaterLevel)  %>" />
+                            </dd>
+                            <dt>Water Level Threshold:</dt>
+                            <dd>
+                                <asp:Literal ID="Literal2" runat="server"
+                                    Text="<%# ((Section)Container.DataItem).WaterLevelThreshold != null
+                                    ? ((Section)Container.DataItem).WaterLevelThreshold.ToString()
+                                    : PresetValue(((Section)Container.DataItem).Preset.WaterLevelThreshold) %>" />
+                            </dd>
+                        </dl>
+                        <dvent:TaskList ID="TaskList1" runat="server" Type="Humidity" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                    </asp:Panel>
+                    <asp:Label ID="Label4" runat="server" Visible="false" Text="There are currently no modules in this section" CssClass="title no_modules grid_16" />
+                    
+                    
+                    
+                    
                 </div>
             </li>
         </ItemTemplate>
