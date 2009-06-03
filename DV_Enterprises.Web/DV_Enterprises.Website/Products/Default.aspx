@@ -2,6 +2,12 @@
 <%@ Import Namespace="DV_Enterprises.Web.Data.Domain"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server" >
+    <style type="text/css">
+        .style1 {
+            color: #FF0000;
+            font-style: italic;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <h2 class="title grid_16">Featured Products</h2>
@@ -38,15 +44,11 @@
             <p class="grid_16">No products found.</p>
         </EmptyDataTemplate>
     </asp:ListView>
-    <p class="grid_16">
-        <br />
-        <br />
-        Smart Greenhouse Solutions is committed to providing the best 
-        quality products to help you enhance your growing. We back our products with an 
-        unbeatable 3 year warranty and a 24 hr customer service help line.
-    </p>
-    <p class="grid_16">
-        Purchase the MasterController, TempModule, and LightModule together and receive 7% off of your order!
-    </p>
+    
+     <h2 class="style1 grid_16" >Special Offer!!! Purchase the MasterController, TempModule, and LightModule together and receive 7% off of your order! </h2>
+    <h2 class="grid_16">Smart Greenhouse Solutions is committed to providing the best quality 
+    products to help you enhance your growing. We back our products with an 
+    unbeatable 3 year warranty and a 24 hr customer service help line.</h2>
+    <p class="grid_16">*Shipping costs will vary depending on items to be shipped and shipping location.</p>  
 </asp:Content>
 
