@@ -303,7 +303,7 @@
                     <legend>Watering Module</legend>
                     <ol>
                         <li>
-                            <asp:Label ID="Label5" runat="server" Text="Activated?" AssociatedControlID="tbxIdealHumidity" />
+                            <asp:Label ID="Label5" runat="server" Text="Activated?" AssociatedControlID="tbxIdealWaterLevel" />
                             <asp:CheckBox ID="CheckBox2" runat="server" Checked="<%# ((Section)Container.DataItem).IsWaterLevelActivated %>" />
                             <p class="inline-hints">Is Watering Activated</p>
                         </li>
@@ -314,10 +314,10 @@
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Ideal water level must be a number with 1 to 3 digits" ControlToValidate="tbxIdealWaterLevel" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
                         </li>
                         <li>
-                            <asp:Label ID="Label7" runat="server" Text="Threshold:" AssociatedControlID="tbxWaterLevelThreshold" />
+                            <asp:Label ID="Label7" runat="server" Text="Threshold:" AssociatedControlID="tbxWaterLevel" />
                             <asp:TextBox ID="TextBox4" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).WaterLevelThreshold %>" ValidationGroup="update" />
                             <p class="inline-hints">This section&#39;s water level threshold.</p>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Water level threshold must be a number with 1 to 3 digits" ControlToValidate="tbxWaterLevelTreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Water level threshold must be a number with 1 to 3 digits" ControlToValidate="tbxWaterLevelThreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
                         </li>
                     </ol>
                 </fieldset>
