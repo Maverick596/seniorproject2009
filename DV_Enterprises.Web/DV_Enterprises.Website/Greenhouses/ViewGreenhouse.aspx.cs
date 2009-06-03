@@ -218,7 +218,10 @@ namespace Greenhouses
                     LightIntensityThreshold = ((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text.ToNullableInt(),
                     IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
                     IdealHumidity = ((TextBox)item.FindControl("tbxIdealHumidity")).Text.ToNullableInt(),
-                    HumidityThreshold = ((TextBox)item.FindControl("tbxHumidityTreshold")).Text.ToNullableInt()
+                    HumidityThreshold = ((TextBox)item.FindControl("tbxHumidityTreshold")).Text.ToNullableInt(),
+                    IsWaterLevelActivated = ((CheckBox)item.FindControl("cboIsWaterLevelActivated")).Checked,
+                    IdealWaterLevel = ((TextBox)item.FindControl("tbxIdealWaterLevel")).Text.ToNullableInt(),
+                    WaterLevelThreshold = ((TextBox)item.FindControl("tbxWaterLevelThreshold")).Text.ToNullableInt()
                 }.Save();
             lvSections.EditIndex = -1;
             Bind();
@@ -246,7 +249,10 @@ namespace Greenhouses
                     LightIntensityThreshold = ((TextBox)item.FindControl("tbxLightIntensityTreshold")).Text.ToNullableInt(),
                     IsHumidityActivated = ((CheckBox)item.FindControl("cboIsHumidityActivated")).Checked,
                     IdealHumidity = ((TextBox)item.FindControl("tbxIdealHumidity")).Text.ToNullableInt(),
-                    HumidityThreshold = ((TextBox)item.FindControl("tbxHumidityTreshold")).Text.ToNullableInt()
+                    HumidityThreshold = ((TextBox)item.FindControl("tbxHumidityTreshold")).Text.ToNullableInt(),
+                    IsWaterLevelActivated = ((CheckBox)item.FindControl("cboIsWaterLevelActivated")).Checked,
+                    IdealWaterLevel = ((TextBox)item.FindControl("tbxIdealWaterLevel")).Text.ToNullableInt(),
+                    WaterLevelThreshold = ((TextBox)item.FindControl("tbxWaterLevelThreshold")).Text.ToNullableInt()
                 }.Save();
             CloseInsert();
             Bind();
@@ -300,5 +306,9 @@ namespace Greenhouses
             pnlEditGreenhouse.Visible = false;
             pnlGreenhouseAddress.Visible = true;
         }
-    }
+        protected void lvSections_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+}
 }
