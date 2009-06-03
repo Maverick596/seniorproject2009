@@ -21,6 +21,9 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         int? LightIntensityThreshold { get; set; }
         int? IdealHumidity { get; set; }
         int? HumidityThreshold { get; set; }
+        int? IdealWaterLevelThreshold { get; set; }
+        int? IsWaterLevelActivated { get; set; }
+        int? WaterLevelThreshold { get; set; }
         bool IsGlobal { get; set; }
         DateTime DateCreated { get; set; }
         DateTime DateUpdated { get; set; }
