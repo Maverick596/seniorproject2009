@@ -47,15 +47,18 @@ namespace DV_Enterprises.Web.Data.Repository
                         GreenhouseID = s.GreenhouseID,
                         PresetID = s.PresetID,
                         UserID = s.UserID,
-                        IsTemperatureActivated = s.IsTemeratureActivited,
+                        IsTemperatureActivated = s.IsTemeratureActivated,
                         IdealTemperature = s.IdealTemperature,
                         TemperatureThreshold = s.TemperatureThreshold,
-                        IsLightActivated = s.IsLightActivited,
+                        IsLightActivated = s.IsLightActivated,
                         IdealLightIntensity = s.IdealLightIntensity,
                         LightIntensityThreshold = s.LightIntensityThreshold,
-                        IsHumidityActivated = s.IsHumidityActivited,
+                        IsHumidityActivated = s.IsHumidityActivated,
                         IdealHumidity = s.IdealHumidity,
                         HumidityThreshold = s.HumidityThreshold,
+                        IsWaterLevelActivated = s.IsWaterLevelActivated,
+                        IdealWaterLevel = s.IdealWaterLevel,
+                        WaterLevelThreshold = s.WaterLevelThreshold,
                         DateCreated = s.DateCreated,
                         DateUpdated = s.DateUpdated
                     };
@@ -94,15 +97,18 @@ namespace DV_Enterprises.Web.Data.Repository
             dbSection.GreenhouseID = section.GreenhouseID;
             dbSection.PresetID = section.PresetID;
             dbSection.UserID = section.UserID;
-            dbSection.IsTemeratureActivited = section.IsTemperatureActivated;
+            dbSection.IsTemeratureActivated = section.IsTemperatureActivated;
             dbSection.IdealTemperature = section.IdealTemperature;
             dbSection.TemperatureThreshold = section.TemperatureThreshold;
-            dbSection.IsLightActivited = section.IsLightActivated;
+            dbSection.IsLightActivated = section.IsLightActivated;
             dbSection.IdealLightIntensity = section.IdealLightIntensity;
             dbSection.LightIntensityThreshold = section.LightIntensityThreshold;
-            dbSection.IsHumidityActivited = section.IsHumidityActivated;
+            dbSection.IsHumidityActivated = section.IsHumidityActivated;
             dbSection.IdealHumidity = section.IdealHumidity;
             dbSection.HumidityThreshold = section.HumidityThreshold;
+            dbSection.IsWaterLevelActivated = section.IsWaterLevelActivated;
+            dbSection.IdealWaterLevel = section.IdealWaterLevel;
+            dbSection.WaterLevelThreshold = section.WaterLevelThreshold;
             dbSection.DateUpdated = DateTime.Now;
 
             if (isNew)

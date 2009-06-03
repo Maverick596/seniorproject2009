@@ -39,21 +39,23 @@ namespace DV_Enterprises.Web.Data.Repository
         public IQueryable<Domain.Preset> All(DataContext dc)
         {
             dc = dc ?? Conn.GetContext();
-            var r = from c in dc.Presets
+            var r = from p in dc.Presets
                     select new Domain.Preset
                     {
-                        ID = c.PresetID,
-                        Name = c.Name,
-                        UserID = c.UserID,
-                        IdealTemperature = c.IdealTemperature,
-                        TemperatureThreshold = c.TemperatureThreshold,
-                        IdealLightIntensity = c.IdealLightIntensity,
-                        LightIntensityThreshold = c.LightIntensityTreshold,
-                        IdealHumidity = c.IdealHumidity,
-                        HumidityThreshold = c.HumidityThreshold,
-                        IsGlobal = c.IsGlobal,
-                        DateCreated = c.DateCreated,
-                        DateUpdated = c.DateUpdated
+                        ID = p.PresetID,
+                        Name = p.Name,
+                        UserID = p.UserID,
+                        IdealTemperature = p.IdealTemperature,
+                        TemperatureThreshold = p.TemperatureThreshold,
+                        IdealLightIntensity = p.IdealLightIntensity,
+                        LightIntensityThreshold = p.LightIntensityThreshold,
+                        IdealHumidity = p.IdealHumidity,
+                        HumidityThreshold = p.HumidityThreshold,
+                        IdealWaterLevel = p.IdealWaterLevel,
+                        WaterLevelThreshold = p.WaterLevelThreshold,
+                        IsGlobal = p.IsGlobal,
+                        DateCreated = p.DateCreated,
+                        DateUpdated = p.DateUpdated
                     };
             return r;
         }
@@ -66,7 +68,7 @@ namespace DV_Enterprises.Web.Data.Repository
         /// <returns>returns a Preset</returns>
         public Domain.Preset Find(DataContext dc, int id)
         {
-            return All(dc).Where(c => c.ID == id).SingleOrDefault();
+            return All(dc).Where(p => p.ID == id).SingleOrDefault();
         }
 
         /// <summary>
@@ -91,9 +93,11 @@ namespace DV_Enterprises.Web.Data.Repository
             dbPreset.IdealTemperature = preset.IdealTemperature;
             dbPreset.TemperatureThreshold = preset.TemperatureThreshold;
             dbPreset.IdealLightIntensity = preset.IdealLightIntensity;
-            dbPreset.LightIntensityTreshold = preset.LightIntensityThreshold;
+            dbPreset.LightIntensityThreshold = preset.LightIntensityThreshold;
             dbPreset.IdealHumidity = preset.IdealHumidity;
             dbPreset.HumidityThreshold = preset.HumidityThreshold;
+            dbPreset.IdealWaterLevel = preset.IdealWaterLevel;
+            dbPreset.WaterLevelThreshold = preset.WaterLevelThreshold;
             dbPreset.IsGlobal = preset.IsGlobal;
             dbPreset.DateUpdated = DateTime.Now;
 

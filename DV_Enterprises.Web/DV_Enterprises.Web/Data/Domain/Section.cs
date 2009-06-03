@@ -34,8 +34,8 @@ namespace DV_Enterprises.Web.Data.Domain
         public bool IsHumidityActivated { get; set; }
         public int? IdealHumidity { get; set; }
         public int? HumidityThreshold { get; set; }
-        public int? IdealWaterLevelThreshold { get; set; }
-        public int? IsWaterLevelActivated { get; set; }
+        public bool IsWaterLevelActivated { get; set; }
+        public int? IdealWaterLevel { get; set; }
         public int? WaterLevelThreshold { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateUpdated { get; set; }

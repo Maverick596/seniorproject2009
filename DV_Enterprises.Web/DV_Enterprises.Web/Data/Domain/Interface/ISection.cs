@@ -27,12 +27,11 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         bool IsHumidityActivated { get; set; }
         int? IdealHumidity { get; set; }
         int? HumidityThreshold { get; set; }
-        int? IdealWaterLevelThreshold { get; set; }
-        int? IsWaterLevelActivated { get; set; }
+        bool IsWaterLevelActivated { get; set; }
+        int? IdealWaterLevel { get; set; }
         int? WaterLevelThreshold { get; set; }
         DateTime DateCreated { get; set; }
         DateTime DateUpdated { get; set; }
-
 
         #endregion
     }
