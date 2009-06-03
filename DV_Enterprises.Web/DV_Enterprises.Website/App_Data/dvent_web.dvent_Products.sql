@@ -1,4 +1,4 @@
-TRUNCATE TABLE [dvent_web].[dbo].[dvent_Product]
+
 GO
 
 INSERT INTO [dvent_web].[dbo].[dvent_Product]
