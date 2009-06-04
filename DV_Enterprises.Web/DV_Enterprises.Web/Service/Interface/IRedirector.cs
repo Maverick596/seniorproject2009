@@ -12,8 +12,6 @@ namespace DV_Enterprises.Web.Service.Interface
 
         void GoToGreenhouses();
         void GoToViewGreenhouse(int productId);
-        void GoToManageGreenhouse(int productId);
-        void GoToManageGreenhouse();
 
         void GoToHomePage();
         void GoToErrorPage();

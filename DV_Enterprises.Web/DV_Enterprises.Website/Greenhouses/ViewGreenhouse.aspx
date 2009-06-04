@@ -183,10 +183,8 @@
                         <dvent:TaskList ID="tlstHumidifying" runat="server" Type="Humidifying" SectionID="<%# ((Section)Container.DataItem).ID %>" />
                         <dvent:TaskList ID="tlsDehumidifying" runat="server" Type="Dehumidifying" SectionID="<%# ((Section)Container.DataItem).ID %>" />
                     </asp:Panel>
-                    <asp:Label ID="lblNoModules" runat="server" Visible="false" Text="There are currently no modules in this section" CssClass="title no_modules grid_16" />
-                    
-                    
-                    <h4 class="title">Watering Control</h4>
+                    <asp:Panel ID="pnlWaterLevel" runat="server" CssClass="grid_4">
+                        <h4 class="title">Watering Control</h4>
                         <dl class="table_display clearfix ">
                             <dt>Ideal Watering Level:</dt>
                             <dd>
@@ -204,13 +202,9 @@
                             </dd>
                         </dl>
                         <dvent:TaskList ID="tlsWatering" runat="server" Type="Watering" SectionID="<%# ((Section)Container.DataItem).ID %>" />
-                         <dvent:TaskList ID="tlsNoWatering" runat="server" Type="NoWatering" SectionID="<%# ((Section)Container.DataItem).ID %>" /> 
+                        <dvent:TaskList ID="tlsNoWatering" runat="server" Type="NoWatering" SectionID="<%# ((Section)Container.DataItem).ID %>" /> 
                     </asp:Panel>
-                    <asp:Label ID="Label4" runat="server" Visible="false" Text="There are currently no modules in this section" CssClass="title no_modules grid_16" />
-                    
-                    
-                    
-                    
+                    <asp:Label ID="lblNoModules" runat="server" Visible="false" Text="There are currently no modules in this section" CssClass="title no_modules grid_16" />
                 </div>
             </li>
         </ItemTemplate>
@@ -219,7 +213,7 @@
             <div class="form">
                 <asp:Literal ID="litUserID" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).UserID %>" />
                 <asp:Literal ID="litSectionID" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).ID %>" />
-                <fieldset class="grid_8 alpha">
+                <fieldset class="grid_8">
                     <legend><span>Basic Settings</span></legend>
                     <ol>
                         <li>
@@ -234,7 +228,7 @@
                         </li>
                     </ol>
                 </fieldset>
-                <fieldset class="grid_8 omega">
+                <fieldset class="grid_8">
                     <legend>Temeperature Module</legend>
                     <ol>
                         <li>
@@ -256,7 +250,7 @@
                         </li>
                     </ol>
                 </fieldset>
-                <fieldset class="grid_8 alpha">
+                <fieldset class="grid_8">
                     <legend>Lighting Module</legend>
                     <ol>
                         <li>
@@ -278,7 +272,7 @@
                         </li>
                     </ol>
                 </fieldset>
-                <fieldset class="grid_8 omega">
+                <fieldset class="grid_8">
                     <legend>Humidity Module</legend>
                     <ol>
                         <li>
@@ -300,34 +294,28 @@
                         </li>
                     </ol>
                 </fieldset>
-                
-                
-                
-                <fieldset class="grid_8 omega">
+                <fieldset class="grid_8">
                     <legend>Watering Module</legend>
                     <ol>
                         <li>
-                            <asp:Label ID="Label5" runat="server" Text="Activated?" AssociatedControlID="tbxIdealWaterLevel" />
-                            <asp:CheckBox ID="CheckBox2" runat="server" Checked="<%# ((Section)Container.DataItem).IsWaterLevelActivated %>" />
+                            <asp:Label ID="lblIsWaterLevelActivated" runat="server" Text="Activated?" AssociatedControlID="cboIsWaterLevelActivated" />
+                            <asp:CheckBox ID="cboIsWaterLevelActivated" runat="server" Checked="<%# ((Section)Container.DataItem).IsWaterLevelActivated %>" />
                             <p class="inline-hints">Is Watering Activated</p>
                         </li>
                         <li>
-                            <asp:Label ID="Label6" runat="server" Text="Ideal:" AssociatedControlID="tbxIdealWaterLevel" />
-                            <asp:TextBox ID="TextBox3" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).IdealWaterLevel %>" ValidationGroup="update" />
+                            <asp:Label ID="lblIdealWaterLevel" runat="server" Text="Ideal:" AssociatedControlID="tbxIdealWaterLevel" />
+                            <asp:TextBox ID="tbxIdealWaterLevel" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).IdealWaterLevel %>" ValidationGroup="update" />
                             <p class="inline-hints">This section&#39;s ideal water level</p>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Ideal water level must be a number with 1 to 3 digits" ControlToValidate="tbxIdealWaterLevel" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
+                            <asp:RegularExpressionValidator ID="revIdealWaterLevel" runat="server" ErrorMessage="Ideal water level must be a number with 1 to 3 digits" ControlToValidate="tbxIdealWaterLevel" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
                         </li>
                         <li>
-                            <asp:Label ID="Label7" runat="server" Text="Threshold:" AssociatedControlID="tbxWaterLevel" />
-                            <asp:TextBox ID="TextBox4" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).WaterLevelThreshold %>" ValidationGroup="update" />
+                            <asp:Label ID="lblWaterLevelThreshold" runat="server" Text="Threshold:" AssociatedControlID="tbxWaterLevelThreshold" />
+                            <asp:TextBox ID="tbxWaterLevelThreshold" runat="server" MaxLength="3" Text="<%# ((Section)Container.DataItem).WaterLevelThreshold %>" ValidationGroup="update" />
                             <p class="inline-hints">This section&#39;s water level threshold.</p>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Water level threshold must be a number with 1 to 3 digits" ControlToValidate="tbxWaterLevelThreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
+                            <asp:RegularExpressionValidator ID="revWaterLevelThreshold" runat="server" ErrorMessage="Water level threshold must be a number with 1 to 3 digits" ControlToValidate="tbxWaterLevelThreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="update" />
                         </li>
                     </ol>
                 </fieldset>
-                
-                
-                
                 <fieldset class="buttons grid_16">
                     <ol>
                         <li><asp:Button ID="lbUpdate" CommandName="Update" runat="server" Text="Save" ValidationGroup="update" /></li>
@@ -341,7 +329,7 @@
         
         <InsertItemTemplate>
             <div class="form">
-                <fieldset class="grid_8 alpha">
+                <fieldset class="grid_8">
                     <legend>Basic Settings</legend>
                     <ol>
                         <li>
@@ -356,7 +344,7 @@
                         </li>
                     </ol>
                 </fieldset>
-                <fieldset class="grid_8 omega">
+                <fieldset class="grid_8">
                     <legend>Temeperature Module</legend>
                     <ol>
                         <li>
@@ -378,7 +366,7 @@
                         </li>
                     </ol>
                 </fieldset>
-                <fieldset class="grid_8 alpha">
+                <fieldset class="grid_8">
                     <legend>Lighting Module</legend>
                     <ol>
                         <li>
@@ -400,7 +388,7 @@
                         </li>
                     </ol>
                 </fieldset>
-                <fieldset class="grid_8 omega">
+                <fieldset class="grid_8">
                     <legend>Humidity Module</legend>
                     <ol>
                         <li>
@@ -422,35 +410,31 @@
                         </li>
                     </ol>
                 </fieldset>
-                <fieldset class="buttons grid_16">
+                <fieldset class="grid_8">
                     <ol>
-                    
                      <legend>Water level Module</legend>
                     <ol>
                         <li>
-                            <asp:Label ID="Label1" runat="server" Text="Activated?" AssociatedControlID="tbxIdealWaterLevel" />
-                            <asp:CheckBox ID="CheckBox1" runat="server" />
+                            <asp:Label ID="lblIsWaterLevelActivated" runat="server" Text="Activated?" AssociatedControlID="cboIsWaterLevelActivated" />
+                            <asp:CheckBox ID="cboIsWaterLevelActivated" runat="server" />
                             <p class="inline-hints">Is WaterLevel Activated</p>
                         </li>
                         <li>
-                            <asp:Label ID="Label2" runat="server" Text="Ideal:" AssociatedControlID="tbxIdealWaterLevel" />
-                            <asp:TextBox ID="TextBox1" runat="server" MaxLength="3" ValidationGroup="add" />
+                            <asp:Label ID="lblIdealWaterLevel" runat="server" Text="Ideal:" AssociatedControlID="tbxIdealWaterLevel" />
+                            <asp:TextBox ID="tbxIdealWaterLevel" runat="server" MaxLength="3" ValidationGroup="add" />
                             <p class="inline-hints">This section&#39;s ideal water level</p>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Ideal water level must be a number with 1 to 3 digits" ControlToValidate="tbxIdealWaterLevel" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="add" />
+                            <asp:RegularExpressionValidator ID="revIdealWaterLevel" runat="server" ErrorMessage="Ideal water level must be a number with 1 to 3 digits" ControlToValidate="tbxIdealWaterLevel" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="add" />
                         </li>
                         <li>
-                            <asp:Label ID="Label3" runat="server" Text="Threshold:" AssociatedControlID="tbxWaterLevelThreshold" />
-                            <asp:TextBox ID="TextBox2" runat="server" MaxLength="3" ValidationGroup="add" />
+                            <asp:Label ID="lblWaterLevelThreshold" runat="server" Text="Threshold:" AssociatedControlID="tbxWaterLevelThreshold" />
+                            <asp:TextBox ID="tbxWaterLevelThreshold" runat="server" MaxLength="3" ValidationGroup="add" />
                             <p class="inline-hints">This section&#39;s water level threshold.</p>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="humidity threshold must be a number with 1 to 3 digits" ControlToValidate="tbxWaterLevelThreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="add" />
+                            <asp:RegularExpressionValidator ID="revWaterLevelThreshold" runat="server" ErrorMessage="humidity threshold must be a number with 1 to 3 digits" ControlToValidate="tbxWaterLevelThreshold" ValidationExpression="^[0-9]+$" Display="Dynamic" class="inline-errors" ValidationGroup="add" />
                         </li>
                     </ol>
                 </fieldset>
                 <fieldset class="buttons grid_16">
                     <ol>
-                    
-                    
-                    
                         <li><asp:Button ID="lbInsert" CommandName="Insert" runat="server" Text="Save" ValidationGroup="add" /></li>
                         <li><asp:LinkButton ID="lbCancel" CommandName="Cancel" runat="server" Text="Cancel" CausesValidation="false" /></li>
                     </ol>

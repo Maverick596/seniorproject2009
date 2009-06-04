@@ -84,7 +84,7 @@ namespace Controls
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //litTaskTitle.Text = string.Format("{0} tasks", Type.ToString().DeCamelize());
+            litTaskTitle.Text = string.Format("{0} tasks", Type.ToString().DeCamelize());
             Bind();
             HidePanel();
         }

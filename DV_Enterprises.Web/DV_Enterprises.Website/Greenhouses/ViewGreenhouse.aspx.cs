@@ -26,7 +26,7 @@ namespace Greenhouses
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
-            if (_webContext.GreenhouseId <= 0) return;
+            if (_webContext.GreenhouseId <= 0) _redirector.GoToGreenhouses();
             Bind();
         }
 
@@ -125,10 +125,30 @@ namespace Greenhouses
                 }
             }
 
-            var lblNoModules = e.Item.FindControl("lblNoModules") as Label;
-            if (litIsTemperatureActivated != null && litIsLightActivated != null && litIsHumidityActivated != null)
+            var litIsWaterLevelActivated = e.Item.FindControl("litIsWaterLevelActivated") as Literal;
+            var pnlWaterLevel = e.Item.FindControl("pnlWaterLevel") as Panel;
+            if (litIsWaterLevelActivated != null)
             {
-                if (!bool.Parse(litIsTemperatureActivated.Text) && !bool.Parse(litIsLightActivated.Text) && !bool.Parse(litIsHumidityActivated.Text))
+                if (bool.Parse(litIsWaterLevelActivated.Text))
+                {
+                    if (pnlWaterLevel != null) pnlWaterLevel.Visible = true;
+                }
+                else
+                {
+                    if (pnlWaterLevel != null) pnlWaterLevel.Visible = false;
+                }
+            }
+
+            var lblNoModules = e.Item.FindControl("lblNoModules") as Label;
+            if (litIsTemperatureActivated != null 
+                && litIsLightActivated != null 
+                && litIsHumidityActivated != null 
+                && litIsWaterLevelActivated != null)
+            {
+                if (!bool.Parse(litIsTemperatureActivated.Text) 
+                    && !bool.Parse(litIsLightActivated.Text) 
+                    && !bool.Parse(litIsHumidityActivated.Text)
+                    && !bool.Parse(litIsWaterLevelActivated.Text))
                 {
                     if (lblNoModules != null) lblNoModules.Visible = true;
                 }

@@ -66,6 +66,8 @@ a { text-decoration: none; }
 #content ul.checked {}
 #content ul.checked h2 {}
 #content ul.checked li { background: url('../images/check.png') no-repeat left; list-style: none; margin-left: 15px; padding: 5px 0 5px 30px; }
+#content .faq span.question { font-weight: bold; }
+#content .tag { text-align: center; font-weight: bold; }
 
 /** Footer **/
 #footer { background-color: #000; text-align: center; padding-top: 10px; color: #f7f7f7; }
@@ -73,5 +75,5 @@ a { text-decoration: none; }
 #footer ul li { margin: 0; margin-left: 0 !important;display: inline; border-right:1px solid #333333; padding: 0 5px}
 #footer ul.links li.last { border: none }
 #footer ul a { color: #f7f7f7; }
-
-.faq span.question { font-weight: bold; }
+#footer ul.social li { border: 0; }
+#footer .copy, #footer .copy a { color: #92CC47; }

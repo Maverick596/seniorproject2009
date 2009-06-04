@@ -1,6 +1,6 @@
 ﻿/* NORMALIZE AND RESET - obviously inspired by Yahoo's reset.css, but scoped to just .form
 --------------------------------------------------------------------------------------------------*/
-.form, .form ul, .form ol, .form li, .form fieldset, .form legend, .form input, .form textarea, .form select, .form p { margin:0; padding:0; }
+.form, .form ul, .form ol, .form li, .form legend, .form input, .form textarea, .form select, .form p { margin:0; padding:0; }
 .form fieldset { border:0; margin-bottom: 20px !important; }
 .form em, .form strong { font-style:normal; font-weight:normal; }
 .form ol, .form ul { list-style:none; }

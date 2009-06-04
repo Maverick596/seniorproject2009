@@ -82,7 +82,8 @@
                     <li><asp:HyperLink ID="lnkPrivacyPolicy" runat="server" Text="Privacy Policy" NavigateUrl="~/Legal/PrivacyPolicy.aspx"></asp:HyperLink></li>
                     <li class="last"><asp:HyperLink ID="lnkFAQ" runat="server" Text="FAQ's" NavigateUrl="~/FAQ.aspx"></asp:HyperLink></li>
                 </ul>
-                <span class="green grid_4">&copy; DVEnterprise 2009</span>
+                <span class="copy grid_4">&copy; <asp:HyperLink ID="lnkDVEnterprise" runat="server" Text=" DVEnterprise" NavigateUrl="http://dventerprise.org" Target="_blank" ToolTip="DVEnterprise homepage" /> 2009</span>
+                
             </div>
         </div>
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="False" />
