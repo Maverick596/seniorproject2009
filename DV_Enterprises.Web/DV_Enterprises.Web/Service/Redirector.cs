@@ -44,24 +44,13 @@ namespace DV_Enterprises.Web.Service
 
         public void GoToGreenhouses()
         {
-            throw new NotImplementedException();
+            Redirect("~/Greenhouses/Default.aspx");
         }
 
         public void GoToViewGreenhouse(int greenhouseId)
         {
             Redirect(String.Format("~/Greenhouses/ViewGreenhouse.aspx?GreenhouseID={0}", greenhouseId));
         }
-
-        public void GoToManageGreenhouse(int greenhouseId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GoToManageGreenhouse()
-        {
-            throw new NotImplementedException();
-        }
-
 
         public void GoToHomePage()
         {
