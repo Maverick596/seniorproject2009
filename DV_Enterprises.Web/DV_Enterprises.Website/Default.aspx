@@ -4,7 +4,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="intro grid_16">
-        <asp:Image ID="Image2" runat="server" ImageUrl="~/images/tree.png" CssClass="grid_6 alpha" />
+        <div class="grid_6 alpha">
+            <asp:Image ID="Image2" runat="server" ImageUrl="~/images/tree.png" CssClass="grid_6 alpha" />
+            <div class="tag">SGS is the only <span class="green">“Green”</span> environmental control system on the market!</div>
+        </div>
         <div class="grid_10 omega">
             <ul class="checked">
                 <h2 class="title">Why choose Smart Greenhouse Solutions?</h2>
@@ -35,14 +38,17 @@
         </ul>
         <div class="features grid_9 omega suffix_1">   
             <h2 class="title">Summer Savings</h2>
-            <p>Now is the time to beat the heat! Purchase our temperature control units at 5% off during the months of July and August. Check back soon for our winter promotions. <strong>SGS is the only <span class="green">“Green”</span> environmental control system on the market!</strong></p>
+            <p>Now is the time to beat the heat! Purchase our temperature control units at 5% off during the months of July and August. Check back soon for our winter promotions.</p>
         </div>
     </div>
     
         
-       <asp:Image ID="Image3" runat="server" ImageUrl="~/images/meanGreens.png" CssClass="grid_2 prefix_1" />
-       <p class="grid_11 suffix_1">Learn more about how our SGS GreenThumb Modules can help your crop yields by playing our real time growing game – 
-       <asp:HyperLink ID="HyperLink1" runat="server" Text="Mean Greens" NavigateUrl="~/MeanGreens.aspx" /></p>
+       
+       <p class="grid_16 suffix_1 clearfix">
+            <asp:Image ID="Image3" runat="server" ImageUrl="~/images/meanGreens.png" CssClass="grid_2 prefix_1" />
+           Learn more about how our SGS GreenThumb Modules can help your crop yields by playing our real time growing game – 
+       <asp:HyperLink ID="HyperLink1" runat="server" Text="Mean Greens" NavigateUrl="~/MeanGreens.aspx" />
+      </p>
     
     <div class="testimonials clearfix">
         <ul>
