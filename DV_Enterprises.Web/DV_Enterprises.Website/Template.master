@@ -8,6 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Content-Language" content="en-us" />
     <title>Smart GreenHouse Solutions &mdash; better slogan here</title>
+    <script type="text/javascript" src="js/prototype.js"></script>
     <script type="text/javascript" src="js/ieupdate.js"></script>
     <!--[if lte IE 6]>
         <script type="text/javascript" src="js/supersleight.js"></script> 
