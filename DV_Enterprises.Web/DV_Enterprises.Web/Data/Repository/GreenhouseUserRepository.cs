@@ -81,7 +81,7 @@ namespace DV_Enterprises.Web.Data.Repository
             var dbGreenhouseUser = dc.GreenhouseUsers.Where(g => g.GreenhouseUserId == greenhouseUser.ID).SingleOrDefault();
             if (dbGreenhouseUser == null) return;
             //dc.Greenhouses.Attach(dbGreenhouse, true);
-            foreach (var section in dbGreenhouseUser.Greenhouse.Sections)
+            foreach (var section in dbGreenhouseUser.Greenhouse.Sections.Where(gu => gu.UserID == dbGreenhouseUser.UserId))
             {
                 dc.Sections.DeleteOnSubmit(section);
                 foreach (var task in section.Tasks)

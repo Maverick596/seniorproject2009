@@ -84,9 +84,10 @@ namespace Controls
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            HidePanel();
+            if (IsPostBack) return;
             litTaskTitle.Text = string.Format("{0} tasks", Type.ToString().DeCamelize());
             Bind();
-            HidePanel();
         }
         protected void btnAddTask_Click(object sender, EventArgs e)
         {

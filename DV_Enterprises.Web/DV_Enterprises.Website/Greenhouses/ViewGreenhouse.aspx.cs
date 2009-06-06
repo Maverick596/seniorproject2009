@@ -32,6 +32,7 @@ namespace Greenhouses
             pnlUsers.Visible = User.IsInRole("administrator");
             if (IsPostBack) return;
             if (_webContext.GreenhouseId <= 0) _redirector.GoToGreenhouses();
+            _webContext.GreenhouseIdSession = _webContext.GreenhouseId;
             Bind();
         }
 
@@ -39,7 +40,7 @@ namespace Greenhouses
 
         private void Bind()
         {
-            var greenhouse = Greenhouse.ByID(_webContext.GreenhouseId);
+            var greenhouse = Greenhouse.ByID(_webContext.GreenhouseIdSession);
             LoadData(greenhouse);
             LoadLocation(greenhouse.Address);
             LoadSection(greenhouse.Sections.ToList());
@@ -102,6 +103,11 @@ namespace Greenhouses
 
         public void LoadSection(List<Section> sections)
         {
+            // If the user is an administrator return all of the Greenhouse's  sections if not
+            // then only return the ones that they are the owners of.
+            sections = User.IsInRole("administrator")
+                           ? sections
+                           : sections.Where(s => s.Username == User.Identity.Name).ToList();
             lvSections.DataSource = sections;
             lvSections.DataBind();
         }
@@ -124,7 +130,7 @@ namespace Greenhouses
 
         private void DeleteGreenhouseUser(ListViewItem item)
         {
-            var g = GreenhouseUser.All().ByGreenhouseID(_webContext.GreenhouseId).ByUser(((Literal)item.FindControl("litUsername")).Text).SingleOrDefault();
+            var g = GreenhouseUser.All().Where(gu => gu.GreenhouseID == _webContext.GreenhouseIdSession && gu.Username == ((Literal)item.FindControl("litUsername")).Text).SingleOrDefault();
             g.Delete();
             Bind();
         }
@@ -135,12 +141,14 @@ namespace Greenhouses
 
         public void lvSections_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
+            var litPresetID = e.Item.FindControl("litPresetID") as Literal;
             var ddlPreset = e.Item.FindControl("ddlPreset") as DropDownList;
             if (ddlPreset != null)
             {
                 ddlPreset.DataSource = Preset.All();
                 ddlPreset.DataTextField = "Name";
                 ddlPreset.DataValueField = "ID";
+                if (litPresetID != null) ddlPreset.SelectedValue = litPresetID.Text;
                 ddlPreset.DataBind();
             }
 
@@ -150,13 +158,15 @@ namespace Greenhouses
                 pnlOwner.Visible = User.IsInRole("administrator");
             }
 
+            var litUserID = e.Item.FindControl("litUserID") as Literal;
             var ddlOwner = e.Item.FindControl("ddlOwner") as DropDownList;
             if (ddlOwner != null)
             {
-                var users = Membership.GetAllUsers();
+                var users = Greenhouse.ByID(_webContext.GreenhouseIdSession).GreenhouseUsers;
                 ddlOwner.DataSource = users;
                 ddlOwner.DataTextField = "Username";
-                ddlOwner.DataValueField = "ProviderUserKey";
+                ddlOwner.DataValueField = "UserID";
+                if (litUserID != null) ddlOwner.SelectedValue = litUserID.Text;
                 ddlOwner.DataBind();
             }
 
@@ -226,7 +236,8 @@ namespace Greenhouses
             {
                 lvSections.EditIndex = -1;
             }
-            Bind();
+            //Bind();
+            _redirector.GoToViewGreenhouse(_webContext.GreenhouseIdSession);
         }
 
         protected void lvSections_ItemCommand(object sender, ListViewCommandEventArgs e)
@@ -273,10 +284,10 @@ namespace Greenhouses
             var ddlOwner = lvSections.InsertItem.FindControl("ddlOwner") as DropDownList;
             if (ddlOwner != null)
             {
-                var users = Membership.GetAllUsers();
+                var users = Greenhouse.ByID(_webContext.GreenhouseIdSession).GreenhouseUsers;
                 ddlOwner.DataSource = users;
-                ddlOwner.DataTextField = "username";
-                ddlOwner.DataValueField = "ProviderUserKey";
+                ddlOwner.DataTextField = "Username";
+                ddlOwner.DataValueField = "UserID";
                 ddlOwner.DataBind();
             }
         }
@@ -291,12 +302,12 @@ namespace Greenhouses
         {
             var ddlOwner = ((DropDownList)item.FindControl("ddlOwner")).SelectedValue;
             var litUserID = ((Literal)item.FindControl("litUserID")).Text;
-            var userID = User.IsInRole("admistrator") ? ddlOwner : litUserID;
+            var userID = User.IsInRole("administrator") ? ddlOwner : litUserID;
             new Section
                 {
                     ID = Convert.ToInt32(((Literal)item.FindControl("litSectionID")).Text),
                     Name = ((TextBox)item.FindControl("tbxName")).Text,
-                    GreenhouseID = _webContext.GreenhouseId,
+                    GreenhouseID = _webContext.GreenhouseIdSession,
                     UserID = new Guid(userID),
                     PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
                     IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
@@ -313,7 +324,8 @@ namespace Greenhouses
                     WaterLevelThreshold = ((TextBox)item.FindControl("tbxWaterLevelThreshold")).Text.ToNullableInt()
                 }.Save();
             lvSections.EditIndex = -1;
-            Bind();
+            //Bind();
+            _redirector.GoToViewGreenhouse(_webContext.GreenhouseIdSession);
         }
 
 
@@ -325,12 +337,12 @@ namespace Greenhouses
         {
             var ddlOwner = ((DropDownList)item.FindControl("ddlOwner")).SelectedValue;
             var litUserID = Membership.GetUser().ProviderUserKey.ToString();
-            var userID = User.IsInRole("admistrator") ? ddlOwner : litUserID;
+            var userID = User.IsInRole("administrator") ? ddlOwner : litUserID;
             new Section
                 {
                     ID = 0,
                     Name = ((TextBox)item.FindControl("tbxName")).Text,
-                    GreenhouseID = _webContext.GreenhouseId,
+                    GreenhouseID = _webContext.GreenhouseIdSession,
                     UserID = new Guid(userID),
                     PresetID = Convert.ToInt32(((DropDownList)item.FindControl("ddlPreset")).SelectedValue),
                     IsTemperatureActivated = ((CheckBox)item.FindControl("cboIsTemperatureActivated")).Checked,
@@ -347,7 +359,8 @@ namespace Greenhouses
                     WaterLevelThreshold = ((TextBox)item.FindControl("tbxWaterLevelThreshold")).Text.ToNullableInt()
                 }.Save();
             CloseInsert();
-            Bind();
+            //Bind();
+            _redirector.GoToViewGreenhouse(_webContext.GreenhouseIdSession);
         }
 
         private void DeleteSection(Control item)
@@ -375,7 +388,7 @@ namespace Greenhouses
         {
             var g = new Greenhouse
                 {
-                    ID = _webContext.GreenhouseId,
+                    ID = _webContext.GreenhouseIdSession,
                     Address = new Address
                                   {
                                       City = tbxCity.Text,
@@ -409,7 +422,7 @@ namespace Greenhouses
                 new GreenhouseUser
                     {
                         UserID = userid,
-                        GreenhouseID = _webContext.GreenhouseId,
+                        GreenhouseID = _webContext.GreenhouseIdSession,
                     }.Save();
             }
             Bind();

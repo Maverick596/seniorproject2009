@@ -1,6 +1,5 @@
 using System;
 using System.Web;
-using System.Web.Security;
 using DV_Enterprises.Web.Service.Interface;
 using StructureMap;
 
@@ -35,9 +34,28 @@ namespace DV_Enterprises.Web.Service
             }
         }
 
-        public bool IsAdmin(string username)
+        public int GreenhouseIdSession
         {
-            return Roles.IsUserInRole(username, "Administrator");
+            get
+            {
+                var result = 0;
+                if (GetFromSession("GreenhouseId") != null)
+                {
+                    result = Convert.ToInt32(GetFromSession("GreenhouseId"));
+                }
+                return result;
+            }
+            set
+            {
+                if (GetFromSession("GreenhouseId") != null)
+                {
+                    UpdateInSession("GreenhouseId", value);
+                }
+                else
+                {
+                    SetInSession("GreenhouseId", value);
+                }
+            }
         }
 
         public void ClearSession()
@@ -60,20 +78,20 @@ namespace DV_Enterprises.Web.Service
             return HttpContext.Current.Request.QueryString.Get(key);
         }
 
-        private void SetInSession(string key, object value)
+        private static void SetInSession(string key, object value)
         {
             if (HttpContext.Current == null || HttpContext.Current.Session == null) return;
             HttpContext.Current.Session[key] = value;
         }
 
-        private object GetFromSession(string key)
+        private static object GetFromSession(string key)
         {
             return HttpContext.Current == null || HttpContext.Current.Session == null
                        ? null
                        : HttpContext.Current.Session[key];
         }
 
-        private void UpdateInSession(string key, object value)
+        private static void UpdateInSession(string key, object value)
         {
             HttpContext.Current.Session[key] = value;
         }

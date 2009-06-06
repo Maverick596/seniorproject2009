@@ -54,7 +54,9 @@ a { text-decoration: none; }
 #content dt { clear: both; }
 /* end hack */
 #content .table_display dd { float: left; width: 40%; margin: 0 0 0 0; padding: .5em; border-top: 1px solid #999; }
-#content ul.sections li.section { border-top: 1px solid #666; padding-top: 10px; margin: 0; }
+#content ul.sections > li.section { border-top: 1px solid #666; padding-top: 10px; margin: 0; }
+#content ul.sections > li.odd { background-color: #eee; }
+#content .sections { clear: both; }
 #content .sections .table_display dt { width: 70%; padding: 0.5em 0 0.5em 0.5em; }
 #content .sections .table_display dd { width: 20%; padding: 0.5em 0; }
 #content .sections .task_list  { text-align: center }
@@ -62,7 +64,7 @@ a { text-decoration: none; }
 #content .sections .task_list th, #content .sections .task_list td { padding: 0.5em 0; border-top: 1px solid #999; }
 #content .sections .task_list td { width: 30%; }
 #content .sections .section_preset { color: #666; }
-#content .sections .no_modules { font-size: 2em; text-align: center; padding: 1em; }
+#content .sections .no_modules { font-size: 2em; text-align: center; padding: 1em 0; }
 #content ul.checked {}
 #content ul.checked h2 {}
 #content ul.checked li { background: url('../images/check.png') no-repeat left; list-style: none; margin-left: 15px; padding: 5px 0 5px 30px; }

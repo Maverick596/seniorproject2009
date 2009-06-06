@@ -135,10 +135,11 @@ namespace DV_Enterprises.Web.Data.Repository
 
             greenhouse.ID = dbGreenhouse.GreenhouseID;
 
-            foreach (Domain.Section section in greenhouse.Sections)
-            {
-                section.Save();
-            }
+            if (greenhouse.Sections != null)
+                foreach (Section section in greenhouse.Sections)
+                {
+                    section.Save();
+                }
 
             return greenhouse.ID;
         }

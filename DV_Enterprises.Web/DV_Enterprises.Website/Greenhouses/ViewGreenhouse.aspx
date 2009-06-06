@@ -143,16 +143,19 @@
                 
                 <div class="grid_16">
                     <dl class="table_display grid_4 alpha omega">
-                        <dt>User:</dt>
-                        <dd><asp:Literal ID="litUser" runat="server" Text="<%# ((Section)Container.DataItem).Username %>" /></dd>
+                        <asp:Panel ID="pnlOwner" runat="server" Visible="false">
+                            <dt>User:</dt>
+                            <dd><asp:Literal ID="litUser" runat="server" Text="<%# ((Section)Container.DataItem).Username %>" /></dd>
+                        </asp:Panel>
                         <dt>Preset:</dt>
                         <dd><asp:Literal ID="litSectionPreset" runat="server" Text="<%# ((Section)Container.DataItem).Preset.Name %>" /></dd>
                     </dl>
                 </div>
                 <div class="modules container_12">
-                    <asp:Panel ID="pnlTemperature" runat="server" CssClass="grid_4">
+                    <asp:Panel ID="pnlTemperature" runat="server" CssClass="grid_12">
                         <h4 class="title">Temperature Control</h4>
-                        <dl class="table_display clearfix">
+                        <dl class="table_display clearfix grid_4 alpha">
+                            <h5 class="title">Basic Settings</h5>
                             <dt>Ideal Temperature :</dt>
                             <dd>
                                 <asp:Literal ID="litSectionIdealTempeture" runat="server" 
@@ -168,12 +171,17 @@
                                         : PresetValue(((Section)Container.DataItem).Preset.TemperatureThreshold) %>" />
                             </dd>
                         </dl>
-                        <dvent:TaskList ID="tlstHeating" runat="server" Type="Heating" SectionID="<%# ((Section)Container.DataItem).ID %>" />
-                        <dvent:TaskList ID="tlstCooling" runat="server" Type="Cooling" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        <div class="grid_4">
+                            <dvent:TaskList ID="tlstHeating" runat="server" Type="Heating" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                        <div class="grid_4 omega">
+                            <dvent:TaskList ID="tlstCooling" runat="server" Type="Cooling" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
                     </asp:Panel>
-                    <asp:Panel ID="pnlLighting" runat="server" CssClass="grid_4">
+                    <asp:Panel ID="pnlLighting" runat="server" CssClass="grid_16">
                         <h4 class="title">Lighting Control</h4>
-                        <dl class="table_display clearfix">
+                        <dl class="table_display clearfix grid_4 alpha">
+                            <h5 class="title">Basic Settings</h5>
                             <dt>Ideal Lighting:</dt>
                             <dd>
                                 <asp:Literal ID="litIdealLighting" runat="server" 
@@ -189,12 +197,17 @@
                                         : PresetValue(((Section)Container.DataItem).Preset.LightIntensityThreshold) %>" />
                             </dd>
                         </dl>
-                        <dvent:TaskList ID="tlstLighting" runat="server" Type="Lighting" SectionID="<%# ((Section)Container.DataItem).ID %>" />
-                        <dvent:TaskList ID="tlstOverrideLighting" runat="server" Type="OverrideLighting" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        <div class="grid_4">
+                            <dvent:TaskList ID="tlstLighting" runat="server" Type="Lighting" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                        <div class="grid_4 omega">
+                            <dvent:TaskList ID="tlstOverrideLighting" runat="server" Type="OverrideLighting" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
                     </asp:Panel>
-                    <asp:Panel ID="pnlHumidity" runat="server" CssClass="grid_4">
+                    <asp:Panel ID="pnlHumidity" runat="server" CssClass="grid_16">
                         <h4 class="title">Humidity Control</h4>
-                        <dl class="table_display clearfix ">
+                        <dl class="table_display clearfix grid_4 alpha">
+                            <h5 class="title">Basic Settings</h5>
                             <dt>Ideal Humidity:</dt>
                             <dd>
                                 <asp:Literal ID="litIdealHumidity" runat="server"
@@ -210,12 +223,17 @@
                                     : PresetValue(((Section)Container.DataItem).Preset.HumidityThreshold) %>" />
                             </dd>
                         </dl>
-                        <dvent:TaskList ID="tlstHumidifying" runat="server" Type="Humidifying" SectionID="<%# ((Section)Container.DataItem).ID %>" />
-                        <dvent:TaskList ID="tlsDehumidifying" runat="server" Type="Dehumidifying" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        <div class="grid_4">
+                            <dvent:TaskList ID="tlstHumidifying" runat="server" Type="Humidifying" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                        <div class="grid_4 omega">
+                            <dvent:TaskList ID="tlsDehumidifying" runat="server" Type="Dehumidifying" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
                     </asp:Panel>
-                    <asp:Panel ID="pnlWaterLevel" runat="server" CssClass="grid_4">
+                    <asp:Panel ID="pnlWaterLevel" runat="server" CssClass="grid_16">
                         <h4 class="title">Watering Control</h4>
-                        <dl class="table_display clearfix ">
+                        <dl class="table_display clearfix grid_4 alpha">
+                            <h5 class="title">Basic Settings</h5>
                             <dt>Ideal Watering Level:</dt>
                             <dd>
                                 <asp:Literal ID="Literal1" runat="server"
@@ -231,18 +249,160 @@
                                     : PresetValue(((Section)Container.DataItem).Preset.WaterLevelThreshold) %>" />
                             </dd>
                         </dl>
-                        <dvent:TaskList ID="tlsWatering" runat="server" Type="Watering" SectionID="<%# ((Section)Container.DataItem).ID %>" />
-                        <dvent:TaskList ID="tlsNoWatering" runat="server" Type="NoWatering" SectionID="<%# ((Section)Container.DataItem).ID %>" /> 
+                        <div class="grid_4">
+                            <dvent:TaskList ID="tlsWatering" runat="server" Type="Watering" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                        <div class="grid_4 omega">
+                            <dvent:TaskList ID="tlsNoWatering" runat="server" Type="NoWatering" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
                     </asp:Panel>
-                    <asp:Label ID="lblNoModules" runat="server" Visible="false" Text="There are currently no modules in this section" CssClass="title no_modules grid_16" />
+                    <asp:Label ID="lblNoModules" runat="server" Visible="false" Text="There are currently no modules in this section" CssClass="title no_modules grid_12" />
                 </div>
             </li>
         </ItemTemplate>
+        
+        <AlternatingItemTemplate>
+            <li class="section odd clearfix">
+                <asp:Literal ID="litSectionID" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).ID %>" />
+                <h3 class="grid_16 title">
+                    <asp:Literal ID="litSectionName" runat="server"
+                        Text="<%# ((Section)Container.DataItem).Name != string.Empty
+                            ? ((Section)Container.DataItem).Name
+                            : ((Section)Container.DataItem).ToString() %>" />
+                    <span><asp:LinkButton ID="lbEdit" runat="server" CommandName="Edit" Text="(edit)" /></span>
+                    <span><asp:LinkButton ID="lbDelete" runat="server" CommandName="Delete" Text="(delete)" /></span>
+                </h3>
+                
+                <asp:Literal ID="litIsTemperatureActivated" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).IsTemperatureActivated %>" />
+                <asp:Literal ID="litIsLightActivated" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).IsLightActivated %>" />
+                <asp:Literal ID="litIsHumidityActivated" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).IsHumidityActivated %>" />
+                <asp:Literal ID="litIsWaterLevelActivated" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).IsWaterLevelActivated %>" />
+                
+                <div class="grid_16">
+                    <dl class="table_display grid_4 alpha omega">
+                        <asp:Panel ID="pnlOwner" runat="server" Visible="false">
+                            <dt>User:</dt>
+                            <dd><asp:Literal ID="litUser" runat="server" Text="<%# ((Section)Container.DataItem).Username %>" /></dd>
+                        </asp:Panel>
+                        <dt>Preset:</dt>
+                        <dd><asp:Literal ID="litSectionPreset" runat="server" Text="<%# ((Section)Container.DataItem).Preset.Name %>" /></dd>
+                    </dl>
+                </div>
+                <div class="modules container_12">
+                    <asp:Panel ID="pnlTemperature" runat="server" CssClass="grid_12">
+                        <h4 class="title">Temperature Control</h4>
+                        <dl class="table_display clearfix grid_4 alpha">
+                            <h5 class="title">Basic Settings</h5>
+                            <dt>Ideal Temperature :</dt>
+                            <dd>
+                                <asp:Literal ID="litSectionIdealTempeture" runat="server" 
+                                    Text="<%#((Section)Container.DataItem).IdealTemperature != null 
+                                        ? ((Section)Container.DataItem).IdealTemperature.ToString() 
+                                        : PresetValue(((Section)Container.DataItem).Preset.IdealTemperature)%>" />
+                            </dd>
+                            <dt>Temp Threshold:</dt>
+                            <dd>
+                                <asp:Literal ID="litTempretureThreshold" runat="server" 
+                                    Text="<%# ((Section)Container.DataItem).TemperatureThreshold != null 
+                                        ? ((Section)Container.DataItem).TemperatureThreshold.ToString()
+                                        : PresetValue(((Section)Container.DataItem).Preset.TemperatureThreshold) %>" />
+                            </dd>
+                        </dl>
+                        <div class="grid_4">
+                            <dvent:TaskList ID="tlstHeating" runat="server" Type="Heating" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                        <div class="grid_4 omega">
+                            <dvent:TaskList ID="tlstCooling" runat="server" Type="Cooling" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlLighting" runat="server" CssClass="grid_16">
+                        <h4 class="title">Lighting Control</h4>
+                        <dl class="table_display clearfix grid_4 alpha">
+                            <h5 class="title">Basic Settings</h5>
+                            <dt>Ideal Lighting:</dt>
+                            <dd>
+                                <asp:Literal ID="litIdealLighting" runat="server" 
+                                    Text="<%# ((Section)Container.DataItem).IdealLightIntensity != null
+                                        ? ((Section)Container.DataItem).IdealLightIntensity.ToString()
+                                        : PresetValue(((Section)Container.DataItem).Preset.IdealLightIntensity) %>" />
+                            </dd>
+                            <dt>Lighting Threshold:</dt>
+                            <dd>
+                                <asp:Literal ID="litLightingThreshold" runat="server"
+                                    Text="<%# ((Section)Container.DataItem).LightIntensityThreshold != null
+                                        ? ((Section)Container.DataItem).LightIntensityThreshold.ToString()
+                                        : PresetValue(((Section)Container.DataItem).Preset.LightIntensityThreshold) %>" />
+                            </dd>
+                        </dl>
+                        <div class="grid_4">
+                            <dvent:TaskList ID="tlstLighting" runat="server" Type="Lighting" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                        <div class="grid_4 omega">
+                            <dvent:TaskList ID="tlstOverrideLighting" runat="server" Type="OverrideLighting" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlHumidity" runat="server" CssClass="grid_16">
+                        <h4 class="title">Humidity Control</h4>
+                        <dl class="table_display clearfix grid_4 alpha">
+                            <h5 class="title">Basic Settings</h5>
+                            <dt>Ideal Humidity:</dt>
+                            <dd>
+                                <asp:Literal ID="litIdealHumidity" runat="server"
+                                    Text="<%# ((Section)Container.DataItem).IdealHumidity != null
+                                        ? ((Section)Container.DataItem).IdealHumidity.ToString()
+                                        : PresetValue(((Section)Container.DataItem).Preset.IdealHumidity)  %>" />
+                            </dd>
+                            <dt>Humidity Threshold:</dt>
+                            <dd>
+                                <asp:Literal ID="litHumanityThreshold" runat="server"
+                                    Text="<%# ((Section)Container.DataItem).HumidityThreshold != null
+                                    ? ((Section)Container.DataItem).HumidityThreshold.ToString()
+                                    : PresetValue(((Section)Container.DataItem).Preset.HumidityThreshold) %>" />
+                            </dd>
+                        </dl>
+                        <div class="grid_4">
+                            <dvent:TaskList ID="tlstHumidifying" runat="server" Type="Humidifying" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                        <div class="grid_4 omega">
+                            <dvent:TaskList ID="tlsDehumidifying" runat="server" Type="Dehumidifying" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlWaterLevel" runat="server" CssClass="grid_16">
+                        <h4 class="title">Watering Control</h4>
+                        <dl class="table_display clearfix grid_4 alpha">
+                            <h5 class="title">Basic Settings</h5>
+                            <dt>Ideal Watering Level:</dt>
+                            <dd>
+                                <asp:Literal ID="Literal1" runat="server"
+                                    Text="<%# ((Section)Container.DataItem).IdealWaterLevel != null
+                                        ? ((Section)Container.DataItem).IdealWaterLevel.ToString()
+                                        : PresetValue(((Section)Container.DataItem).Preset.IdealWaterLevel)  %>" />
+                            </dd>
+                            <dt>Water Level Threshold:</dt>
+                            <dd>
+                                <asp:Literal ID="Literal2" runat="server"
+                                    Text="<%# ((Section)Container.DataItem).WaterLevelThreshold != null
+                                    ? ((Section)Container.DataItem).WaterLevelThreshold.ToString()
+                                    : PresetValue(((Section)Container.DataItem).Preset.WaterLevelThreshold) %>" />
+                            </dd>
+                        </dl>
+                        <div class="grid_4">
+                            <dvent:TaskList ID="tlsWatering" runat="server" Type="Watering" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                        <div class="grid_4 omega">
+                            <dvent:TaskList ID="tlsNoWatering" runat="server" Type="NoWatering" SectionID="<%# ((Section)Container.DataItem).ID %>" />
+                        </div>
+                    </asp:Panel>
+                    <asp:Label ID="lblNoModules" runat="server" Visible="false" Text="There are currently no modules in this section" CssClass="title no_modules grid_12" />
+                </div>
+            </li>
+        </AlternatingItemTemplate>
         
         <EditItemTemplate>
             <div class="form">
                 <asp:Literal ID="litUserID" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).UserID %>" />
                 <asp:Literal ID="litSectionID" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).ID %>" />
+                <asp:Literal ID="litPresetID" runat="server" Visible="false" Text="<%# ((Section)Container.DataItem).PresetID %>" />
                 <fieldset class="grid_8">
                     <legend><span>Basic Settings</span></legend>
                     <ol>
