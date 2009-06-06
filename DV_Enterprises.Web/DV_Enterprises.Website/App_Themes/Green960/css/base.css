@@ -30,7 +30,7 @@ a { text-decoration: none; }
 
 /** Navigatiion **/
 #navigation { height: 50px; }
-#navigation > .inner { background: url('../images/navigation.png') no-repeat center top; }
+#navigation .inner { background: url('../images/navigation.png') no-repeat center top; }
 #navigation { height: 50px; font-size: 18px; color: #000; clear: left;}
 #navigation ul { text-align: center; }
 #navigation li { margin: 0; display:inline; }
@@ -42,7 +42,7 @@ a { text-decoration: none; }
 
 /** Content **/
 #content {background: url('../images/content.png') repeat-x center bottom; }
-#content > .inner { background: #f7f7f7 url('../images/content_inner.png') repeat-x center bottom; padding: 1px 0;}
+#content .inner { background: #f7f7f7 url('../images/content_inner.png') repeat-x center bottom; padding: 1px 0;}
 /** #content .why, #content .features { font-size: 16px; }
 #content .why .title, #content .features .title { font-size: 1.4375em; margin-top: 2.5em; } **/
 #content .secondary { background-color: #eaeaea; }
@@ -54,8 +54,8 @@ a { text-decoration: none; }
 #content dt { clear: both; }
 /* end hack */
 #content .table_display dd { float: left; width: 40%; margin: 0 0 0 0; padding: .5em; border-top: 1px solid #999; }
-#content ul.sections > li.section { border-top: 1px solid #666; padding-top: 10px; margin: 0; }
-#content ul.sections > li.odd { background-color: #eee; }
+#content ul.sections li.section { background: url('../images/section_bg.png') repeat-x; border-top: 1px solid #666; padding-top: 10px; margin: 0; }
+#content ul.sections li.odd { background-color: #eee; }
 #content .sections { clear: both; }
 #content .sections .table_display dt { width: 70%; padding: 0.5em 0 0.5em 0.5em; }
 #content .sections .table_display dd { width: 20%; padding: 0.5em 0; }
