@@ -30,7 +30,9 @@ public partial class Greenhouses_AddCrop : System.Web.UI.Page
             IdealLightIntensity = Convert.ToInt32(txtLightRange.Text),
             LightIntensityThreshold = Convert.ToInt32(txtLightRange.Text),
             IdealHumidity = Convert.ToInt32(txtHumidity.Text),
-            HumidityThreshold = Convert.ToInt32(txtHumidityRange.Text)
+            HumidityThreshold = Convert.ToInt32(txtHumidityRange.Text),
+            IdealWaterLevel = Convert.ToInt32(txtWaterLevel.Text),
+            WaterLevelThreshold = Convert.ToInt32(txtWaterThreshold.Text)
 
         };
         p.Save();
