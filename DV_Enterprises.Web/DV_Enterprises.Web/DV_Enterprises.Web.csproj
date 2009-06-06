@@ -65,7 +65,7 @@
       <DependentUpon>DataContext.dbml</DependentUpon>
     </Compile>
     <Compile Include="Data\Domain\Preset.cs" />
-    <Compile Include="Data\Domain\Greenhouse.cs" />
+    <Compile Include="Data\Domain\Interface\Greenhouse.cs" />
     <Compile Include="Data\Domain\Interface\IPreset.cs" />
     <Compile Include="Data\Domain\Interface\IDomainModel.cs" />
     <Compile Include="Data\Domain\Interface\IGreenhouse.cs" />

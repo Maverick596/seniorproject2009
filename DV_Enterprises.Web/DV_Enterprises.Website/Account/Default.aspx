@@ -8,6 +8,8 @@
     
     <asp:HyperLink ID="lnkEditAccount" runat="server" Text="Edit Account" NavigateUrl="~/Account/Edit.aspx"></asp:HyperLink>
     <br />
+    <asp:HyperLink ID="LiveVideo" runat="server" Text="View Live Video" NavigateUrl="~/LiveVideo.aspx"> </asp:HyperLink>
+     <br />
     <h2 class="title"> 
     <br />Account Information<br />
     </h2>
