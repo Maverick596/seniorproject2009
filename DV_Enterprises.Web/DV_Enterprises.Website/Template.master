@@ -10,7 +10,7 @@
     <title>Smart GreenHouse Solutions &mdash; better slogan here</title>
     <script type="text/javascript" src="js/ieupdate.js"></script>
     <!--[if lte IE 6]>
-        <script type="text/javascript" src="js/supersleight-min.js"></script> 
+        <script type="text/javascript" src="js/supersleight.js"></script> 
     <![endif]-->
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
