@@ -3,29 +3,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <h2 class="title"><asp:Label ID="lblName" runat="server"></asp:Label></h2>
-    <dl>
+    <h2 class="title grid_16"><asp:Label ID="lblName" runat="server"></asp:Label></h2>
+    <dl class="table_display grid_8 clearfix">
         <h3 class="title">Details</h3>
-        <dt><strong>User name: </strong><asp:Label ID="lblUserName" runat="server"></asp:Label></dt>
-                            <dd></dd>
-        <dt><strong>Email:<asp:Label ID="lblEmail" runat="server" Text="Label"></asp:Label></strong></dt>
-        <dd></dd>
-        <dt><strong>Address: <asp:Label ID="lblFullAddress" runat="server" Text="Label"></asp:Label></strong></dt>
-        <dd></dd>
-        <dt><strong>Phone: <asp:Label ID="lblPhone" runat="server" Text="Label"></asp:Label></strong></dt>
-        <dd></dd>
+        <dt>User name:</dt>
+        <dd><asp:Label ID="lblUserName" runat="server" /></dd>
+        <dt>Email:</dt>
+        <dd><asp:Label ID="lblEmail" runat="server" /></dd>
+        <dt>Address:</dt>
+        <dd><asp:Label ID="lblFullAddress" runat="server" /></dd>
+        <dt>Phone:</dt>
+        <dd><asp:Label ID="lblPhone" runat="server" /></dd>
+        <dt>Roles:</dt>
+        <dd><asp:Label ID="lblRoles" runat="server" /></dd>
     </dl>
-    <div>
-        <h3 class="title">Roles:
-            <asp:Label ID="lblRoles" runat="server" Text="Label"></asp:Label>
-                            </h3>
-    </div>
-    <div>
+    <div class="grid_16">
         <h3 class="title">Greenhouses</h3>
-                            <p class="title">
-    </div>
-    <div>
-        <h3 class="title">Presets</h3>
     </div>
 </asp:Content>
 
