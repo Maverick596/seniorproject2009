@@ -9,9 +9,9 @@ using StructureMap;
 namespace DV_Enterprises.Web.Data.Repository
 {
     [Pluggable("Default")]
-    public class Product:IProduct
+    public class ProductRepository:IProductRepository
     {
-        #region  properties
+        #region  Static properties
 
         #endregion
 
@@ -21,13 +21,13 @@ namespace DV_Enterprises.Web.Data.Repository
 
         #endregion
 
-        #region  methods
+        #region  Static methods
 
         #endregion
 
         #region Instance methods
 
-        public Product()
+        public ProductRepository()
         {
             Conn = new Connection();
         }
@@ -79,7 +79,7 @@ namespace DV_Enterprises.Web.Data.Repository
             var isNew = false;
             if (dbProduct == null)
             {
-                dbProduct = new DataAccess.SqlRepository.Product();
+                dbProduct = new Product();
                 isNew = true;
             }
 

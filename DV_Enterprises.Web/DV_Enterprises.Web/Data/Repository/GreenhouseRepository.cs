@@ -4,13 +4,17 @@ using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
 using DV_Enterprises.Web.Data.Domain;
+using DV_Enterprises.Web.Data.Filters;
 using DV_Enterprises.Web.Data.Repository.Interface;
+using DV_Enterprises.Web.Data.Utility;
 using StructureMap;
+using GreenhouseUser=DV_Enterprises.Web.Data.Domain.GreenhouseUser;
+using Section=DV_Enterprises.Web.Data.Domain.Section;
 
 namespace DV_Enterprises.Web.Data.Repository
 {
     [Pluggable("Default")]
-    public class Greenhouse : IGreenhouse
+    public class GreenhouseRepository : IGreenhouseRepository
     {
         #region Static properties
 
@@ -19,6 +23,7 @@ namespace DV_Enterprises.Web.Data.Repository
         #region Instance properties
 
         public Connection Conn { get; set; }
+        public List<string> Usernames { get; set; }
 
         #endregion
 
@@ -28,9 +33,10 @@ namespace DV_Enterprises.Web.Data.Repository
 
         #region Instance methods
 
-        public Greenhouse()
+        public GreenhouseRepository()
         {
             Conn = new Connection();
+            Usernames = new List<string>();
         }
 
         /// <summary>
@@ -38,13 +44,18 @@ namespace DV_Enterprises.Web.Data.Repository
         /// </summary>
         /// <param name="dc"></param>
         /// <returns>return an IQueryable collection of Greenhouse</returns>
-        public IList<Domain.Greenhouse> All(DataContext dc)
+        public IQueryable<Domain.Greenhouse> All(DataContext dc)
         {
             dc = dc ?? Conn.GetContext();
             var r = from g in dc.Greenhouses
+                    let greenhouseUsers = LoadGreenhouseUsers(dc, g.GreenhouseID)
+                    let sections = LoadSections(dc, g.GreenhouseID)
                     select new Domain.Greenhouse
                     {
                         ID = g.GreenhouseID,
+                        GreenhouseUsers = new LazyList<GreenhouseUser>(greenhouseUsers),
+                        Sections = new LazyList<Section>(sections),
+                        Usernames = Usernames,
                         Address = new Address
                         {
                             City = g.City,
@@ -57,18 +68,36 @@ namespace DV_Enterprises.Web.Data.Repository
                         }
 
                     };
-            return r.ToList();
+            return r;
         }
 
-        /// <summary>
-        /// Find an Greenhouse by it's id.
-        /// </summary>
-        /// <param name="dc"></param>
-        /// <param name="id"></param>
-        /// <returns>returns a Greenhouse</returns>
-        public Domain.Greenhouse Find(DataContext dc, int id)
+        public IQueryable<Domain.Greenhouse> All(DataContext dc, string username)
         {
-            return All(dc).Where(g => g.ID == id).SingleOrDefault();
+            dc = dc ?? Conn.GetContext();
+            var r = from g in dc.Greenhouses
+                    join gu in dc.GreenhouseUsers on g.GreenhouseID equals gu.GreenhouseId
+                    let greenhouseUsers = LoadGreenhouseUsers(dc, g.GreenhouseID)
+                    let sections = LoadSections(dc, g.GreenhouseID)
+                    where gu.User.UserName.ToLower() == username.ToLower()
+                    select new Domain.Greenhouse
+                    {
+                        ID = g.GreenhouseID,
+                        GreenhouseUsers = new LazyList<GreenhouseUser>(greenhouseUsers),
+                        Sections = new LazyList<Section>(sections),
+                        Usernames = Usernames,
+                        Address = new Address
+                        {
+                            City = g.City,
+                            StateOrProvince = g.StateOrProvince,
+                            Country = g.Country,
+                            Zip = g.Zip,
+                            StreetLine1 = g.StreetLine1,
+                            StreetLine2 = g.StreetLine2,
+                            IsDefault = g.IsDefault,
+                        }
+
+                    };
+            return r;
         }
 
         /// <summary>
@@ -137,26 +166,21 @@ namespace DV_Enterprises.Web.Data.Repository
             dc.SubmitChanges();
         }
 
-        public IQueryable<Domain.Section> LoadSections(DataContext dc, int gId)
+        public IQueryable<Section> LoadSections(DataContext dc, int greenhouseID)
         {
-            var r = Domain.Section.All(dc).Where(s => s.GreenhouseID == gId);
-            return r;
+            return  Section.All(dc).Where(s => s.GreenhouseID == greenhouseID);
         }
 
-        public IQueryable<Domain.Section> LoadSections(int gId)
-        {
-            var r = Domain.Section.All().Where(s => s.GreenhouseID == gId);
-            return r;
-        }
 
-        public List<Guid> LoadUsers(IEnumerable<Domain.Section> sections)
+        public IQueryable<GreenhouseUser> LoadGreenhouseUsers(DataContext dc, int greenhouseUserID)
         {
-            var result = new List<Guid>();
-            foreach (var section in sections)
+            Usernames.Clear();
+            var r =  GreenhouseUser.All(dc).ByGreenhouseID(greenhouseUserID);
+            foreach (var user in r)
             {
-                result.Add(section.UserID);
+                Usernames.Add(user.Username);
             }
-            return result;
+            return r;
         }
 
         # endregion

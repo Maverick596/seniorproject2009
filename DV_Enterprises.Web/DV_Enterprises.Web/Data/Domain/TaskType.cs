@@ -10,7 +10,7 @@ namespace DV_Enterprises.Web.Data.Domain
     {
         #region Static properties
 
-        private static readonly Repository.TaskType Repository = new Repository.TaskType();
+        private static readonly Repository.TaskTypeRepository Repository = new Repository.TaskTypeRepository();
 
         #endregion
 

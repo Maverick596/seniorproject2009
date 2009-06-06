@@ -21,6 +21,34 @@
             </address>
         </asp:Panel>
         
+        <asp:Panel ID="pnlUsers" runat="server" Visible="false">
+            <asp:ListView ID="lvUsers" runat="server"
+                onitemcommand="lvUsers_ItemCommand" 
+                onitemdeleting="lvUsers_ItemDeleting">
+                <LayoutTemplate>
+                    <h3 class="title">Users</h3>
+                    <ul>
+                        <asp:PlaceHolder ID="itemPlaceHolder" runat="server" />
+                    </ul>
+                </LayoutTemplate>
+                
+                <ItemTemplate>
+                    <li>
+                        <asp:Literal ID="litUsername" runat="server" Text="<%# ((GreenhouseUser)Container.DataItem).Username %>" />
+                        <span><asp:LinkButton ID="lbDelete" runat="server" CommandName="Delete" Text="(remove)" /></span>
+                    </li>
+                </ItemTemplate>
+            </asp:ListView>
+            <div class="form">
+                <fieldset>
+                    <asp:DropDownList ID="ddlUsers" runat="server">
+                    </asp:DropDownList>
+                    <asp:Button ID="butAddUsers" runat="server" Text="Add new user to greenhouse" 
+                        onclick="butAddUsers_Click" />
+                </fieldset>
+            </div>
+        </asp:Panel>
+        
         <asp:Panel ID="pnlEditGreenhouse" runat="server" Visible="false" CssClass="form">
             <fieldset>
                 <legend>Address</legend>
@@ -115,6 +143,8 @@
                 
                 <div class="grid_16">
                     <dl class="table_display grid_4 alpha omega">
+                        <dt>User:</dt>
+                        <dd><asp:Literal ID="litUser" runat="server" Text="<%# ((Section)Container.DataItem).Username %>" /></dd>
                         <dt>Preset:</dt>
                         <dd><asp:Literal ID="litSectionPreset" runat="server" Text="<%# ((Section)Container.DataItem).Preset.Name %>" /></dd>
                     </dl>
@@ -222,10 +252,17 @@
                             <p class="inline-hints"></p>
                         </li>
                         <li>
-                            <asp:Label ID="lblPreset" runat="server" Text="Preset:" AssociatedControlID="tbxName" />
+                            <asp:Label ID="lblPreset" runat="server" Text="Preset:" AssociatedControlID="ddlPreset" />
                             <asp:DropDownList ID="ddlPreset" runat="server" AutoPostBack="true" />
                             <p class="inline-hints">A set of default setting for this section</p>
                         </li>
+                        <asp:Panel ID="pnlOwner" runat="server" Visible="false">
+                            <li>
+                                <asp:Label ID="lblOwner" runat="server" Text="Owner:" AssociatedControlID="ddlOwner" />
+                                <asp:DropDownList ID="ddlOwner" runat="server" AutoPostBack="true" />
+                                <p class="inline-hints">Owner for this section</p>
+                            </li>
+                        </asp:Panel>
                     </ol>
                 </fieldset>
                 <fieldset class="grid_8">
@@ -342,6 +379,13 @@
                             <asp:DropDownList ID="ddlPreset" runat="server" AutoPostBack="true" />
                             <p class="inline-hints">A set of default setting for this section</p>
                         </li>
+                        <asp:Panel ID="pnlOwner" runat="server" Visible="false">
+                            <li>
+                                <asp:Label ID="lblOwner" runat="server" Text="Owner:" AssociatedControlID="ddlOwner" />
+                                <asp:DropDownList ID="ddlOwner" runat="server" AutoPostBack="true" />
+                                <p class="inline-hints">Owner for this section</p>
+                            </li>
+                        </asp:Panel>
                     </ol>
                 </fieldset>
                 <fieldset class="grid_8">

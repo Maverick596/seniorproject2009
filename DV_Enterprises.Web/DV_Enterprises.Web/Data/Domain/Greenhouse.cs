@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
 using DV_Enterprises.Web.Data.Domain.Interface;
+using DV_Enterprises.Web.Data.Filters;
 using DV_Enterprises.Web.Data.Utility;
 using StructureMap;
 
@@ -13,27 +15,17 @@ namespace DV_Enterprises.Web.Data.Domain
     {
         #region Static properties
 
-        private static readonly Repository.Greenhouse Repository = new Repository.Greenhouse();
+        private static readonly Repository.GreenhouseRepository Repository = new Repository.GreenhouseRepository();
 
         #endregion
 
         #region Instance properties
 
-        private List<Guid> _userIDs;
-        private LazyList<Section> _sections;
-
         public int ID { get; set; }
         public Address Address { get; set; }
-        public LazyList<Section> Sections
-        {
-            get { return _sections ?? (Sections = new LazyList<Section>(LoadSections(ID))); }
-            set { _sections = value; }
-        }
-        public List<Guid> UserIDs
-        {
-            get { return _userIDs ?? (UserIDs = LoadUsers(Sections)); }
-            set { _userIDs = value; }
-        }
+        public LazyList<Section> Sections { get; set; }
+        public LazyList<GreenhouseUser> GreenhouseUsers { get; set; }
+        public List<string> Usernames { get; set; }
 
         #endregion
 
@@ -43,7 +35,7 @@ namespace DV_Enterprises.Web.Data.Domain
         /// Find all Greenhouse's
         /// </summary>
         /// <returns>return an IQueryable collection of Greenhouse</returns>
-        public static IList<Greenhouse> All()
+        public static IQueryable<Greenhouse> All()
         {
             return All(null);
         }
@@ -53,30 +45,30 @@ namespace DV_Enterprises.Web.Data.Domain
         /// </summary>
         /// <param name="dc"></param>
         /// <returns>return an IQueryable collection of Greenhouse</returns>
-        public static IList<Greenhouse> All(DataContext dc)
+        public static IQueryable<Greenhouse> All(DataContext dc)
         {
             return Repository.All(dc);
         }
 
-        /// <summary>
-        /// Find an Greenhouse by it's id.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>returns a Greenhouse</returns>
-        public static Greenhouse Find(int id)
+        public static IQueryable<Greenhouse> AllByUsername(string username)
         {
-            return Find(null, id);
+            return AllByUsername(null, username);
         }
 
-        /// <summary>
-        /// Find an Greenhouse by it's id.
-        /// </summary>
-        /// <param name="dc"></param>
-        /// <param name="id"></param>
-        /// <returns>returns a Greenhouse</returns>
-        public static Greenhouse Find(DataContext dc, int id)
+        public static IQueryable<Greenhouse> AllByUsername(DataContext dc, string username)
         {
-            return Repository.Find(dc, id);
+            if (username == null) All(dc);
+            return Repository.All(dc, username);
+        }
+
+        public static Greenhouse ByID(int greebhouseID)
+        {
+            return ByID(null, greebhouseID);
+        }
+
+        public static Greenhouse ByID(DataContext dc, int greebhouseID)
+        {
+            return All(dc).ByID(greebhouseID);
         }
 
         /// <summary>
@@ -117,28 +109,6 @@ namespace DV_Enterprises.Web.Data.Domain
         public static void Delete(DataContext dc, Greenhouse greenhouse)
         {
             Repository.Delete(dc, greenhouse);
-        }
-
-
-        /// <summary>
-        /// Loads all connected sections
-        /// </summary>
-        /// <param name="dc"></param>
-        /// <param name="gId"></param>
-        /// <returns></returns>
-        private static IQueryable<Section> LoadSections(DataContext dc, int gId)
-        {
-            return Repository.LoadSections(dc, gId);
-        }
-
-        private static IQueryable<Section> LoadSections(int gId)
-        {
-            return LoadSections(null, gId);
-        }
-
-        private static List<Guid> LoadUsers(IEnumerable<Section> sections)
-        {
-            return Repository.LoadUsers(sections);
         }
 
         #endregion

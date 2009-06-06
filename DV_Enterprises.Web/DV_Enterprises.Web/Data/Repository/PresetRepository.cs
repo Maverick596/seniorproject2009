@@ -8,7 +8,7 @@ using StructureMap;
 namespace DV_Enterprises.Web.Data.Repository
 {
     [Pluggable("Default")]
-    public class Preset:IPreset
+    public class PresetRepository:IPresetRepository
     {
         #region Static properties
 
@@ -26,7 +26,7 @@ namespace DV_Enterprises.Web.Data.Repository
 
         #region Instance methods
 
-        public Preset()
+        public PresetRepository()
         {
             Conn = new Connection();
         }
@@ -84,7 +84,7 @@ namespace DV_Enterprises.Web.Data.Repository
             var isNew = false;
             if (dbPreset == null)
             {
-                dbPreset = new DataAccess.SqlRepository.Preset();
+                dbPreset = new Preset();
                 isNew = true;
             }
 

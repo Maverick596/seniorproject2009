@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
 using StructureMap;
@@ -8,7 +6,7 @@ using StructureMap;
 namespace DV_Enterprises.Web.Data.Repository.Interface
 {
     [PluginFamily("Default")]
-    public interface IGreenhouse
+    public interface IProductRepository
     {
         #region Static properties
 
@@ -25,13 +23,10 @@ namespace DV_Enterprises.Web.Data.Repository.Interface
         #endregion
 
         #region Instance methods
-        IList<Domain.Greenhouse> All(DataContext dc);
-        Domain.Greenhouse Find(DataContext dc, int id);
-        int Save(DataContext dc, Domain.Greenhouse model);
-        void Delete(DataContext dc, Domain.Greenhouse model);
-        IQueryable<Domain.Section> LoadSections(DataContext dc, int gId);
-        IQueryable<Domain.Section> LoadSections(int gId);
-        List<Guid> LoadUsers(IEnumerable<Domain.Section> sections);
+        IList<Domain.Product> All(DataContext dc);
+        Domain.Product Find(DataContext dc, int id);
+        int Save(DataContext dc, Domain.Product model);
+        void Delete(DataContext dc, Domain.Product model);
         #endregion
     }
 }

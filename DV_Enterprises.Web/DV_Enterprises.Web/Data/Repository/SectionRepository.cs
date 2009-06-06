@@ -8,7 +8,7 @@ using StructureMap;
 namespace DV_Enterprises.Web.Data.Repository
 {
     [Pluggable("Default")]
-    public class Section : ISection
+    public class SectionRepository : ISectionRepository
     {
         #region Static properties
 
@@ -26,7 +26,7 @@ namespace DV_Enterprises.Web.Data.Repository
 
         #region Instance methods
 
-        public Section()
+        public SectionRepository()
         {
             Conn = new Connection();
         }
@@ -47,6 +47,7 @@ namespace DV_Enterprises.Web.Data.Repository
                         GreenhouseID = s.GreenhouseID,
                         PresetID = s.PresetID,
                         UserID = s.UserID,
+                        Username = s.User.UserName,
                         IsTemperatureActivated = s.IsTemeratureActivated,
                         IdealTemperature = s.IdealTemperature,
                         TemperatureThreshold = s.TemperatureThreshold,

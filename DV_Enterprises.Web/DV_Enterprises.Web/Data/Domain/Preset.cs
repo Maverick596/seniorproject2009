@@ -11,7 +11,7 @@ namespace DV_Enterprises.Web.Data.Domain
     {
         #region Static properties
 
-        private static readonly Repository.Preset Repository = new Repository.Preset();
+        private static readonly Repository.PresetRepository Repository = new Repository.PresetRepository();
 
         #endregion
 

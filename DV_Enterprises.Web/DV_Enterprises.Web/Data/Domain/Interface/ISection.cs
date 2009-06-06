@@ -18,6 +18,7 @@ namespace DV_Enterprises.Web.Data.Domain.Interface
         int PresetID { get; set; }
         Preset Preset { get; }
         Guid UserID { get; set; }
+        string Username { get; set; }
         bool IsTemperatureActivated { get; set; }
         int? IdealTemperature { get; set; }
         int? TemperatureThreshold { get; set; }

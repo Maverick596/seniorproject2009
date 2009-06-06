@@ -9,7 +9,7 @@ using StructureMap;
 namespace DV_Enterprises.Web.Data.Repository
 {
     [Pluggable("Default")]
-    public class TaskType : ITaskType
+    public class TaskTypeRepository : ITaskTypeRepository
     {
         #region Static properties
 
@@ -27,7 +27,7 @@ namespace DV_Enterprises.Web.Data.Repository
 
         #region Instance methods
 
-        public TaskType()
+        public TaskTypeRepository()
         {
             Conn = new Connection();
         }

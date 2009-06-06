@@ -358,7 +358,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="User_dvent_Preset1", Storage="_Presets", ThisKey="UserId", OtherKey="UserID")]
+		[Association(Name="User_Preset", Storage="_Presets", ThisKey="UserId", OtherKey="UserID")]
 		public EntitySet<Preset> Presets
 		{
 			get
@@ -371,7 +371,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="User_dvent_Section", Storage="_Sections", ThisKey="UserId", OtherKey="UserID")]
+		[Association(Name="User_Section", Storage="_Sections", ThisKey="UserId", OtherKey="UserID")]
 		public EntitySet<Section> Sections
 		{
 			get
@@ -1033,7 +1033,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Greenhouse_dvent_Section", Storage="_Sections", ThisKey="GreenhouseID", OtherKey="GreenhouseID")]
+		[Association(Name="Greenhouse_Section", Storage="_Sections", ThisKey="GreenhouseID", OtherKey="GreenhouseID")]
 		public EntitySet<Section> Sections
 		{
 			get
@@ -1548,7 +1548,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Section_Task", Storage="_Section", ThisKey="SectionID", OtherKey="SectionID", IsForeignKey=true)]
+		[Association(Name="Section_Task", Storage="_Section", ThisKey="SectionID", OtherKey="SectionID", IsForeignKey=true)]
 		public Section Section
 		{
 			get
@@ -1966,7 +1966,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Preset_dvent_Section", Storage="_Sections", ThisKey="PresetID", OtherKey="PresetID")]
+		[Association(Name="Preset_Section", Storage="_Sections", ThisKey="PresetID", OtherKey="PresetID")]
 		public EntitySet<Section> Sections
 		{
 			get
@@ -1979,7 +1979,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="User_dvent_Preset1", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
+		[Association(Name="User_Preset", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -2543,7 +2543,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="dvent_Section_Task", Storage="_Tasks", ThisKey="SectionID", OtherKey="SectionID")]
+		[Association(Name="Section_Task", Storage="_Tasks", ThisKey="SectionID", OtherKey="SectionID")]
 		public EntitySet<Task> Tasks
 		{
 			get
@@ -2556,7 +2556,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="User_dvent_Section", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
+		[Association(Name="User_Section", Storage="_User", ThisKey="UserID", OtherKey="UserId", IsForeignKey=true)]
 		public User User
 		{
 			get
@@ -2590,7 +2590,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Greenhouse_dvent_Section", Storage="_Greenhouse", ThisKey="GreenhouseID", OtherKey="GreenhouseID", IsForeignKey=true)]
+		[Association(Name="Greenhouse_Section", Storage="_Greenhouse", ThisKey="GreenhouseID", OtherKey="GreenhouseID", IsForeignKey=true)]
 		public Greenhouse Greenhouse
 		{
 			get
@@ -2624,7 +2624,7 @@ namespace DV_Enterprises.Web.Data.DataAccess.SqlRepository
 			}
 		}
 		
-		[Association(Name="Preset_dvent_Section", Storage="_Preset", ThisKey="PresetID", OtherKey="PresetID", IsForeignKey=true)]
+		[Association(Name="Preset_Section", Storage="_Preset", ThisKey="PresetID", OtherKey="PresetID", IsForeignKey=true)]
 		public Preset Preset
 		{
 			get

@@ -11,8 +11,8 @@
       <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="User_GreenhouseUser" Member="GreenhouseUsers" ThisKey="UserId" OtherKey="UserId" Type="GreenhouseUser" />
-      <Association Name="User_dvent_Preset1" Member="Presets" ThisKey="UserId" OtherKey="UserID" Type="Preset" />
-      <Association Name="User_dvent_Section" Member="Sections" ThisKey="UserId" OtherKey="UserID" Type="Section" />
+      <Association Name="User_Preset" Member="Presets" ThisKey="UserId" OtherKey="UserID" Type="Preset" />
+      <Association Name="User_Section" Member="Sections" ThisKey="UserId" OtherKey="UserID" Type="Section" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_TaskType" Member="TaskTypes">
@@ -46,7 +46,7 @@
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Greenhouse_GreenhouseUser" Member="GreenhouseUsers" ThisKey="GreenhouseID" OtherKey="GreenhouseId" Type="GreenhouseUser" />
-      <Association Name="Greenhouse_dvent_Section" Member="Sections" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Section" />
+      <Association Name="Greenhouse_Section" Member="Sections" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Section" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_GreenhouseUser" Member="GreenhouseUsers">
@@ -70,7 +70,7 @@
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="TaskType_Task" Member="TaskType" ThisKey="TaskTypeID" OtherKey="TaskTypeId" Type="TaskType" IsForeignKey="true" />
-      <Association Name="dvent_Section_Task" Member="Section" ThisKey="SectionID" OtherKey="SectionID" Type="Section" IsForeignKey="true" />
+      <Association Name="Section_Task" Member="Section" ThisKey="SectionID" OtherKey="SectionID" Type="Section" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Preset" Member="Presets">
@@ -89,8 +89,8 @@
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="IsGlobal" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Preset_dvent_Section" Member="Sections" ThisKey="PresetID" OtherKey="PresetID" Type="Section" />
-      <Association Name="User_dvent_Preset1" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="Preset_Section" Member="Sections" ThisKey="PresetID" OtherKey="PresetID" Type="Section" />
+      <Association Name="User_Preset" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.dvent_Section" Member="Sections">
@@ -114,10 +114,10 @@
       <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="dvent_Section_Task" Member="Tasks" ThisKey="SectionID" OtherKey="SectionID" Type="Task" />
-      <Association Name="User_dvent_Section" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
-      <Association Name="Greenhouse_dvent_Section" Member="Greenhouse" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
-      <Association Name="Preset_dvent_Section" Member="Preset" ThisKey="PresetID" OtherKey="PresetID" Type="Preset" IsForeignKey="true" />
+      <Association Name="Section_Task" Member="Tasks" ThisKey="SectionID" OtherKey="SectionID" Type="Task" />
+      <Association Name="User_Section" Member="User" ThisKey="UserID" OtherKey="UserId" Type="User" IsForeignKey="true" />
+      <Association Name="Greenhouse_Section" Member="Greenhouse" ThisKey="GreenhouseID" OtherKey="GreenhouseID" Type="Greenhouse" IsForeignKey="true" />
+      <Association Name="Preset_Section" Member="Preset" ThisKey="PresetID" OtherKey="PresetID" Type="Preset" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

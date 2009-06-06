@@ -1,12 +1,13 @@
 using System.Linq;
 using DV_Enterprises.Web.Data.DataAccess;
 using DV_Enterprises.Web.Data.DataAccess.SqlRepository;
+using DV_Enterprises.Web.Data.Domain;
 using StructureMap;
 
 namespace DV_Enterprises.Web.Data.Repository.Interface
 {
     [PluginFamily("Default")]
-    public interface ITask
+    public interface ITaskTypeRepository
     {
         #region Static properties
 
@@ -23,10 +24,11 @@ namespace DV_Enterprises.Web.Data.Repository.Interface
         #endregion
 
         #region Instance methods
-        IQueryable<Domain.Task> All(DataContext dc);
-        Domain.Task Find(DataContext dc, int id);
-        int Save(DataContext dc, Domain.Task model);
-        void Delete(DataContext dc, Domain.Task model);
+        IQueryable<Domain.TaskType> All(DataContext dc);
+        Domain.TaskType Find(DataContext dc, int id);
+        Domain.TaskType Find(DataContext dc, TaskTypes type);
+        int Save(DataContext dc, Domain.TaskType model);
+        void Delete(DataContext dc, Domain.TaskType model);
         #endregion
     }
 }

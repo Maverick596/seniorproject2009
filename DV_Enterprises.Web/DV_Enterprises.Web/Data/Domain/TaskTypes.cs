@@ -1,7 +1,7 @@
 namespace DV_Enterprises.Web.Data.Domain
 {
     /// <summary>
-    /// Task override the automatic settings that come from the sensors and may be dangerous
+    /// Tasks override the automatic settings that come from the sensors and may be dangerous
     /// </summary>
     public enum TaskTypes
     { 

@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataContext.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Domain\GreenhouseUser.cs" />
     <Compile Include="Data\Domain\Preset.cs" />
     <Compile Include="Data\Domain\Greenhouse.cs" />
     <Compile Include="Data\Domain\Interface\IPreset.cs" />
@@ -80,18 +81,22 @@
     <Compile Include="Data\Domain\Section.cs" />
     <Compile Include="Data\Domain\TaskType.cs" />
     <Compile Include="Data\Domain\TaskTypes.cs" />
-    <Compile Include="Data\Repository\Greenhouse.cs" />
-    <Compile Include="Data\Repository\Interface\IGreenhouse.cs" />
-    <Compile Include="Data\Repository\Interface\IPreset.cs" />
-    <Compile Include="Data\Repository\Interface\IProduct.cs" />
-    <Compile Include="Data\Repository\Interface\ISection.cs" />
-    <Compile Include="Data\Repository\Interface\ITask.cs" />
-    <Compile Include="Data\Repository\Interface\ITaskType.cs" />
-    <Compile Include="Data\Repository\Preset.cs" />
-    <Compile Include="Data\Repository\Product.cs" />
-    <Compile Include="Data\Repository\Section.cs" />
-    <Compile Include="Data\Repository\Task.cs" />
-    <Compile Include="Data\Repository\TaskType.cs" />
+    <Compile Include="Data\Filters\GreenhouseFilters.cs" />
+    <Compile Include="Data\Filters\GreenhouseUserFilters.cs" />
+    <Compile Include="Data\Repository\GreenhouseRepository.cs" />
+    <Compile Include="Data\Repository\GreenhouseUserRepository.cs" />
+    <Compile Include="Data\Repository\Interface\IGreenhouseRepository.cs" />
+    <Compile Include="Data\Repository\Interface\IGreenhouseUserRepository.cs" />
+    <Compile Include="Data\Repository\Interface\IPresetRepository.cs" />
+    <Compile Include="Data\Repository\Interface\IProductRepository.cs" />
+    <Compile Include="Data\Repository\Interface\ISectionRepository.cs" />
+    <Compile Include="Data\Repository\Interface\ITaskRepository.cs" />
+    <Compile Include="Data\Repository\Interface\ITaskTypeRepository.cs" />
+    <Compile Include="Data\Repository\PresetRepository.cs" />
+    <Compile Include="Data\Repository\ProductRepository.cs" />
+    <Compile Include="Data\Repository\SectionRepository.cs" />
+    <Compile Include="Data\Repository\TaskRepository.cs" />
+    <Compile Include="Data\Repository\TaskTypeRepository.cs" />
     <Compile Include="Presenter\Products\Utility\LazyList.cs" />
     <Compile Include="Presenter\Products\DefaultPresenter.cs" />
     <Compile Include="Presenter\Products\Interface\IDefault.cs" />

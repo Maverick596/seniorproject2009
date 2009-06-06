@@ -11,7 +11,7 @@ namespace DV_Enterprises.Web.Data.Domain
     {
         #region Static properties
 
-        private static readonly Repository.Product Repository = new Repository.Product();
+        private static readonly Repository.ProductRepository Repository = new Repository.ProductRepository();
 
         #endregion
 

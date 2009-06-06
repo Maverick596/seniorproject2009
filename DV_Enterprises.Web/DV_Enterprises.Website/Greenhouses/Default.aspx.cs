@@ -5,6 +5,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using DV_Enterprises.Web.Data.Domain;
+using DV_Enterprises.Web.Data.Filters;
 using DV_Enterprises.Web.Service;
 using DV_Enterprises.Web.Service.Interface;
 using StructureMap;
@@ -33,17 +34,22 @@ namespace Greenhouses
             if (User.IsInRole("administrator"))
             {
                 LoadData(Greenhouse.All());
+                lbNewGreenhouse.Visible = true;
             }
             else
             {
-                LoadData(Greenhouse.All().Where(g => g.UserIDs.Contains(new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString()))).ToList());
+                lbNewGreenhouse.Visible = false;
+                LoadData(Greenhouse.AllByUsername(User.Identity.Name));
             }
         }
 
-        public void LoadData(IList<Greenhouse> greenhouses)
+        public void LoadData(IQueryable<Greenhouse> greenhouses)
         {
-            lvGreenhouses.DataSource = greenhouses;
-            lvGreenhouses.DataBind();
+            if (greenhouses != null)
+            {
+                lvGreenhouses.DataSource = greenhouses;
+                lvGreenhouses.DataBind();
+            }
         }
 
         protected void lbNewGreenhouse_Click(object sender, EventArgs e)
@@ -70,6 +76,14 @@ namespace Greenhouses
                 linkGreenhouseName.NavigateUrl = string.Format("~/Greenhouses/ViewGreenhouse.aspx?GreenhouseID={0}", litGreenhouseId.Text);
 
             if (lbView != null && litGreenhouseId != null) lbView.Attributes.Add("GreenhouseID", litGreenhouseId.Text);
+
+            if (!User.IsInRole("administrator"))
+            {
+                var lbDelete = e.Item.FindControl("lbDelete") as LinkButton;
+                var lbEdit = e.Item.FindControl("lbEdit") as LinkButton;
+                if (lbDelete != null) lbDelete.Visible = false;
+                if (lbEdit != null) lbEdit.Visible = false;
+            }
         }
 
         protected void lvGreenhouses_ItemEditing(object sender, ListViewEditEventArgs e)
@@ -163,7 +177,7 @@ namespace Greenhouses
 
         private void DeleteGreenhouse(Control item)
         {
-            var s = Greenhouse.Find(Convert.ToInt32(((Literal)item.FindControl("litGreenhouseID")).Text));
+            var s = Greenhouse.ByID(Convert.ToInt32(((Literal)item.FindControl("litGreenhouseID")).Text));
             s.Delete();
             Bind();
         }

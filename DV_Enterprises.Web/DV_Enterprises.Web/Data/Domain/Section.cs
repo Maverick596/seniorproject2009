@@ -11,7 +11,7 @@ namespace DV_Enterprises.Web.Data.Domain
     {
         #region Static properties
 
-        private static readonly Repository.Section Repository = new Repository.Section();
+        private static readonly Repository.SectionRepository Repository = new Repository.SectionRepository();
 
         #endregion
 
@@ -25,6 +25,7 @@ namespace DV_Enterprises.Web.Data.Domain
         public int PresetID { get; set; }
         public Preset Preset { get { return _preset ?? (_preset = Preset.Find(PresetID)); } }
         public Guid UserID { get; set; }
+        public string Username { get; set; }
         public bool IsTemperatureActivated { get; set; }
         public int? IdealTemperature { get; set; }
         public int? TemperatureThreshold { get; set; }

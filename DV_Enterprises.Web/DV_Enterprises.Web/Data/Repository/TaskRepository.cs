@@ -8,7 +8,7 @@ using StructureMap;
 namespace DV_Enterprises.Web.Data.Repository
 {
     [Pluggable("Default")]
-    public class Task : ITask
+    public class TaskRepository : ITaskRepository
     {
         #region Static properties
 
@@ -26,16 +26,16 @@ namespace DV_Enterprises.Web.Data.Repository
 
         #region Instance methods
 
-        public Task()
+        public TaskRepository()
         {
             Conn = new Connection();
         }
 
         /// <summary>
-        /// Find all Task's
+        /// Find all TaskRepository's
         /// </summary>
         /// <param name="dc">DataContext</param>
-        /// <returns>return an IQueryable collection of Task</returns>
+        /// <returns>return an IQueryable collection of TaskRepository</returns>
         public IQueryable<Domain.Task> All(DataContext dc)
         {
             dc = dc ?? Conn.GetContext();
@@ -56,18 +56,18 @@ namespace DV_Enterprises.Web.Data.Repository
 
 
         /// <summary>
-        /// Find an Task by it's id.
+        /// Find an TaskRepository by it's id.
         /// </summary>
         /// <param name="dc"></param>
         /// <param name="id"></param>
-        /// <returns>returns a Task</returns>
+        /// <returns>returns a TaskRepository</returns>
         public Domain.Task Find(DataContext dc, int id)
         {
             return All(dc).Where(t => t.ID == id).SingleOrDefault();
         }
 
         /// <summary>
-        /// Save a Task
+        /// Save a TaskRepository
         /// </summary>
         /// <param name="dc">DataContext</param>
         /// <param name="task"></param>
@@ -99,7 +99,7 @@ namespace DV_Enterprises.Web.Data.Repository
         }
 
         /// <summary>
-        /// Delete a single Task
+        /// Delete a single TaskRepository
         /// </summary>
         /// <param name="dc">DataContext</param>
         /// <param name="task"></param>
