@@ -48,7 +48,7 @@ namespace DV_Enterprises.Web.Data.Repository
                         PresetID = s.PresetID,
                         UserID = s.UserID,
                         Username = s.User.UserName,
-                        IsTemperatureActivated = s.IsTemeratureActivated,
+                        IsTemperatureActivated = s.IsTemperatureActivated,
                         IdealTemperature = s.IdealTemperature,
                         TemperatureThreshold = s.TemperatureThreshold,
                         IsLightActivated = s.IsLightActivated,
@@ -98,18 +98,23 @@ namespace DV_Enterprises.Web.Data.Repository
             dbSection.GreenhouseID = section.GreenhouseID;
             dbSection.PresetID = section.PresetID;
             dbSection.UserID = section.UserID;
-            dbSection.IsTemeratureActivated = section.IsTemperatureActivated;
+
+            dbSection.IsTemperatureActivated = section.IsTemperatureActivated;
             dbSection.IdealTemperature = section.IdealTemperature;
             dbSection.TemperatureThreshold = section.TemperatureThreshold;
+
             dbSection.IsLightActivated = section.IsLightActivated;
             dbSection.IdealLightIntensity = section.IdealLightIntensity;
             dbSection.LightIntensityThreshold = section.LightIntensityThreshold;
+
             dbSection.IsHumidityActivated = section.IsHumidityActivated;
             dbSection.IdealHumidity = section.IdealHumidity;
             dbSection.HumidityThreshold = section.HumidityThreshold;
+
             dbSection.IsWaterLevelActivated = section.IsWaterLevelActivated;
             dbSection.IdealWaterLevel = section.IdealWaterLevel;
             dbSection.WaterLevelThreshold = section.WaterLevelThreshold;
+
             dbSection.DateUpdated = DateTime.Now;
 
             if (isNew)

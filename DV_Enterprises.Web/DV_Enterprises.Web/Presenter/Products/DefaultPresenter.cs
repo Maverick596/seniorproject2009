@@ -29,5 +29,10 @@ namespace DV_Enterprises.Web.Presenter.Products
         {
             _redirector.GoToManageProduct(productId);
         }
+
+        public void EditProduct()
+        {
+            _redirector.GoToManageProduct();
+        }
     }
 }

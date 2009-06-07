@@ -431,22 +431,28 @@ CREATE TABLE [dbo].[dvent_Section](
 	[SectionID] [int] IDENTITY(1,1) NOT NULL,
 	[GreenhouseID] [int] NOT NULL,
 	[Name] [nvarchar](255) NOT NULL,
-	[IsTemeratureActivated] [bit] NOT NULL,
+	
 	[IdealTemperature] [int] NULL,
 	[TemperatureThreshold] [int] NULL,
-	[IsLightActivated] [bit] NOT NULL,
+	[IsTemperatureActivated] [bit] NOT NULL,
+	
 	[IdealLightIntensity] [int] NULL,
 	[LightIntensityThreshold] [int] NULL,
-	[IsHumidityActivated] [bit] NOT NULL,
+	[IsLightActivated] [bit] NOT NULL,
+	
+	
 	[WaterLevelThreshold] [int] NULL,
 	[IdealWaterLevel] [int] NULL,
-	[IsWaterLevelActivated] [bit] NOT NULL,
+	[IsHumidityActivated] [bit] NOT NULL,
+	
 	[IdealHumidity] [int] NULL,
 	[HumidityThreshold] [int] NULL,
+	[IsWaterLevelActivated] [bit] NOT NULL,
+	
 	[PresetID] [int] NOT NULL,
 	[UserID] [uniqueidentifier] NOT NULL,
 	[DateCreated] [datetime] NOT NULL,
-	[DateUpdated] [datetime] NOT NULL,
+	[DateUpdated] [datetime] NULL,
  CONSTRAINT [PK_dvent_Section] PRIMARY KEY CLUSTERED 
 (
 	[SectionID] ASC
@@ -710,16 +716,25 @@ BEGIN
 CREATE TABLE [dbo].[dvent_Preset](
 	[PresetID] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](255) NOT NULL,
+	
 	[IdealTemperature] [int] NULL,
 	[TemperatureThreshold] [int] NULL,
+	--[IsTemperatureActivated] [bit] NULL,
+	
 	[IdealLightIntensity] [int] NULL,
 	[LightIntensityThreshold] [int] NULL,
+	--[IsLightActivated] [bit] NULL,
+	
 	[IdealHumidity] [int] NULL,
 	[HumidityThreshold] [int] NULL,
+	--[IsHumidityActivated] [bit] NULL,
+	
 	[IdealWaterLevel] [int] NULL,
 	[WaterLevelThreshold] [int] NULL,
+	--[IsWaterLevelActivated] [bit] NULL,
+	
 	[DateCreated] [datetime] NOT NULL,
-	[DateUpdated] [datetime] NOT NULL,
+	[DateUpdated] [datetime] NULL,
 	[UserID] [uniqueidentifier] NULL,
 	[IsGlobal] [bit] NOT NULL,
  CONSTRAINT [PK_dvent_Crop] PRIMARY KEY CLUSTERED 
@@ -4168,7 +4183,7 @@ ALTER TABLE [dbo].[dvent_Preset] CHECK CONSTRAINT [FK_dvent_Crop_aspnet_Users]
 
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Product]
+INSERT INTO [greendb].[dbo].[dvent_Product]
            ([Name]
            ,[Description]
            ,[Price]
@@ -4186,7 +4201,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Product]
            ,'5/29/2009')
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Product]
+INSERT INTO [greendb].[dbo].[dvent_Product]
            ([Name]
            ,[Description]
            ,[Price]
@@ -4204,7 +4219,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Product]
            ,'5/29/2009')
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Product]
+INSERT INTO [greendb].[dbo].[dvent_Product]
            ([Name]
            ,[Description]
            ,[Price]
@@ -4222,7 +4237,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Product]
            ,'5/29/2009')
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Product]
+INSERT INTO [greendb].[dbo].[dvent_Product]
            ([Name]
            ,[Description]
            ,[Price]
@@ -4240,7 +4255,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Product]
            ,'5/29/2009')
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Product]
+INSERT INTO [greendb].[dbo].[dvent_Product]
            ([Name]
            ,[Description]
            ,[Price]
@@ -4262,7 +4277,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Product]
 
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Preset]
+INSERT INTO [greendb].[dbo].[dvent_Preset]
            ([Name]
            ,[IdealTemperature]
            ,[TemperatureThreshold]
@@ -4283,7 +4298,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Preset]
            , 1)
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Preset]
+INSERT INTO [greendb].[dbo].[dvent_Preset]
            ([Name]
            ,[IdealTemperature]
            ,[TemperatureThreshold]
@@ -4304,7 +4319,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Preset]
            , 1)
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Preset]
+INSERT INTO [greendb].[dbo].[dvent_Preset]
            ([Name]
            ,[IdealTemperature]
            ,[TemperatureThreshold]
@@ -4325,7 +4340,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Preset]
            , 1)
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Preset]
+INSERT INTO [greendb].[dbo].[dvent_Preset]
            ([Name]
            ,[IdealTemperature]
            ,[TemperatureThreshold]
@@ -4349,7 +4364,7 @@ GO
 
 --Insert New Presets
 
-INSERT INTO [dvent_web].[dbo].[dvent_Preset]
+INSERT INTO [greendb].[dbo].[dvent_Preset]
            ([Name]
            ,[IdealTemperature]
            ,[TemperatureThreshold]
@@ -4370,7 +4385,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Preset]
            , 1)
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Preset]
+INSERT INTO [greendb].[dbo].[dvent_Preset]
            ([Name]
            ,[IdealTemperature]
            ,[TemperatureThreshold]
@@ -4391,7 +4406,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Preset]
            , 1)
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Preset]
+INSERT INTO [greendb].[dbo].[dvent_Preset]
            ([Name]
            ,[IdealTemperature]
            ,[TemperatureThreshold]
@@ -4412,7 +4427,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Preset]
            , 1)
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Preset]
+INSERT INTO [greendb].[dbo].[dvent_Preset]
            ([Name]
            ,[IdealTemperature]
            ,[TemperatureThreshold]
@@ -4433,7 +4448,7 @@ INSERT INTO [dvent_web].[dbo].[dvent_Preset]
            , 1)
 GO
 
-INSERT INTO [dvent_web].[dbo].[dvent_Preset]
+INSERT INTO [greendb].[dbo].[dvent_Preset]
            ([Name]
            ,[IdealTemperature]
            ,[TemperatureThreshold]

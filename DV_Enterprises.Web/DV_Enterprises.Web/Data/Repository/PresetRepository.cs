@@ -45,14 +45,19 @@ namespace DV_Enterprises.Web.Data.Repository
                         ID = p.PresetID,
                         Name = p.Name,
                         UserID = p.UserID,
+
                         IdealTemperature = p.IdealTemperature,
                         TemperatureThreshold = p.TemperatureThreshold,
+
                         IdealLightIntensity = p.IdealLightIntensity,
                         LightIntensityThreshold = p.LightIntensityThreshold,
+
                         IdealHumidity = p.IdealHumidity,
                         HumidityThreshold = p.HumidityThreshold,
+
                         IdealWaterLevel = p.IdealWaterLevel,
                         WaterLevelThreshold = p.WaterLevelThreshold,
+
                         IsGlobal = p.IsGlobal,
                         DateCreated = p.DateCreated,
                         DateUpdated = p.DateUpdated

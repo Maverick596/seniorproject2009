@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="dvent_web" EntityNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" ContextNamespace="DV_Enterprises.Web.Data.DataAccess.SqlRepository" Class="DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=dvent_web;Integrated Security=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="DVENTDBConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=greendb;Integrated Security=True" SettingsObjectName="DV_Enterprises.Web.Properties.Settings" SettingsPropertyName="DVENTDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.aspnet_Users" Member="Users">
     <Type Name="User">
       <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -98,7 +98,7 @@
       <Column Name="SectionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="GreenhouseID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="IsTemeratureActivated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsTemperatureActivated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="IdealTemperature" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TemperatureThreshold" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsLightActivated" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />

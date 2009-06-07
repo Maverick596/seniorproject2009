@@ -60,9 +60,7 @@
             No users found.
         </EmptyDataTemplate>
     </asp:GridView>
-    
-    
-    <div class="crops">   
+<%--    <div class="crops">   
         <h3>Crops</h3>
-    </div>
+    </div>--%>
 </asp:Content>

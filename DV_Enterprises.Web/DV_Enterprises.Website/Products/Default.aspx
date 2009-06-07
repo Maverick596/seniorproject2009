@@ -45,6 +45,12 @@
         </EmptyDataTemplate>
     </asp:ListView>
     
+    <% if (Roles.IsUserInRole("Administrator")) { %>
+	    <asp:Button ID="btnAddProduct" runat="server" ToolTip="Add Product" 
+        Text="Add Product" onclick="btnAddProduct_Click" />
+        <br /><br />
+    <% } %>
+    
      <h2 class="style1 grid_16" >Special Offer!!! Purchase the MasterController, TempModule, and LightModule together and receive 7% off of your order! </h2>
     <h2 class="grid_16">Smart Greenhouse Solutions is committed to providing the best quality 
     products to help you enhance your growing. We back our products with an 

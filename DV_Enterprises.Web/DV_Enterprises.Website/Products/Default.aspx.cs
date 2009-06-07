@@ -49,9 +49,15 @@ namespace Products
             var lbEdit = sender as LinkButton;
             _presenter.EditProduct(Convert.ToInt32(lbEdit.Attributes["ProductID"]));
         }
+
         protected void lvProducts_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-}
+
+        protected void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            _presenter.EditProduct();
+        }
+    }
 }
